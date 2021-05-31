@@ -1,18 +1,29 @@
+import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Login from "./pages/Login";
-import Welcome from "./pages/Welcome";
-import Signup from "./pages/Signup";
-import Contribute from "./pages/Contribute";
+
+import Home from "./pages/Home";
 import Books from "./pages/Books";
-import Project from "./pages/Projects";
 import Notes from "./pages/Notes";
 import Questions from "./pages/Questions";
+import Projects from "./pages/Projects";
+import ContributeForm from "./components/ContributeForm";
+import ContributeCredential from "./components/ContributeCredential";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Contribute from "./pages/Contribute";
+import Profile from "./pages/Profile";
 
-import React from "react";
-export default class App extends React.Component {
+import "./App.css";
+
+export default class App extends Component {
   state = {
-    isLoggedin: "true",
+    isLoggedIn: true,
+  };
+
+  loginStateChanger = () => {
+    this.setState({
+      isLoggedIn: !this.state.isLoggedIn,
+    });
   };
 
   render() {
@@ -21,7 +32,7 @@ export default class App extends React.Component {
         {
           id: 1,
           name: "Vector Analysis",
-          author: "author1",
+          author: "Author1",
           publisher: "Schaums Outline",
           contributor: "Zhalok Rahman",
         },
@@ -88,9 +99,23 @@ export default class App extends React.Component {
       ],
 
       semester2: [
-        { id: 1, name: "Calculus Notes", contributor: "Kaifa Tabassum" },
-        { id: 2, name: "DS notes", contributor: "Zhalok Rahman" },
-        { id: 3, name: "Physics notes", contributor: "Aisha H Chowdhury" },
+        {
+          id: 1,
+          name: "Calculus Notes",
+          contributor: "Kaifa Tabassum",
+        },
+
+        {
+          id: 2,
+          name: "DS notes",
+          contributor: "Zhalok Rahman",
+        },
+
+        {
+          id: 3,
+          name: "Physics notes",
+          contributor: "Aisha H Chowdhury",
+        },
       ],
     };
 
@@ -130,7 +155,7 @@ export default class App extends React.Component {
 
         {
           id: 3,
-          name: "Sem Final Questions",
+          name: "Semester Final Questions",
           contributor: "Aisha H Chowdhury",
         },
       ],
@@ -184,39 +209,94 @@ export default class App extends React.Component {
       ],
     };
 
+    const user = [
+      {
+        email: "zhalokrahman007@gmail.com",
+        password: "03041959",
+      },
+
+      {
+        email: "kaifatab2@gmail.com",
+        password: "kaifatab",
+      },
+    ];
+
     const nav_info = [
-      { id: 1, title: "Log in", link: "/login" },
+      { id: 1, title: "Login", link: "/login" },
       { id: 2, title: "Sign up", link: "/signup" },
     ];
 
-    const { isLoggedin } = this.state;
+    const { isLoggedIn } = this.state;
 
     return (
       <Router>
         <div>
           <Route path="/" exact>
-            <Welcome nav_info={nav_info} />
-          </Route>
-          <Route path="/login">
-            <Login nav_info={nav_info} />
-          </Route>
-          <Route path="/signup">
-            <Signup nav_info={nav_info} />
-          </Route>
-          <Route path="/contribute">
-            <Contribute nav_info={nav_info} loggedinstate={isLoggedin} />
+            <Home
+              nav_info={nav_info}
+              loggedInState={isLoggedIn}
+              handleLog={this.loginStateChanger}
+            />
           </Route>
           <Route path="/books">
-            <Books info={books} nav_info={nav_info} />
-          </Route>
-          <Route path="/projects">
-            <Project nav_info={nav_info} info={projectlist} />
+            <Books
+              nav_info={nav_info}
+              info={books}
+              loggedInState={isLoggedIn}
+              handleLog={this.loginStateChanger}
+            />
           </Route>
           <Route path="/notes">
-            <Notes nav_info={nav_info} notes={notes} />
+            <Notes
+              nav_info={nav_info}
+              info={notes}
+              loggedInState={isLoggedIn}
+              handleLog={this.loginStateChanger}
+            />
           </Route>
           <Route path="/questions">
-            <Questions nav_info={nav_info} info={questions} />
+            <Questions
+              nav_info={nav_info}
+              info={questions}
+              loggedInState={isLoggedIn}
+              handleLog={this.loginStateChanger}
+            />
+          </Route>
+          <Route path="/projects">
+            <Projects
+              nav_info={nav_info}
+              info={projectlist}
+              loggedInState={isLoggedIn}
+              handleLog={this.loginStateChanger}
+            />
+          </Route>
+          <Route path="/contribute">
+            <Contribute
+              nav_info={nav_info}
+              loggedInState={isLoggedIn}
+              handleLog={this.loginStateChanger}
+            />
+          </Route>
+          <Route path="/login">
+            <Login
+              nav_info={nav_info}
+              loggedInState={isLoggedIn}
+              handleLog={this.loginStateChanger}
+            />
+          </Route>
+          <Route path="/signup">
+            <Signup
+              nav_info={nav_info}
+              loggedInState={isLoggedIn}
+              handleLog={this.loginStateChanger}
+            />
+          </Route>
+          <Route path="/profile">
+            <Profile
+              nav_info={nav_info}
+              loggedInState={isLoggedIn}
+              handleLog={this.loginStateChanger}
+            />
           </Route>
         </div>
       </Router>

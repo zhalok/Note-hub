@@ -1,34 +1,42 @@
-import React from "react";
-import ContributeCredential from "../components/ContributeCredential";
+import React, { Component } from "react";
+
 import ContributeForm from "../components/ContributeForm";
+import ContributeCredential from "../components/ContributeCredential";
 import Navbar from "../components/Navbar";
 
-export default class Contribute extends React.Component {
+import Img from "../images/login.png";
+
+import "../App.css";
+
+var sectionStyle = {
+  backgroundImage: `url(${Img})`,
+};
+
+export default class extends Component {
   render() {
-    const { nav_info, loggedinstate } = this.props;
+    const { nav_info, loggedInState, handleLog } = this.props;
 
-    if (loggedinstate === "false") {
-      return (
-        <div>
-          <Navbar nav_links={nav_info} />
-
-          <div className="container">
-            <h1 className="header">Contribute</h1>
-            <ContributeCredential />
-          </div>
-        </div>
-      );
+    let contribute;
+    if (loggedInState) {
+      contribute = <ContributeForm />;
     } else {
-      return (
-        <div>
-          <Navbar nav_links={nav_info} />
-
-          <div className="container">
-            <h1 className="header">Contribute</h1>
-            <ContributeForm />
-          </div>
-        </div>
-      );
+      contribute = <ContributeCredential />;
     }
+
+    return (
+      <div style={sectionStyle} className="ht">
+        <Navbar
+          nav_link={nav_info}
+          loggedInState={loggedInState}
+          handleLog={handleLog}
+        />
+
+        <div className="container mt-5 pt-5">
+          <h1 className="header text-secondary">Contribute</h1>
+          <hr className="hr-style" />
+          {contribute}
+        </div>
+      </div>
+    );
   }
 }

@@ -1,8 +1,16 @@
-import React from "react";
+import React, { Component } from "react";
+
 import Navbar from "../components/Navbar";
 import Projectlist from "../components/Projectlist";
+import Img from "../images/login.png";
 
-export default class Notes extends React.Component {
+import "../App.css";
+
+var sectionStyle = {
+  backgroundImage: `url(${Img})`,
+};
+
+export default class Projects extends Component {
   state = {
     projectlist: [],
   };
@@ -22,31 +30,36 @@ export default class Notes extends React.Component {
   };
 
   render() {
-    const { nav_info } = this.props;
+    const { nav_info, loggedInState, handleLog } = this.props;
     const { projectlist } = this.state;
 
     return (
-      <div>
-        <Navbar nav_links={nav_info} />
-        <div className="container">
-          <h1 className="header">Projects</h1>
+      <div style={sectionStyle} className="ht">
+        <Navbar
+          nav_link={nav_info}
+          loggedInState={loggedInState}
+          handleLog={handleLog}
+        />
+        <div className="container mt-5 pt-4">
+          <h1 className="display-3 text-light">Projects</h1>
+          <hr className="hr-style" />
           <div className="total-page">
             <div className="semester-options">
-              <h2 className="header">Semisters</h2>
-
+              <h3 className="display-6 text-secondary">Semester</h3>
+              <hr className="hr-style" />
               <button
                 type="button"
-                className="btn btn-outline-primary mt-2"
                 id="1"
                 onClick={this.controller}
+                className="btn btn-outline-secondary btn-lg btn-block"
               >
                 Semester1
               </button>
               <button
                 type="button"
-                className="btn btn-outline-primary mt-2"
                 id="2"
                 onClick={this.controller}
+                className="btn btn-outline-secondary btn-lg btn-block"
               >
                 Semester2
               </button>

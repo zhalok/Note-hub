@@ -1,49 +1,71 @@
-import React from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-class Navbar extends React.Component {
+export default class Navbar extends Component {
   render() {
-    const { nav_links } = this.props;
-    return (
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container">
-          <Link to="/" className="nav-link nav-brand">
-            Note_hub
-          </Link>
+    const { nav_link, loggedInState, handleLog } = this.props;
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+    let navOption;
+    if (!loggedInState) {
+      navOption = nav_link.map((e) => (
+        <Link className="nav-link" key={e.id} to={e.link}>
+          {e.title}
+        </Link>
+      ));
+    } else {
+      navOption = (
+        <>
+          <Link className="nav-link" to="/" onClick={handleLog}>
+            Sign Out
+          </Link>
+          <Link className="nav-link" to="/profile">
+            Profile
+          </Link>
+        </>
+      );
+    }
+
+    return (
+      <div>
+        <nav className="navbar navbar-expand-sm bg-secondary navbar-dark fixed-top">
+          <ul className="navbar-nav">
+            <li className="nav-item active">
+              <Link className="nav-link nav-brand color-dark" to="/">
+                NoteHub
+              </Link>
+            </li>
+            <li className="nav-item">
               <Link className="nav-link" to="/books">
                 Books
               </Link>
-              <Link to="/notes" className="nav-link">
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/notes">
                 Notes
               </Link>
-              <Link className="nav-link" to="/questions">
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link " to="/questions">
                 Questions
               </Link>
+            </li>
 
-              <Link className="nav-link" to="/projects">
+            <li className="nav-item">
+              <Link className="nav-link " to="/projects">
                 Projects
               </Link>
+            </li>
 
-              <Link className="nav-link" to="/contribute">
+            <li className="nav-item">
+              <Link className="nav-link " to="/contribute">
                 Contribute
               </Link>
-            </ul>
+            </li>
+          </ul>
 
-            <ul class="navbar-nav ml-auto">
-              {nav_links.map((e) => (
-                <Link className="nav-link" key={e.id} to={e.link}>
-                  {e.title}
-                </Link>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </nav>
+          <ul class="navbar-nav ml-auto">{navOption}</ul>
+        </nav>
+      </div>
     );
   }
 }
-
-export default Navbar;

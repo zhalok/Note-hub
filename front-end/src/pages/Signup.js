@@ -1,79 +1,79 @@
-import React from "react";
-import Navbar from "../components/Navbar";
-import { Link } from "react-router-dom";
-import logo from "../images/signup.png";
-class Signup extends React.Component {
-  render() {
-    const { nav_info } = this.props;
-    return (
-      <div>
-        <Navbar nav_links={nav_info} />
-        <div className="container">
-          <img src={logo} className="rounded float-right p-5 w-50" />
-          <div class="d-flex  p-5 justify-content-left ">
-            <div class="d-flex  flex-column ">
-              <form>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Email </label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    placeholder="Enter email"
-                  />
-                  <small id="emailHelp" class="form-text text-muted">
-                    We'll never share your email with anyone else.
-                  </small>
-                </div>
+import React, { Component } from "react";
 
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="exampleInputPassword1"
-                    placeholder="Password"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputPassword1">Confirm Password</label>
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="exampleInputPassword1"
-                    placeholder="Confirm Password"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Full Name</label>
-                  <input class="form-control" placeholder="Full-Name" />
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Registration Number</label>
-                  <input
-                    class="form-control"
-                    placeholder="Registration Number"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">Contract Number</label>
-                  <input class="form-control" placeholder="Contract Number" />
-                </div>
-                <Link
-                  type="button"
-                  to="/newUser"
-                  className="btn btn-primary mt-2"
-                >
-                  Submit
-                </Link>
-              </form>
+import Navbar from "../components/Navbar";
+
+import Img from "../images/login.png";
+import Icon from "../images/icon.png";
+import { Link } from "react-router-dom";
+
+var sectionStyle = {
+  backgroundImage: `url(${Img})`,
+};
+
+export default class SignUp extends Component {
+  render() {
+    const { nav_info, loggedInState, handleLog } = this.props;
+
+    return (
+      <div
+        style={sectionStyle}
+        className="container-fluid d-flex justify-content-center  p-3 "
+      >
+        <Navbar
+          nav_link={nav_info}
+          loggedInState={loggedInState}
+          handleLog={handleLog}
+        />
+        <div className="center-box p-3 mt-5 mb-5 w-25">
+          <p className="text-light">Provide all necessary information...</p>
+          <form>
+            <div className="form-group m-3 pt-3 pb-3">
+              <label className="text-light">Email</label>
+              <input
+                type="text"
+                className="form-control mb-2"
+                placeholder="Email"
+              />
+              <small class="form-text text-muted pb-3">
+                We'll never share your email with anyone else.
+              </small>
+              <label className="text-light">Password</label>
+              <input
+                type="password"
+                className="form-control mb-2"
+                placeholder="Password"
+              />
+              <label className="text-light">Confirm password</label>
+              <input
+                type="password"
+                className="form-control mb-2"
+                placeholder="Confirm password"
+              />
+              <label className="text-light">Fullname</label>
+              <input
+                type="text"
+                className="form-control mb-2"
+                placeholder="Fullname"
+              />
+              <label className="text-light">Registration Number</label>
+              <input
+                type="text"
+                className="form-control mb-2"
+                placeholder="Registration Number"
+              />
+              <label className="text-light">Contact Number</label>
+              <input
+                type="text"
+                className="form-control mb-2"
+                placeholder="Contact Number"
+              />
             </div>
-          </div>
+            <div className="center-box p-3">
+              <button className="btn btn-outline-light ">Submit</button>
+            </div>
+          </form>
         </div>
       </div>
     );
   }
 }
-
-export default Signup;
