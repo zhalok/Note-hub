@@ -17,7 +17,7 @@ import "./App.css";
 
 export default class App extends Component {
   state = {
-    isLoggedIn: true,
+    isLoggedIn: false,
   };
 
   loginStateChanger = () => {

@@ -59,30 +59,29 @@ export default class Login extends Component {
               className="rounded  "
             />
           </div>
-          <form>
-            <div className="form-group m-3 pt-3 pb-3">
-              <input
-                type="text"
-                className="form-control mb-2"
-                placeholder="Email"
-              />
-              <input
-                type="password"
-                className="form-control mb-2"
-                placeholder="Password"
-              />
-            </div>
-            <div className="center-box p-3">
-              {Logged}
-              <Link
-                type="button"
-                to="/signup"
-                className="btn btn-outline-light btn-block"
-              >
-                SignUp
-              </Link>
-            </div>
-          </form>
+
+          <div className="form-group m-3 pt-3 pb-3">
+            <input
+              type="text"
+              className="form-control mb-2"
+              placeholder="Email"
+            />
+            <input
+              type="password"
+              className="form-control mb-2"
+              placeholder="Password"
+            />
+          </div>
+          <div className="center-box p-3">
+            {Logged}
+            <Link
+              type="button"
+              to="/signup"
+              className="btn btn-outline-light btn-block"
+            >
+              SignUp
+            </Link>
+          </div>
         </div>
       </div>
     );
