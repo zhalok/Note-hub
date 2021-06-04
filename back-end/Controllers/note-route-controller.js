@@ -49,6 +49,7 @@ const add_new_note = async (req, res, next) => {
   });
 
   const result = await new_note.save();
+  update_user(req, res, next);
   res.json(result);
 };
 

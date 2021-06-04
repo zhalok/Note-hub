@@ -49,6 +49,7 @@ const add_new_project = async (req, res, next) => {
   });
 
   const result = await new_book.save();
+  update_user(req, res, next);
   res.json(result);
 };
 

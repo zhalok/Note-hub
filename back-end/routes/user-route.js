@@ -7,5 +7,6 @@ user_router.get("/id/:uid", user_route_controller.get_user_by_id);
 user_router.get("/name/:name", user_route_controller.get_users_by_name);
 user_router.post("/signup", user_route_controller.add_new_user);
 user_router.get("/login", user_route_controller.check_user_validity);
+user_router.post("/add", user_route_controller.add_new_user);
 
 module.exports = user_router;

@@ -1,24 +1,11 @@
+const { Mongoose } = require("mongoose");
 const HttpError = require("../models/http-error-model");
+const userModel = require("../models/user-model");
 
-const get_all_users = (req, res, next) => {
-  let retinfo = [];
-  user.forEach((e) => {
-    retinfo.push({
-      name: e.name,
-      contributions: e.contributions,
-      total_contributions:
-        e.contributions.books.length +
-        e.contributions.notes.length +
-        e.contributions.questions.length +
-        e.contributions.projects.length,
-    });
-  });
-
-  if (retinfo.length === 0) {
-    throw new HttpError("No users are found", 404);
-  } else {
-    res.json(retinfo);
-  }
+const get_all_users = async (req, res, next) => {
+  const users = await userModel.find({});
+  if (!users) res.json("No users found");
+  else res.json(users);
 };
 
 const get_user_by_id = (req, res, next) => {
@@ -50,65 +37,78 @@ const get_users_by_name = (req, res, next) => {
   }
 };
 
-const add_new_user = (req, res, next) => {
-  user.forEach((e) => {
-    if (e.name == req.body.name) {
-      throw new HttpError("Name already registered", 409);
-    }
-    if (e.registration_no == req.body.registration_no) {
-      throw new HttpError("Registration no already registered", 409);
+const add_new_user = async (req, res, next) => {
+  const { name, registration_id, session, password } = req.body;
+
+  const data = await userModel.find({});
+
+  let vacany = true;
+
+  data.forEach((e) => {
+    if (req.body.registration_id === e.registration_id) {
+      vacany = false;
     }
   });
 
-  const new_user = {
-    registration_no: req.body.registration_no,
-    password: req.body.password,
-    name: req.body.name,
-    contributions: {
+  if (vacany) {
+    const new_user = new userModel({
+      name: name.trim(),
+      registration_id: registration_id.trim(),
+      session,
+      password: password.trim(),
       books: [],
       notes: [],
       questions: [],
       projects: [],
-      total_contribution: 0,
-    },
+    });
+
+    const result = await new_user.save();
+    if (!result) res.json("There was a problem");
+    else res.json(result);
+  } else {
+    res.json("User Already Registered");
+  }
+};
+
+const update_user = async (req, res, next) => {
+  const registration_id = req.body.registration_id;
+  let founduser;
+  const data = await userModel.find({});
+  data.forEach((e) => {
+    if (e.registration_id == registration_id) {
+      founduser = e;
+      return;
+    }
+  });
+  if (founduser) console.log(founduser);
+
+  const { name, semester, type } = req.body;
+
+  const new_book = {
+    name,
+    semester,
   };
 
-  if (!new_user) throw new HttpError("Invalid Information", 404);
-  else {
-    user.push(new_user);
-    res.status(201).json("Successful");
-  }
+  founduser[type].push(new_book);
+
+  const user_id = founduser._id;
+
+  userModel.findByIdAndUpdate(user_id, founduser, { new: true }, () => {
+    console.log("Updated");
+  });
 };
 
-const update_user = (req, res, next) => {
-  let validity = 0;
-  user.forEach((e) => {
-    if (e.registration_no == req.body.registration_no) {
-      e.contributions[req.body.type].push(req.body.name);
-      // e.contributions++;
-      validity = 1;
+const check_user_validity = async (req, res, next) => {
+  const data = await userModel.find({});
+  const { id, password } = req.body;
+  let founduser;
+  data.forEach((e) => {
+    if (e.registration_id == id && e.password == password) {
+      founduser = e;
     }
   });
-
-  if (validity == 0) {
-    throw new HttpError("Invalid User", 404);
-  } else return;
-};
-
-const check_user_validity = (req, res, next) => {
-  const registration_no = req.body.registration_no.trim();
-  const password = req.body.password.trim();
-  let validity;
-  user.forEach((e) => {
-    if (e.registration_no == registration_no && e.password == password) {
-      validity = e;
-    }
-  });
-  if (validity == 0) {
-    throw new HttpError("User Not Found", 404);
-  } else {
-    res.status(200).json({ message: `Logged in as ${validity.name}` });
-  }
+  if (!founduser) res.json("User not found");
+  else res.json(founduser);
 };
 
 module.exports = {

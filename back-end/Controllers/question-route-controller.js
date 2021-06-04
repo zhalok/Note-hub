@@ -1,5 +1,5 @@
 const question_model = require("../models/questions-model");
-
+const { update_user } = require("../Controllers/user-route-controller");
 const get_questions_by_semester = async (req, res, next) => {
   const data = await question_model.find({});
   let retinfo = [];
@@ -43,6 +43,7 @@ const add_new_question = async (req, res, next) => {
   });
 
   const result = await new_question.save();
+  update_user(req, res, next);
   res.json(result);
 };
 
