@@ -40,11 +40,22 @@ export default class ContributeForm extends Component {
                       type="text"
                       className="form-control mt-2"
                       placeholder="Your Name"
-                    />
+                    />{" "}
                     <input
                       type="text"
                       className="form-control mt-2"
                       placeholder="Registration Number"
+                    />
+                  </div>
+                  <div className="d-flex flex-column p-2">
+                    <input
+                      type="text"
+                      className="form-control mt-2"
+                      placeholder="Content Name"
+                    />
+                    <textarea
+                      className="form-control mt-2"
+                      placeholder="Description of the content(optional)"
                     />
                   </div>
                   <div className="d-flex flex-column p-2 ">

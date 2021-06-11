@@ -30,7 +30,7 @@ app.use((req, res, next) => {
 
 mongoose
   .connect(
-    "mongodb+srv://zhalok:03041959@cluster0.gtdwt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "mongodb+srv://zhalok:03041959@cluster0.gtdwt.mongodb.net/Database1?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
       useFindAndModify: true,

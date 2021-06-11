@@ -18,7 +18,7 @@ export default class Profile extends Component {
 
     let i;
     Data.map((item) => {
-      if (item.email == user) {
+      if (item.user_id == user) {
         i = item.id - 1;
       }
     });

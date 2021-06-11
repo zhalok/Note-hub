@@ -31,17 +31,20 @@ const get_books_by_name = async (req, res, next) => {
 
 const get_all_books = async (req, res, next) => {
   const data = await book_model.find({});
+  // res.json({ books: data.map((e) => e.toObject({ getters: true })) });
   res.json(data);
 };
 
 const add_new_book = async (req, res, next) => {
-  const { name, semester, type, registration_id, contributor } = req.body;
+  const { name, semester, type, registration_id, contributor, description } =
+    req.body;
   const new_book = new book_model({
     name,
     semester,
     type,
     contributor_id: registration_id,
     contributor_name: contributor,
+    desription: description,
   });
 
   const result = await new_book.save();

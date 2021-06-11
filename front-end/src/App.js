@@ -18,14 +18,21 @@ import "./App.css";
 export default class App extends Component {
   state = {
     isLoggedIn: false,
-    userEmail: "",
+    userId: "",
   };
 
-  loginStateChanger = (id) => {
-    this.setState({
-      isLoggedIn: !this.state.isLoggedIn,
-      userEmail: id,
-    });
+  loginStateChanger = (reg) => {
+    console.log("login state changer is called");
+    if (this.state.isLoggedIn == false) {
+      this.setState({
+        isLoggedIn: true,
+        userId: reg,
+      });
+    } else {
+      this.setState({
+        isLoggedIn: false,
+      });
+    }
   };
 
   render() {
@@ -223,12 +230,14 @@ export default class App extends Component {
       },
     ];
 
-    const nav_info = [
+    let nav_info = [
       { id: 1, title: "Login", link: "/login" },
       { id: 2, title: "Sign up", link: "/signup" },
     ];
 
-    const { isLoggedIn, userEmail } = this.state;
+    const { isLoggedIn, userId } = this.state;
+
+    console.log(isLoggedIn);
 
     return (
       <Router>
@@ -298,7 +307,7 @@ export default class App extends Component {
               nav_info={nav_info}
               loggedInState={isLoggedIn}
               handleLog={this.loginStateChanger}
-              user={userEmail}
+              user={userId}
             />
           </Route>
         </div>

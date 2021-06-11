@@ -15,12 +15,31 @@ export default class Books extends Component {
     booklist: [],
   };
 
+  book_semester1 = async () => {
+    const response = await fetch(
+      "http://localhost:5000/books/semester/semester1"
+    );
+
+    const data = await response.json();
+    console.log(data);
+
+    if (data == "No data has been found") {
+      this.setState({
+        booklist: [{ name: "NoData" }],
+      });
+    } else {
+      this.setState({
+        booklist: data,
+      });
+    }
+  };
+
+  book_semester2 = async () => {};
+
   controller = (e) => {
     if (e.target.type === "button") {
       if (e.target.id === "1") {
-        this.setState({
-          booklist: this.props.info.semester1,
-        });
+        this.book_semester1();
       } else if (e.target.id === "2") {
         this.setState({
           booklist: this.props.info.semester2,

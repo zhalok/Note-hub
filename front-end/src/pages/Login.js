@@ -6,65 +6,89 @@ import Navbar from "../components/Navbar";
 import Img from "../images/login.png";
 import Icon from "../images/icon.png";
 import { Link } from "react-router-dom";
+import "../App.css";
 import Profile from "../pages/Profile";
+import ContributeForm from "../components/ContributeForm";
+
+import Congratulations from "../components/Congratulations";
 
 var sectionStyle = {
   backgroundImage: `url(${Img})`,
 };
 
 export default class Login extends Component {
-  state = {
-    isAuthenticated: true,
-    email: "",
-    password: "",
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      registration_number: "",
+      password: "",
+      Alert_Message: "",
+    };
+  }
 
-  /**
-   changeHandler = (e) => {
-    if (e.target.placeholder === "Email") {
+  changehandler = (e) => {
+    if (e.target.placeholder == "Registration Number") {
       this.setState({
-        email: e.target.value,
+        registration_number: e.target.value,
       });
-    } else if (e.target.placeholder === "Password") {
+    } else if (e.target.placeholder == "Password") {
       this.setState({
         password: e.target.value,
       });
     }
   };
-   */
 
-  changeEmail = (e) => {
-    this.setState({
-      email: e.target.value,
-    });
-  };
-
-  changePass = (e) => {
-    this.setState({
-      password: e.target.value,
-    });
+  clickHander = (e) => {
+    e.preventDefault();
+    // this.setState({
+    //   Alert_Message: "Please Provide Informations",
+    // });
+    this.props.handleLog(this.state.registration_number);
   };
 
   render() {
+    console.log(this.props.loggedInState);
     const { nav_info, loggedInState, handleLog } = this.props;
+    const { Alert_Message } = this.state;
 
     //const handle = useFullScreenHandle();
 
     let Logged;
-    if (this.state.isAuthenticated) {
-      Logged = (
-        <Link
-          type="button"
-          to="/contribute"
-          className="btn btn-outline-light btn-block"
-          onClick={() => handleLog(this.state.email)}
-        >
-          SignIn
-        </Link>
-      );
-    } else {
-      Logged = (
-        <button className="btn btn-outline-light btn-block ">SignIn</button>
+
+    Logged = (
+      <Link
+        type="button"
+        className="btn btn-outline-light btn-block"
+        onClick={this.clickHander}
+      >
+        SignIn
+      </Link>
+    );
+
+    if (loggedInState == true) {
+      return (
+        <div style={sectionStyle} className="ht">
+          <div className="container-fluid d-flex justify-content-center mt-5 p-5 h-100">
+            <Navbar
+              nav_link={nav_info}
+              loggedInState={loggedInState}
+              handleLog={handleLog}
+            />
+
+            <div className="d-flex flex-column justify-content-center mt-5 h-100">
+              <h3 className="pl-4 pb-3 mt-5 display-5 text-light ">
+                You Are Logged In
+              </h3>
+              <Link
+                type="button"
+                to="/contribute"
+                className="btn btn-outline-light btn-block"
+              >
+                Go To ContributeForm
+              </Link>
+            </div>
+          </div>
+        </div>
       );
     }
 
@@ -99,16 +123,16 @@ export default class Login extends Component {
               <input
                 type="text"
                 className="form-control mb-2"
-                placeholder="Email"
-                value={this.state.email}
-                onChange={this.changeEmail}
+                placeholder="Registration Number"
+                value={this.state.registration_number}
+                onChange={this.changehandler}
               />
               <input
                 type="password"
                 className="form-control mb-2"
                 placeholder="Password"
                 value={this.state.password}
-                onChange={this.changePass}
+                onChange={this.changehandler}
               />
             </form>
           </div>
