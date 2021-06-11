@@ -9,6 +9,7 @@ const user_route = require("./routes/user-route");
 const login_route = require("./routes/login-route");
 const signup_route = require("./routes/signup-route");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const questions_route = require("./routes/questions-route");
 
@@ -18,13 +19,25 @@ dotenv.config();
 
 app.use(bodyparser.json());
 
+app.use(cors());
+
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow_Headers", "*");
+  res.setHeader("Access-Control-Allow-Methods", "*");
+  next();
+});
+
 mongoose
-  .connect(process.env.URL, {
-    useNewUrlParser: true,
-    useFindAndModify: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    "mongodb+srv://zhalok:03041959@cluster0.gtdwt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useFindAndModify: true,
+      useCreateIndex: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => {
     console.log("Connected to database!");
   })

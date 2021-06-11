@@ -18,11 +18,13 @@ import "./App.css";
 export default class App extends Component {
   state = {
     isLoggedIn: false,
+    userEmail: "",
   };
 
-  loginStateChanger = () => {
+  loginStateChanger = (id) => {
     this.setState({
       isLoggedIn: !this.state.isLoggedIn,
+      userEmail: id,
     });
   };
 
@@ -226,7 +228,7 @@ export default class App extends Component {
       { id: 2, title: "Sign up", link: "/signup" },
     ];
 
-    const { isLoggedIn } = this.state;
+    const { isLoggedIn, userEmail } = this.state;
 
     return (
       <Router>
@@ -296,6 +298,7 @@ export default class App extends Component {
               nav_info={nav_info}
               loggedInState={isLoggedIn}
               handleLog={this.loginStateChanger}
+              user={userEmail}
             />
           </Route>
         </div>

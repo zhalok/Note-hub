@@ -13,17 +13,51 @@ var sectionStyle = {
 };
 
 export default class Login extends Component {
+  state = {
+    isAuthenticated: true,
+    email: "",
+    password: "",
+  };
+
+  /**
+   changeHandler = (e) => {
+    if (e.target.placeholder === "Email") {
+      this.setState({
+        email: e.target.value,
+      });
+    } else if (e.target.placeholder === "Password") {
+      this.setState({
+        password: e.target.value,
+      });
+    }
+  };
+   */
+
+  changeEmail = (e) => {
+    this.setState({
+      email: e.target.value,
+    });
+  };
+
+  changePass = (e) => {
+    this.setState({
+      password: e.target.value,
+    });
+  };
+
   render() {
     const { nav_info, loggedInState, handleLog } = this.props;
+
     //const handle = useFullScreenHandle();
 
     let Logged;
-    if (loggedInState) {
+    if (this.state.isAuthenticated) {
       Logged = (
         <Link
           type="button"
           to="/contribute"
           className="btn btn-outline-light btn-block"
+          onClick={() => handleLog(this.state.email)}
         >
           SignIn
         </Link>
@@ -61,16 +95,22 @@ export default class Login extends Component {
           </div>
 
           <div className="form-group m-3 pt-3 pb-3">
-            <input
-              type="text"
-              className="form-control mb-2"
-              placeholder="Email"
-            />
-            <input
-              type="password"
-              className="form-control mb-2"
-              placeholder="Password"
-            />
+            <form>
+              <input
+                type="text"
+                className="form-control mb-2"
+                placeholder="Email"
+                value={this.state.email}
+                onChange={this.changeEmail}
+              />
+              <input
+                type="password"
+                className="form-control mb-2"
+                placeholder="Password"
+                value={this.state.password}
+                onChange={this.changePass}
+              />
+            </form>
           </div>
           <div className="center-box p-3">
             {Logged}
