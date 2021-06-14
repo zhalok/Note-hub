@@ -18,19 +18,20 @@ import "./App.css";
 export default class App extends Component {
   state = {
     isLoggedIn: false,
-    userId: 2018331046,
+    userId: "",
   };
 
-  loginStateChanger = (reg) => {
+  loginStateChanger = (value, reg) => {
     console.log("login state changer is called");
     if (this.state.isLoggedIn == false) {
       this.setState({
-        isLoggedIn: true,
-        userId: 2018331046,
+        isLoggedIn: value,
+        userId: reg,
       });
     } else {
       this.setState({
         isLoggedIn: false,
+        userId: "",
       });
     }
   };

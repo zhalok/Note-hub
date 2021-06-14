@@ -26,6 +26,27 @@ export default class Login extends Component {
     };
   }
 
+  user_authentication = async () => {
+    const respornse = await fetch("http://localhost:5000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        registration_id: this.state.registration_number,
+        password: this.state.password,
+      }),
+    });
+
+    const user = await respornse.json();
+    if (user == "User not found") {
+      alert("You are not registered");
+    } else {
+      this.props.handleLog(true, user.registration_id);
+      console.log(this.props.loggedInState);
+    }
+  };
+
   changehandler = (e) => {
     if (e.target.placeholder == "Registration Number") {
       this.setState({
@@ -40,10 +61,7 @@ export default class Login extends Component {
 
   clickHander = (e) => {
     e.preventDefault();
-    // this.setState({
-    //   Alert_Message: "Please Provide Informations",
-    // });
-    this.props.handleLog(this.state.registration_number);
+    this.user_authentication();
   };
 
   render() {
