@@ -14,11 +14,11 @@ var sectionStyle = {
 
 export default class extends Component {
   render() {
-    const { nav_info, loggedInState, handleLog } = this.props;
+    const { nav_info, loggedInState, handleLog, userId } = this.props;
 
     let contribute;
     if (loggedInState) {
-      contribute = <ContributeForm />;
+      contribute = <ContributeForm userId={userId} />;
     } else {
       contribute = <ContributeCredential />;
     }

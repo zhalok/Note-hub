@@ -5,8 +5,10 @@ export default class Booklist extends Component {
     const { booklist } = this.props;
 
     if (booklist.length > 0) {
-      if (booklist[0].name == "NoData") {
-        return <div>No Data Found</div>;
+      if (booklist == "SelectSem") {
+        return (
+          <h3 className="message text-secondary">Please Select Semester</h3>
+        );
       }
       return (
         <>
@@ -30,7 +32,7 @@ export default class Booklist extends Component {
     } else {
       return (
         <div>
-          <h3 className="message text-secondary">Please Select Semester </h3>{" "}
+          <h3 className="message text-secondary">No Data Found</h3>{" "}
         </div>
       );
     }

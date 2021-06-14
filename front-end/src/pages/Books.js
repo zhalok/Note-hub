@@ -12,38 +12,56 @@ var sectionStyle = {
 
 export default class Books extends Component {
   state = {
-    booklist: [],
+    booklist: "SelectSem",
   };
 
-  book_semester1 = async () => {
+  books_all = async () => {
+    const response = await fetch("http://localhost:5000/books/get_all");
+    const data = await response.json();
+    this.setState({
+      booklist: data,
+    });
+  };
+
+  books_semester1 = async () => {
     const response = await fetch(
       "http://localhost:5000/books/semester/semester1"
     );
 
     const data = await response.json();
-    console.log(data);
 
-    if (data == "No data has been found") {
-      this.setState({
-        booklist: [{ name: "NoData" }],
-      });
-    } else {
-      this.setState({
-        booklist: data,
-      });
-    }
+    this.setState({
+      booklist: data,
+    });
   };
 
-  book_semester2 = async () => {};
+  books_semester2 = async () => {
+    const response = await fetch(
+      "http://localhost:5000/books/semester/semester2"
+    );
+    const data = response.json();
+
+    this.setState({
+      booklist: data,
+    });
+  };
+
+  // book3_semester3 = async () => {
+  //   const response = await fetch(
+  //     "http://localhost:5000/books/semester/semester3"
+  //   );
+  //   const data = response.json();
+  //   this.setState({
+  //     booklist: data,
+  //   });
+  // };
 
   controller = (e) => {
     if (e.target.type === "button") {
       if (e.target.id === "1") {
-        this.book_semester1();
+        this.books_semester1();
       } else if (e.target.id === "2") {
-        this.setState({
-          booklist: this.props.info.semester2,
-        });
+        this.books_semester2();
       }
     }
   };
@@ -51,7 +69,9 @@ export default class Books extends Component {
   render() {
     const { nav_info, loggedInState, handleLog } = this.props;
     const { booklist } = this.state;
-
+    // if (componentDidMount() == false) {
+    //   this.books_all();
+    // }
     return (
       <div style={sectionStyle} className="ht">
         <Navbar

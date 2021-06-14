@@ -13,29 +13,55 @@ var sectionStyle = {
 };
 
 export default class Profile extends Component {
+  state = {
+    userData: "",
+    books: [],
+    notes: [],
+    questions: [],
+    projects: [],
+  };
+
+  get_user_by_id = async (userId) => {
+    const response = await fetch(`http://localhost:5000/users/id/${userId}`);
+    const data = await response.json();
+    const userData = {
+      name: data.name,
+      registration_id: data.registration_id,
+      session: data.session,
+    };
+    const books = userData.books;
+    const notes = userData.notes;
+    const questions = userData.questions;
+    const projects = userData.projects;
+    this.setState({
+      userData: userData,
+      books: books,
+      notes: notes,
+      questions: questions,
+      projects: projects,
+    });
+
+    this.get_user_by_id(this.props.match.params.id);
+  };
+
   render() {
-    const { nav_info, loggedInState, handleLog, user } = this.props;
+    const { nav_info, loggedInState, handleLog } = this.props;
 
-    let i;
-    Data.map((item) => {
-      if (item.user_id == user) {
-        i = item.id - 1;
-      }
-    });
+    let { userData, books, notes, questions, projects } = this.state;
 
-    let books = Data[i].contribution.books.map((item) => {
+    books = books.map((item) => {
       return <li>{item}</li>;
     });
 
-    let notes = Data[i].contribution.notes.map((item) => {
+    notes = notes.map((item) => {
       return <li>{item}</li>;
     });
 
-    let questions = Data[i].contribution.questions.map((item) => {
+    questions = questions.map((item) => {
       return <li>{item}</li>;
     });
 
-    let projects = Data[i].contribution.project.map((item) => {
+    projects = projects.map((item) => {
       return <li>{item}</li>;
     });
 
@@ -58,10 +84,8 @@ export default class Profile extends Component {
               />
             </div>
             <div className="ml-5 p-3">
-              <p className="display-4 text-secondary pt-3">{Data[i].name}</p>
-              <h3 className=" text-secondary">{Data[i].semester}</h3>
-              <p className="display-5 text-secondary pt-4">{`Facebook id - ${Data[i].fb_id}`}</p>
-              <p className="display-5 text-secondary">{`Contact Number - ${Data[i].phone}`}</p>
+              <p className="display-4 text-secondary pt-3">{userData.name}</p>
+              <h3 className=" text-secondary">{userData.session}</h3>
             </div>
           </div>
           <div className="col-lg-8 mt-5 p-4">

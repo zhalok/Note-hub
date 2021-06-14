@@ -18,7 +18,7 @@ import "./App.css";
 export default class App extends Component {
   state = {
     isLoggedIn: false,
-    userId: "",
+    userId: 2018331046,
   };
 
   loginStateChanger = (reg) => {
@@ -26,7 +26,7 @@ export default class App extends Component {
     if (this.state.isLoggedIn == false) {
       this.setState({
         isLoggedIn: true,
-        userId: reg,
+        userId: 2018331046,
       });
     } else {
       this.setState({
@@ -36,188 +36,6 @@ export default class App extends Component {
   };
 
   render() {
-    const books = {
-      semester1: [
-        {
-          id: 1,
-          name: "Vector Analysis",
-          author: "Author1",
-          publisher: "Schaums Outline",
-          contributor: "Zhalok Rahman",
-        },
-        {
-          id: 2,
-          name: "Linear Algebra",
-          author: "author1",
-          publisher: "Schaums Outline",
-          contributor: "Zhalok Rahman",
-        },
-        {
-          id: 3,
-          name: "C Programming",
-          author: "author1",
-          publisher: "Schaums Outline",
-          contributor: "Zhalok Rahman",
-        },
-      ],
-
-      semester2: [
-        {
-          id: 1,
-          name: "Data Structure",
-          author: "author1",
-          publisher: "Schaums Outline",
-          contributor: "Zhalok Rahman",
-        },
-        {
-          id: 2,
-          name: "Electronic Circuits",
-          author: "author1",
-          publisher: "Schaums Outline",
-          contributor: "Zhalok Rahman",
-        },
-        {
-          id: 3,
-          name: "Fundamentals of Physics",
-          author: "author1",
-          publisher: "Schaums Outline",
-          contributor: "Zhalok Rahman",
-        },
-      ],
-    };
-
-    const notes = {
-      semester1: [
-        {
-          id: 1,
-          name: "Math Notes",
-          contributor: "Kaifa Tabassum",
-        },
-
-        {
-          id: 2,
-          name: "C notes",
-          contributor: "Zhalok Rahman",
-        },
-
-        {
-          id: 3,
-          name: "DM notes",
-          contributor: "Aisha H Chowdhury",
-        },
-      ],
-
-      semester2: [
-        {
-          id: 1,
-          name: "Calculus Notes",
-          contributor: "Kaifa Tabassum",
-        },
-
-        {
-          id: 2,
-          name: "DS notes",
-          contributor: "Zhalok Rahman",
-        },
-
-        {
-          id: 3,
-          name: "Physics notes",
-          contributor: "Aisha H Chowdhury",
-        },
-      ],
-    };
-
-    const questions = {
-      semester1: [
-        {
-          id: 1,
-          name: "Math TT Questions",
-          contributor: "Kaifa Tabassum",
-        },
-
-        {
-          id: 2,
-          name: "C TT Questions",
-          contributor: "Zhalok Rahman",
-        },
-
-        {
-          id: 3,
-          name: "DM Sem Final Questions",
-          contributor: "Aisha H Chowdhury",
-        },
-      ],
-
-      semester2: [
-        {
-          id: 1,
-          name: "All TT questions",
-          contributor: "Kaifa Tabassum",
-        },
-
-        {
-          id: 2,
-          name: "All Quiz Questions",
-          contributor: "Zhalok Rahman",
-        },
-
-        {
-          id: 3,
-          name: "Semester Final Questions",
-          contributor: "Aisha H Chowdhury",
-        },
-      ],
-    };
-
-    const projectlist = {
-      semester1: [
-        {
-          id: 1,
-          name: "Project1",
-          type: "Android Application",
-          Team: "Team A",
-        },
-
-        {
-          id: 2,
-          name: "Project2",
-          type: "Android Application",
-          Team: "Team B",
-        },
-
-        {
-          id: 3,
-          name: "Project3",
-          type: "Android Application with React Native",
-          Team: "Team C",
-        },
-      ],
-
-      semester2: [
-        {
-          id: 1,
-          name: "Project1",
-          type: "Web Application",
-          Team: "Team A",
-        },
-
-        {
-          id: 2,
-          name: "Project2",
-          type: "Web Application",
-          Team: "Team B",
-        },
-
-        {
-          id: 3,
-          name: "Project3",
-          type: "Database Project",
-          Team: "Team C",
-        },
-      ],
-    };
-
     const user = [
       {
         email: "zhalokrahman007@gmail.com",
@@ -237,8 +55,6 @@ export default class App extends Component {
 
     const { isLoggedIn, userId } = this.state;
 
-    console.log(isLoggedIn);
-
     return (
       <Router>
         <div>
@@ -252,7 +68,6 @@ export default class App extends Component {
           <Route path="/books">
             <Books
               nav_info={nav_info}
-              info={books}
               loggedInState={isLoggedIn}
               handleLog={this.loginStateChanger}
             />
@@ -260,7 +75,6 @@ export default class App extends Component {
           <Route path="/notes">
             <Notes
               nav_info={nav_info}
-              info={notes}
               loggedInState={isLoggedIn}
               handleLog={this.loginStateChanger}
             />
@@ -268,7 +82,6 @@ export default class App extends Component {
           <Route path="/questions">
             <Questions
               nav_info={nav_info}
-              info={questions}
               loggedInState={isLoggedIn}
               handleLog={this.loginStateChanger}
             />
@@ -276,7 +89,6 @@ export default class App extends Component {
           <Route path="/projects">
             <Projects
               nav_info={nav_info}
-              info={projectlist}
               loggedInState={isLoggedIn}
               handleLog={this.loginStateChanger}
             />
@@ -286,6 +98,7 @@ export default class App extends Component {
               nav_info={nav_info}
               loggedInState={isLoggedIn}
               handleLog={this.loginStateChanger}
+              userId={userId}
             />
           </Route>
           <Route path="/login">
@@ -302,7 +115,7 @@ export default class App extends Component {
               handleLog={this.loginStateChanger}
             />
           </Route>
-          <Route path="/profile">
+          <Route path="/profile/:id">
             <Profile
               nav_info={nav_info}
               loggedInState={isLoggedIn}
