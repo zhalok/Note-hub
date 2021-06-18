@@ -10,11 +10,8 @@ const get_projects_by_semester = async (req, res, next) => {
       retinfo.push(e);
     }
   });
-  if (retinfo.length == 0) {
-    res.json("No data has been found");
-  } else {
-    res.json(retinfo);
-  }
+
+  res.json(retinfo);
 };
 
 const get_projects_by_name = async (req, res, next) => {
@@ -31,11 +28,7 @@ const get_projects_by_name = async (req, res, next) => {
 
 const get_all_projects = async (req, res, next) => {
   const data = await book_model.find({});
-  if (data.length == 0) {
-    res.json("No Data found");
-  } else {
-    res.json(data);
-  }
+  res.json(data);
 };
 
 const add_new_project = async (req, res, next) => {

@@ -15,7 +15,11 @@ export default class Questionlist extends Component {
               <h2>{e.name}</h2>
 
               <div className="d-flex  justify-content-center">
-                Contributor: {e.contributor}
+                Description: {e.description}
+              </div>
+
+              <div className="d-flex  justify-content-center">
+                Contributor: {e.contributor_name}
               </div>
             </button>
           ))}
@@ -23,8 +27,8 @@ export default class Questionlist extends Component {
       );
     } else {
       return (
-        <div>
-          <h3 className="message text-secondary"> Please Select Semester </h3>{" "}
+        <div className="d-flex justify-content-center mt-5">
+          <h3 className="text-light">No Data Found</h3>{" "}
         </div>
       );
     }

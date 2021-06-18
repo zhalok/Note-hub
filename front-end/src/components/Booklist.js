@@ -5,11 +5,6 @@ export default class Booklist extends Component {
     const { booklist } = this.props;
 
     if (booklist.length > 0) {
-      if (booklist == "SelectSem") {
-        return (
-          <h3 className="message text-secondary">Please Select Semester</h3>
-        );
-      }
       return (
         <>
           {booklist.map((e) => (
@@ -19,7 +14,7 @@ export default class Booklist extends Component {
             >
               <h2>{e.name}</h2>
               <div className="d-flex mt-2 justify-content-center">
-                Author: {e.description}
+                Description: {e.description}
               </div>
 
               <div className="d-flex  justify-content-center">
@@ -31,8 +26,8 @@ export default class Booklist extends Component {
       );
     } else {
       return (
-        <div>
-          <h3 className="message text-secondary">No Data Found</h3>{" "}
+        <div className="d-flex justify-content-center mt-5">
+          <h3 className="text-light">No Data Found</h3>{" "}
         </div>
       );
     }

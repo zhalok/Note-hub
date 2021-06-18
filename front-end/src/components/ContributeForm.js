@@ -20,25 +20,33 @@ export default class ContributeForm extends Component {
     description: "",
     message: "",
     profile_path: "",
+    message: "",
   };
 
   submit_information = async () => {
-    const respornse = await fetch("http://localhost:5000/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: this.state.content_name,
-        semester: this.state.selected_sem,
-        type: this.state.selected_type,
-        contributor_id: this.state.registration,
-        contributor_name: this.state.your_name,
-      }),
-    });
+    const respornse = await fetch(
+      `http://localhost:5000/contribute/${this.state.selected_type}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: this.state.content_name,
+          semester: this.state.selected_sem,
+          type: this.state.selected_type,
+          contributor_id: this.state.registration,
+          contributor_name: this.state.your_name,
+          description: this.state.description,
+        }),
+      }
+    );
 
     const data = respornse.json();
     console.log(data);
+    this.setState({
+      message: "Submited!!! Thanks For Contributing",
+    });
   };
 
   textchangehandler = (e) => {
@@ -100,6 +108,8 @@ export default class ContributeForm extends Component {
       ) {
         alert("Please provide all information");
       } else {
+        console.log(this.state);
+        this.submit_information(this.selected_type);
       }
     }
   };
@@ -107,7 +117,7 @@ export default class ContributeForm extends Component {
   render() {
     const { userId } = this.props;
     let path = "/profile/" + userId;
-    console.log(path);
+
     return (
       <div className="row">
         <div className="col-lg-4">
@@ -215,6 +225,7 @@ export default class ContributeForm extends Component {
                 </div>
               </div>
             </div>
+            <h3 className="text-light">{this.state.message}</h3>
           </div>
         </div>
       </div>

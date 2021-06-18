@@ -12,72 +12,52 @@ var sectionStyle = {
 
 export default class Books extends Component {
   state = {
-    booklist: "SelectSem",
+    booklist: [],
   };
 
-  books_all = async () => {
-    const response = await fetch("http://localhost:5000/books/get_all");
+  find_all_books = async () => {
+    const response = await fetch("http://localhost:5000/books/get_all/");
     const data = await response.json();
+    console.log(data);
     this.setState({
       booklist: data,
     });
   };
 
-  books_semester1 = async () => {
+  find_book_by_semester = async (semester) => {
     const response = await fetch(
-      "http://localhost:5000/books/semester/semester1"
+      "http://localhost:5000/books/semester/" + semester
     );
 
     const data = await response.json();
+    // console.log(data);
 
     this.setState({
       booklist: data,
     });
   };
 
-  books_semester2 = async () => {
-    const response = await fetch(
-      "http://localhost:5000/books/semester/semester2"
-    );
-    const data = response.json();
-
-    this.setState({
-      booklist: data,
-    });
-  };
-
-  // book3_semester3 = async () => {
-  //   const response = await fetch(
-  //     "http://localhost:5000/books/semester/semester3"
-  //   );
-  //   const data = response.json();
-  //   this.setState({
-  //     booklist: data,
-  //   });
-  // };
+  componentDidMount() {
+    this.find_all_books();
+  }
 
   controller = (e) => {
-    if (e.target.type === "button") {
-      if (e.target.id === "1") {
-        this.books_semester1();
-      } else if (e.target.id === "2") {
-        this.books_semester2();
-      }
-    }
+    this.find_book_by_semester(e.target.value);
   };
 
   render() {
-    const { nav_info, loggedInState, handleLog } = this.props;
+    const { nav_info, loggedInState, handleLog, userId } = this.props;
     const { booklist } = this.state;
-    // if (componentDidMount() == false) {
-    //   this.books_all();
-    // }
+    console.log(loggedInState);
+    console.log(userId);
+
     return (
       <div style={sectionStyle} className="ht">
         <Navbar
           nav_link={nav_info}
           loggedInState={loggedInState}
           handleLog={handleLog}
+          userId={userId}
         />
         <div className="container mt-5 pt-4">
           <h1 className="display-3 text-light">Books</h1>
@@ -91,16 +71,72 @@ export default class Books extends Component {
                 id="1"
                 onClick={this.controller}
                 className="btn btn-outline-secondary btn-lg btn-block"
+                value="semester1"
               >
-                Semester1
+                Semester 1
               </button>
               <button
                 type="button"
                 id="2"
                 onClick={this.controller}
                 className="btn btn-outline-secondary btn-lg btn-block"
+                value=" semester2"
               >
-                Semester2
+                Semester 2
+              </button>
+              <button
+                type="button"
+                id="3"
+                onClick={this.controller}
+                className="btn btn-outline-secondary btn-lg btn-block"
+                value="semester3"
+              >
+                Semester 3
+              </button>
+              <button
+                type="button"
+                id="4"
+                onClick={this.controller}
+                className="btn btn-outline-secondary btn-lg btn-block"
+                value="semester4"
+              >
+                Semester 4
+              </button>
+              <button
+                type="button"
+                id="5"
+                onClick={this.controller}
+                className="btn btn-outline-secondary btn-lg btn-block"
+                value="semester5"
+              >
+                Semester 5
+              </button>
+              <button
+                type="button"
+                id="6"
+                onClick={this.controller}
+                className="btn btn-outline-secondary btn-lg btn-block"
+                value="semester6"
+              >
+                Semester 6
+              </button>
+              <button
+                type="button"
+                id="7"
+                onClick={this.controller}
+                className="btn btn-outline-secondary btn-lg btn-block"
+                value=" semester7"
+              >
+                Semester 7
+              </button>
+              <button
+                type="button"
+                id="8"
+                onClick={this.controller}
+                className="btn btn-outline-secondary btn-lg btn-block"
+                value=" semester8"
+              >
+                Semester 8
               </button>
             </div>
             <div className="contents">

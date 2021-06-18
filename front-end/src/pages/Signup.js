@@ -19,6 +19,7 @@ export default class SignUp extends Component {
     registration_number: "",
     contract_number: "",
     session: "",
+    message: "",
   };
 
   signup_request_handler = async (e) => {
@@ -28,20 +29,51 @@ export default class SignUp extends Component {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: this.state.fullname,
-        registration_id: this.state.registration_number,
-        session: this.state.session,
-        password: this.state.password,
+        name: this.state.fullname.trim(),
+        registration_id: this.state.registration_number.trim(),
+        session: this.state.session.trim(),
+        password: this.state.password.trim(),
       }),
     });
     const data = await respornse.json();
-    console.log(data);
+    if (data == "User Already Registered") {
+      this.setState({
+        message: data,
+      });
+    } else {
+      this.setState({
+        message: "Congratulations Registration Complete",
+      });
+    }
   };
 
   click_handler = (e) => {
     e.preventDefault();
+    const {
+      email,
+      password,
+      confirm_password,
+      fullname,
+      session,
+      registration_number,
+      contract_number,
+    } = this.state;
     if (e.target.id == "submit") {
-      this.signup_request_handler(e);
+      if (
+        email == "" ||
+        password == "" ||
+        confirm_password == "" ||
+        fullname == "" ||
+        session == "" ||
+        registration_number == "" ||
+        contract_number == ""
+      ) {
+        alert("Please Fullfill All The Fields");
+      } else if (password != confirm_password) {
+        alert("Password and Confirm password didnt match");
+      } else {
+        this.signup_request_handler(e);
+      }
     }
   };
 
@@ -64,7 +96,7 @@ export default class SignUp extends Component {
       });
     } else if (e.target.placeholder == "Registration Number") {
       this.setState({
-        registration_number: e.target.value,
+        registration_number: e.target.value.trim(),
       });
     } else if (e.target.placeholder == "Contact Number") {
       this.setState({
@@ -78,7 +110,7 @@ export default class SignUp extends Component {
   };
 
   render() {
-    const { nav_info, loggedInState, handleLog } = this.props;
+    const { nav_info, loggedInState, handleLog, userId } = this.props;
     const {
       email,
       password,
@@ -98,6 +130,7 @@ export default class SignUp extends Component {
           nav_link={nav_info}
           loggedInState={loggedInState}
           handleLog={handleLog}
+          userId={userId}
         />
         <div className="center-box p-3 mt-5 mb-5 w-25">
           <p className="text-light">Provide all necessary information...</p>
@@ -172,6 +205,7 @@ export default class SignUp extends Component {
                 Submit
               </button>
             </div>
+            <p className="text-light">{this.state.message}</p>
           </form>
         </div>
       </div>

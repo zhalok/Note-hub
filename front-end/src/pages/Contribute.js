@@ -29,6 +29,7 @@ export default class extends Component {
           nav_link={nav_info}
           loggedInState={loggedInState}
           handleLog={handleLog}
+          userId={userId}
         />
 
         <div className="container mt-5 pt-5">

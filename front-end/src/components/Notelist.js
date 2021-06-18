@@ -23,8 +23,8 @@ export default class Notelist extends Component {
       );
     } else {
       return (
-        <div>
-          <h3 className="message text-secondary"> Please Select Semester </h3>{" "}
+        <div className="d-flex justify-content-center mt-5">
+          <h3 className="text-light"> No Data Found </h3>{" "}
         </div>
       );
     }

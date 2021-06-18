@@ -23,8 +23,8 @@ export default class Caro extends Component {
           <div className="carousel-item active">
             <img src={Img1} alt="a.jpg" />
             <div class="carousel-caption">
-              <h3>Brows</h3>
-              <p>Brows resources from your seniors (books, notes, questons)</p>
+              <h3>Browse</h3>
+              <p>Browse resources from your seniors (books, notes, questons)</p>
             </div>
           </div>
           <div className="carousel-item ">

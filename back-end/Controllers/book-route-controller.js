@@ -10,11 +10,7 @@ const get_books_by_semester = async (req, res, next) => {
       retinfo.push(e);
     }
   });
-  if (retinfo.length == 0) {
-    res.json("No data has been found");
-  } else {
-    res.json(retinfo);
-  }
+  res.json(retinfo);
 };
 
 const get_books_by_name = async (req, res, next) => {
@@ -36,15 +32,22 @@ const get_all_books = async (req, res, next) => {
 };
 
 const add_new_book = async (req, res, next) => {
-  const { name, semester, type, registration_id, contributor, description } =
-    req.body;
+  const {
+    name,
+    semester,
+    type,
+    contributor_id,
+    contributor_name,
+    description,
+  } = req.body;
+
   const new_book = new book_model({
     name,
     semester,
     type,
-    contributor_id: registration_id,
-    contributor_name: contributor,
-    desription: description,
+    contributor_id: contributor_id,
+    contributor_name: contributor_name,
+    description: description,
   });
 
   const result = await new_book.save();

@@ -10,11 +10,8 @@ const get_notes_by_semester = async (req, res, next) => {
       retinfo.push(e);
     }
   });
-  if (retinfo.length == 0) {
-    res.json("No data has been found");
-  } else {
-    res.json(retinfo);
-  }
+
+  res.json(retinfo);
 };
 
 const get_notes_by_name = async (req, res, next) => {
@@ -31,11 +28,7 @@ const get_notes_by_name = async (req, res, next) => {
 
 const get_all_notes = async (req, res, next) => {
   const data = await note_model.find({});
-  if (data.length == 0) {
-    res.json("No Data");
-  } else {
-    res.json(data);
-  }
+  res.json(data);
 };
 
 const add_new_note = async (req, res, next) => {

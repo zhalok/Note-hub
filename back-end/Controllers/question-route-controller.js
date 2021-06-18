@@ -1,5 +1,6 @@
 const question_model = require("../models/questions-model");
 const { update_user } = require("../Controllers/user-route-controller");
+
 const get_questions_by_semester = async (req, res, next) => {
   const data = await question_model.find({});
   let retinfo = [];
@@ -8,11 +9,7 @@ const get_questions_by_semester = async (req, res, next) => {
       retinfo.push(e);
     }
   });
-  if (retinfo.length == 0) {
-    res.json("No data has been found");
-  } else {
-    res.json(retinfo);
-  }
+  res.json(retinfo);
 };
 
 const get_questions_by_name = async (req, res, next) => {
@@ -33,13 +30,21 @@ const get_all_questions = async (req, res, next) => {
 };
 
 const add_new_question = async (req, res, next) => {
-  const { name, semester, type, registration_id, contributor } = req.body;
+  const {
+    name,
+    semester,
+    type,
+    contributor_id,
+    contributor_name,
+    description,
+  } = req.body;
   const new_question = new question_model({
     name,
     semester,
     type,
-    contributor_id: registration_id,
-    contributor_name: contributor,
+    contributor_id: contributor_id,
+    contributor_name: contributor_name,
+    description: description,
   });
 
   const result = await new_question.save();

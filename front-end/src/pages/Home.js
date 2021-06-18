@@ -14,7 +14,7 @@ var sectionStyle = {
 
 export default class Home extends Component {
   render() {
-    const { nav_info, loggedInState, handleLog } = this.props;
+    const { nav_info, loggedInState, handleLog, userId } = this.props;
 
     return (
       <div style={sectionStyle} className="ht">
@@ -22,6 +22,7 @@ export default class Home extends Component {
           nav_link={nav_info}
           loggedInState={loggedInState}
           handleLog={handleLog}
+          userId={userId}
         />
         <Caro />
         <div className="container text-center">
@@ -30,7 +31,7 @@ export default class Home extends Component {
             to="/books"
             className="btn btn-outline-secondary btn-lg m-5 p-4"
           >
-            Brows Resources
+            Browse Resources
           </Link>
           <Link
             type="button"

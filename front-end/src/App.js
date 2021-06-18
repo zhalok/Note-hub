@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Books from "./pages/Books";
@@ -21,12 +21,14 @@ export default class App extends Component {
     userId: "",
   };
 
-  loginStateChanger = (value, reg) => {
-    console.log("login state changer is called");
-    if (this.state.isLoggedIn == false) {
+  get_token() {
+    const token = JSON.parse(sessionStorage.getItem("token"));
+    console.log(token);
+    if (token) {
+      console.log(token.user);
       this.setState({
-        isLoggedIn: value,
-        userId: reg,
+        isLoggedIn: true,
+        userId: token.user,
       });
     } else {
       this.setState({
@@ -34,7 +36,29 @@ export default class App extends Component {
         userId: "",
       });
     }
+  }
+
+  set_token(token) {
+    sessionStorage.setItem("token", JSON.stringify(token));
+  }
+
+  loginStateChanger = (token) => {
+    if (this.state.isLoggedIn == true) {
+      sessionStorage.clear();
+    } else {
+      this.set_token(token);
+    }
+
+    this.get_token();
   };
+
+  componentDidMount() {
+    this.get_token();
+  }
+
+  // componentDidUpdate() {
+  //   this.get_token();
+  // }
 
   render() {
     const user = [
@@ -55,6 +79,7 @@ export default class App extends Component {
     ];
 
     const { isLoggedIn, userId } = this.state;
+    console.log(userId);
 
     return (
       <Router>
@@ -64,6 +89,7 @@ export default class App extends Component {
               nav_info={nav_info}
               loggedInState={isLoggedIn}
               handleLog={this.loginStateChanger}
+              userId={userId}
             />
           </Route>
           <Route path="/books">
@@ -71,6 +97,7 @@ export default class App extends Component {
               nav_info={nav_info}
               loggedInState={isLoggedIn}
               handleLog={this.loginStateChanger}
+              userId={userId}
             />
           </Route>
           <Route path="/notes">
@@ -78,6 +105,7 @@ export default class App extends Component {
               nav_info={nav_info}
               loggedInState={isLoggedIn}
               handleLog={this.loginStateChanger}
+              userId={userId}
             />
           </Route>
           <Route path="/questions">
@@ -85,6 +113,7 @@ export default class App extends Component {
               nav_info={nav_info}
               loggedInState={isLoggedIn}
               handleLog={this.loginStateChanger}
+              userId={userId}
             />
           </Route>
           <Route path="/projects">
@@ -92,6 +121,7 @@ export default class App extends Component {
               nav_info={nav_info}
               loggedInState={isLoggedIn}
               handleLog={this.loginStateChanger}
+              userId={userId}
             />
           </Route>
           <Route path="/contribute">
@@ -107,6 +137,7 @@ export default class App extends Component {
               nav_info={nav_info}
               loggedInState={isLoggedIn}
               handleLog={this.loginStateChanger}
+              userId={userId}
             />
           </Route>
           <Route path="/signup">
@@ -114,16 +145,20 @@ export default class App extends Component {
               nav_info={nav_info}
               loggedInState={isLoggedIn}
               handleLog={this.loginStateChanger}
+              userId={userId}
             />
           </Route>
-          <Route path="/profile/:id">
-            <Profile
-              nav_info={nav_info}
-              loggedInState={isLoggedIn}
-              handleLog={this.loginStateChanger}
-              user={userId}
-            />
-          </Route>
+          <Switch>
+            <Route path="/profile/:id">
+              <Profile
+                nav_info={nav_info}
+                loggedInState={isLoggedIn}
+                handleLog={this.loginStateChanger}
+                userId={userId}
+                path="/profile/:id"
+              />
+            </Route>
+          </Switch>
         </div>
       </Router>
     );

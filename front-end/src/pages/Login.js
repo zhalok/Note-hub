@@ -42,8 +42,7 @@ export default class Login extends Component {
     if (user == "User not found") {
       alert("You are not registered");
     } else {
-      this.props.handleLog(true, user.registration_id);
-      console.log(this.props.loggedInState);
+      this.props.handleLog({ user: this.state.registration_number });
     }
   };
 
@@ -61,12 +60,15 @@ export default class Login extends Component {
 
   clickHander = (e) => {
     e.preventDefault();
-    this.user_authentication();
+    if (this.state.registration_number == "" || this.state.password == "") {
+      alert("Please Fullfill Thre Credentials");
+    } else {
+      this.user_authentication();
+    }
   };
 
   render() {
-    console.log(this.props.loggedInState);
-    const { nav_info, loggedInState, handleLog } = this.props;
+    const { nav_info, loggedInState, handleLog, userId } = this.props;
     const { Alert_Message } = this.state;
 
     //const handle = useFullScreenHandle();
@@ -91,6 +93,7 @@ export default class Login extends Component {
               nav_link={nav_info}
               loggedInState={loggedInState}
               handleLog={handleLog}
+              userId={userId}
             />
 
             <div className="d-flex flex-column justify-content-center mt-5 h-100">

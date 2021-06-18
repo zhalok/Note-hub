@@ -3,9 +3,12 @@ import { Link } from "react-router-dom";
 
 export default class Navbar extends Component {
   render() {
-    const { nav_link, loggedInState, handleLog } = this.props;
+    const { nav_link, loggedInState, handleLog, userId } = this.props;
 
     let navOption;
+
+    let path = "/profile/" + userId;
+
     if (!loggedInState) {
       navOption = nav_link.map((e) => (
         <Link className="nav-link" key={e.id} to={e.link}>
@@ -18,7 +21,7 @@ export default class Navbar extends Component {
           <Link className="nav-link" to="/" onClick={handleLog}>
             Sign Out
           </Link>
-          <Link className="nav-link" to="/profile">
+          <Link className="nav-link" to={path}>
             Profile
           </Link>
         </>

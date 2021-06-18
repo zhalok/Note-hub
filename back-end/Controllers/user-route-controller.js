@@ -8,16 +8,18 @@ const get_all_users = async (req, res, next) => {
   else res.json(users);
 };
 
-const get_user_by_id = (req, res, next) => {
+const get_user_by_id = async (req, res, next) => {
+  console.log(req.params.uid);
   var retinfo;
+  const user = await userModel.find({});
   user.forEach((e) => {
-    if (e.registration_no == req.params.uid) {
+    if (e.registration_id == req.params.uid) {
       retinfo = e;
     }
   });
   console.log(retinfo);
   if (!retinfo) {
-    throw new HttpError("Invalid User ID", 404);
+    res.json("No data found");
   } else {
     res.json(retinfo);
   }
@@ -52,10 +54,10 @@ const add_new_user = async (req, res, next) => {
 
   if (vacany) {
     const new_user = new userModel({
-      name: name.trim(),
-      registration_id: registration_id.trim(),
+      name: name,
+      registration_id: registration_id,
       session,
-      password: password.trim(),
+      password: password,
       books: [],
       notes: [],
       questions: [],
@@ -71,11 +73,11 @@ const add_new_user = async (req, res, next) => {
 };
 
 const update_user = async (req, res, next) => {
-  const registration_id = req.body.registration_id;
+  const contributor_id = req.body.contributor_id;
   let founduser;
   const data = await userModel.find({});
   data.forEach((e) => {
-    if (e.registration_id == registration_id) {
+    if (e.registration_id == contributor_id) {
       founduser = e;
       return;
     }
@@ -100,10 +102,10 @@ const update_user = async (req, res, next) => {
 
 const check_user_validity = async (req, res, next) => {
   const data = await userModel.find({});
-  const { id, password } = req.body;
+  const { registration_id, password } = req.body;
   let founduser;
   data.forEach((e) => {
-    if (e.registration_id == id && e.password == password) {
+    if (e.registration_id == registration_id && e.password == password) {
       founduser = e;
     }
   });
