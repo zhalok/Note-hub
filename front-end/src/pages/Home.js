@@ -24,6 +24,7 @@ export default class Home extends Component {
           handleLog={handleLog}
           userId={userId}
         />
+
         <Caro />
         <div className="container text-center">
           <Link

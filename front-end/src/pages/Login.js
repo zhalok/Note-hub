@@ -3,8 +3,10 @@ import React, { useCallback, Component } from "react";
 
 import Navbar from "../components/Navbar";
 
-import Img from "../images/login.png";
-import Icon from "../images/icon.png";
+import Img from "../images/login_bg3.jpg";
+import Icn from "../images/login_icon.jpg";
+import style from "./Login.module.css";
+
 import { Link } from "react-router-dom";
 import "../App.css";
 import Profile from "../pages/Profile";
@@ -14,6 +16,8 @@ import Congratulations from "../components/Congratulations";
 
 var sectionStyle = {
   backgroundImage: `url(${Img})`,
+  backgroundSize: "cover",
+  overflow: "hidden",
 };
 
 export default class Login extends Component {
@@ -78,10 +82,10 @@ export default class Login extends Component {
     Logged = (
       <Link
         type="button"
-        className="btn btn-outline-light btn-block"
+        className="btn btn-primary btn-lg btn-block bg-transparent p-3"
         onClick={this.clickHander}
       >
-        SignIn
+        Let me in
       </Link>
     );
 
@@ -114,58 +118,62 @@ export default class Login extends Component {
     }
 
     return (
-      <div
-        style={sectionStyle}
-        className="container-fluid d-flex justify-content-center mt-5 p-5 "
-      >
+      <div style={sectionStyle} className="ht mt-5">
         <Navbar
           nav_link={nav_info}
           loggedInState={loggedInState}
           handleLog={handleLog}
+          userId={userId}
         />
-        <div className="center-box p-3 border border-light mt-5 mb-5 w-25">
-          <h3 className="pl-4 pb-3 display-5 text-light ">
-            {" "}
-            Let's get started...
-          </h3>
-          <hr className="bg-light " />
-          <div className="center-box text-center mt-3 pt-3">
-            <img
-              src={Icon}
-              alt="icon.png"
-              height="150px"
-              width="150px"
-              className="rounded  "
-            />
-          </div>
+        <div className="container mt-5">
+          <p>
+            <h1 className="text-light mt-5">
+              <strong>Login</strong>
+            </h1>
+          </p>
+          <div className={style.login_content}>
+            <div className={style.login_body}>
+              <div className="row">
+                <div className="col-sm-6 m-4 p-4">
+                  <h5 className="text-light pb-4">Lets get started...</h5>
+                  <form>
+                    <input
+                      type="text"
+                      className="mb-3"
+                      placeholder="Registration Number"
+                      value={this.state.registration_number}
+                      onChange={this.changehandler}
+                    />
+                    <input
+                      type="password"
+                      className="mb-4"
+                      placeholder="Password"
+                      value={this.state.password}
+                      onChange={this.changehandler}
+                    />
 
-          <div className="form-group m-3 pt-3 pb-3">
-            <form>
-              <input
-                type="text"
-                className="form-control mb-2"
-                placeholder="Registration Number"
-                value={this.state.registration_number}
-                onChange={this.changehandler}
-              />
-              <input
-                type="password"
-                className="form-control mb-2"
-                placeholder="Password"
-                value={this.state.password}
-                onChange={this.changehandler}
-              />
-            </form>
-          </div>
-          <div className="center-box p-3">
-            {Logged}
-            <Link
-              type="button"
-              to="/signup"
-              className="btn btn-outline-light btn-block"
-            >
-              SignUp
-            </Link>
+                    {Logged}
+                  </form>
+                  <p className="pt-4 text-secondary">Haven't signed up yet?</p>
+                  <Link
+                    type="button"
+                    to="/signup"
+                    className="btn btn-primary bg-transparent"
+                  >
+                    Register here
+                  </Link>
+                </div>
+                <div className="p-5 float">
+                  <img
+                    src={Icn}
+                    alt="icon.png"
+                    height="300px"
+                    width="300px"
+                    className="rounded  "
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -50,6 +50,7 @@ export default class Books extends Component {
     const { booklist } = this.state;
     console.log(loggedInState);
     console.log(userId);
+    console.log(this.props.children);
 
     return (
       <div style={sectionStyle} className="ht">

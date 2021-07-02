@@ -32,11 +32,12 @@ export default class Navbar extends Component {
       <div>
         <nav className="navbar navbar-expand-sm bg-secondary navbar-dark fixed-top">
           <ul className="navbar-nav">
-            <li className="nav-item active">
-              <Link className="nav-link nav-brand color-dark" to="/">
-                NoteHub
-              </Link>
-            </li>
+            <Link className="nav-link nav-brand color-dark" to="/">
+              NoteHub
+            </Link>
+          </ul>
+
+          <ul className="navbar-nav ml-auto ">
             <li className="nav-item">
               <Link className="nav-link" to="/books">
                 Books

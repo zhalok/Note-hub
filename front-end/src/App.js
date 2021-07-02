@@ -61,18 +61,6 @@ export default class App extends Component {
   // }
 
   render() {
-    const user = [
-      {
-        email: "zhalokrahman007@gmail.com",
-        password: "03041959",
-      },
-
-      {
-        email: "kaifatab2@gmail.com",
-        password: "kaifatab",
-      },
-    ];
-
     let nav_info = [
       { id: 1, title: "Login", link: "/login" },
       { id: 2, title: "Sign up", link: "/signup" },

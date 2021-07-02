@@ -1,14 +1,10 @@
 import React, { Component } from "react";
 
 import Navbar from "../components/Navbar";
+import Img from "../images/reg_icon.jpg";
+import style from "./Signup.module.css";
 
-import Img from "../images/login.png";
-import Icon from "../images/icon.png";
 import { Link } from "react-router-dom";
-
-var sectionStyle = {
-  backgroundImage: `url(${Img})`,
-};
 
 export default class SignUp extends Component {
   state = {
@@ -122,90 +118,89 @@ export default class SignUp extends Component {
     } = this.state;
 
     return (
-      <div
-        style={sectionStyle}
-        className="container-fluid d-flex justify-content-center  p-3 "
-      >
+      <div className={style.login_dark}>
         <Navbar
           nav_link={nav_info}
           loggedInState={loggedInState}
           handleLog={handleLog}
           userId={userId}
         />
-        <div className="center-box p-3 mt-5 mb-5 w-25">
-          <p className="text-light">Provide all necessary information...</p>
+        <div className="container">
           <form>
-            <div className="form-group m-3 pt-3 pb-3">
-              <label className="text-light">Email</label>
-              <input
-                type="text"
-                className="form-control mb-2"
-                placeholder="Email"
-                value={email}
-                onChange={this.change_handler}
-              />
-              <small class="form-text text-muted pb-3">
-                We'll never share your email with anyone else.
-              </small>
-              <label className="text-light">Password</label>
-              <input
-                type="password"
-                className="form-control mb-2"
-                placeholder="Password"
-                onChange={this.change_handler}
-                value={password}
-              />
-              <label className="text-light">Confirm password</label>
-              <input
-                type="password"
-                className="form-control mb-2"
-                placeholder="Confirm Password"
-                onChange={this.change_handler}
-                value={confirm_password}
-              />
-              <label className="text-light">Fullname</label>
-              <input
-                type="text"
-                className="form-control mb-2"
-                placeholder="Fullname"
-                onChange={this.change_handler}
-                value={fullname}
-              />
-              <label className="text-light">Registration Number</label>
-              <input
-                type="text"
-                className="form-control mb-2"
-                placeholder="Registration Number"
-                onChange={this.change_handler}
-                value={registration_number}
-              />
-              <label className="text-light">Contact Number</label>
-              <input
-                type="text"
-                className="form-control mb-2"
-                placeholder="Contact Number"
-                onChange={this.change_handler}
-                value={contract_number}
-              />
-              <label className="text-light">Session</label>
-              <input
-                type="text"
-                className="form-control mb-2"
-                placeholder="Session"
-                onChange={this.change_handler}
-                value={session}
-              />
+            <div className="form-group">
+              <div className=" row">
+                <div className="col-lg-6">
+                  <p>Provide all necessary information...</p>
+                  <input
+                    className={style.form_control}
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={this.change_handler}
+                  />
+                  <input
+                    type="password"
+                    className={style.form_control}
+                    placeholder="Password"
+                    onChange={this.change_handler}
+                    value={password}
+                  />
+                  <input
+                    type="password"
+                    className={style.form_control}
+                    placeholder="Confirm Password"
+                    onChange={this.change_handler}
+                    value={confirm_password}
+                  />
+                  <input
+                    type="text"
+                    className={style.form_control}
+                    placeholder="Fullname"
+                    onChange={this.change_handler}
+                    value={fullname}
+                  />
+                  <input
+                    type="text"
+                    className={style.form_control}
+                    placeholder="Registration Number"
+                    onChange={this.change_handler}
+                    value={registration_number}
+                  />
+                  <input
+                    type="text"
+                    className={style.form_control}
+                    placeholder="Contact Number"
+                    onChange={this.change_handler}
+                    value={contract_number}
+                  />
+                  <input
+                    type="text"
+                    className={style.form_control}
+                    placeholder="Session"
+                    onChange={this.change_handler}
+                    value={session}
+                  />
+                  <p></p>
+                  <button
+                    className={style.btn_primary}
+                    id="submit"
+                    onClick={this.click_handler}
+                  >
+                    Submit
+                  </button>
+                  <br /> <br />
+                  <h2>{this.state.message}</h2>
+                </div>
+                <div className="col-lg-6">
+                  <img
+                    src={Img}
+                    alt="Register Icon"
+                    height="500px"
+                    width="450px"
+                  />
+                </div>
+              </div>
             </div>
-            <div className="center-box p-3">
-              <button
-                className="btn btn-outline-light"
-                id="submit"
-                onClick={this.click_handler}
-              >
-                Submit
-              </button>
-            </div>
-            <p className="text-light">{this.state.message}</p>
           </form>
         </div>
       </div>
