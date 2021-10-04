@@ -1,7 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const app = express();
-const bodyparser = require("body-parser");
 const books_route = require("./routes/books-route");
 const notes_route = require("./routes/notes-route");
 const projects_route = require("./routes/projects-route");
@@ -17,7 +16,7 @@ const contribute_route = require("./routes/contribute-route");
 
 dotenv.config();
 
-app.use(bodyparser.json());
+app.use(express.json());
 
 app.use(cors());
 
