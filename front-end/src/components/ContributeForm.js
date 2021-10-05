@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Switch } from "react-router";
-import Img from "../images/profile_dark.jpg";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import { Switch } from 'react-router';
+import Img from '../images/profile_dark.jpg';
+import { Link } from 'react-router-dom';
 
-import ChoosefileBox from ".//ChoosefileBox";
-import "../App.css";
+import ChoosefileBox from './/ChoosefileBox';
+import '../App.css';
 
 var sectionStyle = {
   backgroundImage: `url(${Img})`,
@@ -12,63 +12,67 @@ var sectionStyle = {
 
 export default class ContributeForm extends Component {
   state = {
-    selected_type: "DataType",
-    selected_sem: "Semester",
-    your_name: "",
-    registration: "",
-    content_name: "",
-    description: "",
-    message: "",
-    profile_path: "",
-    message: "",
+    selected_type: 'DataType',
+    selected_sem: 'Semester',
+    your_name: '',
+    registration: '',
+    content_name: '',
+    description: '',
+    message: '',
+    profile_path: '',
+    message: '',
   };
 
   submit_information = async () => {
-    const respornse = await fetch(
-      `http://localhost:5000/contribute/${this.state.selected_type}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: this.state.content_name,
-          semester: this.state.selected_sem,
-          type: this.state.selected_type,
-          contributor_id: this.state.registration,
-          contributor_name: this.state.your_name,
-          description: this.state.description,
-        }),
-      }
-    );
+    try {
+      const respornse = await fetch(
+        `http://localhost:5000/contribute/${this.state.selected_type}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: this.state.content_name,
+            semester: this.state.selected_sem,
+            type: this.state.selected_type,
+            contributor_id: this.state.registration,
+            contributor_name: this.state.your_name,
+            description: this.state.description,
+          }),
+        }
+      );
 
-    const data = respornse.json();
-    console.log(data);
-    this.setState({
-      message: "Submited!!! Thanks For Contributing",
-    });
+      const data = respornse.json();
+      console.log(data);
+      this.setState({
+        message: 'Submited!!! Thanks For Contributing',
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   textchangehandler = (e) => {
-    if (e.target.placeholder == "Your Name") {
+    if (e.target.placeholder == 'Your Name') {
       this.setState({
         your_name: e.target.value,
       });
     }
 
-    if (e.target.placeholder == "Registration Number") {
+    if (e.target.placeholder == 'Registration Number') {
       this.setState({
         registration: e.target.value,
       });
     }
 
-    if (e.target.placeholder == "Content Name") {
+    if (e.target.placeholder == 'Content Name') {
       this.setState({
         content_name: e.target.value,
       });
     }
 
-    if (e.target.id == "description") {
+    if (e.target.id == 'description') {
       this.setState({
         description: e.target.value,
       });
@@ -76,12 +80,12 @@ export default class ContributeForm extends Component {
   };
 
   changehandler = (e) => {
-    if (e.target.id == "select_sem") {
+    if (e.target.id == 'select_sem') {
       this.setState({
         selected_sem: e.target.value,
       });
     }
-    if (e.target.id == "select_type") {
+    if (e.target.id == 'select_type') {
       this.setState({
         selected_type: e.target.value,
       });
@@ -90,7 +94,7 @@ export default class ContributeForm extends Component {
 
   clickchangeHandler = (e) => {
     e.preventDefault();
-    if (e.target.id == "submit") {
+    if (e.target.id == 'submit') {
       const {
         your_name,
         registration,
@@ -100,13 +104,13 @@ export default class ContributeForm extends Component {
       } = this.state;
 
       if (
-        your_name == "" ||
-        registration == "" ||
-        content_name == "" ||
-        selected_sem == "Semester" ||
-        selected_type == "Datatype"
+        your_name == '' ||
+        registration == '' ||
+        content_name == '' ||
+        selected_sem == 'Semester' ||
+        selected_type == 'Datatype'
       ) {
-        alert("Please provide all information");
+        alert('Please provide all information');
       } else {
         console.log(this.state);
         this.submit_information(this.selected_type);
@@ -116,72 +120,72 @@ export default class ContributeForm extends Component {
 
   render() {
     const { userId } = this.props;
-    let path = "/profile/" + userId;
+    let path = '/profile/' + userId;
 
     return (
-      <div className="row">
-        <div className="col-lg-4">
-          <div className="container p-3 m-5">
-            <img src={Img} alt="profile_dark.jpg" className="img-sm" />
+      <div className='row'>
+        <div className='col-lg-4'>
+          <div className='container p-3 m-5'>
+            <img src={Img} alt='profile_dark.jpg' className='img-sm' />
             <Link
-              type="button"
+              type='button'
               to={path}
-              className="btn btn-outline-light btn-lg btn-block p-3"
+              className='btn btn-outline-light btn-lg btn-block p-3'
             >
               See Your Profile
             </Link>
           </div>
         </div>
-        <div className="col-lg-8">
-          <div className="d-flex justify-content-center ">
-            <div className="center-box bg-transparent border border-light p-3 mt-5 shadow-lg rounded ">
-              <h3 className="text-light">
+        <div className='col-lg-8'>
+          <div className='d-flex justify-content-center '>
+            <div className='center-box bg-transparent border border-light p-3 mt-5 shadow-lg rounded '>
+              <h3 className='text-light'>
                 Please provide all the informations
               </h3>
-              <hr className="bg-secondary" />
+              <hr className='bg-secondary' />
               <div>
-                <div className="form-group">
-                  <div className="d-flex flex-column p-2">
+                <div className='form-group'>
+                  <div className='d-flex flex-column p-2'>
                     <input
-                      type="text"
-                      className="form-control mt-2"
-                      placeholder="Your Name"
+                      type='text'
+                      className='form-control mt-2'
+                      placeholder='Your Name'
                       value={this.state.your_name}
                       onChange={this.textchangehandler}
-                    />{" "}
+                    />{' '}
                     <input
-                      type="text"
-                      className="form-control mt-2"
-                      placeholder="Registration Number"
+                      type='text'
+                      className='form-control mt-2'
+                      placeholder='Registration Number'
                       value={this.state.registration}
                       onChange={this.textchangehandler}
                     />
                   </div>
-                  <div className="d-flex flex-column p-2">
+                  <div className='d-flex flex-column p-2'>
                     <input
-                      type="text"
-                      className="form-control mt-2"
-                      placeholder="Content Name"
+                      type='text'
+                      className='form-control mt-2'
+                      placeholder='Content Name'
                       value={this.state.content_name}
                       onChange={this.textchangehandler}
                     />
                     <textarea
-                      className="form-control mt-2"
-                      placeholder="Description of the content(optional)"
-                      id="description"
+                      className='form-control mt-2'
+                      placeholder='Description of the content(optional)'
+                      id='description'
                       value={this.state.description}
                       onChange={this.textchangehandler}
                     />
                   </div>
-                  <div className="d-flex flex-column p-2 ">
-                    <div className="d-flex p-2">
-                      <div className="d-flex">
-                        <h5 className="text-light">Select Resource Type -</h5>
+                  <div className='d-flex flex-column p-2 '>
+                    <div className='d-flex p-2'>
+                      <div className='d-flex'>
+                        <h5 className='text-light'>Select Resource Type -</h5>
                         <select
-                          className="form-select ml-3 "
+                          className='form-select ml-3 '
                           value={this.state.selected}
                           onChange={this.changehandler}
-                          id="select_type"
+                          id='select_type'
                         >
                           <option selected>Datatype</option>
                           <option>books</option>
@@ -192,15 +196,15 @@ export default class ContributeForm extends Component {
                       </div>
                     </div>
                   </div>
-                  <div className="d-flex flex-column p-2 ">
-                    <div className="d-flex p-2">
-                      <div className="d-flex">
-                        <h5 className="text-light">Select Semester -</h5>
+                  <div className='d-flex flex-column p-2 '>
+                    <div className='d-flex p-2'>
+                      <div className='d-flex'>
+                        <h5 className='text-light'>Select Semester -</h5>
                         <select
-                          className="form-select ml-3 "
+                          className='form-select ml-3 '
                           value={this.state.selected_sem}
                           onChange={this.changehandler}
-                          id="select_sem"
+                          id='select_sem'
                         >
                           <option selected>Semester</option>
                           <option>semester1</option>
@@ -209,15 +213,15 @@ export default class ContributeForm extends Component {
                       </div>
                     </div>
                   </div>
-                  <div className="d-flex flex-column p-2 ">
+                  <div className='d-flex flex-column p-2 '>
                     <ChoosefileBox />
                   </div>
-                  <div className="d-flex flex-column p-2 ml-5 mr-5">
+                  <div className='d-flex flex-column p-2 ml-5 mr-5'>
                     <button
-                      type="submit"
-                      className="btn btn-outline-secondary btn-lg"
+                      type='submit'
+                      className='btn btn-outline-secondary btn-lg'
                       onClick={this.clickchangeHandler}
-                      id="submit"
+                      id='submit'
                     >
                       Submit
                     </button>
@@ -225,7 +229,7 @@ export default class ContributeForm extends Component {
                 </div>
               </div>
             </div>
-            <h3 className="text-light">{this.state.message}</h3>
+            <h3 className='text-light'>{this.state.message}</h3>
           </div>
         </div>
       </div>

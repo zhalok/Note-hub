@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 export default class Questionlist extends Component {
   render() {
@@ -9,16 +9,16 @@ export default class Questionlist extends Component {
         <>
           {questionlist.map((e) => (
             <button
-              type="button"
-              className="btn btn-secondary btn-block m-2 p-2"
+              type='button'
+              className='btn btn-secondary btn-block m-2 p-2'
             >
               <h2>{e.name}</h2>
 
-              <div className="d-flex  justify-content-center">
+              <div className='d-flex  justify-content-center'>
                 Description: {e.description}
               </div>
 
-              <div className="d-flex  justify-content-center">
+              <div className='d-flex  justify-content-center'>
                 Contributor: {e.contributor_name}
               </div>
             </button>
@@ -27,8 +27,8 @@ export default class Questionlist extends Component {
       );
     } else {
       return (
-        <div className="d-flex justify-content-center mt-5">
-          <h3 className="text-light">No Data Found</h3>{" "}
+        <div className='d-flex justify-content-center mt-5'>
+          <h3 className='text-light'>No Data Found</h3>{' '}
         </div>
       );
     }
