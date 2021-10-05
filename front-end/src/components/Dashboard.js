@@ -4,6 +4,7 @@ import BookDashboardCard from './BookDashboardCard';
 import NoteDashboardCard from './NoteDashboardCard';
 import QuestionDashboardCard from './QuestionDashboardCard';
 import ProjectDashboardCard from './ProjectDashboardCard';
+import UserDashboardCard from '../components/UserDashboardCard';
 
 const Dashboard = () => {
   const DashboardStyle = {
@@ -24,6 +25,8 @@ const Dashboard = () => {
     height: 'fit-content',
     width: 'fit-content',
     marginTop: '20px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   };
 
   return (

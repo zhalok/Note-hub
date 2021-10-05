@@ -28,7 +28,7 @@ export default class Questionlist extends Component {
     } else {
       return (
         <div className='d-flex justify-content-center mt-5'>
-          <h3 className='text-light'>No Data Found</h3>{' '}
+          <h3 style={{ color: 'black' }}>No Data Found</h3>{' '}
         </div>
       );
     }
