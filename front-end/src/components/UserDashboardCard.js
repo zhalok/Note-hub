@@ -13,7 +13,7 @@ const UserDashboardCard = (props) => {
           marginLeft: 'auto',
           marginRight: 'auto',
           boxShadow: '10px 10px 5px black',
-          backgroundColor: 'rgb(150, 180, 166)',
+          backgroundColor: 'white',
         }}
       >
         <img
