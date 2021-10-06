@@ -70,6 +70,11 @@ export default class Navbar extends Component {
                 Contribute
               </Link>
             </li>
+            <li className='nav-item active'>
+              <Link className='nav-link ' to='/users'>
+                Users
+              </Link>
+            </li>
           </ul>
 
           <ul class='navbar-nav ml-auto'>{navOption}</ul>
