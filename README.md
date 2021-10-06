@@ -1,2 +1,5 @@
 # Note-hub
-** asx
+
+Problems to be solved:
+
+** Front-end:
