@@ -21,8 +21,7 @@ export default class Booklist extends Component {
                 padding: '10px',
                 marginTop: '20px',
                 marginBottom: '20px',
-                boxShadow:
-                  '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+                boxShadow: '5px 5px 5px black',
                 borderRadius: '10px',
               }}
             >
@@ -55,6 +54,8 @@ export default class Booklist extends Component {
                       marginLeft: 'auto',
                       width: 'fit-content',
                       marginRight: '10px',
+                      boxShadow:
+                        '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
                     }}
                   >
                     Preview
@@ -64,8 +65,9 @@ export default class Booklist extends Component {
                     className='btn btn-primary'
                     style={{
                       display: 'flex',
-
                       width: 'fit-content',
+                      boxShadow:
+                        '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
                     }}
                   >
                     Go to link
