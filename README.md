@@ -2,4 +2,4 @@
 
 Problems to be solved:
 
-** Front-end:
+*** Front-end:
