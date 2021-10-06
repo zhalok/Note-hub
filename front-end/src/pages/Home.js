@@ -74,6 +74,10 @@ export default class Home extends Component {
             type='button'
             to='/contribute'
             className='btn btn-success mt-5 btn-lg h-10 w-10 p-4'
+            style={{
+              boxShadow:
+                '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+            }}
           >
             + Contribute
           </Link>

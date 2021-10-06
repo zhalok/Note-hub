@@ -9,7 +9,7 @@ const BookDashboardCard = () => {
       style={{
         width: '15rem',
         padding: '10px',
-        boxShadow: '10px 10px 5px black',
+        boxShadow: '5px 5px 5px black',
         backgroundColor: 'white',
         marginLeft: '20px',
       }}
@@ -31,7 +31,14 @@ const BookDashboardCard = () => {
         <h3 className='card-title'>Books</h3>
         <p className='card-text'>100</p>
 
-        <Link to='/books' class='btn btn-primary'>
+        <Link
+          to='/books'
+          class='btn btn-primary'
+          style={{
+            boxShadow:
+              '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+          }}
+        >
           See Books
         </Link>
       </div>

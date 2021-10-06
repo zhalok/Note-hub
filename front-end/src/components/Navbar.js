@@ -18,10 +18,10 @@ export default class Navbar extends Component {
     } else {
       navOption = (
         <>
-          <Link className='btn btn-success' to='/' onClick={handleLog}>
+          <Link className='btn btn-success mr-2' to='/' onClick={handleLog}>
             Sign Out
           </Link>
-          <Link className='nav-link active' to={path}>
+          <Link className='btn btn-outline-primary' to={path}>
             Profile
           </Link>
         </>

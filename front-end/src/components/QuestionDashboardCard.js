@@ -9,7 +9,7 @@ const QuestionDashboardCard = () => {
       style={{
         width: '15rem',
         padding: '10px',
-        boxShadow: '10px 10px 5px black',
+        boxShadow: '5px 5px 5px black',
         marginLeft: '20px',
         backgroundColor: 'white',
       }}
@@ -31,7 +31,14 @@ const QuestionDashboardCard = () => {
         <h3 className='card-title'>Questions</h3>
         <p className='card-text'>100</p>
 
-        <Link to='/questions' class='btn btn-primary'>
+        <Link
+          to='/questions'
+          class='btn btn-primary'
+          style={{
+            boxShadow:
+              '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+          }}
+        >
           See Questions
         </Link>
       </div>

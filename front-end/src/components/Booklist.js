@@ -18,8 +18,12 @@ export default class Booklist extends Component {
                 marginRight: 'auto',
                 display: 'flex',
                 flexDirection: 'row',
-                padding: '20px',
-                marginTop: '10px',
+                padding: '10px',
+                marginTop: '20px',
+                marginBottom: '20px',
+                boxShadow:
+                  '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+                borderRadius: '10px',
               }}
             >
               <img
@@ -33,12 +37,15 @@ export default class Booklist extends Component {
                   marginLeft: 'auto',
                   marginRight: 'auto',
                   marginTop: '20px',
+                  marginLeft: '10px',
                 }}
               />
               <div class='card-body'>
-                <h2 class='card-title'>{e.name}</h2>
-                <p style={{ fontSize: '15px' }}>{e.contributor_name}</p>
-                <p class='card-text'>A very very Noice Math BOOk</p>
+                <h2 className='display-5'>{e.name}</h2>
+                <p className='blockquote-footer' style={{ fontSize: '15px' }}>
+                  {e.contributor_name}
+                </p>
+                <p class='.lead'>A very very Noice Math BOOk</p>
                 <div style={{ display: 'flex' }}>
                   <Link
                     type='button'

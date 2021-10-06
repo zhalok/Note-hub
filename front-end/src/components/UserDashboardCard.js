@@ -12,7 +12,7 @@ const UserDashboardCard = (props) => {
           padding: '10px',
           marginLeft: 'auto',
           marginRight: 'auto',
-          boxShadow: '10px 10px 5px black',
+          boxShadow: '5px 5px 5px black',
           backgroundColor: 'white',
         }}
       >
@@ -37,6 +37,10 @@ const UserDashboardCard = (props) => {
             to='/users'
             type='button'
             className='btn btn-primary btn-block '
+            style={{
+              boxShadow:
+                '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+            }}
             // style={{
             //   display: 'flex',
 

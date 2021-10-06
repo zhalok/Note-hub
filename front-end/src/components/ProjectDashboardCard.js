@@ -11,7 +11,7 @@ const ProjectDashboardCard = () => {
         backgroundColor: 'white',
         padding: '10px',
         marginLeft: '20px',
-        boxShadow: '10px 10px 5px black',
+        boxShadow: '5px 5px 5px black',
       }}
     >
       <img
@@ -31,7 +31,14 @@ const ProjectDashboardCard = () => {
         <h3 className='card-title'>Projects</h3>
         <p className='card-text'>100</p>
 
-        <Link to='/projects' class='btn btn-primary'>
+        <Link
+          to='/projects'
+          class='btn btn-primary'
+          style={{
+            boxShadow:
+              '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+          }}
+        >
           See Projects
         </Link>
       </div>
