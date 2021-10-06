@@ -6,7 +6,6 @@ const DashboardStyle = {
   padding: '30px',
   marginLeft: 'auto',
   marginRight: 'auto',
-
   marginTop: '20px',
 };
 

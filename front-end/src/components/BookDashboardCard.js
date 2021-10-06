@@ -1,31 +1,18 @@
 import React from 'react';
 import Image from '../images/books.png';
 import { Link, Router } from 'react-router-dom';
+import DashboardStyle from '../styles/DashboardStyle';
+const DashboardCardStyle = require('../styles/DashboardCardStyle');
+const DashboardCardImageStyle = require('../styles/DashboardCardImageStyle');
 
 const BookDashboardCard = () => {
   return (
-    <div
-      className='card'
-      style={{
-        width: '15rem',
-        padding: '10px',
-        boxShadow: '5px 5px 5px black',
-        backgroundColor: 'white',
-        marginLeft: '20px',
-      }}
-    >
+    <div className='card' style={DashboardCardStyle}>
       <img
         className='card-img-top'
         src={Image}
         alt='Card image cap'
-        style={{
-          height: '50px',
-          width: '50px',
-          display: 'flex',
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          marginTop: '20px',
-        }}
+        style={DashboardCardImageStyle}
       />
       <div className='card-body'>
         <h3 className='card-title'>Books</h3>

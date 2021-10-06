@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import image from '../images/books.png';
+const BookCardStyle = require('../styles/ContentCardStyle');
+const ContentCardImageStyle = require('../styles/ContentCardImageStyle');
 
 export default class Booklist extends Component {
   render() {
@@ -10,34 +12,12 @@ export default class Booklist extends Component {
       return (
         <div style={{ padding: '20px' }}>
           {booklist.map((e) => (
-            <div
-              className='card'
-              style={{
-                width: '40rem',
-                marginLeft: 'auto',
-                marginRight: 'auto',
-                display: 'flex',
-                flexDirection: 'row',
-                padding: '10px',
-                marginTop: '20px',
-                marginBottom: '20px',
-                boxShadow: '5px 5px 5px black',
-                borderRadius: '10px',
-              }}
-            >
+            <div className='card' style={BookCardStyle}>
               <img
                 class='card-img-top'
                 src={image}
                 alt='Card image cap'
-                style={{
-                  height: '10%',
-                  width: '10%',
-                  display: 'flex',
-                  marginLeft: 'auto',
-                  marginRight: 'auto',
-                  marginTop: '20px',
-                  marginLeft: '10px',
-                }}
+                style={ContentCardImageStyle}
               />
               <div class='card-body'>
                 <h2 className='display-5'>{e.name}</h2>
