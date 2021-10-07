@@ -44,15 +44,24 @@ const get_all_notes = async (req, res, next) => {
 };
 
 const add_new_note = async (req, res, next) => {
-  const { name, semester, type, registration_id, contributor } = req.body;
+  const {
+    name,
+    semester,
+    type,
+    contributor_id,
+    contributor_name,
+    description,
+  } = req.body;
+
   const new_note = new note_model({
     name,
     semester,
     type,
-    contributor_id: registration_id,
-    contributor_name: contributor,
+    contributor_id: contributor_id,
+    contributor_name: contributor_name,
+    description: description,
   });
-
+  console.log(new_note);
   try {
     const result = await new_note.save();
     update_user(req, res, next);

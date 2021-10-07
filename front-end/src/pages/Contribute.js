@@ -1,12 +1,12 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import ContributeForm from "../components/ContributeForm";
-import ContributeCredential from "../components/ContributeCredential";
-import Navbar from "../components/Navbar";
+import ContributeForm from '../components/ContributeForm';
+import ContributeCredential from '../components/ContributeCredential';
+import Navbar from '../components/Navbar';
 
-import Img from "../images/login.png";
+import Img from '../images/login.png';
 
-import "../App.css";
+import '../App.css';
 
 var sectionStyle = {
   backgroundImage: `url(${Img})`,
@@ -24,7 +24,7 @@ export default class extends Component {
     }
 
     return (
-      <div style={sectionStyle} className="ht">
+      <div style={sectionStyle} className='ht'>
         <Navbar
           nav_link={nav_info}
           loggedInState={loggedInState}
@@ -32,9 +32,9 @@ export default class extends Component {
           userId={userId}
         />
 
-        <div className="container mt-5 pt-5">
-          <h1 className="header text-secondary">Contribute</h1>
-          <hr className="hr-style" />
+        <div className='container mt-5 pt-5'>
+          <h1 className='header text-secondary'>Contribute</h1>
+          <hr className='hr-style' />
           {contribute}
         </div>
       </div>

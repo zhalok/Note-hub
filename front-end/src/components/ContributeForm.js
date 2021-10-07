@@ -11,6 +11,9 @@ var sectionStyle = {
 };
 
 export default class ContributeForm extends Component {
+  constructor(props) {
+    super(props);
+  }
   state = {
     selected_type: 'DataType',
     selected_sem: 'Semester',
@@ -21,6 +24,20 @@ export default class ContributeForm extends Component {
     message: '',
     profile_path: '',
     message: '',
+  };
+
+  getInfo = async (user_id) => {
+    try {
+      const response = await fetch(`http://localhost:5000/users/id/${user_id}`);
+      const data = await response.json();
+      // console.log(data[0].name);
+      this.setState({
+        your_name: data[0].name,
+        registration: data[0].registration_id,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   submit_information = async () => {
@@ -118,10 +135,18 @@ export default class ContributeForm extends Component {
     }
   };
 
+  componentDidMount() {
+    console.log(this.props);
+    const { userId } = this.props;
+    console.log(userId);
+    this.getInfo(userId);
+  }
+
   render() {
     const { userId } = this.props;
     let path = '/profile/' + userId;
-
+    console.log(this.state.your_name);
+    console.log(this.state.registration);
     return (
       <div className='row'>
         <div className='col-lg-4'>
@@ -145,22 +170,6 @@ export default class ContributeForm extends Component {
               <hr className='bg-secondary' />
               <div>
                 <div className='form-group'>
-                  <div className='d-flex flex-column p-2'>
-                    <input
-                      type='text'
-                      className='form-control mt-2'
-                      placeholder='Your Name'
-                      value={this.state.your_name}
-                      onChange={this.textchangehandler}
-                    />{' '}
-                    <input
-                      type='text'
-                      className='form-control mt-2'
-                      placeholder='Registration Number'
-                      value={this.state.registration}
-                      onChange={this.textchangehandler}
-                    />
-                  </div>
                   <div className='d-flex flex-column p-2'>
                     <input
                       type='text'

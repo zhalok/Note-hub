@@ -13,21 +13,12 @@ const get_all_users = async (req, res, next) => {
 };
 
 const get_user_by_id = async (req, res, next) => {
-  console.log(req.params.uid);
+  // console.log(req.params.uid);
   var retinfo;
   try {
-    const user = await userModel.find({});
-    user.forEach((e) => {
-      if (e.registration_id == req.params.uid) {
-        retinfo = e;
-      }
-    });
-    console.log(retinfo);
-    if (!retinfo) {
-      res.json('No data found');
-    } else {
-      res.json(retinfo);
-    }
+    const user = await userModel.find({ registration_id: req.params.uid });
+    console.log(user);
+    res.json(user);
   } catch (err) {
     next(err);
   }
@@ -88,13 +79,8 @@ const update_user = async (req, res, next) => {
   const contributor_id = req.body.contributor_id;
   let founduser;
   try {
-    const data = await userModel.find({});
-    data.forEach((e) => {
-      if (e.registration_id == contributor_id) {
-        founduser = e;
-        return;
-      }
-    });
+    const data = await userModel.find({ registration_id: contributor_id });
+    const foundUser = data[0];
     if (founduser) console.log(founduser);
 
     const { name, semester, type } = req.body;
