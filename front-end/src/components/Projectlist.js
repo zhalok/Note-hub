@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ContentCard from './ContentCard';
 
 export default class Projectlist extends Component {
   render() {
@@ -8,19 +9,7 @@ export default class Projectlist extends Component {
       return (
         <>
           {projectlist.map((e) => (
-            <button
-              type='button'
-              className='btn btn-secondary btn-block m-2 p-2'
-            >
-              <h2>{e.name}</h2>
-
-              <div className='d-flex mt-2 justify-content-center'>
-                Type: {e.type}
-              </div>
-              <div className='d-flex  justify-content-center'>
-                Team: {e.Team}
-              </div>
-            </button>
+            <ContentCard info={e} />
           ))}
         </>
       );

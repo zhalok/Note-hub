@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ContentCard from './ContentCard';
 
 export default class Questionlist extends Component {
   render() {
@@ -8,20 +9,7 @@ export default class Questionlist extends Component {
       return (
         <>
           {questionlist.map((e) => (
-            <button
-              type='button'
-              className='btn btn-secondary btn-block m-2 p-2'
-            >
-              <h2>{e.name}</h2>
-
-              <div className='d-flex  justify-content-center'>
-                Description: {e.description}
-              </div>
-
-              <div className='d-flex  justify-content-center'>
-                Contributor: {e.contributor_name}
-              </div>
-            </button>
+            <ContentCard info={e} />
           ))}
         </>
       );
