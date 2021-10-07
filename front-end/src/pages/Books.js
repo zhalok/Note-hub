@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 
 import Navbar from '../components/Navbar';
 import Booklist from '../components/Booklist';
+import SearchOption from '../components/SearchOption';
 import Img from '../images/signup.jpg';
+import SemesterList from '../components/SemesterList';
+import searchImage from '../images/search.png';
 
 import '../App.css';
-import { marginTop } from '../styles/ContentCardStyle';
 
 var sectionStyle = {
   backgroundImage: `url(${Img})`,
@@ -77,115 +79,13 @@ export default class Books extends Component {
         <div className='container mt-5 pt-4'>
           <div style={{ display: 'flex', flexDirection: 'row' }}>
             <h1 style={{ color: 'white' }}>Books</h1>
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                marginLeft: 'auto',
-                height: 'fit-content',
-              }}
-            >
-              <input
-                type='search'
-                className='form-control'
-                style={{ marginTop: '10px', marginRight: '10px' }}
-              />
-              <button
-                type='button'
-                className='btn btn-success'
-                style={{ marginTop: '10px', height: '100%' }}
-              >
-                Search
-              </button>
-            </div>
+            <SearchOption />
           </div>
+
+          <SemesterList controller={this.controller} />
 
           <hr className='hr-style' />
           <div className='total-page'>
-            <div className='semester-options'>
-              <h3 style={{ color: 'white' }}>Semesters</h3>
-              <hr className='hr-style' />
-              <button
-                type='button'
-                id='1'
-                onClick={this.controller}
-                className='btn btn-outline-success btn-lg btn-block'
-                value='semester1'
-                style={{ color: 'white' }}
-              >
-                Semester 1
-              </button>
-              <button
-                type='button'
-                id='2'
-                onClick={this.controller}
-                className='btn btn-outline-success btn-lg btn-block'
-                value=' semester2'
-                style={{ color: 'white' }}
-              >
-                Semester 2
-              </button>
-              <button
-                type='button'
-                id='3'
-                onClick={this.controller}
-                className='btn btn-outline-success btn-lg btn-block'
-                value='semester3'
-                style={{ color: 'white' }}
-              >
-                Semester 3
-              </button>
-              <button
-                type='button'
-                id='4'
-                onClick={this.controller}
-                className='btn btn-outline-success btn-lg btn-block'
-                value='semester4'
-                style={{ color: 'white' }}
-              >
-                Semester 4
-              </button>
-              <button
-                type='button'
-                id='5'
-                onClick={this.controller}
-                className='btn btn-outline-success btn-lg btn-block'
-                value='semester5'
-                style={{ color: 'white' }}
-              >
-                Semester 5
-              </button>
-              <button
-                type='button'
-                id='6'
-                onClick={this.controller}
-                className='btn btn-outline-success btn-lg btn-block'
-                value='semester6'
-                style={{ color: 'white' }}
-              >
-                Semester 6
-              </button>
-              <button
-                type='button'
-                id='7'
-                onClick={this.controller}
-                className='btn btn-outline-success btn-lg btn-block'
-                value=' semester7'
-                style={{ color: 'white' }}
-              >
-                Semester 7
-              </button>
-              <button
-                type='button'
-                id='8'
-                onClick={this.controller}
-                className='btn btn-outline-success btn-lg btn-block'
-                value=' semester8'
-                style={{ color: 'white' }}
-              >
-                Semester 8
-              </button>
-            </div>
             <div className='contents'>
               <Booklist booklist={booklist} />
             </div>
