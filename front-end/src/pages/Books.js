@@ -5,6 +5,7 @@ import Booklist from '../components/Booklist';
 import Img from '../images/signup.jpg';
 
 import '../App.css';
+import { marginTop } from '../styles/ContentCardStyle';
 
 var sectionStyle = {
   backgroundImage: `url(${Img})`,
@@ -74,7 +75,31 @@ export default class Books extends Component {
         />
 
         <div className='container mt-5 pt-4'>
-          <h1 style={{ color: 'white' }}>Books</h1>
+          <div style={{ display: 'flex', flexDirection: 'row' }}>
+            <h1 style={{ color: 'white' }}>Books</h1>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                marginLeft: 'auto',
+                height: 'fit-content',
+              }}
+            >
+              <input
+                type='search'
+                className='form-control'
+                style={{ marginTop: '10px', marginRight: '10px' }}
+              />
+              <button
+                type='button'
+                className='btn btn-success'
+                style={{ marginTop: '10px', height: '100%' }}
+              >
+                Search
+              </button>
+            </div>
+          </div>
+
           <hr className='hr-style' />
           <div className='total-page'>
             <div className='semester-options'>
