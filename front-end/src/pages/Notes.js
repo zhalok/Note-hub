@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-
 import Navbar from '../components/Navbar';
+import SemesterList from '../components/SemesterList';
 import Notelist from '../components/Notelist';
+import SearchOption from '../components/SearchOption';
 import Img from '../images/signup.jpg';
 
 import '../App.css';
@@ -75,94 +76,15 @@ export default class Notes extends Component {
           handleLog={handleLog}
           userId={userId}
         />
-        <div
-          className='container mt-5 pt-4'
-          style={{
-            opacity: '0.5',
-            marginTop: '10px',
-            height: '100%',
-            backgroundColor: 'white',
-          }}
-        >
-          <h1 style={{ color: 'black' }}>Notes</h1>
+
+        <div className='container mt-5 pt-4'>
+          <div style={{ display: 'flex', flexDirection: 'row' }}>
+            <h1 style={{ color: 'white' }}>Notes</h1>
+            <SearchOption />
+          </div>
           <hr className='hr-style' />
           <div className='total-page'>
-            <div className='semester-options'>
-              <h3 style={{ color: 'black' }}>Semester</h3>
-              <hr className='hr-style' />
-              <button
-                type='button'
-                id='1'
-                onClick={this.controller}
-                className='btn btn-outline-primary btn-lg btn-block'
-                value='semester1'
-              >
-                Semester 1
-              </button>
-              <button
-                type='button'
-                id='2'
-                onClick={this.controller}
-                className='btn btn-outline-primary btn-lg btn-block'
-                value=' semester2'
-              >
-                Semester 2
-              </button>
-              <button
-                type='button'
-                id='3'
-                onClick={this.controller}
-                className='btn btn-outline-primary btn-lg btn-block'
-                value='semester3'
-              >
-                Semester 3
-              </button>
-              <button
-                type='button'
-                id='4'
-                onClick={this.controller}
-                className='btn btn-outline-primary btn-lg btn-block'
-                value='semester4'
-              >
-                Semester 4
-              </button>
-              <button
-                type='button'
-                id='5'
-                onClick={this.controller}
-                className='btn btn-outline-primary btn-lg btn-block'
-                value='semester5'
-              >
-                Semester 5
-              </button>
-              <button
-                type='button'
-                id='6'
-                onClick={this.controller}
-                className='btn btn-outline-primary btn-lg btn-block'
-                value='semester6'
-              >
-                Semester 6
-              </button>
-              <button
-                type='button'
-                id='7'
-                onClick={this.controller}
-                className='btn btn-outline-primary btn-lg btn-block'
-                value=' semester7'
-              >
-                Semester 7
-              </button>
-              <button
-                type='button'
-                id='8'
-                onClick={this.controller}
-                className='btn btn-outline-primary btn-lg btn-block'
-                value=' semester8'
-              >
-                Semester 8
-              </button>
-            </div>
+            <SemesterList controller={this.controller} />
             <div className='contents'>
               <Notelist notelist={notelist} />
             </div>
