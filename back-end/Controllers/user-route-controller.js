@@ -81,7 +81,7 @@ const update_user = async (req, res, next) => {
   try {
     const data = await userModel.find({ registration_id: contributor_id });
     const foundUser = data[0];
-    if (founduser) console.log(founduser);
+    if (foundUser) console.log(foundUser);
 
     const { name, semester, type } = req.body;
 
@@ -90,7 +90,7 @@ const update_user = async (req, res, next) => {
       semester,
     };
 
-    founduser[type].push(new_book);
+    foundUser[type].push(new_book);
 
     const user_id = founduser._id;
 

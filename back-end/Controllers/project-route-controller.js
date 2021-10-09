@@ -1,18 +1,13 @@
 const HttpError = require('../models/http-error-model');
 const { update_user } = require('../Controllers/user-route-controller');
-const book_model = require('../models/projects-model');
+const project_model = require('../models/projects-model');
 
 const get_projects_by_semester = async (req, res, next) => {
   try {
-    const data = await book_model.find({});
-    let retinfo = [];
-    data.forEach((e) => {
-      if (e.semester == req.params.sem) {
-        retinfo.push(e);
-      }
-    });
+    const semester = req.params.sem;
+    const data = await project_model.find({ semester });
 
-    res.json(retinfo);
+    res.json(data);
   } catch (err) {
     next(err);
   }
@@ -20,15 +15,9 @@ const get_projects_by_semester = async (req, res, next) => {
 
 const get_projects_by_name = async (req, res, next) => {
   try {
-    const data = await book_model.find({});
-    const retinfo = [];
-    data.forEach((e) => {
-      if (e.name == req.params.name) {
-        retinfo.push(e);
-      }
-    });
-    if (retinfo.length == 0) res.json('No data found');
-    else res.json(retinfo);
+    const name = req.params.name;
+    const data = project_model.find({ name });
+    res.json(data);
   } catch (err) {
     next(err);
   }
@@ -36,7 +25,7 @@ const get_projects_by_name = async (req, res, next) => {
 
 const get_all_projects = async (req, res, next) => {
   try {
-    const data = await book_model.find({});
+    const data = await project_model.find({});
     res.json(data);
   } catch (err) {
     next(err);
@@ -44,17 +33,25 @@ const get_all_projects = async (req, res, next) => {
 };
 
 const add_new_project = async (req, res, next) => {
-  const { name, semester, type, registration_id, contributor } = req.body;
-  const new_book = new book_model({
+  const {
     name,
     semester,
     type,
-    contributor_id: registration_id,
-    contributor_name: contributor,
+    contributor_id,
+    contributor_name,
+    description,
+  } = req.body;
+  const new_project = new project_model({
+    name,
+    semester,
+    type,
+    contributor_id: contributor_id,
+    contributor_name: contributor_name,
+    description: description,
   });
   try {
-    const result = await new_book.save();
-    update_user(req, res, next);
+    const result = await new_project.save();
+    // update_user(req, res, next);
     res.json(result);
   } catch (err) {
     next(err);

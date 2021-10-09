@@ -112,6 +112,7 @@ export default class ContributeForm extends Component {
   clickchangeHandler = (e) => {
     e.preventDefault();
     if (e.target.id == 'submit') {
+      console.log(this.state);
       const {
         your_name,
         registration,

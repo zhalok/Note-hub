@@ -82,10 +82,9 @@ export default class Books extends Component {
             <SearchOption />
           </div>
 
-          <SemesterList controller={this.controller} />
-
           <hr className='hr-style' />
           <div className='total-page'>
+            <SemesterList controller={this.controller} />
             <div className='contents'>
               <Booklist booklist={booklist} />
             </div>

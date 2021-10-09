@@ -4,14 +4,10 @@ const book_model = require('../models/books-model');
 
 const get_books_by_semester = async (req, res, next) => {
   try {
-    const data = await book_model.find({});
-    let retinfo = [];
-    data.forEach((e) => {
-      if (e.semester == req.params.sem) {
-        retinfo.push(e);
-      }
-    });
-    res.json(retinfo);
+    const semester = req.params.sem;
+    const data = await book_model.find({ semester });
+
+    res.json(data);
   } catch (err) {
     next(err);
   }
@@ -19,15 +15,9 @@ const get_books_by_semester = async (req, res, next) => {
 
 const get_books_by_name = async (req, res, next) => {
   try {
-    const data = await book_model.find({});
-    const retinfo = [];
-    data.forEach((e) => {
-      if (e.name == req.params.name) {
-        retinfo.push(e);
-      }
-    });
-    if (retinfo.length == 0) res.json('No data found');
-    else res.json(retinfo);
+    const name = req.params.name;
+    const data = book_model.find({ name });
+    res.json(data);
   } catch (err) {
     next(err);
   }
@@ -64,6 +54,7 @@ const add_new_book = async (req, res, next) => {
   try {
     const result = await new_book.save();
     update_user(req, res, next);
+    console.log('ok done');
     res.json(result);
   } catch (err) {
     next(err);

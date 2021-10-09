@@ -3,14 +3,10 @@ const { update_user } = require('../Controllers/user-route-controller');
 
 const get_questions_by_semester = async (req, res, next) => {
   try {
-    const data = await question_model.find({});
-    let retinfo = [];
-    data.forEach((e) => {
-      if (e.semester == req.params.sem) {
-        retinfo.push(e);
-      }
-    });
-    res.json(retinfo);
+    const semester = req.params.sem;
+    const data = await question_model.find({ semester });
+
+    res.json(data);
   } catch (err) {
     next(err);
   }
@@ -18,15 +14,9 @@ const get_questions_by_semester = async (req, res, next) => {
 
 const get_questions_by_name = async (req, res, next) => {
   try {
-    const data = await question_model.find({});
-    const retinfo = [];
-    data.forEach((e) => {
-      if (e.name == req.params.name) {
-        retinfo.push(e);
-      }
-    });
-    if (retinfo.length == 0) res.json('No data found');
-    else res.json(retinfo);
+    const name = req.params.name;
+    const data = question_model.find({ name });
+    res.json(data);
   } catch (err) {
     next(err);
   }

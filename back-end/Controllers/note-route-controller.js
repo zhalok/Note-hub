@@ -4,15 +4,10 @@ const note_model = require('..//models/notes-model');
 
 const get_notes_by_semester = async (req, res, next) => {
   try {
-    const data = await note_model.find({});
-    let retinfo = [];
-    data.forEach((e) => {
-      if (e.semester == req.params.sem) {
-        retinfo.push(e);
-      }
-    });
+    const semester = req.params.sem;
+    const data = await note_model.find({ semester });
 
-    res.json(retinfo);
+    res.json(data);
   } catch (err) {
     next(err);
   }
@@ -20,15 +15,9 @@ const get_notes_by_semester = async (req, res, next) => {
 
 const get_notes_by_name = async (req, res, next) => {
   try {
-    const data = await note_model.find({});
-    const retinfo = [];
-    data.forEach((e) => {
-      if (e.name == req.params.name) {
-        retinfo.push(e);
-      }
-    });
-    if (retinfo.length == 0) res.json('No data found');
-    else res.json(retinfo);
+    const name = req.params.name;
+    const data = note_model.find({ name });
+    res.json(data);
   } catch (err) {
     next(err);
   }
