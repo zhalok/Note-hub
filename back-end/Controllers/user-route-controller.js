@@ -1,6 +1,7 @@
 const { Mongoose } = require('mongoose');
 const HttpError = require('../models/http-error-model');
 const userModel = require('../models/user-model');
+const bcrypt = require('bcrypt');
 
 const get_all_users = async (req, res, next) => {
   try {
@@ -42,6 +43,10 @@ const add_new_user = async (req, res, next) => {
   const { name, registration_id, session, password } = req.body;
 
   try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    console.log(hashedPassword);
+
     const data = await userModel.find({});
 
     let vacany = true;
@@ -57,7 +62,7 @@ const add_new_user = async (req, res, next) => {
         name: name,
         registration_id: registration_id,
         session,
-        password: password,
+        password: hashedPassword,
         books: [],
         notes: [],
         questions: [],

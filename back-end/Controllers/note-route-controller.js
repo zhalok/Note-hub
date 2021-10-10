@@ -53,7 +53,7 @@ const add_new_note = async (req, res, next) => {
   console.log(new_note);
   try {
     const result = await new_note.save();
-    update_user(req, res, next);
+    // update_user(req, res, next);
     res.json(result);
   } catch (err) {
     next(err);

@@ -50,7 +50,7 @@ const add_new_question = async (req, res, next) => {
   });
   try {
     const result = await new_question.save();
-    update_user(req, res, next);
+    // update_user(req, res, next);
     res.json(result);
   } catch (err) {
     next(err);

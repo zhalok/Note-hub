@@ -53,7 +53,7 @@ const add_new_book = async (req, res, next) => {
   });
   try {
     const result = await new_book.save();
-    update_user(req, res, next);
+    // update_user(req, res, next);
     console.log('ok done');
     res.json(result);
   } catch (err) {
