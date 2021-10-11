@@ -107,21 +107,20 @@ const update_user = async (req, res, next) => {
   }
 };
 
-const check_user_validity = async (req, res, next) => {
-  try {
-    const data = await userModel.find({});
-    const { registration_id, password } = req.body;
-    let founduser;
-    data.forEach((e) => {
-      if (e.registration_id == registration_id && e.password == password) {
-        founduser = e;
-      }
-    });
-    if (!founduser) res.json('User not found');
-    else res.json(founduser);
-  } catch (err) {
-    next(err);
-  }
+const check_user_validity = (req, res, next) => {
+  const { registration_id, password } = req.body;
+  userModel.find({ registration_id }, (err, users) => {
+    if (err) next(err);
+    else {
+      // res.json(docs);
+      // we have found the document here of the user
+      const hashedPassword = users[0].password;
+      bcrypt.compare(password, hashedPassword, (err, result) => {
+        if (result) res.json(users[0]);
+        else res.json('User not found');
+      });
+    }
+  });
 };
 
 module.exports = {
