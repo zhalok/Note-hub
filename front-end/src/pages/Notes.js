@@ -56,8 +56,24 @@ export default class Notes extends Component {
     }
   };
 
+  find_note_by_name = (name) => {
+    name.trim();
+    fetch(`http://localhost:5000/notes/get_by_name/${name}`)
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+          notelist: data,
+          showSearchResult: true,
+        });
+      });
+  };
+
   controller = (e) => {
     this.find_notes_by_semester(e.target.value);
+  };
+
+  findBynameController = (name) => {
+    this.find_note_by_name(name);
   };
 
   componentDidMount() {
@@ -80,7 +96,7 @@ export default class Notes extends Component {
         <div className='container mt-5 pt-4'>
           <div style={{ display: 'flex', flexDirection: 'row' }}>
             <h1 style={{ color: 'white' }}>Notes</h1>
-            <SearchOption />
+            <SearchOption findByNameController={this.findBynameController} />
           </div>
           <hr className='hr-style' />
           <div className='total-page'>

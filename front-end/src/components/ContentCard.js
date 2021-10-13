@@ -18,7 +18,7 @@ export default function ContentCard(props) {
         <p className='blockquote-footer' style={{ fontSize: '15px' }}>
           {info.contributor_name}
         </p>
-        <p class='.lead'>A very very Noice Math BOOk</p>
+        <p class='.lead'>{info.description}</p>
         <div style={{ display: 'flex' }}>
           <Link
             type='button'

@@ -42,6 +42,7 @@ export default class ContributeForm extends Component {
 
   submit_information = async () => {
     try {
+      console.log(this.state.description);
       const respornse = await fetch(
         `http://localhost:5000/contribute/${this.state.selected_type}`,
         {
@@ -50,12 +51,12 @@ export default class ContributeForm extends Component {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            name: this.state.content_name,
-            semester: this.state.selected_sem,
-            type: this.state.selected_type,
-            contributor_id: this.state.registration,
-            contributor_name: this.state.your_name,
-            description: this.state.description,
+            name: this.state.content_name.trim(),
+            semester: this.state.selected_sem.trim(),
+            type: this.state.selected_type.trim(),
+            contributor_id: this.state.registration.trim(),
+            contributor_name: this.state.your_name.trim(),
+            description: this.state.description.trim(),
           }),
         }
       );

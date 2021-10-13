@@ -50,8 +50,24 @@ export default class Projects extends Component {
     }
   };
 
+  find_project_by_name = (name) => {
+    name.trim();
+    fetch(`http://localhost:5000/projects/get_by_name/${name}`)
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+          booklist: data,
+          showSearchResult: true,
+        });
+      });
+  };
+
   controller = (e) => {
     this.find_projects_by_semester(e.target.value);
+  };
+
+  findBynameController = (name) => {
+    this.find_project_by_name(name);
   };
 
   componentDidMount() {
@@ -73,7 +89,7 @@ export default class Projects extends Component {
         <div className='container mt-5 pt-4'>
           <div style={{ display: 'flex', flexDirection: 'row' }}>
             <h1 style={{ color: 'white' }}>Projects</h1>
-            <SearchOption />
+            <SearchOption findByNameController={this.findBynameController} />
           </div>
           <hr className='hr-style' />
           <div className='total-page'>

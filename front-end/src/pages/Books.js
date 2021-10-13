@@ -20,6 +20,7 @@ var sectionStyle = {
 export default class Books extends Component {
   state = {
     booklist: [],
+    showSearchResult: false,
   };
 
   find_all_books = async () => {
@@ -46,6 +47,7 @@ export default class Books extends Component {
 
       this.setState({
         booklist: data,
+        showSearchResult: false,
       });
     } catch (err) {
       console.log(err);
@@ -53,11 +55,13 @@ export default class Books extends Component {
   };
 
   find_book_by_name = (name) => {
+    name.trim();
     fetch(`http://localhost:5000/books/get_by_name/${name}`)
       .then((response) => response.json())
       .then((data) => {
         this.setState({
           booklist: data,
+          showSearchResult: true,
         });
       });
   };
@@ -76,10 +80,36 @@ export default class Books extends Component {
 
   render() {
     const { nav_info, loggedInState, handleLog, userId } = this.props;
-    const { booklist } = this.state;
+    const { booklist, showSearchResult } = this.state;
     console.log(loggedInState);
     console.log(userId);
     console.log(this.props.children);
+
+    // if (showSearchResult) {
+    //   return (
+    //     <div style={sectionStyle} className='ht'>
+    //       <Navbar
+    //         nav_link={nav_info}
+    //         loggedInState={loggedInState}
+    //         handleLog={handleLog}
+    //         userId={userId}
+    //       />
+
+    //       <div className='container mt-5 pt-4'>
+    //         <div style={{ display: 'flex', flexDirection: 'row' }}>
+    //           <h1 style={{ color: 'white' }}>Search Results</h1>
+    //         </div>
+
+    //         <hr className='hr-style' />
+    //         <div className='total-page'>
+    //           <div className='contents'>
+    //             <Booklist booklist={booklist} />
+    //           </div>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   );
+    // }
 
     return (
       <div style={sectionStyle} className='ht'>

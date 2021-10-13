@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import searchImage from '../images/search.png';
 
 export default function SearchOption(props) {
-  const [searchVal, searchValController] = useState('search here');
+  const [searchVal, searchValController] = useState('');
   const { findByNameController } = props;
+  // console.log(findByNameController);
 
   return (
     <div
@@ -22,6 +23,7 @@ export default function SearchOption(props) {
         value={searchVal}
         placeholder='search'
         onChange={(e) => {
+          // console.log(e.target.value);
           searchValController(e.target.value);
         }}
       ></input>

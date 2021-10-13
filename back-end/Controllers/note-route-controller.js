@@ -16,7 +16,7 @@ const get_notes_by_semester = async (req, res, next) => {
 const get_notes_by_name = async (req, res, next) => {
   try {
     const name = req.params.name;
-    const data = note_model.find({ name });
+    const data = await note_model.find({ name });
     res.json(data);
   } catch (err) {
     next(err);
