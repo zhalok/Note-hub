@@ -52,12 +52,26 @@ export default class Books extends Component {
     }
   };
 
+  find_book_by_name = (name) => {
+    fetch(`http://localhost:5000/books/get_by_name/${name}`)
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+          booklist: data,
+        });
+      });
+  };
+
   componentDidMount() {
     this.find_all_books();
   }
 
   controller = (e) => {
     this.find_book_by_semester(e.target.value);
+  };
+
+  findBynameController = (name) => {
+    this.find_book_by_name(name);
   };
 
   render() {
@@ -79,7 +93,7 @@ export default class Books extends Component {
         <div className='container mt-5 pt-4'>
           <div style={{ display: 'flex', flexDirection: 'row' }}>
             <h1 style={{ color: 'white' }}>Books</h1>
-            <SearchOption />
+            <SearchOption findByNameController={this.findBynameController} />
           </div>
 
           <hr className='hr-style' />
