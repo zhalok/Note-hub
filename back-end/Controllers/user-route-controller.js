@@ -112,13 +112,19 @@ const check_user_validity = (req, res, next) => {
   userModel.find({ registration_id }, (err, users) => {
     if (err) next(err);
     else {
-      // res.json(docs);
-      // we have found the document here of the user
-      const hashedPassword = users[0].password;
-      bcrypt.compare(password, hashedPassword, (err, result) => {
-        if (result) res.json(users[0]);
-        else res.json('User not found');
-      });
+      if (users.length) {
+        const hashedPassword = users[0].password;
+        bcrypt.compare(password, hashedPassword, (err, result) => {
+          if (err) {
+            next(err);
+          } else {
+            if (result) res.json(users[0]);
+            else res.json('User not found');
+          }
+        });
+      } else {
+        res.json('User not found');
+      }
     }
   });
 };
