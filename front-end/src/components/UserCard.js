@@ -1,6 +1,7 @@
 import React from 'react';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import img from '../images/dp.jpg';
-import { width } from '../styles/ContentCardStyle';
 
 const UserCard = (props) => {
 	return (
@@ -8,17 +9,19 @@ const UserCard = (props) => {
 			style={{
 				marginTop: '100px',
 				padding: '50px',
+
+				marginRight: 'auto',
+				width: 'fit-content',
 			}}
 		>
-			<div class='card' style={{ width: '18rem' }}>
-				<img class='card-img-top' src={img} alt='Card image cap' />
-				<div class='card-body'>
-					<h5 class='card-title'>Zhalok Rahman</h5>
-					<p class='card-text'>2018-19</p>
-					<p class='card-text'>Contract: 01716922067</p>
-					<p class='card-text'>Email: zhalokrahman007@gmail.com</p>
-				</div>
-			</div>
+			<Card style={{ width: '18rem', borderRadius: '10px' }}>
+				<Card.Img variant='top' src={img} style={{ borderRadius: '10px' }} />
+				<Card.Body>
+					<Card.Title>Zhalok Rahman</Card.Title>
+					<Card.Text>2018-19</Card.Text>
+					<Button variant='primary'>Go somewhere</Button>
+				</Card.Body>
+			</Card>
 		</div>
 	);
 };

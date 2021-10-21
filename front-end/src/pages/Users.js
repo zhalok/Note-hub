@@ -2,9 +2,11 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import UserCard from '../components/UserCard';
 import Img from '../images/signup.jpg';
+import UserPopUp from '../components/UserPopUp';
 
 export default class Users extends React.Component {
 	render() {
+		const { info } = this.props;
 		var sectionStyle = {
 			backgroundImage: `url(${Img})`,
 			backgroundPosition: 'center',
@@ -16,7 +18,8 @@ export default class Users extends React.Component {
 		return (
 			<div className='ht' style={sectionStyle}>
 				<Navbar nav_link={nav_info} />
-				<UserCard />
+				{/* <UserCard /> */}
+				<UserPopUp info={info} />
 			</div>
 		);
 	}

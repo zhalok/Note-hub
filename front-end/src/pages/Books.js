@@ -10,131 +10,105 @@ import searchImage from '../images/search.png';
 import '../App.css';
 
 var sectionStyle = {
-  backgroundImage: `url(${Img})`,
-  backgroundPosition: 'center',
-  backgroundRepeat: 'no-repeat',
-  backgroundSize: 'cover',
-  padding: '10px',
+	backgroundImage: `url(${Img})`,
+	backgroundPosition: 'center',
+	backgroundRepeat: 'no-repeat',
+	backgroundSize: 'cover',
+	padding: '10px',
 };
 
 export default class Books extends Component {
-  state = {
-    booklist: [],
-    showSearchResult: false,
-  };
+	state = {
+		booklist: [],
+		showSearchResult: false,
+	};
 
-  find_all_books = async () => {
-    try {
-      const response = await fetch('http://localhost:5000/books/get_all/');
-      const data = await response.json();
-      console.log(data);
-      this.setState({
-        booklist: data,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+	find_all_books = async () => {
+		try {
+			const response = await fetch('http://localhost:5000/books/get_all/');
+			const data = await response.json();
+			console.log(data);
+			this.setState({
+				booklist: data,
+			});
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
-  find_book_by_semester = async (semester) => {
-    try {
-      const response = await fetch(
-        'http://localhost:5000/books/semester/' + semester
-      );
+	find_book_by_semester = async (semester) => {
+		try {
+			const response = await fetch(
+				'http://localhost:5000/books/semester/' + semester
+			);
 
-      const data = await response.json();
-      // console.log(data);
+			const data = await response.json();
+			// console.log(data);
 
-      this.setState({
-        booklist: data,
-        showSearchResult: false,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+			this.setState({
+				booklist: data,
+				showSearchResult: false,
+			});
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
-  find_book_by_name = (name) => {
-    name.trim();
-    fetch(`http://localhost:5000/books/get_by_name/${name}`)
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({
-          booklist: data,
-          showSearchResult: true,
-        });
-      });
-  };
+	find_book_by_name = (name) => {
+		name.trim();
+		fetch(`http://localhost:5000/books/get_by_name/${name}`)
+			.then((response) => response.json())
+			.then((data) => {
+				this.setState({
+					booklist: data,
+					showSearchResult: true,
+				});
+			});
+	};
 
-  componentDidMount() {
-    this.find_all_books();
-  }
+	componentDidMount() {
+		this.find_all_books();
+	}
 
-  controller = (e) => {
-    this.find_book_by_semester(e.target.value);
-  };
+	controller = (e) => {
+		this.find_book_by_semester(e.target.value);
+	};
 
-  findBynameController = (name) => {
-    this.find_book_by_name(name);
-  };
+	findBynameController = (name) => {
+		this.find_book_by_name(name);
+	};
 
-  render() {
-    const { nav_info, loggedInState, handleLog, userId } = this.props;
-    const { booklist, showSearchResult } = this.state;
-    console.log(loggedInState);
-    console.log(userId);
-    console.log(this.props.children);
+	render() {
+		const { nav_info, loggedInState, handleLog, userId } = this.props;
+		const { booklist, showSearchResult } = this.state;
+		console.log(loggedInState);
+		console.log(userId);
+		console.log(this.props.children);
 
-    // if (showSearchResult) {
-    //   return (
-    //     <div style={sectionStyle} className='ht'>
-    //       <Navbar
-    //         nav_link={nav_info}
-    //         loggedInState={loggedInState}
-    //         handleLog={handleLog}
-    //         userId={userId}
-    //       />
+		return (
+			<div style={sectionStyle} className='ht'>
+				<Navbar
+					nav_link={nav_info}
+					loggedInState={loggedInState}
+					handleLog={handleLog}
+					userId={userId}
+				/>
 
-    //       <div className='container mt-5 pt-4'>
-    //         <div style={{ display: 'flex', flexDirection: 'row' }}>
-    //           <h1 style={{ color: 'white' }}>Search Results</h1>
-    //         </div>
+				<div className='container mt-5 pt-4'>
+					<div style={{ display: 'flex', flexDirection: 'row' }}>
+						<h1 style={{ color: 'white' }}>Books</h1>
+						<SearchOption findByNameController={this.findBynameController} />
+					</div>
 
-    //         <hr className='hr-style' />
-    //         <div className='total-page'>
-    //           <div className='contents'>
-    //             <Booklist booklist={booklist} />
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   );
-    // }
-
-    return (
-      <div style={sectionStyle} className='ht'>
-        <Navbar
-          nav_link={nav_info}
-          loggedInState={loggedInState}
-          handleLog={handleLog}
-          userId={userId}
-        />
-
-        <div className='container mt-5 pt-4'>
-          <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <h1 style={{ color: 'white' }}>Books</h1>
-            <SearchOption findByNameController={this.findBynameController} />
-          </div>
-
-          <hr className='hr-style' />
-          <div className='total-page'>
-            <SemesterList controller={this.controller} />
-            <div className='contents'>
-              <Booklist booklist={booklist} />
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+					<hr className='hr-style' />
+					<div className='total-page'>
+						<SemesterList controller={this.controller} />
+						<div className='contents'>
+							<Booklist booklist={booklist} />
+						</div>
+					</div>
+				</div>
+			</div>
+		);
+	}
 }

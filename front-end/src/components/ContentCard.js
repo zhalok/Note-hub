@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import image from '../images/books.png';
+import UserPopUp from './UserPopUp';
 const BookCardStyle = require('../styles/ContentCardStyle');
 const ContentCardImageStyle = require('../styles/ContentCardImageStyle');
+
 export default function ContentCard(props) {
 	const { info } = props;
+
+	const [modalShow, setModalShow] = React.useState(false);
 	let linkDIsplay;
 	if (info.link)
 		linkDIsplay = (
@@ -25,6 +29,7 @@ export default function ContentCard(props) {
 	else
 		linkDIsplay = (
 			<Link
+				id='showModal'
 				type='button'
 				className='btn btn-success'
 				style={{
@@ -33,7 +38,9 @@ export default function ContentCard(props) {
 					boxShadow:
 						'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
 				}}
-				// onClick={() => window.open(`${info.link}`, '_blank')}
+				onClick={() => {
+					setModalShow(true);
+				}}
 			>
 				Request
 			</Link>
@@ -41,6 +48,11 @@ export default function ContentCard(props) {
 
 	return (
 		<div className='card' style={BookCardStyle}>
+			<UserPopUp
+				modalShow={modalShow}
+				setModalShow={setModalShow}
+				// userId={info.contributor_id}
+			/>
 			<img
 				class='card-img-top'
 				src={image}
@@ -62,6 +74,7 @@ export default function ContentCard(props) {
 							marginLeft: 'auto',
 							width: 'fit-content',
 							marginRight: '10px',
+
 							boxShadow:
 								'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
 						}}
