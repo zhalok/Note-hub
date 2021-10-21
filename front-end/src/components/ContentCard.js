@@ -5,6 +5,40 @@ const BookCardStyle = require('../styles/ContentCardStyle');
 const ContentCardImageStyle = require('../styles/ContentCardImageStyle');
 export default function ContentCard(props) {
 	const { info } = props;
+	let linkDIsplay;
+	if (info.link)
+		linkDIsplay = (
+			<Link
+				type='button'
+				className='btn btn-primary'
+				style={{
+					display: 'flex',
+					width: 'fit-content',
+					boxShadow:
+						'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+				}}
+				onClick={() => window.open(`${info.link}`, '_blank')}
+			>
+				Go to link
+			</Link>
+		);
+	else
+		linkDIsplay = (
+			<Link
+				type='button'
+				className='btn btn-success'
+				style={{
+					display: 'flex',
+					width: 'fit-content',
+					boxShadow:
+						'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+				}}
+				// onClick={() => window.open(`${info.link}`, '_blank')}
+			>
+				Request
+			</Link>
+		);
+
 	return (
 		<div className='card' style={BookCardStyle}>
 			<img
@@ -34,19 +68,7 @@ export default function ContentCard(props) {
 					>
 						Preview
 					</Link>
-					<Link
-						type='button'
-						className='btn btn-primary'
-						style={{
-							display: 'flex',
-							width: 'fit-content',
-							boxShadow:
-								'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-						}}
-						onClick={() => window.open(`${info.link}`, '_blank')}
-					>
-						Go to link
-					</Link>
+					{linkDIsplay}
 				</div>
 			</div>
 		</div>
