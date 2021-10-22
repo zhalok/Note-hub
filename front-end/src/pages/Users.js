@@ -18,8 +18,8 @@ export default class Users extends React.Component {
 		return (
 			<div className='ht' style={sectionStyle}>
 				<Navbar nav_link={nav_info} />
-				{/* <UserCard /> */}
-				<UserPopUp info={info} />
+				<UserCard />
+				{/* <UserPopUp info={info} /> */}
 			</div>
 		);
 	}
