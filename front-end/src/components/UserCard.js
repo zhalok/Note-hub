@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import img from '../images/profile.png';
+import img from '../images/dp.jpg';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 const UserCard = (props) => {
@@ -22,6 +22,8 @@ const UserCard = (props) => {
 					flexDirection: 'row',
 					padding: '20px',
 					background: '#e2f2fa',
+					boxShadow:
+						'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
 				}}
 			>
 				<img
@@ -34,6 +36,8 @@ const UserCard = (props) => {
 						width: '60px',
 						height: '60px',
 						borderRadius: '50%',
+						boxShadow:
+							'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
 					}}
 				/>
 				<Card.Body>
@@ -50,7 +54,11 @@ const UserCard = (props) => {
 					<div style={{ padding: '20px' }}>
 						<Button
 							variant='secondary'
-							style={{ marginTop: '20px' }}
+							style={{
+								marginTop: '20px',
+								boxShadow:
+									'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+							}}
 							onClick={() => {
 								window.open(`${info.github}`, '_blank');
 							}}
@@ -59,7 +67,12 @@ const UserCard = (props) => {
 						</Button>
 						<Button
 							variant='primary'
-							style={{ marginTop: '20px', marginLeft: '20px' }}
+							style={{
+								marginTop: '20px',
+								marginLeft: '20px',
+								boxShadow:
+									'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+							}}
 							onClick={() => {
 								window.open(`${info.linkedin}`, '_blank');
 							}}

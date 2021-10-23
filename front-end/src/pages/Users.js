@@ -24,7 +24,7 @@ export default class Users extends React.Component {
 	}
 
 	render() {
-		const { info } = this.props;
+		// const { info } = this.props;
 		var sectionStyle = {
 			backgroundImage: `url(${Img})`,
 			backgroundPosition: 'center',
@@ -43,8 +43,7 @@ export default class Users extends React.Component {
 		return (
 			<div className='ht' style={sectionStyle}>
 				<Navbar nav_link={nav_info} />
-				{/* <div style={{ marginTop: '100px' }}>{userInfo}</div> */}
-				<UserList userInfo={this.state.users} />
+				<div style={{ marginTop: '100px' }}>{userInfo}</div>
 			</div>
 		);
 	}
