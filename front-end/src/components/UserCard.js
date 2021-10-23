@@ -5,9 +5,12 @@ import img from '../images/profile.png';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 const UserCard = (props) => {
+	const { info } = props;
 	return (
 		<div
 			style={{
+				display: 'flex',
+				flexDirection: 'row',
 				marginTop: '100px',
 				width: '30%',
 				marginLeft: 'auto',
@@ -15,7 +18,11 @@ const UserCard = (props) => {
 			}}
 		>
 			<Card
-				style={{ flexDirection: 'row', padding: '20px', background: '#e2f2fa' }}
+				style={{
+					flexDirection: 'row',
+					padding: '20px',
+					background: '#e2f2fa',
+				}}
 			>
 				<img
 					src={img}
@@ -24,20 +31,20 @@ const UserCard = (props) => {
 					style={{
 						verticalAlign: 'middle',
 
-						width: '50px',
-						height: '50px',
+						width: '60px',
+						height: '60px',
 						borderRadius: '50%',
 					}}
 				/>
 				<Card.Body>
 					<Card.Title>
-						<b>Zhalok Rahman</b>
+						<b>{info.name}</b>
 					</Card.Title>
 					<Card style={{ width: '18rem' }}>
 						<ListGroup variant='flush'>
-							<ListGroup.Item>2018-19</ListGroup.Item>
-							<ListGroup.Item>01716922067</ListGroup.Item>
-							<ListGroup.Item>zhalokrahman007@gmail.com</ListGroup.Item>
+							<ListGroup.Item>{info.session}</ListGroup.Item>
+							<ListGroup.Item>{info.phone}</ListGroup.Item>
+							<ListGroup.Item>{info.email}</ListGroup.Item>
 						</ListGroup>
 					</Card>
 					<div style={{ padding: '20px' }}>

@@ -5,6 +5,10 @@ const user_schema = new mongoose.Schema({
 	session: { type: String, required: true },
 	registration_id: { type: String, required: true },
 	password: { type: String, required: true },
+	email: { type: String, required: true },
+	phone: { type: String },
+	github_link: { type: String },
+	linkedin_link: { type: String },
 	books: [
 		{
 			name: { type: String, required: true },
