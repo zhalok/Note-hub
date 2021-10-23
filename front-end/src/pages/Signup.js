@@ -34,6 +34,8 @@ export default class SignUp extends Component {
 					email: this.state.email.trim(),
 					session: this.state.session.trim(),
 					password: this.state.password.trim(),
+					github: this.state.github,
+					linkedin: this.state.linkedin,
 				}),
 			});
 			const data = await respornse.json();

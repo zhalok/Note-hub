@@ -40,7 +40,16 @@ const get_user_by_id = async (req, res, next) => {
 // };
 
 const add_new_user = async (req, res, next) => {
-	const { name, registration_id, session, password, email, phone } = req.body;
+	const {
+		name,
+		registration_id,
+		session,
+		password,
+		email,
+		phone,
+		github,
+		linkedin,
+	} = req.body;
 
 	try {
 		const hashedPassword = await bcrypt.hash(password, 10);
@@ -65,6 +74,8 @@ const add_new_user = async (req, res, next) => {
 				phone,
 				email,
 				password: hashedPassword,
+				github,
+				linkedin,
 				books: [],
 				notes: [],
 				questions: [],

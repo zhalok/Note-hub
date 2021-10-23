@@ -7,14 +7,7 @@ import UserList from '../components/UserList';
 
 export default class Users extends React.Component {
 	state = {
-		users: [
-			{
-				name: 'Zhalok Rahman',
-				session: '2018-19',
-				phone: '01716922067',
-				email: 'zhalokrahman007@gmail.com',
-			},
-		],
+		users: [],
 	};
 
 	fetchUsers = () => {

@@ -48,12 +48,21 @@ const UserCard = (props) => {
 						</ListGroup>
 					</Card>
 					<div style={{ padding: '20px' }}>
-						<Button variant='secondary' style={{ marginTop: '20px' }}>
+						<Button
+							variant='secondary'
+							style={{ marginTop: '20px' }}
+							onClick={() => {
+								window.open(`${info.github}`, '_blank');
+							}}
+						>
 							Github
 						</Button>
 						<Button
 							variant='primary'
 							style={{ marginTop: '20px', marginLeft: '20px' }}
+							onClick={() => {
+								window.open(`${info.linkedin}`, '_blank');
+							}}
 						>
 							Linkedin
 						</Button>

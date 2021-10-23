@@ -7,8 +7,8 @@ const user_schema = new mongoose.Schema({
 	password: { type: String, required: true },
 	email: { type: String, required: true },
 	phone: { type: String },
-	github_link: { type: String },
-	linkedin_link: { type: String },
+	github: { type: String },
+	linkedin: { type: String },
 	books: [
 		{
 			name: { type: String, required: true },
