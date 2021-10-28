@@ -12,14 +12,17 @@ function MyVerticallyCenteredModal(props) {
 			centered
 		>
 			<Modal.Header closeButton>
-				<Modal.Title id='contained-modal-title-vcenter'>Details</Modal.Title>
+				<Modal.Title id='contained-modal-title-vcenter'>Message</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				<h4>{console.log(info)}</h4>
-				<p>2018-19</p>
+				<h4>Request the User?</h4>
+				<p>
+					The content here is not shared. <br /> But the user has the content{' '}
+					<br /> You can send him a request for the content through an email{' '}
+				</p>
 			</Modal.Body>
 			<Modal.Footer>
-				<Button onClick={props.onHide}>Close</Button>
+				<Button onClick={props.onHide}>Send</Button>
 			</Modal.Footer>
 		</Modal>
 	);
