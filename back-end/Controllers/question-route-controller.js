@@ -1,5 +1,6 @@
 const question_model = require('../models/questions-model');
 const { update_user } = require('../Controllers/user-route-controller');
+const overview_model = require('../models/overview-model');
 
 const get_questions_by_semester = async (req, res, next) => {
 	try {
@@ -50,13 +51,29 @@ const add_new_question = async (req, res, next) => {
 		description: description,
 		link,
 	});
-	try {
-		const result = await new_question.save();
-		// update_user(req, res, next);
-		res.json(result);
-	} catch (err) {
-		next(err);
-	}
+	new_questions.save((err) => {
+		if (err) next(err);
+
+		overview_model.find({}, (err, data) => {
+			if (err) next(err);
+			if (data.length == 0) {
+				const new_overview = new overview_model({
+					questions: 1,
+				});
+				new_overview.save((err) => {
+					if (err) next(err);
+					res.json('saved');
+				});
+			} else {
+				if (data[0].questions) data[0].questions++;
+				else data[0].questions = 1;
+				data[0].save((err) => {
+					if (err) next(err);
+					res.json('saved');
+				});
+			}
+		});
+	});
 };
 
 module.exports = {

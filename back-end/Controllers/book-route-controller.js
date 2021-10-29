@@ -1,6 +1,7 @@
 const HttpError = require('../models/http-error-model');
 const { update_user } = require('../Controllers/user-route-controller');
 const book_model = require('../models/books-model');
+const overview_model = require('../models/overview-model');
 
 const get_books_by_semester = async (req, res, next) => {
 	try {
@@ -54,14 +55,30 @@ const add_new_book = async (req, res, next) => {
 		description: description,
 		link,
 	});
-	try {
-		const result = await new_book.save();
-		// update_user(req, res, next);
-		console.log('ok done');
-		res.json(result);
-	} catch (err) {
-		next(err);
-	}
+
+	new_book.save((err) => {
+		if (err) next(err);
+
+		overview_model.find({}, (err, data) => {
+			if (err) next(err);
+			if (data.length == 0) {
+				const new_overview = new overview_model({
+					books: 1,
+				});
+				new_overview.save((err) => {
+					if (err) next(err);
+					res.json('saved');
+				});
+			} else {
+				if (data[0].books) data[0].books++;
+				else data[0].books = 1;
+				data[0].save((err) => {
+					if (err) next(err);
+					res.json('saved');
+				});
+			}
+		});
+	});
 };
 
 exports.get_books_by_semester = get_books_by_semester;

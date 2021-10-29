@@ -13,76 +13,114 @@ import backgroundImage from '../images/signup.jpg';
 import study from '../images/study.png';
 
 var sectionStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  padding: '20px',
-  paddingTop: '80px',
-  backgroundImage: `url(${backgroundImage})`,
+	display: 'flex',
+	flexDirection: 'column',
+	padding: '20px',
+	paddingTop: '80px',
+	backgroundImage: `url(${backgroundImage})`,
 
-  /* Full height */
-  height: '100%',
+	/* Full height */
+	height: '100%',
 
-  /* Center and scale the image nicely */
-  backgroundPosition: 'center',
-  backgroundRepeat: 'no-repeat',
-  backgroundSize: 'cover',
+	/* Center and scale the image nicely */
+	backgroundPosition: 'center',
+	backgroundRepeat: 'no-repeat',
+	backgroundSize: 'cover',
 };
 
 export default class Home extends Component {
-  render() {
-    const { nav_info, loggedInState, handleLog, userId } = this.props;
+	state = {
+		books: '',
+		notes: '',
+		questions: '',
+		projects: '',
+	};
 
-    return (
-      <div style={sectionStyle} className='ht'>
-        <Navbar
-          nav_link={nav_info}
-          loggedInState={loggedInState}
-          handleLog={handleLog}
-          userId={userId}
-        />
-        <h1
-          style={{
-            display: 'flex',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            color: 'white',
-          }}
-        >
-          NoteHub
-        </h1>
-        <p
-          style={{
-            display: 'flex',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            color: 'rgb(148, 159, 133)',
-          }}
-        >
-          The only HUB you need
-        </p>
+	getInformation = () => {
+		fetch('http://localhost:5000/overview')
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(typeof data);
+				const books = data[0].books ? data[0].books : 0;
+				const notes = data[0].notes ? data[0].notes : 0;
+				const questions = data[0].questions ? data[0].questions : 0;
+				const projects = data[0].projects ? data[0].projects : 0;
+				this.setState({
+					books,
+					notes,
+					questions,
+					projects,
+				});
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
 
-        <div className='row'>
-          <div className='col-sm-10 ml-auto mr-auto'>
-            <Dashboard />
-          </div>
-        </div>
+	componentDidMount() {
+		this.getInformation();
+	}
 
-        <UserDashboardCard />
+	render() {
+		const { nav_info, loggedInState, handleLog, userId } = this.props;
+		const { books, notes, questions, projects } = this.state;
 
-        <div className='container text-center'>
-          <Link
-            type='button'
-            to='/contribute'
-            className='btn btn-success mt-5 btn-lg h-10 w-10 p-4'
-            style={{
-              boxShadow:
-                '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-            }}
-          >
-            + Contribute
-          </Link>
-        </div>
-      </div>
-    );
-  }
+		return (
+			<div style={sectionStyle} className='ht'>
+				<Navbar
+					nav_link={nav_info}
+					loggedInState={loggedInState}
+					handleLog={handleLog}
+					userId={userId}
+				/>
+				<h1
+					style={{
+						display: 'flex',
+						marginLeft: 'auto',
+						marginRight: 'auto',
+						color: 'white',
+					}}
+				>
+					NoteHub
+				</h1>
+				<p
+					style={{
+						display: 'flex',
+						marginLeft: 'auto',
+						marginRight: 'auto',
+						color: 'rgb(148, 159, 133)',
+					}}
+				>
+					The only HUB you need
+				</p>
+
+				<div className='row'>
+					<div className='col-sm-10 ml-auto mr-auto'>
+						<Dashboard
+							books={books}
+							notes={notes}
+							questions={questions}
+							projects={projects}
+						/>
+					</div>
+				</div>
+
+				<UserDashboardCard />
+
+				<div className='container text-center'>
+					<Link
+						type='button'
+						to='/contribute'
+						className='btn btn-success mt-5 btn-lg h-10 w-10 p-4'
+						style={{
+							boxShadow:
+								'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+						}}
+					>
+						+ Contribute
+					</Link>
+				</div>
+			</div>
+		);
+	}
 }

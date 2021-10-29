@@ -1,6 +1,7 @@
 const HttpError = require('../models/http-error-model');
 const { update_user } = require('../Controllers/user-route-controller');
 const note_model = require('..//models/notes-model');
+const overview_model = require('../models/overview-model');
 
 const get_notes_by_semester = async (req, res, next) => {
 	try {
@@ -53,13 +54,29 @@ const add_new_note = async (req, res, next) => {
 		link,
 	});
 	console.log(new_note);
-	try {
-		const result = await new_note.save();
-		// update_user(req, res, next);
-		res.json(result);
-	} catch (err) {
-		next(err);
-	}
+	new_note.save((err) => {
+		if (err) next(err);
+
+		overview_model.find({}, (err, data) => {
+			if (err) next(err);
+			if (data.length == 0) {
+				const new_overview = new overview_model({
+					notes: 1,
+				});
+				new_overview.save((err) => {
+					if (err) next(err);
+					res.json('saved');
+				});
+			} else {
+				if (data[0].notes) data[0].notes++;
+				else data[0].notes = 1;
+				data[0].save((err) => {
+					if (err) next(err);
+					res.json('saved');
+				});
+			}
+		});
+	});
 };
 
 module.exports = {
