@@ -29,7 +29,9 @@ export default class ContributeForm extends Component {
 
 	getInfo = async (user_id) => {
 		try {
-			const response = await fetch(`http://localhost:5000/users/id/${user_id}`);
+			const response = await fetch(
+				` https://peaceful-river-14379.herokuapp.com/users/id/${user_id}`
+			);
 			const data = await response.json();
 			// console.log(data[0].name);
 			this.setState({
@@ -45,7 +47,7 @@ export default class ContributeForm extends Component {
 		try {
 			console.log(this.state.description);
 			const respornse = await fetch(
-				`http://localhost:5000/contribute/${this.state.selected_type}`,
+				`https://peaceful-river-14379.herokuapp.com/contribute/${this.state.selected_type}`,
 				{
 					method: 'POST',
 					headers: {

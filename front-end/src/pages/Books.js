@@ -10,11 +10,12 @@ import searchImage from '../images/search.png';
 import '../App.css';
 
 var sectionStyle = {
-	backgroundImage: `url(${Img})`,
-	backgroundPosition: 'center',
-	backgroundRepeat: 'no-repeat',
+	// backgroundImage: `url(${Img})`,
+	// backgroundPosition: 'center',
+	// backgroundRepeat: 'no-repeat',
 	backgroundSize: 'cover',
 	padding: '10px',
+	backgroundColor: '#02242c',
 };
 
 export default class Books extends Component {
@@ -25,7 +26,9 @@ export default class Books extends Component {
 
 	find_all_books = async () => {
 		try {
-			const response = await fetch('http://localhost:5000/books/get_all/');
+			const response = await fetch(
+				'https://peaceful-river-14379.herokuapp.com/books/get_all/'
+			);
 			const data = await response.json();
 			console.log(data);
 			this.setState({
@@ -39,7 +42,7 @@ export default class Books extends Component {
 	find_book_by_semester = async (semester) => {
 		try {
 			const response = await fetch(
-				'http://localhost:5000/books/semester/' + semester
+				' https://peaceful-river-14379.herokuapp.com/books/semester/' + semester
 			);
 
 			const data = await response.json();
@@ -56,7 +59,9 @@ export default class Books extends Component {
 
 	find_book_by_name = (name) => {
 		name.trim();
-		fetch(`http://localhost:5000/books/get_by_name/${name}`)
+		fetch(
+			`https://peaceful-river-14379.herokuapp.com/books/get_by_name/${name}`
+		)
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({

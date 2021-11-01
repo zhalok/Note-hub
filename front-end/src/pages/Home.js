@@ -17,7 +17,7 @@ var sectionStyle = {
 	flexDirection: 'column',
 	padding: '20px',
 	paddingTop: '80px',
-	backgroundImage: `url(${backgroundImage})`,
+	// backgroundImage: `url(${backgroundImage})`,
 
 	/* Full height */
 	height: '100%',
@@ -26,6 +26,7 @@ var sectionStyle = {
 	backgroundPosition: 'center',
 	backgroundRepeat: 'no-repeat',
 	backgroundSize: 'cover',
+	backgroundColor: '#02242c',
 };
 
 export default class Home extends Component {
@@ -37,7 +38,7 @@ export default class Home extends Component {
 	};
 
 	getInformation = () => {
-		fetch('http://localhost:5000/overview')
+		fetch('https://peaceful-river-14379.herokuapp.com/overview')
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(typeof data);
@@ -66,61 +67,64 @@ export default class Home extends Component {
 		const { books, notes, questions, projects } = this.state;
 
 		return (
-			<div style={sectionStyle} className='ht'>
+			<>
 				<Navbar
 					nav_link={nav_info}
 					loggedInState={loggedInState}
 					handleLog={handleLog}
 					userId={userId}
 				/>
-				<h1
-					style={{
-						display: 'flex',
-						marginLeft: 'auto',
-						marginRight: 'auto',
-						color: 'white',
-					}}
-				>
-					NoteHub
-				</h1>
-				<p
-					style={{
-						display: 'flex',
-						marginLeft: 'auto',
-						marginRight: 'auto',
-						color: 'rgb(148, 159, 133)',
-					}}
-				>
-					The only HUB you need
-				</p>
-
-				<div className='row'>
-					<div className='col-sm-10 ml-auto mr-auto'>
-						<Dashboard
-							books={books}
-							notes={notes}
-							questions={questions}
-							projects={projects}
-						/>
-					</div>
-				</div>
-
-				<UserDashboardCard />
-
-				<div className='container text-center'>
-					<Link
-						type='button'
-						to='/contribute'
-						className='btn btn-success mt-5 btn-lg h-10 w-10 p-4'
+				<Caro books={books} notes={notes} projects={projects} />
+				<div style={sectionStyle} className='ht'>
+					<h1
 						style={{
-							boxShadow:
-								'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+							display: 'flex',
+							marginLeft: 'auto',
+							marginRight: 'auto',
+							color: 'white',
 						}}
 					>
-						+ Contribute
-					</Link>
+						NoteHub
+					</h1>
+					<p
+						style={{
+							display: 'flex',
+							marginLeft: 'auto',
+							marginRight: 'auto',
+							color: 'rgb(148, 159, 133)',
+						}}
+					>
+						The only HUB you need
+					</p>
+
+					{/* <div className='row'>
+						<div className='col-sm-10 ml-auto mr-auto'>
+							<Dashboard
+								books={books}
+								notes={notes}
+								questions={questions}
+								projects={projects}
+							/>
+						</div>
+					</div> */}
+
+					{/* <UserDashboardCard /> */}
+
+					<div className='container text-center'>
+						<Link
+							type='button'
+							to='/contribute'
+							className='btn btn-success mt-5 btn-lg h-10 w-10 p-4'
+							style={{
+								boxShadow:
+									'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+							}}
+						>
+							+ Contribute
+						</Link>
+					</div>
 				</div>
-			</div>
+			</>
 		);
 	}
 }

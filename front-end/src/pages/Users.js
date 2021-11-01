@@ -11,7 +11,7 @@ export default class Users extends React.Component {
 	};
 
 	fetchUsers = () => {
-		fetch('http://localhost:5000/users/get_all')
+		fetch(' https://peaceful-river-14379.herokuapp.com/users/get_all')
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({ users: data });

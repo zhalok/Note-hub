@@ -9,97 +9,99 @@ import SearchOption from '../components/SearchOption';
 import '../App.css';
 
 var sectionStyle = {
-  backgroundImage: `url(${Img})`,
-  backgroundPosition: 'center',
-  backgroundRepeat: 'no-repeat',
-  backgroundSize: 'cover',
-  padding: '10px',
+	backgroundImage: `url(${Img})`,
+	backgroundPosition: 'center',
+	backgroundRepeat: 'no-repeat',
+	backgroundSize: 'cover',
+	padding: '10px',
 };
 
 export default class Questions extends Component {
-  state = {
-    questionlist: [],
-  };
+	state = {
+		questionlist: [],
+	};
 
-  find_all_questions = async () => {
-    try {
-      const response = await fetch('http://localhost:5000/questions/get_all/');
-      const data = await response.json();
+	find_all_questions = async () => {
+		try {
+			const response = await fetch(
+				' https://peaceful-river-14379.herokuapp.com/questions/get_all/'
+			);
+			const data = await response.json();
 
-      this.setState({
-        questionlist: data,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+			this.setState({
+				questionlist: data,
+			});
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
-  find_questions_by_semester = async (semester) => {
-    try {
-      const response = await fetch(
-        'http://localhost:5000/questions/semester/' + semester
-      );
+	find_questions_by_semester = async (semester) => {
+		try {
+			const response = await fetch(
+				'http://localhost:5000/questions/semester/' + semester
+			);
 
-      const data = await response.json();
+			const data = await response.json();
 
-      this.setState({
-        questionlist: data,
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+			this.setState({
+				questionlist: data,
+			});
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
-  find_question_by_name = (name) => {
-    name.trim();
-    fetch(`http://localhost:5000/questions/get_by_name/${name}`)
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({
-          notelist: data,
-          showSearchResult: true,
-        });
-      });
-  };
+	find_question_by_name = (name) => {
+		name.trim();
+		fetch(`http://localhost:5000/questions/get_by_name/${name}`)
+			.then((response) => response.json())
+			.then((data) => {
+				this.setState({
+					notelist: data,
+					showSearchResult: true,
+				});
+			});
+	};
 
-  controller = (e) => {
-    this.find_questions_by_semester(e.target.value);
-  };
+	controller = (e) => {
+		this.find_questions_by_semester(e.target.value);
+	};
 
-  findBynameController = (name) => {
-    this.find_question_by_name(name);
-  };
+	findBynameController = (name) => {
+		this.find_question_by_name(name);
+	};
 
-  componentDidMount() {
-    this.find_all_questions();
-  }
+	componentDidMount() {
+		this.find_all_questions();
+	}
 
-  render() {
-    const { nav_info, loggedInState, handleLog, userId } = this.props;
-    const { questionlist } = this.state;
+	render() {
+		const { nav_info, loggedInState, handleLog, userId } = this.props;
+		const { questionlist } = this.state;
 
-    return (
-      <div style={sectionStyle} className='ht'>
-        <Navbar
-          nav_link={nav_info}
-          loggedInState={loggedInState}
-          handleLog={handleLog}
-          userId={userId}
-        />
-        <div className='container mt-5 pt-4'>
-          <div style={{ display: 'flex', flexDirection: 'row' }}>
-            <h1 style={{ color: 'white' }}>Questions</h1>
-            <SearchOption findByNameController={this.findBynameController} />
-          </div>
-          <hr className='hr-style' />
-          <div className='total-page'>
-            <SemesterList controller={this.controller} />
-            <div className='contents'>
-              <Questionlist questionlist={questionlist} />
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+		return (
+			<div style={sectionStyle} className='ht'>
+				<Navbar
+					nav_link={nav_info}
+					loggedInState={loggedInState}
+					handleLog={handleLog}
+					userId={userId}
+				/>
+				<div className='container mt-5 pt-4'>
+					<div style={{ display: 'flex', flexDirection: 'row' }}>
+						<h1 style={{ color: 'white' }}>Questions</h1>
+						<SearchOption findByNameController={this.findBynameController} />
+					</div>
+					<hr className='hr-style' />
+					<div className='total-page'>
+						<SemesterList controller={this.controller} />
+						<div className='contents'>
+							<Questionlist questionlist={questionlist} />
+						</div>
+					</div>
+				</div>
+			</div>
+		);
+	}
 }

@@ -1,19 +1,11 @@
 import React from 'react';
 import Image from '../images/find.png';
 import { Link, Router } from 'react-router-dom';
+import DashboardCardStyle from '../styles/DashboardCardStyle';
 
 const QuestionDashboardCard = ({ questions }) => {
 	return (
-		<div
-			className='card'
-			style={{
-				width: '15rem',
-				padding: '10px',
-				boxShadow: '5px 5px 5px black',
-				marginLeft: '20px',
-				backgroundColor: 'white',
-			}}
-		>
+		<div className='card' style={DashboardCardStyle}>
 			<img
 				className='card-img-top'
 				src={Image}

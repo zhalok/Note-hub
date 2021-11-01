@@ -22,22 +22,25 @@ export default class SignUp extends Component {
 
 	signup_request_handler = async (e) => {
 		try {
-			const respornse = await fetch('http://localhost:5000/signup', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					name: this.state.fullname.trim(),
-					registration_id: this.state.registration_number.trim(),
-					phone: this.state.contract_number.trim(),
-					email: this.state.email.trim(),
-					session: this.state.session.trim(),
-					password: this.state.password.trim(),
-					github: this.state.github,
-					linkedin: this.state.linkedin,
-				}),
-			});
+			const respornse = await fetch(
+				' https://peaceful-river-14379.herokuapp.com/signup',
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						name: this.state.fullname.trim(),
+						registration_id: this.state.registration_number.trim(),
+						phone: this.state.contract_number.trim(),
+						email: this.state.email.trim(),
+						session: this.state.session.trim(),
+						password: this.state.password.trim(),
+						github: this.state.github,
+						linkedin: this.state.linkedin,
+					}),
+				}
+			);
 			const data = await respornse.json();
 			if (data == 'User Already Registered') {
 				this.setState({

@@ -8,6 +8,7 @@ const user_route = require('./routes/user-route');
 const login_route = require('./routes/login-route');
 const signup_route = require('./routes/signup-route');
 const overview_route = require('./routes/overview-route');
+dotenv.config();
 
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -15,8 +16,6 @@ const cors = require('cors');
 const questions_route = require('./routes/questions-route');
 
 const contribute_route = require('./routes/contribute-route');
-
-dotenv.config();
 
 app.use(express.json());
 
@@ -56,6 +55,8 @@ app.use('/login', login_route);
 app.use('/signup', signup_route);
 app.use('/overview', overview_route);
 
+console.log(process.env.NAME);
+
 app.use((error, req, res, next) => {
 	if (res.headerSent) {
 		return next(error);
@@ -65,4 +66,4 @@ app.use((error, req, res, next) => {
 	res.json({ message: error.message });
 });
 
-app.listen(5000);
+app.listen(process.env.PORT || 5000);
