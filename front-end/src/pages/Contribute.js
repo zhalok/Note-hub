@@ -9,8 +9,13 @@ import Img from '../images/login.png';
 import '../App.css';
 
 var sectionStyle = {
-	backgroundImage: `url(${Img})`,
+	backgroundColor: `#02242c`,
 };
+
+const apiURL =
+	process.env.NODE_ENV == 'dev'
+		? 'http://localhost:5000'
+		: 'https://notehubapi.herokuapp.com';
 
 export default class extends Component {
 	render() {
@@ -33,7 +38,7 @@ export default class extends Component {
 				/>
 
 				<div className='container mt-5 pt-5'>
-					<h1 className='header text-secondary'>Contribute</h1>
+					<h1 style={{ color: 'white' }}>Contribute</h1>
 					<hr className='hr-style' />
 					{contribute}
 				</div>

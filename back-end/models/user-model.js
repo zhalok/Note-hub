@@ -12,28 +12,24 @@ const user_schema = new mongoose.Schema({
 	books: [
 		{
 			name: { type: String, required: true },
-			semester: { type: String, required: true },
 		},
 	],
 
 	notes: [
 		{
 			name: { type: String, required: true },
-			semester: { type: String, required: true },
 		},
 	],
 
 	questions: [
 		{
 			name: { type: String, required: true },
-			semester: { type: String, required: true },
 		},
 	],
 
 	projects: [
 		{
 			name: { type: String, required: true },
-			semester: { type: String, required: true },
 		},
 	],
 });

@@ -5,7 +5,13 @@ const UserList = (props) => {
 	const { userInfo } = props;
 	console.log(userInfo);
 	return (
-		<div>
+		<div
+			style={{
+				marginLeft: 'auto',
+				marginRight: 'auto',
+				width: 'fit-content',
+			}}
+		>
 			{userInfo.map((e) => {
 				return <UserCard info={e} />;
 			})}

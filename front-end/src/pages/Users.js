@@ -2,8 +2,13 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import UserCard from '../components/UserCard';
 import Img from '../images/signup.jpg';
-import UserPopUp from '../components/UserPopUp';
+// import UserPopUp from '../components/UserPopUp';
 import UserList from '../components/UserList';
+
+const apiURL =
+	process.env.NODE_ENV == 'dev'
+		? 'http://localhost:5000'
+		: 'https://notehubapi.herokuapp.com';
 
 export default class Users extends React.Component {
 	state = {
@@ -11,7 +16,7 @@ export default class Users extends React.Component {
 	};
 
 	fetchUsers = () => {
-		fetch(' https://peaceful-river-14379.herokuapp.com/users/get_all')
+		fetch(` ${apiURL}/users/get_all`)
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({ users: data });
@@ -26,11 +31,9 @@ export default class Users extends React.Component {
 	render() {
 		// const { info } = this.props;
 		var sectionStyle = {
-			backgroundImage: `url(${Img})`,
-			backgroundPosition: 'center',
-			backgroundRepeat: 'no-repeat',
 			backgroundSize: 'cover',
 			padding: '10px',
+			backgroundColor: '#02242c',
 		};
 		let userInfo;
 		if (this.state.users.length == 0) {
@@ -39,11 +42,21 @@ export default class Users extends React.Component {
 			userInfo = <UserList userInfo={this.state.users} />;
 		}
 
-		const { nav_info } = this.props;
+		const { nav_info, loggedInState, handleLog, userId } = this.props;
 		return (
 			<div className='ht' style={sectionStyle}>
-				<Navbar nav_link={nav_info} />
-				<div style={{ marginTop: '100px' }}>{userInfo}</div>
+				<Navbar
+					nav_link={nav_info}
+					loggedInState={loggedInState}
+					handleLog={handleLog}
+					userId={userId}
+				/>
+
+				<div className='container mt-5 pt-5'>
+					<h1 style={{ color: 'white' }}>Contributors</h1>
+					<hr className='hr-style' />
+					{userInfo}
+				</div>
 			</div>
 		);
 	}

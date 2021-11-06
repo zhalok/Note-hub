@@ -2,6 +2,7 @@ const HttpError = require('../models/http-error-model');
 const { update_user } = require('../Controllers/user-route-controller');
 const note_model = require('..//models/notes-model');
 const overview_model = require('../models/overview-model');
+const { processSearch } = require('../Utils/searchProcessing');
 
 const get_notes_by_semester = async (req, res, next) => {
 	try {
@@ -15,13 +16,19 @@ const get_notes_by_semester = async (req, res, next) => {
 };
 
 const get_notes_by_name = async (req, res, next) => {
-	try {
-		const name = req.params.name;
-		const data = await note_model.find({ name });
-		res.json(data);
-	} catch (err) {
-		next(err);
-	}
+	note_model.find({}, (err, noteData) => {
+		if (err) next(err);
+		else {
+			const searchString = req.params.name;
+			const searchResult = [];
+			for (let i = 0; i < noteData.length; i++) {
+				let foundString = noteData[i].name;
+				if (processSearch(foundString, searchString))
+					searchResult.push(noteData[i]);
+			}
+			res.json(searchResult);
+		}
+	});
 };
 
 const get_all_notes = async (req, res, next) => {
@@ -40,6 +47,7 @@ const add_new_note = async (req, res, next) => {
 		type,
 		contributor_id,
 		contributor_name,
+		contributor_email,
 		description,
 		link,
 	} = req.body;
@@ -48,9 +56,10 @@ const add_new_note = async (req, res, next) => {
 		name,
 		semester,
 		type,
-		contributor_id: contributor_id,
-		contributor_name: contributor_name,
-		description: description,
+		contributor_id,
+		contributor_name,
+		contributor_email,
+		description,
 		link,
 	});
 	console.log(new_note);
@@ -65,14 +74,24 @@ const add_new_note = async (req, res, next) => {
 				});
 				new_overview.save((err) => {
 					if (err) next(err);
-					res.json('saved');
+					update_user(
+						{ contributor_id, type, content_name: name, semester },
+						(data) => {
+							res.json(data);
+						}
+					);
 				});
 			} else {
 				if (data[0].notes) data[0].notes++;
 				else data[0].notes = 1;
 				data[0].save((err) => {
 					if (err) next(err);
-					res.json('saved');
+					update_user(
+						{ contributor_id, type, content_name: name, semester },
+						(data) => {
+							res.json(data);
+						}
+					);
 				});
 			}
 		});

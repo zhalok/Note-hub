@@ -14,13 +14,19 @@ const get_questions_by_semester = async (req, res, next) => {
 };
 
 const get_questions_by_name = async (req, res, next) => {
-	try {
-		const name = req.params.name;
-		const data = question_model.find({ name });
-		res.json(data);
-	} catch (err) {
-		next(err);
-	}
+	question_model.find({}, (err, questionData) => {
+		if (err) next(err);
+		else {
+			const searchString = req.params.name;
+			const searchResult = [];
+			for (let i = 0; i < questionData.length; i++) {
+				let foundString = questionData[i].name;
+				if (processSearch(foundString, searchString))
+					searchResult.push(questionData[i]);
+			}
+			res.json(searchResult);
+		}
+	});
 };
 
 const get_all_questions = async (req, res, next) => {
@@ -39,6 +45,7 @@ const add_new_question = async (req, res, next) => {
 		type,
 		contributor_id,
 		contributor_name,
+		contributor_email,
 		description,
 		link,
 	} = req.body;
@@ -46,12 +53,13 @@ const add_new_question = async (req, res, next) => {
 		name,
 		semester,
 		type,
-		contributor_id: contributor_id,
-		contributor_name: contributor_name,
-		description: description,
+		contributor_id,
+		contributor_name,
+		contributor_email,
+		description,
 		link,
 	});
-	new_questions.save((err) => {
+	new_question.save((err) => {
 		if (err) next(err);
 
 		overview_model.find({}, (err, data) => {
@@ -62,14 +70,24 @@ const add_new_question = async (req, res, next) => {
 				});
 				new_overview.save((err) => {
 					if (err) next(err);
-					res.json('saved');
+					update_user(
+						{ contributor_id, type, content_name: name, semester },
+						(data) => {
+							res.json(data);
+						}
+					);
 				});
 			} else {
 				if (data[0].questions) data[0].questions++;
 				else data[0].questions = 1;
 				data[0].save((err) => {
 					if (err) next(err);
-					res.json('saved');
+					update_user(
+						{ contributor_id, type, content_name: name, semester },
+						(data) => {
+							res.json(data);
+						}
+					);
 				});
 			}
 		});

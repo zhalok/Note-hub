@@ -18,22 +18,31 @@ var sectionStyle = {
 	backgroundColor: '#02242c',
 };
 
+let apiURL =
+	process.env.NODE_ENV == 'dev'
+		? 'http://localhost:5000'
+		: 'https://notehubapi.herokuapp.com';
+
+console.log(apiURL);
+
+// apiURL = 'http://localhost:5000';
+
 export default class Books extends Component {
 	state = {
 		booklist: [],
-		showSearchResult: false,
+		bookFetched: false,
 	};
 
 	find_all_books = async () => {
 		try {
-			const response = await fetch(
-				'https://peaceful-river-14379.herokuapp.com/books/get_all/'
-			);
+			const response = await fetch(`${apiURL}/books/get_all/`);
 			const data = await response.json();
 			console.log(data);
 			this.setState({
 				booklist: data,
+				bookFetched: true,
 			});
+			console.log(this.state.booklist);
 		} catch (err) {
 			console.log(err);
 		}
@@ -41,16 +50,13 @@ export default class Books extends Component {
 
 	find_book_by_semester = async (semester) => {
 		try {
-			const response = await fetch(
-				' https://peaceful-river-14379.herokuapp.com/books/semester/' + semester
-			);
+			const response = await fetch(` ${apiURL}/books/semester/` + semester);
 
 			const data = await response.json();
 			// console.log(data);
 
 			this.setState({
 				booklist: data,
-				showSearchResult: false,
 			});
 		} catch (err) {
 			console.log(err);
@@ -59,9 +65,7 @@ export default class Books extends Component {
 
 	find_book_by_name = (name) => {
 		name.trim();
-		fetch(
-			`https://peaceful-river-14379.herokuapp.com/books/get_by_name/${name}`
-		)
+		fetch(`${apiURL}/books/get_by_name/${name}`)
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({
@@ -85,10 +89,7 @@ export default class Books extends Component {
 
 	render() {
 		const { nav_info, loggedInState, handleLog, userId } = this.props;
-		const { booklist, showSearchResult } = this.state;
-		console.log(loggedInState);
-		console.log(userId);
-		console.log(this.props.children);
+		const { booklist, showSearchResult, bookFetched } = this.state;
 
 		return (
 			<div style={sectionStyle} className='ht'>
@@ -109,7 +110,7 @@ export default class Books extends Component {
 					<div className='total-page'>
 						<SemesterList controller={this.controller} />
 						<div className='contents'>
-							<Booklist booklist={booklist} />
+							<Booklist booklist={booklist} bookFetched={bookFetched} />
 						</div>
 					</div>
 				</div>

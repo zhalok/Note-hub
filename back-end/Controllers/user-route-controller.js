@@ -93,31 +93,20 @@ const add_new_user = async (req, res, next) => {
 	}
 };
 
-const update_user = async (req, res, next) => {
-	const contributor_id = req.body.contributor_id;
-	let founduser;
-	try {
-		const data = await userModel.find({ registration_id: contributor_id });
-		const foundUser = data[0];
-		if (foundUser) console.log(foundUser);
+const update_user = (info, callback) => {
+	const { contributor_id, content_name, semester, type } = info;
 
-		const { name, semester, type } = req.body;
-
-		const new_book = {
-			name,
-			semester,
-		};
-
-		foundUser[type].push(new_book);
-
-		const user_id = founduser._id;
-
-		userModel.findByIdAndUpdate(user_id, founduser, { new: true }, () => {
-			console.log('Updated');
-		});
-	} catch (err) {
-		next(err);
-	}
+	userModel.find({ registration_id: contributor_id }, (err, userData) => {
+		if (err) callback(err);
+		else {
+			const found_user = userData[0];
+			found_user[type].push({ name: content_name });
+			found_user.save((err, suc) => {
+				if (err) callback(err);
+				else callback(null, 'saved');
+			});
+		}
+	});
 };
 
 const check_user_validity = (req, res, next) => {

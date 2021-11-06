@@ -6,6 +6,11 @@ import style from './Signup.module.css';
 
 import { Link } from 'react-router-dom';
 
+const apiURL =
+	process.env.NODE_ENV == 'dev'
+		? 'http://localhost:5000'
+		: 'https://notehubapi.herokuapp.com';
+
 export default class SignUp extends Component {
 	state = {
 		email: '',
@@ -22,25 +27,22 @@ export default class SignUp extends Component {
 
 	signup_request_handler = async (e) => {
 		try {
-			const respornse = await fetch(
-				' https://peaceful-river-14379.herokuapp.com/signup',
-				{
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify({
-						name: this.state.fullname.trim(),
-						registration_id: this.state.registration_number.trim(),
-						phone: this.state.contract_number.trim(),
-						email: this.state.email.trim(),
-						session: this.state.session.trim(),
-						password: this.state.password.trim(),
-						github: this.state.github,
-						linkedin: this.state.linkedin,
-					}),
-				}
-			);
+			const respornse = await fetch(`${apiURL}/signup`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					name: this.state.fullname.trim(),
+					registration_id: this.state.registration_number.trim(),
+					phone: this.state.contract_number.trim(),
+					email: this.state.email.trim(),
+					session: this.state.session.trim(),
+					password: this.state.password.trim(),
+					github: this.state.github,
+					linkedin: this.state.linkedin,
+				}),
+			});
 			const data = await respornse.json();
 			if (data == 'User Already Registered') {
 				this.setState({
@@ -141,7 +143,7 @@ export default class SignUp extends Component {
 		} = this.state;
 
 		return (
-			<div className={style.login_dark}>
+			<div className={style.login_dark} style={{ backgroundColor: '#02242c' }}>
 				<Navbar
 					nav_link={nav_info}
 					loggedInState={loggedInState}

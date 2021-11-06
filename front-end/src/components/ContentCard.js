@@ -1,14 +1,52 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import image from '../images/books.png';
-import UserPopUp from './UserPopUp';
+import ModalMessage from './ModalMessage';
 const BookCardStyle = require('../styles/ContentCardStyle');
 const ContentCardImageStyle = require('../styles/ContentCardImageStyle');
 
+const apiURL =
+	process.env.NODE_ENV == 'dev'
+		? 'http://localhost:5000'
+		: 'https://notehubapi.herokuapp.com';
+
+const sendEmailUsingNodemailer = async (
+	contributorEmail,
+	contributorName,
+	contetnName,
+	setModalShow
+) => {
+	try {
+		const respornse = await fetch(
+			`https://notehubapi.herokuapp.com/sendEmail`,
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					contributorName,
+					contributorEmail,
+					contetnName,
+				}),
+			}
+		);
+		const data = await respornse.json();
+		// alert('An email was sent to the contributor');
+		setModalShow();
+		console.log(data);
+	} catch (err) {
+		console.log(err);
+	}
+};
+
 export default function ContentCard(props) {
 	const { info } = props;
+	console.log(info);
 
 	const [modalShow, setModalShow] = React.useState(false);
+	const [message, setMessage] = React.useState('');
+
 	let linkDIsplay;
 	if (info.link)
 		linkDIsplay = (
@@ -39,7 +77,17 @@ export default function ContentCard(props) {
 						'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
 				}}
 				onClick={() => {
-					setModalShow(true);
+					sendEmailUsingNodemailer(
+						info.contributor_email,
+						info.contributor_name,
+						info.name,
+						() => {
+							setMessage(
+								'A request was mailed to the contributor of this content'
+							);
+							setModalShow(true);
+						}
+					);
 				}}
 			>
 				Request
@@ -48,10 +96,10 @@ export default function ContentCard(props) {
 
 	return (
 		<div className='card' style={BookCardStyle}>
-			<UserPopUp
-				modalShow={modalShow}
-				setModalShow={setModalShow}
-				// userId={info.contributor_id}
+			<ModalMessage
+				message={message}
+				show={modalShow}
+				onHide={() => setModalShow(false)}
 			/>
 			<img
 				class='card-img-top'

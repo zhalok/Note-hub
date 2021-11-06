@@ -8,6 +8,8 @@ const user_route = require('./routes/user-route');
 const login_route = require('./routes/login-route');
 const signup_route = require('./routes/signup-route');
 const overview_route = require('./routes/overview-route');
+const sendEmailROute = require('./routes/sendEmailRoute');
+
 dotenv.config();
 
 const mongoose = require('mongoose');
@@ -19,14 +21,14 @@ const contribute_route = require('./routes/contribute-route');
 
 app.use(express.json());
 
-app.use(cors());
-
 app.use((req, res, next) => {
 	res.setHeader('Access-Control-Allow-Origin', '*');
 	res.setHeader('Access-Control-Allow_Headers', '*');
 	res.setHeader('Access-Control-Allow-Methods', '*');
 	next();
 });
+
+app.use(cors());
 
 mongoose
 	.connect(
@@ -54,6 +56,7 @@ app.use('/users', user_route);
 app.use('/login', login_route);
 app.use('/signup', signup_route);
 app.use('/overview', overview_route);
+app.use('/sendEmail', sendEmailROute);
 
 console.log(process.env.NAME);
 
@@ -66,4 +69,8 @@ app.use((error, req, res, next) => {
 	res.json({ message: error.message });
 });
 
-app.listen(process.env.PORT || 5000);
+const port = process.env.PORT || 5000;
+
+app.listen(port, () => {
+	console.log(port);
+});

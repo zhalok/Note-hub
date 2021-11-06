@@ -150,7 +150,12 @@ export default class App extends Component {
 						</Route>
 					</Switch>
 					<Route path='/users'>
-						<Users nav_info={nav_info} />
+						<Users
+							nav_info={nav_info}
+							loggedInState={isLoggedIn}
+							handleLog={this.loginStateChanger}
+							userId={userId}
+						/>
 					</Route>
 				</div>
 			</Router>

@@ -4,7 +4,7 @@ import UserDashboardCard from '../components/UserDashboardCard';
 
 import '../App.css';
 
-import Img from '../images/login.png';
+import Img from '../images/Notehub.png';
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
@@ -29,16 +29,21 @@ var sectionStyle = {
 	backgroundColor: '#02242c',
 };
 
+const apiURL =
+	process.env.NODE_ENV == 'dev'
+		? 'http://localhost:5000'
+		: 'https://notehubapi.herokuapp.com';
+
 export default class Home extends Component {
 	state = {
-		books: '',
-		notes: '',
-		questions: '',
-		projects: '',
+		books: 0,
+		notes: 0,
+		questions: 0,
+		projects: 0,
 	};
 
 	getInformation = () => {
-		fetch('https://peaceful-river-14379.herokuapp.com/overview')
+		fetch(`${apiURL}/overview`)
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(typeof data);
@@ -76,16 +81,14 @@ export default class Home extends Component {
 				/>
 				<Caro books={books} notes={notes} projects={projects} />
 				<div style={sectionStyle} className='ht'>
-					<h1
+					<img
 						style={{
-							display: 'flex',
 							marginLeft: 'auto',
 							marginRight: 'auto',
-							color: 'white',
 						}}
-					>
-						NoteHub
-					</h1>
+						src={Img}
+					/>
+
 					<p
 						style={{
 							display: 'flex',
@@ -113,9 +116,23 @@ export default class Home extends Component {
 					<div className='container text-center'>
 						<Link
 							type='button'
-							to='/contribute'
-							className='btn btn-success mt-5 btn-lg h-10 w-10 p-4'
+							to='/books'
+							className='btn btn-primary mt-5 btn-lg h-10 w-10 p-4'
 							style={{
+								width: '30%',
+								boxShadow:
+									'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+							}}
+						>
+							Browse
+						</Link>
+						<br />
+						<Link
+							type='button'
+							to='/contribute'
+							className='btn btn-outline-success mt-5 btn-lg h-10 w-10 p-4'
+							style={{
+								width: '30%',
 								boxShadow:
 									'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
 							}}

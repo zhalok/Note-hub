@@ -15,13 +15,19 @@ const get_projects_by_semester = async (req, res, next) => {
 };
 
 const get_projects_by_name = async (req, res, next) => {
-	try {
-		const name = req.params.name;
-		const data = await project_model.find({ name });
-		res.json(data);
-	} catch (err) {
-		next(err);
-	}
+	project_model.find({}, (err, projectData) => {
+		if (err) next(err);
+		else {
+			const searchString = req.params.name;
+			const searchResult = [];
+			for (let i = 0; i < projectData.length; i++) {
+				let foundString = projectData[i].name;
+				if (processSearch(foundString, searchString))
+					searchResult.push(projectData[i]);
+			}
+			res.json(searchResult);
+		}
+	});
 };
 
 const get_all_projects = async (req, res, next) => {
@@ -40,6 +46,7 @@ const add_new_project = async (req, res, next) => {
 		type,
 		contributor_id,
 		contributor_name,
+		contributor_email,
 		description,
 		link,
 	} = req.body;
@@ -47,9 +54,10 @@ const add_new_project = async (req, res, next) => {
 		name,
 		semester,
 		type,
-		contributor_id: contributor_id,
-		contributor_name: contributor_name,
-		description: description,
+		contributor_id,
+		contributor_name,
+		contributor_email,
+		description,
 		link,
 	});
 	new_project.save((err) => {
@@ -63,14 +71,24 @@ const add_new_project = async (req, res, next) => {
 				});
 				new_overview.save((err) => {
 					if (err) next(err);
-					res.json('saved');
+					update_user(
+						{ contributor_id, type, content_name: name, semester },
+						(data) => {
+							res.json(data);
+						}
+					);
 				});
 			} else {
 				if (data[0].projects) data[0].projects++;
 				else data[0].projects = 1;
 				data[0].save((err) => {
 					if (err) next(err);
-					res.json('saved');
+					update_user(
+						{ contributor_id, type, content_name: name, semester },
+						(data) => {
+							res.json(data);
+						}
+					);
 				});
 			}
 		});

@@ -1,76 +1,76 @@
 .login_dark {
-  height: 800px;
-  background: #475d62 url(../images/signup.jpg);
-  background-size: cover;
-  position: relative;
+	height: 800px;
+	background-color: '#02242c';
+	background-size: cover;
+	position: relative;
 }
 
 .login_dark form {
-  max-width: 800px;
-  width: 90%;
-  /**background-color: #1e2833;*/
-  background-image: linear-gradient(to right, rgb(13, 12, 24), rgb(7, 39, 65));
-  padding: 30px;
-  border-radius: 6px;
-  transform: translate(-50%, -50%);
-  position: absolute;
-  top: 48%;
-  left: 50%;
-  color: #fff;
-  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+	max-width: 800px;
+	width: 90%;
+	/**background-color: #1e2833;*/
+	background-image: linear-gradient(to right, rgb(13, 12, 24), rgb(7, 39, 65));
+	padding: 30px;
+	border-radius: 6px;
+	transform: translate(-50%, -50%);
+	position: absolute;
+	top: 48%;
+	left: 50%;
+	color: #fff;
+	box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .login_dark .illustration {
-  text-align: center;
-  padding: 15px 0 20px;
-  font-size: 100px;
-  color: #2980ef;
+	text-align: center;
+	padding: 15px 0 20px;
+	font-size: 100px;
+	color: #2980ef;
 }
 
 .login_dark form .form_control {
-  width: 100%;
-  background: none;
-  border: none;
-  border-bottom: 1px solid #434a52;
-  border-radius: 0;
-  box-shadow: none;
-  outline: none;
-  color: inherit;
+	width: 100%;
+	background: none;
+	border: none;
+	border-bottom: 1px solid #434a52;
+	border-radius: 0;
+	box-shadow: none;
+	outline: none;
+	color: inherit;
 }
 
 .login_dark form .btn_primary {
-  width: 80%;
-  background: #214a80;
-  border: none;
-  border-radius: 4px;
-  padding: 11px;
-  margin-left: 30px;
-  box-shadow: none;
-  text-shadow: none;
-  outline: none;
+	width: 80%;
+	background: #214a80;
+	border: none;
+	border-radius: 4px;
+	padding: 11px;
+	margin-left: 30px;
+	box-shadow: none;
+	text-shadow: none;
+	outline: none;
 }
 
 .login_dark form .btn_primary:hover,
 .login_dark form .btn_primary:active {
-  background: #214a80;
-  outline: none;
+	background: #214a80;
+	outline: none;
 }
 
 .login_dark form .forgot {
-  display: block;
-  text-align: center;
-  font-size: 12px;
-  color: #6f7a85;
-  opacity: 0.9;
-  text-decoration: none;
+	display: block;
+	text-align: center;
+	font-size: 12px;
+	color: #6f7a85;
+	opacity: 0.9;
+	text-decoration: none;
 }
 
 .login_dark form .forgot:hover,
 .login_dark form .forgot:active {
-  opacity: 1;
-  text-decoration: none;
+	opacity: 1;
+	text-decoration: none;
 }
 
 .login_dark form .btn_primary:active {
-  transform: translateY(1px);
+	transform: translateY(1px);
 }

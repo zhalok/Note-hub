@@ -9,27 +9,29 @@ import SearchOption from '../components/SearchOption';
 import '../App.css';
 
 var sectionStyle = {
-	backgroundImage: `url(${Img})`,
-	backgroundPosition: 'center',
-	backgroundRepeat: 'no-repeat',
 	backgroundSize: 'cover',
 	padding: '10px',
+	backgroundColor: '#02242c',
 };
+const apiURL =
+	process.env.NODE_ENV == 'dev'
+		? 'http://localhost:5000'
+		: 'https://notehubapi.herokuapp.com';
 
 export default class Questions extends Component {
 	state = {
 		questionlist: [],
+		questionFetched: false,
 	};
 
 	find_all_questions = async () => {
 		try {
-			const response = await fetch(
-				' https://peaceful-river-14379.herokuapp.com/questions/get_all/'
-			);
+			const response = await fetch(`${apiURL}/questions/get_all/`);
 			const data = await response.json();
 
 			this.setState({
 				questionlist: data,
+				questionFetched: true,
 			});
 		} catch (err) {
 			console.log(err);
@@ -38,9 +40,7 @@ export default class Questions extends Component {
 
 	find_questions_by_semester = async (semester) => {
 		try {
-			const response = await fetch(
-				'http://localhost:5000/questions/semester/' + semester
-			);
+			const response = await fetch(`${apiURL}/questions/semester/` + semester);
 
 			const data = await response.json();
 
@@ -54,7 +54,7 @@ export default class Questions extends Component {
 
 	find_question_by_name = (name) => {
 		name.trim();
-		fetch(`http://localhost:5000/questions/get_by_name/${name}`)
+		fetch(`${apiURL}/questions/get_by_name/${name}`)
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({
@@ -78,7 +78,7 @@ export default class Questions extends Component {
 
 	render() {
 		const { nav_info, loggedInState, handleLog, userId } = this.props;
-		const { questionlist } = this.state;
+		const { questionlist, questionFetched } = this.state;
 
 		return (
 			<div style={sectionStyle} className='ht'>
@@ -97,7 +97,10 @@ export default class Questions extends Component {
 					<div className='total-page'>
 						<SemesterList controller={this.controller} />
 						<div className='contents'>
-							<Questionlist questionlist={questionlist} />
+							<Questionlist
+								questionlist={questionlist}
+								questionFetched={questionFetched}
+							/>
 						</div>
 					</div>
 				</div>

@@ -10,6 +10,11 @@ var sectionStyle = {
 	backgroundImage: `url(${Img})`,
 };
 
+let apiURL =
+	process.env.NODE_ENV == 'dev'
+		? 'http://localhost:5000'
+		: 'https://notehubapi.herokuapp.com';
+
 export default class ContributeForm extends Component {
 	constructor(props) {
 		super(props);
@@ -24,19 +29,19 @@ export default class ContributeForm extends Component {
 		message: '',
 		profile_path: '',
 		message: '',
+		contributor_email: '',
 		link: '',
 	};
 
 	getInfo = async (user_id) => {
 		try {
-			const response = await fetch(
-				` https://peaceful-river-14379.herokuapp.com/users/id/${user_id}`
-			);
+			const response = await fetch(`${apiURL}/users/id/${user_id}`);
 			const data = await response.json();
-			// console.log(data[0].name);
+
 			this.setState({
 				your_name: data[0].name,
 				registration: data[0].registration_id,
+				contributor_email: data[0].email,
 			});
 		} catch (err) {
 			console.log(err);
@@ -44,35 +49,31 @@ export default class ContributeForm extends Component {
 	};
 
 	submit_information = async () => {
-		try {
-			console.log(this.state.description);
-			const respornse = await fetch(
-				`https://peaceful-river-14379.herokuapp.com/contribute/${this.state.selected_type}`,
-				{
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify({
-						name: this.state.content_name.trim(),
-						semester: this.state.selected_sem.trim(),
-						type: this.state.selected_type.trim(),
-						contributor_id: this.state.registration.trim(),
-						contributor_name: this.state.your_name.trim(),
-						description: this.state.description.trim(),
-						link: this.state.link.trim(),
-					}),
-				}
-			);
-
-			const data = respornse.json();
-			console.log(data);
-			this.setState({
-				message: 'Submited!!! Thanks For Contributing',
-			});
-		} catch (err) {
-			console.log(err);
-		}
+		console.log(this.state.description);
+		fetch(`${apiURL}/contribute/${this.state.selected_type}`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				name: this.state.content_name.trim(),
+				semester: this.state.selected_sem.trim(),
+				type: this.state.selected_type.trim(),
+				contributor_id: this.state.registration.trim(),
+				contributor_name: this.state.your_name.trim(),
+				description: this.state.description.trim(),
+				link: this.state.link.trim(),
+				contributor_email: this.state.contributor_email,
+			}),
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				console.log(data);
+				this.setState({
+					message: 'Submited!!! Thanks For Contributing',
+				});
+			})
+			.catch((err) => console.log(err));
 	};
 
 	textchangehandler = (e) => {
@@ -147,9 +148,8 @@ export default class ContributeForm extends Component {
 	};
 
 	componentDidMount() {
-		console.log(this.props);
 		const { userId } = this.props;
-		console.log(userId);
+
 		this.getInfo(userId);
 	}
 

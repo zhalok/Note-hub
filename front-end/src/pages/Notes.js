@@ -8,25 +8,31 @@ import Img from '../images/signup.jpg';
 import '../App.css';
 
 var sectionStyle = {
-	backgroundImage: `url(${Img})`,
-	backgroundPosition: 'center',
-	backgroundRepeat: 'no-repeat',
 	backgroundSize: 'cover',
 	padding: '10px',
+	backgroundColor: '#02242c',
 };
+
+const apiURL =
+	process.env.NODE_ENV == 'dev'
+		? 'http://localhost:5000'
+		: 'https://notehubapi.herokuapp.com';
+console.log(apiURL);
 
 export default class Notes extends Component {
 	state = {
 		notelist: [],
+		noteFetched: false,
 	};
 
 	find_all_notes = async () => {
 		try {
-			const response = await fetch('http://localhost:5000/notes/get_all/');
+			const response = await fetch(`${apiURL}/notes/get_all/`);
 			const data = await response.json();
 			console.log(data);
 			this.setState({
 				notelist: data,
+				noteFetched: true,
 			});
 		} catch (err) {
 			console.log(err);
@@ -35,9 +41,7 @@ export default class Notes extends Component {
 
 	find_notes_by_semester = async (semester) => {
 		try {
-			const response = await fetch(
-				'http://localhost:5000/notes/semester/' + semester
-			);
+			const response = await fetch(`${apiURL}/notes/semester/${semester}`);
 
 			const data = await response.json();
 			// console.log(data);
@@ -58,9 +62,7 @@ export default class Notes extends Component {
 
 	find_note_by_name = (name) => {
 		name.trim();
-		fetch(
-			` https://peaceful-river-14379.herokuapp.com/notes/get_by_name/${name}`
-		)
+		fetch(` ${apiURL}/notes/get_by_name/${name}`)
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({
@@ -84,7 +86,7 @@ export default class Notes extends Component {
 
 	render() {
 		const { nav_info, loggedInState, handleLog, userId } = this.props;
-		const { notelist } = this.state;
+		const { notelist, noteFetched } = this.state;
 
 		return (
 			<div style={sectionStyle} className='ht'>
@@ -104,7 +106,7 @@ export default class Notes extends Component {
 					<div className='total-page'>
 						<SemesterList controller={this.controller} />
 						<div className='contents'>
-							<Notelist notelist={notelist} />
+							<Notelist notelist={notelist} noteFetched={noteFetched} />
 						</div>
 					</div>
 				</div>

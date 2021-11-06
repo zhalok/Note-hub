@@ -6,6 +6,8 @@ const project_schema = new mongoose.Schema({
 	type: { type: String, required: true },
 	contributor_id: { type: String, required: true },
 	contributor_name: { type: String, required: true },
+	contributor_email: { type: String, required: true },
+
 	description: { type: String },
 	link: { type: String },
 });

@@ -15,10 +15,16 @@ import ContributeForm from '../components/ContributeForm';
 import Congratulations from '../components/Congratulations';
 
 var sectionStyle = {
-	backgroundImage: `url(${Img})`,
+	// backgroundImage: `url(${Img})`,
 	backgroundSize: 'cover',
 	overflow: 'hidden',
+	backgroundColor: '#02242c',
 };
+
+const apiURL =
+	process.env.NODE_ENV == 'dev'
+		? 'http://localhost:5000'
+		: 'https://notehubapi.herokuapp.com';
 
 export default class Login extends Component {
 	constructor(props) {
@@ -32,19 +38,16 @@ export default class Login extends Component {
 
 	user_authentication = async () => {
 		try {
-			const respornse = await fetch(
-				' https://peaceful-river-14379.herokuapp.com/login',
-				{
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify({
-						registration_id: this.state.registration_number,
-						password: this.state.password,
-					}),
-				}
-			);
+			const respornse = await fetch(` ${apiURL}/login`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					registration_id: this.state.registration_number,
+					password: this.state.password,
+				}),
+			});
 
 			const user = await respornse.json();
 			if (user == 'User not found') {
