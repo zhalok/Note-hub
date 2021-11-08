@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 import ChoosefileBox from './/ChoosefileBox';
 import '../App.css';
+import FileUploadSection from './FileUploadSection';
 
 var sectionStyle = {
 	backgroundImage: `url(${Img})`,
@@ -243,7 +244,7 @@ export default class ContributeForm extends Component {
 										onChange={this.textchangehandler}
 									></input>
 									<div className='d-flex flex-column p-2 '>
-										<ChoosefileBox />
+										<FileUploadSection />
 									</div>
 									<div className='d-flex flex-column p-2 ml-5 mr-5'>
 										<button
