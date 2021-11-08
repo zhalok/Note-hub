@@ -6,13 +6,12 @@ import Books from './pages/Books';
 import Notes from './pages/Notes';
 import Questions from './pages/Questions';
 import Projects from './pages/Projects';
-import ContributeForm from './components/ContributeForm';
-import ContributeCredential from './components/ContributeCredential';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Contribute from './pages/Contribute';
 import Profile from './pages/Profile';
 import Users from './pages/Users';
+import Discussions from './components/Discussions';
 
 import './App.css';
 
@@ -151,6 +150,14 @@ export default class App extends Component {
 					</Switch>
 					<Route path='/users'>
 						<Users
+							nav_info={nav_info}
+							loggedInState={isLoggedIn}
+							handleLog={this.loginStateChanger}
+							userId={userId}
+						/>
+					</Route>
+					<Route path='/discussions'>
+						<Discussions
 							nav_info={nav_info}
 							loggedInState={isLoggedIn}
 							handleLog={this.loginStateChanger}

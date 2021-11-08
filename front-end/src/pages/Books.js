@@ -10,9 +10,6 @@ import searchImage from '../images/search.png';
 import '../App.css';
 
 var sectionStyle = {
-	// backgroundImage: `url(${Img})`,
-	// backgroundPosition: 'center',
-	// backgroundRepeat: 'no-repeat',
 	backgroundSize: 'cover',
 	padding: '10px',
 	backgroundColor: '#02242c',

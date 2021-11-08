@@ -156,8 +156,7 @@ export default class ContributeForm extends Component {
 	render() {
 		const { userId } = this.props;
 		let path = '/profile/' + userId;
-		console.log(this.state.your_name);
-		console.log(this.state.registration);
+
 		return (
 			<div className='row'>
 				<div className='col-lg-4'>
