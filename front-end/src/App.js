@@ -11,7 +11,7 @@ import Signup from './pages/Signup';
 import Contribute from './pages/Contribute';
 import Profile from './pages/Profile';
 import Users from './pages/Users';
-import Discussions from './components/Discussions';
+import Discussions from './pages/Discussions';
 
 import './App.css';
 
