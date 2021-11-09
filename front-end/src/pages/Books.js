@@ -89,25 +89,27 @@ export default class Books extends Component {
 		const { booklist, showSearchResult, bookFetched } = this.state;
 
 		return (
-			<div style={sectionStyle} className='ht'>
-				<Navbar
-					nav_link={nav_info}
-					loggedInState={loggedInState}
-					handleLog={handleLog}
-					userId={userId}
-				/>
+			<div>
+				<div style={sectionStyle} className='ht'>
+					<Navbar
+						nav_link={nav_info}
+						loggedInState={loggedInState}
+						handleLog={handleLog}
+						userId={userId}
+					/>
 
-				<div className='container mt-5 pt-4'>
-					<div style={{ display: 'flex', flexDirection: 'row' }}>
-						<h1 style={{ color: 'white' }}>Books</h1>
-						<SearchOption findByNameController={this.findBynameController} />
-					</div>
+					<div className='container mt-5 pt-4'>
+						<div style={{ display: 'flex', flexDirection: 'row' }}>
+							<h1 style={{ color: 'white' }}>Books</h1>
+							<SearchOption findByNameController={this.findBynameController} />
+						</div>
 
-					<hr className='hr-style' />
-					<div className='total-page'>
-						<SemesterList controller={this.controller} />
-						<div className='contents'>
-							<Booklist booklist={booklist} bookFetched={bookFetched} />
+						<hr className='hr-style' />
+						<div className='total-page'>
+							<SemesterList controller={this.controller} />
+							<div className='contents'>
+								<Booklist booklist={booklist} bookFetched={bookFetched} />
+							</div>
 						</div>
 					</div>
 				</div>

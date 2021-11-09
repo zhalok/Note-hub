@@ -159,7 +159,7 @@ export default class ContributeForm extends Component {
 		let path = '/profile/' + userId;
 
 		return (
-			<div className='row'>
+			<div style={{ marginTop: '100px' }}>
 				<div className='col-lg-4'>
 					<div className='container p-3 m-5'>
 						<img src={Img} alt='profile_dark.jpg' className='img-sm' />

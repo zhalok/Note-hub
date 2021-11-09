@@ -15,7 +15,7 @@ const FileUploadSection = (props) => {
 	};
 
 	return (
-		<div style={{ marginTop: '10px' }}>
+		<div style={{ marginTop: '20px', marginBottom: '20px' }}>
 			<div>{console.log(file)}</div>
 			<div style={{ color: 'white' }}> wanna upload an image? </div>
 			<input

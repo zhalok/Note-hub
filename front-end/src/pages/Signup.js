@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Navbar from '../components/Navbar';
 import Img from '../images/reg_icon.jpg';
 import style from './Signup.module.css';
+import FileUploadSection from '../components/FileUploadSection';
 
 import { Link } from 'react-router-dom';
 
@@ -143,15 +144,18 @@ export default class SignUp extends Component {
 		} = this.state;
 
 		return (
-			<div className={style.login_dark} style={{ backgroundColor: '#02242c' }}>
+			<div className={style.login_dark}>
 				<Navbar
 					nav_link={nav_info}
 					loggedInState={loggedInState}
 					handleLog={handleLog}
 					userId={userId}
 				/>
-				<div className='container'>
-					<form>
+				<div
+					className='container'
+					style={{ backgroundSize: 'cover', backgroundColor: '#02242c' }}
+				>
+					<form style={{ marginTop: '100px' }}>
 						<div className='form-group'>
 							<div className=' row'>
 								<div className='col-lg-6'>
@@ -219,7 +223,9 @@ export default class SignUp extends Component {
 										onChange={this.change_handler}
 										value={linkedin}
 									/>
-									<p></p>
+									<div>
+										<FileUploadSection />
+									</div>
 									<button
 										className={style.btn_primary}
 										id='submit'
