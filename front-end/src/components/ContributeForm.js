@@ -246,7 +246,7 @@ export default class ContributeForm extends Component {
 									<div className='d-flex flex-column p-2 '>
 										<FileUploadSection />
 									</div>
-									<div className='d-flex flex-column p-2 ml-5 mr-5'>
+									<div className='d-flex flex-column p-2 ml-5 mr-5 mt-5'>
 										<button
 											type='submit'
 											className='btn btn-outline-secondary btn-lg'

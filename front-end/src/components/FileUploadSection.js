@@ -1,82 +1,55 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
 
-class FileUploadSection extends Component {
-	state = {
-		selectedFile: null,
+const sendFIleData = (file) => {};
+
+const FileUploadSection = (props) => {
+	const [file, fileChanger] = useState('');
+
+	const showFileInfo = (e) => {
+		const filereader = new FileReader();
+		filereader.readAsDataURL(file);
+		filereader.onload = () => {
+			console.log(filereader.result);
+		};
 	};
 
-	onFileChange = (event) => {
-		this.setState({ selectedFile: event.target.files[0] });
-	};
+	return (
+		<div style={{ marginTop: '10px' }}>
+			<div>{console.log(file)}</div>
+			<div style={{ color: 'white' }}> wanna upload an image? </div>
+			<input
+				className='file'
+				type='file'
+				name='image'
+				accept='jpg,jpeg,png'
+				onChange={(e) => {
+					e.preventDefault();
+					fileChanger(e.target.files[0]);
+				}}
+			/>
 
-	onFileUpload = () => {
-		// Create an object of formData
-		const formData = new FormData();
-
-		// Update the formData object
-		formData.append(
-			'myFile',
-			this.state.selectedFile,
-			this.state.selectedFile.name
-		);
-
-		// Details of the uploaded file
-		console.log(this.state.selectedFile);
-
-		// Request made to the backend api
-		// Send formData object
-		fetch('http://localhost:5000/saveFile/saveContentImage', {
-			method: 'POST',
-			body: formData,
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				console.log(data);
-			})
-			.catch((error) => {
-				console.error(error);
-			});
-	};
-
-	// File content to be displayed after
-	// file upload is complete
-	fileData = () => {
-		if (this.state.selectedFile) {
-			return (
-				<div>
-					<h2>File Details:</h2>
-
-					<p>File Name: {this.state.selectedFile.name}</p>
-
-					<p>File Type: {this.state.selectedFile.type}</p>
-
-					<p>
-						Last Modified:{' '}
-						{this.state.selectedFile.lastModifiedDate.toDateString()}
-					</p>
-				</div>
-			);
-		} else {
-			return (
-				<div>
-					<br />
-					<h4>Choose before Pressing the Upload button</h4>
-				</div>
-			);
-		}
-	};
-
-	render() {
-		return (
-			<div>
-				<div>
-					<input type='file' onChange={this.onFileChange} />
-					<button onClick={this.onFileUpload}>Upload!</button>
-				</div>
-				{this.fileData()}
+			<div
+				style={{
+					display: 'flex',
+					width: 'fit-content',
+					marginLeft: 'auto',
+					marginRight: 'auto',
+					marginTop: '10px',
+				}}
+			>
+				<Button
+					variant='success'
+					onClick={(e) => {
+						e.preventDefault();
+						showFileInfo(e);
+					}}
+				>
+					Upload
+				</Button>
 			</div>
-		);
-	}
-}
+		</div>
+	);
+};
 
 export default FileUploadSection;
