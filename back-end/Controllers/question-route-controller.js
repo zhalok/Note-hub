@@ -39,6 +39,7 @@ const get_all_questions = async (req, res, next) => {
 };
 
 const add_new_question = async (req, res, next) => {
+	console.log(req.file);
 	const {
 		name,
 		semester,

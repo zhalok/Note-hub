@@ -41,6 +41,7 @@ const get_all_books = async (req, res, next) => {
 };
 
 const add_new_book = async (req, res, next) => {
+	console.log(req.file);
 	const {
 		name,
 		semester,

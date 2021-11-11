@@ -40,6 +40,7 @@ const get_all_projects = async (req, res, next) => {
 };
 
 const add_new_project = async (req, res, next) => {
+	console.log(req.file);
 	const {
 		name,
 		semester,

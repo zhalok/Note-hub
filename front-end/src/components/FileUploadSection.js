@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 
-const sendFIleData = (file) => {};
+const sendFIleData = (file) => {
+	const formData = new FormData();
+	formData.append('content-image', file);
+
+	console.log(formData.get('content-image'));
+
+	fetch('http://localhost:5000/saveFile/saveContentImage', {
+		method: 'POST',
+		body: formData,
+	})
+		.then((response) => response.json())
+		.then((data) => console.log(data))
+		.catch((err) => console.log(err));
+};
 
 const FileUploadSection = (props) => {
 	const [file, fileChanger] = useState('');
-
-	const showFileInfo = (e) => {
-		const filereader = new FileReader();
-		filereader.readAsDataURL(file);
-		filereader.onload = () => {
-			console.log(filereader.result);
-		};
-	};
 
 	return (
 		<div style={{ marginTop: '20px', marginBottom: '20px' }}>
@@ -42,7 +47,7 @@ const FileUploadSection = (props) => {
 					variant='success'
 					onClick={(e) => {
 						e.preventDefault();
-						showFileInfo(e);
+						sendFIleData(file);
 					}}
 				>
 					Upload

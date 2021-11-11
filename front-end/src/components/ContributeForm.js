@@ -16,6 +16,8 @@ let apiURL =
 		? 'http://localhost:5000'
 		: 'https://notehubapi.herokuapp.com';
 
+apiURL = 'http://localhost:5000';
+
 export default class ContributeForm extends Component {
 	constructor(props) {
 		super(props);
@@ -32,6 +34,7 @@ export default class ContributeForm extends Component {
 		message: '',
 		contributor_email: '',
 		link: '',
+		formData: null,
 	};
 
 	getInfo = async (user_id) => {
@@ -50,7 +53,8 @@ export default class ContributeForm extends Component {
 	};
 
 	submit_information = async () => {
-		console.log(this.state.description);
+		console.log(this.state);
+
 		fetch(`${apiURL}/contribute/${this.state.selected_type}`, {
 			method: 'POST',
 			headers: {
@@ -68,12 +72,7 @@ export default class ContributeForm extends Component {
 			}),
 		})
 			.then((response) => response.json())
-			.then((data) => {
-				console.log(data);
-				this.setState({
-					message: 'Submited!!! Thanks For Contributing',
-				});
-			})
+			.then((data) => {})
 			.catch((err) => console.log(err));
 	};
 
