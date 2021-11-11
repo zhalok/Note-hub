@@ -2,12 +2,23 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 
 export default function DiscussionCard(props) {
+	const { discussion_info } = props;
+	const {
+		title,
+		body,
+		discussion_starters_name,
+		discussion_starters_email,
+		votes,
+	} = discussion_info;
+
+	console.log(discussion_info);
+
 	return (
 		<div>
 			<div
 				className='discussionCard'
 				style={{
-					width: '50%',
+					width: '70%',
 					marginLeft: 'auto',
 					marginRight: 'auto',
 					marginTop: '100px',
@@ -18,9 +29,9 @@ export default function DiscussionCard(props) {
 					borderRadius: '10px',
 				}}
 			>
-				<h1>Does anyone have the Data structure book ?</h1>
+				<h1>{title}</h1>
 				<hr />
-				<p>I need the data structure book by schaums outline</p>
+				<p>{body}</p>
 				<div
 					style={{
 						width: '100%',
