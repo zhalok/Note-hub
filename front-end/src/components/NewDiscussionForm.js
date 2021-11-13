@@ -5,6 +5,9 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 
 const NewDiscussionForm = (props) => {
+	const submitDiscussion = (discussion) => {
+		const { discussionTitle, discussionBody } = discussion;
+	};
 	return (
 		<Modal
 			{...props}
@@ -21,25 +24,24 @@ const NewDiscussionForm = (props) => {
 				<h4>Title</h4>
 				<input className='form-control' type='text' />
 				<br />
-				<br />
-				<FloatingLabel
-					controlId='floatingTextarea'
-					label='Comments'
-					className='mb-3'
-				>
-					<Form.Control as='textarea' placeholder='Leave a comment here' />
-				</FloatingLabel>
-				<FloatingLabel controlId='floatingTextarea2' label='Comments'>
+
+				<FloatingLabel controlId='floatingTextarea2'>
+					<h4>Body</h4>
 					<Form.Control
 						as='textarea'
-						placeholder='Leave a comment here'
+						placeholder='Start your discussion here'
 						style={{ height: '100px' }}
 					/>
 				</FloatingLabel>
 				<br />
 			</Modal.Body>
 			<Modal.Footer>
-				<Button onClick={props.onHide}>Close</Button>
+				<Button variant='success' onClick={props.onHide}>
+					Add
+				</Button>
+				<Button variant='danger' onClick={props.onHide}>
+					Close
+				</Button>
 			</Modal.Footer>
 		</Modal>
 	);
