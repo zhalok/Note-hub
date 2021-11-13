@@ -20,24 +20,48 @@ const addDiscussion = (req, res, next) => {
 		body: discussion_body,
 		discussion_starters_name: discussion_starters_name,
 		discussion_starters_email: discussion_starters_email,
+
 		votes: 0,
 	});
 
-	new_discussion.save((err, data) => {
+	new_discussion.save((err) => {
 		if (err) next(err);
 		else res.json('discussion saved');
 	});
 };
 
-const getAllDiscussions = () => {};
+const getAllDiscussions = (req, res, next) => {
+	discussionModel.find({}, (err, discussions) => {
+		if (err) next(err);
+		else res.json(discussions);
+	});
+};
 
-const getDiscussionByTitle = () => {};
+const getDiscussionByTitle = (req, res, next) => {
+	const title = req.params.title;
+	discussionModel.find({ discussion_title: title }, (err, discussion) => {
+		if (err) next(err);
+		else res.json(discussion);
+	});
+};
 
-const getDiscussionById = () => {};
+const getDiscussionById = (req, res, next) => {
+	const _id = req.params.id;
+	discussionModel.find({ _id }, (err, discussion) => {
+		if (err) next(err);
+		else res.json(discussion);
+	});
+};
 
-const deleteDiscussion = () => {};
+const deleteDiscussion = (req, res, next) => {
+	const _id = req.params.id;
+	discussionModel.findByIdAndDelete(_id, (err) => {
+		if (err) next(err);
+		else res.json('discussion deleted');
+	});
+};
 
-const updateDiscussion = () => {};
+const updateDiscussion = () => {}; // pore implement korbo akhn na
 
 module.exports = {
 	addDiscussion,

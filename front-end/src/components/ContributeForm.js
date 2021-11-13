@@ -155,6 +155,7 @@ export default class ContributeForm extends Component {
 
 	render() {
 		const { userId } = this.props;
+		// console.log(userId);
 		let path = '/profile/' + userId;
 
 		return (

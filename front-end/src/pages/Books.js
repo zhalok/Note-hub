@@ -73,6 +73,7 @@ export default class Books extends Component {
 	};
 
 	componentDidMount() {
+		console.log(this.props.userId);
 		this.find_all_books();
 	}
 

@@ -18,7 +18,7 @@ const get_user_by_id = async (req, res, next) => {
 	var retinfo;
 	try {
 		const user = await userModel.find({ registration_id: req.params.uid });
-		console.log(user);
+
 		res.json(user);
 	} catch (err) {
 		next(err);

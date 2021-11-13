@@ -9,5 +9,6 @@ router.get(
 	discussionRouteController.getDiscussionByTitle
 );
 router.post('/add', discussionRouteController.addDiscussion);
+router.get('/delete/:id', discussionRouteController.deleteDiscussion);
 
 module.exports = router;

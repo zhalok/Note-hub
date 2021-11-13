@@ -6,12 +6,37 @@ import DiscussionList from '../components/DiscussionList';
 import Button from 'react-bootstrap/Button';
 import NewDiscussionForm from '../components/NewDiscussionForm';
 
-export default function Discussions({
-	nav_info,
-	loggedInState,
-	handleLog,
-	userId,
-}) {
+const getData = (setUserDetails, userId) => {
+	fetch(`http://localhost:5000/users/id/${userId}`)
+		.then((res) => res.json())
+		.then((data) => {
+			setUserDetails(data[0]);
+			console.log(data[0]);
+		})
+		.catch((err) => console.log(err));
+};
+
+export default function Discussions(props) {
+	const [userDetails, setUserDetails] = useState({});
+	const [discussions, setDiscussions] = useState([]);
+	const [changer, setChanger] = useState({});
+
+	const { nav_info, loggedInState, handleLog, userId } = props;
+
+	useEffect(() => {
+		fetch('http://localhost:5000/discussions/get_all')
+			.then((res) => res.json())
+			.then((data) => setDiscussions(data))
+			.catch((err) => console.log(err));
+	}, [changer]);
+
+	useEffect(() => {
+		fetch(`http://localhost:5000/users/id/${userId}`)
+			.then((res) => res.json())
+			.then((data) => setUserDetails(data[0]))
+			.catch((err) => console.log(err));
+	}, [props]);
+
 	var sectionStyle = {
 		backgroundSize: 'cover',
 		padding: '10px',
@@ -20,62 +45,61 @@ export default function Discussions({
 
 	const [show, setShow] = useState(false);
 
-	return (
-		<div>
-			<div style={sectionStyle} className='ht'>
-				<Navbar
-					nav_link={nav_info}
-					loggedInState={loggedInState}
-					handleLog={handleLog}
-					userId={userId}
-				/>
+	if (userDetails) {
+		return (
+			<div>
+				<div style={sectionStyle} className='ht'>
+					<Navbar
+						nav_link={nav_info}
+						loggedInState={loggedInState}
+						handleLog={handleLog}
+						userId={userId}
+					/>
 
-				<div className='container mt-5 pt-4'>
-					<div style={{ display: 'flex', flexDirection: 'row' }}>
-						<h1 style={{ color: 'white' }}>Discussions</h1>
-					</div>
+					<div className='container mt-5 pt-4'>
+						<div style={{ display: 'flex', flexDirection: 'row' }}>
+							<h1 style={{ color: 'white' }}>Discussions</h1>
+						</div>
 
-					<hr className='hr-style' />
+						<hr className='hr-style' />
 
-					<div className='total-page'>
-						<div style={{ width: '100%' }}>
-							<Button
-								variant='success'
-								style={{
-									display: 'flex',
+						<div className='total-page'>
+							<div style={{ width: '100%' }}>
+								<Button
+									variant='success'
+									style={{
+										display: 'flex',
 
-									width: 'fit-content',
-									marginLeft: 'auto',
-									marginBottom: '30px',
-								}}
-								onClick={() => {
-									setShow(true);
-								}}
-							>
-								Start Discussion
-							</Button>
-							<NewDiscussionForm
-								show={show}
-								onHide={() => {
-									setShow(false);
-								}}
-							/>
-							<DiscussionList
-								discussion_list={[
-									{
-										title: 'Request for DS book',
-										body: 'Can anyone give me the data structure book recommended for 1/2 semester?',
-										discussion_starters_name: 'Kaifa Tabassum',
-										discussion_starters_email: 'kaifatabassum2@gmail.com',
-										discussion_starting_time: Date.now().toLocaleString(),
-										votes: 0,
-									},
-								]}
-							/>
+										width: 'fit-content',
+										marginLeft: 'auto',
+										marginBottom: '30px',
+									}}
+									onClick={() => {
+										setShow(true);
+									}}
+								>
+									Start Discussion
+								</Button>
+								<NewDiscussionForm
+									setChanger={(e) => {
+										setChanger(e);
+									}}
+									discussionStartersName={userDetails.name}
+									discussionStartersEmail={userDetails.email}
+									show={show}
+									onHide={() => {
+										setShow(false);
+									}}
+									loggedInState={loggedInState}
+								/>
+								<DiscussionList discussions={discussions} />
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	);
+		);
+	} else {
+		return <div>Wait bhai wait</div>;
+	}
 }

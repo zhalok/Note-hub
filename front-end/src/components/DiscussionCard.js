@@ -11,8 +11,6 @@ export default function DiscussionCard(props) {
 		votes,
 	} = discussion_info;
 
-	console.log(discussion_info);
-
 	return (
 		<div>
 			<div
@@ -73,7 +71,7 @@ export default function DiscussionCard(props) {
 							marginLeft: 'auto',
 						}}
 					>
-						Comment
+						Open
 					</Button>
 				</div>
 			</div>
