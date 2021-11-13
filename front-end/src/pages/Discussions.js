@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import SearchOption from '../components/SearchOption';
 import Navbar from '../components/Navbar';
 import DiscussionCard from '../components/DiscussionCard';
 import DiscussionList from '../components/DiscussionList';
+import Button from 'react-bootstrap/Button';
+import NewDiscussionForm from '../components/NewDiscussionForm';
 
 export default function Discussions({
 	nav_info,
@@ -15,6 +17,9 @@ export default function Discussions({
 		padding: '10px',
 		backgroundColor: '#02242c',
 	};
+
+	const [show, setShow] = useState(false);
+
 	return (
 		<div>
 			<div style={sectionStyle} className='ht'>
@@ -28,13 +33,33 @@ export default function Discussions({
 				<div className='container mt-5 pt-4'>
 					<div style={{ display: 'flex', flexDirection: 'row' }}>
 						<h1 style={{ color: 'white' }}>Discussions</h1>
-						{/* <SearchOption findByNameController={this.findBynameController} /> */}
 					</div>
 
 					<hr className='hr-style' />
 
 					<div className='total-page'>
 						<div style={{ width: '100%' }}>
+							<Button
+								variant='success'
+								style={{
+									display: 'flex',
+
+									width: 'fit-content',
+									marginLeft: 'auto',
+									marginBottom: '30px',
+								}}
+								onClick={() => {
+									setShow(true);
+								}}
+							>
+								Start Discussion
+							</Button>
+							<NewDiscussionForm
+								show={show}
+								onHide={() => {
+									setShow(false);
+								}}
+							/>
 							<DiscussionList
 								discussion_list={[
 									{
