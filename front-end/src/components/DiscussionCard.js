@@ -5,31 +5,17 @@ import NewAnswerForm from './newAnswerForm';
 export default function DiscussionCard(props) {
 	const { discussion_info, loggedInState } = props;
 	const {
+		_id,
 		title,
 		body,
 		discussion_starters_name,
 		discussion_starters_email,
-		userName,
+		contributorName,
 		votes,
 	} = discussion_info;
 
 	const [answer, setAnswer] = useState('');
 	const [show, setShow] = useState(false);
-
-	const sendEmailNotification = () => {
-		fetch('http://localhost:5000/sendEmail/sendNotification', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: {
-				from: userName,
-				to: discussion_starters_email,
-				discussion_title: title,
-				body: answer,
-			},
-		});
-	};
 
 	return (
 		<div>
@@ -53,6 +39,11 @@ export default function DiscussionCard(props) {
 						setShow(false);
 					}}
 					loggedInState={loggedInState}
+					discussion_id={_id}
+					discussion_starters_email={discussion_starters_email}
+					contributorName={contributorName}
+					discussion_title={title}
+					discussion_body={body}
 				/>
 				<h1>{title}</h1>
 				<hr />

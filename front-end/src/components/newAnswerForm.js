@@ -15,33 +15,56 @@ const NewAnswerForm = (props) => {
 		setBody('');
 	}, [props.show]);
 
-	const { loggedInState, discussionStartersName, discussionStartersEmail } =
-		props;
-
-	// console.log(discussionStartersEmail);
-	// console.log(discussionStartersName);
-	const submitDiscussion = () => {
-		if (!title || !body) {
-			alert('please give the title and body');
-			return;
-		}
-		fetch('https://notehubapi.herokuapp.com/discussions/add', {
+	const send_email_notification = (to, title, body) => {
+		console.log(to);
+		console.log(title);
+		console.log(body);
+		fetch('http://localhost:5000/sendEmail/sendNotification', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-				discussion_title: title,
-				discussion_body: body,
-				discussion_starters_name: discussionStartersName,
-				discussion_starters_email: discussionStartersEmail,
+				to,
+				title,
+				body,
+			}),
+		})
+			.then((res) => res.json())
+			.then((data) => console.log(data))
+			.catch((err) => console.log(err));
+	};
+
+	const {
+		loggedInState,
+		discussion_starters_email,
+		contributorName,
+		discussion_id,
+		onHide,
+		discussion_title,
+		discussion_body,
+	} = props;
+
+	const submit_answer = () => {
+		fetch('http://localhost:5000/answer', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				body: body,
+				discussion_id,
 			}),
 		})
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
-				props.onHide();
-				props.setChanger({});
+				onHide();
+				send_email_notification(
+					discussion_starters_email,
+					discussion_title,
+					discussion_body
+				);
 			})
 			.catch((err) => console.log(err));
 	};
@@ -73,7 +96,7 @@ const NewAnswerForm = (props) => {
 				<Button
 					variant='success'
 					onClick={() => {
-						submitDiscussion();
+						submit_answer();
 					}}
 				>
 					Contribute

@@ -28,7 +28,8 @@ const sendEmail = (req, res, next) => {
 };
 
 const sendNotificationEmail = (req, res, next) => {
-	const { to, from, body, discussion_title } = req.body;
+	const { to, body, title } = req.body;
+
 	var transporter = nodemailer.createTransport({
 		service: 'gmail',
 		auth: {
@@ -40,7 +41,7 @@ const sendNotificationEmail = (req, res, next) => {
 	var mailOptions = {
 		from: process.env.AUTH_EMAIL,
 		to,
-		subject: `An answer was given to your discussion ${discussion_title} by ${from}`,
+		subject: `An answer was given to your discussion ${title} `,
 		text: body,
 	};
 

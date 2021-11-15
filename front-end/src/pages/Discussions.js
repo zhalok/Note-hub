@@ -46,64 +46,61 @@ export default function Discussions(props) {
 
 	const [show, setShow] = useState(false);
 
-	if (userDetails) {
-		return (
-			<div>
-				<div style={sectionStyle} className='ht'>
-					<Navbar
-						nav_link={nav_info}
-						loggedInState={loggedInState}
-						handleLog={handleLog}
-						userId={userId}
-					/>
+	return (
+		<div>
+			<div style={sectionStyle} className='ht'>
+				<Navbar
+					nav_link={nav_info}
+					loggedInState={loggedInState}
+					handleLog={handleLog}
+					userId={userId}
+				/>
 
-					<div className='container mt-5 pt-4'>
-						<div style={{ display: 'flex', flexDirection: 'row' }}>
-							<h1 style={{ color: 'white' }}>Discussions</h1>
-						</div>
+				<div className='container mt-5 pt-4'>
+					<div style={{ display: 'flex', flexDirection: 'row' }}>
+						<h1 style={{ color: 'white' }}>Discussions</h1>
+					</div>
 
-						<hr className='hr-style' />
+					<hr className='hr-style' />
 
-						<div className='total-page'>
-							<div style={{ width: '100%' }}>
-								<Button
-									variant='success'
-									style={{
-										display: 'flex',
+					<div className='total-page'>
+						<div style={{ width: '100%' }}>
+							<Button
+								variant='success'
+								style={{
+									display: 'flex',
 
-										width: 'fit-content',
-										marginLeft: 'auto',
-										marginBottom: '30px',
-									}}
-									onClick={() => {
-										setShow(true);
-									}}
-								>
-									Start Discussion
-								</Button>
-								<NewDiscussionForm
-									setChanger={(e) => {
-										setChanger(e);
-									}}
-									discussionStartersName={userDetails.name}
-									discussionStartersEmail={userDetails.email}
-									show={show}
-									onHide={() => {
-										setShow(false);
-									}}
-									loggedInState={loggedInState}
-								/>
-								<DiscussionList
-									loggedInState={loggedInState}
-									discussions={discussions}
-								/>
-							</div>
+									width: 'fit-content',
+									marginLeft: 'auto',
+									marginBottom: '30px',
+								}}
+								onClick={() => {
+									setShow(true);
+								}}
+							>
+								Start Discussion
+							</Button>
+							<NewDiscussionForm
+								setChanger={(e) => {
+									setChanger(e);
+								}}
+								discussionStartersName={userDetails.name}
+								discussionStartersEmail={userDetails.email}
+								show={show}
+								onHide={() => {
+									setShow(false);
+								}}
+								loggedInState={loggedInState}
+							/>
+							<DiscussionList
+								loggedInState={loggedInState}
+								discussions={discussions}
+								contributorName={userName}
+							/>
 						</div>
 					</div>
 				</div>
 			</div>
-		);
-	} else {
-		return <div>Wait bhai wait</div>;
-	}
+		</div>
+	);
 }
