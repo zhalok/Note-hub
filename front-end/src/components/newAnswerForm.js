@@ -5,7 +5,7 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 
-const NewDiscussionForm = (props) => {
+const NewAnswerForm = (props) => {
 	const [title, setTitle] = useState({});
 	const [body, setBody] = useState({});
 
@@ -54,27 +54,13 @@ const NewDiscussionForm = (props) => {
 			centered
 		>
 			<Modal.Header closeButton>
-				<Modal.Title id='contained-modal-title-vcenter'>
-					New Discussion
-				</Modal.Title>
+				<Modal.Title id='contained-modal-title-vcenter'>Answer</Modal.Title>
 			</Modal.Header>
 			<Modal.Body>
-				<h4>Title</h4>
-				<input
-					className='form-control'
-					type='text'
-					placeholder='title'
-					onChange={(e) => {
-						setTitle(e.target.value);
-					}}
-				/>
-				<br />
-
 				<FloatingLabel controlId='floatingTextarea2'>
-					<h4>Body</h4>
 					<Form.Control
 						as='textarea'
-						placeholder='Start your discussion here'
+						placeholder='Contribute your answer here'
 						style={{ height: '100px' }}
 						onChange={(e) => {
 							setBody(e.target.value);
@@ -90,7 +76,7 @@ const NewDiscussionForm = (props) => {
 						submitDiscussion();
 					}}
 				>
-					Add
+					Contribute
 				</Button>
 				<Button variant='danger' onClick={props.onHide}>
 					Close
@@ -116,4 +102,4 @@ const NewDiscussionForm = (props) => {
 	else return alertMessage;
 };
 
-export default NewDiscussionForm;
+export default NewAnswerForm;

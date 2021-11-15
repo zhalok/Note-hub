@@ -11,6 +11,7 @@ const overview_route = require('./routes/overview-route');
 const sendEmailROute = require('./routes/sendEmailRoute');
 const saveFileRoute = require('./routes/save-file-route');
 const discussionRoute = require('./routes/discussion-route');
+const answerRoute = require('./routes/answer-route');
 
 dotenv.config();
 
@@ -61,6 +62,7 @@ app.use('/overview', overview_route);
 app.use('/sendEmail', sendEmailROute);
 app.use('/saveFIle', saveFileRoute);
 app.use('/discussions', discussionRoute);
+app.use('/answer', answerRoute);
 
 console.log(process.env.NAME);
 

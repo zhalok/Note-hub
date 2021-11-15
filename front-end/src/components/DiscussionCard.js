@@ -1,15 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
+import NewAnswerForm from './newAnswerForm';
 
 export default function DiscussionCard(props) {
-	const { discussion_info } = props;
+	const { discussion_info, loggedInState } = props;
 	const {
 		title,
 		body,
 		discussion_starters_name,
 		discussion_starters_email,
+		userName,
 		votes,
 	} = discussion_info;
+
+	const [answer, setAnswer] = useState('');
+	const [show, setShow] = useState(false);
+
+	const sendEmailNotification = () => {
+		fetch('http://localhost:5000/sendEmail/sendNotification', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: {
+				from: userName,
+				to: discussion_starters_email,
+				discussion_title: title,
+				body: answer,
+			},
+		});
+	};
 
 	return (
 		<div>
@@ -19,7 +39,7 @@ export default function DiscussionCard(props) {
 					width: '70%',
 					marginLeft: 'auto',
 					marginRight: 'auto',
-					marginTop: '100px',
+					marginTop: '50px',
 					backgroundColor: 'white',
 					padding: '20px',
 					boxShadow:
@@ -27,6 +47,13 @@ export default function DiscussionCard(props) {
 					borderRadius: '10px',
 				}}
 			>
+				<NewAnswerForm
+					show={show}
+					onHide={() => {
+						setShow(false);
+					}}
+					loggedInState={loggedInState}
+				/>
 				<h1>{title}</h1>
 				<hr />
 				<p>{body}</p>
@@ -39,7 +66,7 @@ export default function DiscussionCard(props) {
 					}}
 				>
 					<Button
-						variant='success'
+						variant='primary'
 						style={{
 							display: 'flex',
 							width: 'fit-content',
@@ -47,10 +74,10 @@ export default function DiscussionCard(props) {
 								'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
 						}}
 					>
-						Up Vote
+						See all answers
 					</Button>
 					<Button
-						variant='danger'
+						variant='outline-success'
 						style={{
 							display: 'flex',
 							width: 'fit-content',
@@ -58,21 +85,12 @@ export default function DiscussionCard(props) {
 								'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
 							marginLeft: '10px',
 						}}
-					>
-						Down Vote
-					</Button>{' '}
-					<Button
-						variant='primary'
-						style={{
-							display: 'flex',
-							width: 'fit-content',
-							boxShadow:
-								'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-							marginLeft: 'auto',
+						onClick={() => {
+							setShow(true);
 						}}
 					>
-						Open
-					</Button>
+						Answer
+					</Button>{' '}
 				</div>
 			</div>
 		</div>

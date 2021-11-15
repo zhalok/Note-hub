@@ -21,17 +21,18 @@ export default function Discussions(props) {
 	const [discussions, setDiscussions] = useState([]);
 	const [changer, setChanger] = useState({});
 
-	const { nav_info, loggedInState, handleLog, userId } = props;
+	const { nav_info, loggedInState, handleLog, userId, userName, userEmail } =
+		props;
 
 	useEffect(() => {
-		fetch('http://localhost:5000/discussions/get_all')
+		fetch('https://notehubapi.herokuapp.com/discussions/get_all')
 			.then((res) => res.json())
 			.then((data) => setDiscussions(data))
 			.catch((err) => console.log(err));
 	}, [changer]);
 
 	useEffect(() => {
-		fetch(`http://localhost:5000/users/id/${userId}`)
+		fetch(`https://notehubapi.herokuapp.com/users/id/${userId}`)
 			.then((res) => res.json())
 			.then((data) => setUserDetails(data[0]))
 			.catch((err) => console.log(err));
@@ -92,7 +93,10 @@ export default function Discussions(props) {
 									}}
 									loggedInState={loggedInState}
 								/>
-								<DiscussionList discussions={discussions} />
+								<DiscussionList
+									loggedInState={loggedInState}
+									discussions={discussions}
+								/>
 							</div>
 						</div>
 					</div>

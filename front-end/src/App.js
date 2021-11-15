@@ -19,17 +19,28 @@ export default class App extends Component {
 	state = {
 		isLoggedIn: false,
 		userId: '',
+		useName: '',
+		userEmail: '',
 	};
 
 	get_token() {
 		const token = JSON.parse(sessionStorage.getItem('token'));
-		console.log(token);
+
 		if (token) {
-			console.log(token.user);
+			// console.log(token.user);
 			this.setState({
 				isLoggedIn: true,
 				userId: token.user,
 			});
+			fetch(`http://localhost:5000/users/id/${this.state.userId}`)
+				.then((res) => res.json())
+				.then((data) =>
+					this.setState({
+						userName: data[0].name,
+						userEmail: data[0].email,
+					})
+				)
+				.catch((err) => console.log(err));
 		} else {
 			this.setState({
 				isLoggedIn: false,
@@ -162,6 +173,8 @@ export default class App extends Component {
 							loggedInState={isLoggedIn}
 							handleLog={this.loginStateChanger}
 							userId={userId}
+							userName={this.state.userName}
+							userEmail={this.state.userEmail}
 						/>
 					</Route>
 				</div>
