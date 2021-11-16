@@ -1,18 +1,30 @@
 const answer_model = require('../models/answer_model');
+const notificationProcessing = require('../Utils/notificationProcessing');
 
 const answer = {};
 
 answer.add_answer = (req, res, next) => {
-	const { answer_providers_name, body, discussion_id } = req.body;
+	const { body, discussion_id, discussion_starters_email, discussion_title } =
+		req.body;
 	const new_answer = new answer_model({
-		answer_providers_name,
 		body,
 		discussion_id,
 	});
 	new_answer.save((err) => {
 		if (err) next(err);
 		else {
-			res.json('answer added');
+			const subject = `An answer was provided to your discussion ${discussion_title}}`;
+
+			notificationProcessing.send_email(
+				subject,
+				body,
+				null,
+				discussion_starters_email,
+				(err) => {
+					if (err) next(err);
+					else res.json('Answer added and notification sent');
+				}
+			);
 		}
 	});
 };

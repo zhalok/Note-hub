@@ -10,15 +10,11 @@ const NewAnswerForm = (props) => {
 	const [body, setBody] = useState({});
 
 	useEffect(() => {
-		console.log('hello');
 		setTitle('');
 		setBody('');
 	}, [props.show]);
 
 	const send_email_notification = (to, title, body) => {
-		console.log(to);
-		console.log(title);
-		console.log(body);
 		fetch('http://localhost:5000/sendEmail/sendNotification', {
 			method: 'POST',
 			headers: {
@@ -28,6 +24,8 @@ const NewAnswerForm = (props) => {
 				to,
 				title,
 				body,
+				discussion_starters_email,
+				discussion_title,
 			}),
 		})
 			.then((res) => res.json())
@@ -52,8 +50,10 @@ const NewAnswerForm = (props) => {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-				body: body,
+				body,
 				discussion_id,
+				discussion_title,
+				discussion_starters_email,
 			}),
 		})
 			.then((res) => res.json())
