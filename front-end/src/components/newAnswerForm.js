@@ -8,30 +8,12 @@ import { Link } from 'react-router-dom';
 const NewAnswerForm = (props) => {
 	const [title, setTitle] = useState({});
 	const [body, setBody] = useState({});
+	// const { setMessage } = props;
 
 	useEffect(() => {
 		setTitle('');
 		setBody('');
 	}, [props.show]);
-
-	const send_email_notification = (to, title, body) => {
-		fetch('http://localhost:5000/sendEmail/sendNotification', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				to,
-				title,
-				body,
-				discussion_starters_email,
-				discussion_title,
-			}),
-		})
-			.then((res) => res.json())
-			.then((data) => console.log(data))
-			.catch((err) => console.log(err));
-	};
 
 	const {
 		loggedInState,
@@ -59,12 +41,6 @@ const NewAnswerForm = (props) => {
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
-				onHide();
-				send_email_notification(
-					discussion_starters_email,
-					discussion_title,
-					discussion_body
-				);
 			})
 			.catch((err) => console.log(err));
 	};
@@ -96,6 +72,7 @@ const NewAnswerForm = (props) => {
 				<Button
 					variant='success'
 					onClick={() => {
+						onHide();
 						submit_answer();
 					}}
 				>

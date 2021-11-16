@@ -13,7 +13,7 @@ answer.add_answer = (req, res, next) => {
 	new_answer.save((err) => {
 		if (err) next(err);
 		else {
-			const subject = `An answer was provided to your discussion ${discussion_title}}`;
+			const subject = `An answer was provided to your discussion ${discussion_title}`;
 
 			notificationProcessing.send_email(
 				subject,
