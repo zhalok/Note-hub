@@ -31,11 +31,10 @@ answer.add_answer = (req, res, next) => {
 
 answer.get_answer = (req, res, next) => {
 	const discussion_id = req.params.discussion_id;
-	console.log(discussion_id);
+
 	answer_model.find({ discussion_id }, (err, data) => {
 		if (err) next(err);
 		else {
-			console.log('yes data fetched');
 			res.json(data);
 		}
 	});

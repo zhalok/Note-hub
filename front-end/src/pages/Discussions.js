@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import NewDiscussionForm from '../components/NewDiscussionForm';
 import NotificationMessage from '../components/NotificationMessage';
 import ToastContext from '../Contexts/ToastContext';
+import WaitModalMessage from '../components/WaitModalMessage';
 
 // const getData = (setUserDetails, userId) => {
 // 	fetch(`http://localhost:5000/users/id/${userId}`)
@@ -22,6 +23,7 @@ export default function Discussions(props) {
 	const [userDetails, setUserDetails] = useState({});
 	const [discussions, setDiscussions] = useState([]);
 	const [changer, setChanger] = useState({});
+	const [showModalMessage, setShowModalMessage] = useState(true);
 
 	const { nav_info, loggedInState, handleLog, userId, userName, userEmail } =
 		props;
@@ -29,7 +31,10 @@ export default function Discussions(props) {
 	useEffect(() => {
 		fetch('https://notehubapi.herokuapp.com/discussions/get_all')
 			.then((res) => res.json())
-			.then((data) => setDiscussions(data))
+			.then((data) => {
+				setDiscussions(data);
+				setShowModalMessage(false);
+			})
 			.catch((err) => console.log(err));
 	}, [changer]);
 
@@ -58,6 +63,7 @@ export default function Discussions(props) {
 					handleLog={handleLog}
 					userId={userId}
 				/>
+				<WaitModalMessage show={showModalMessage} />
 
 				<div className='container mt-5 pt-4'>
 					<div style={{ display: 'flex', flexDirection: 'row' }}>

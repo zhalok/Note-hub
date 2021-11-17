@@ -23,7 +23,7 @@ export default class Projectlist extends Component {
 		} else {
 			return (
 				<div className='d-flex justify-content-center mt-5'>
-					<h3 style={{ color: 'black' }}>Loading</h3>{' '}
+					{/* <h3 style={{ color: 'black' }}>Loading</h3>{' '} */}
 				</div>
 			);
 		}

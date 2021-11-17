@@ -21,11 +21,7 @@ export default class Booklist extends Component {
 				);
 			}
 		} else {
-			return (
-				<div className='d-flex justify-content-center mt-5'>
-					<h3 style={{ color: 'black' }}>Loading</h3>{' '}
-				</div>
-			);
+			return <div className='d-flex justify-content-center mt-5'></div>;
 		}
 	}
 }

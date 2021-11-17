@@ -4,6 +4,7 @@ import UserCard from '../components/UserCard';
 import Img from '../images/signup.jpg';
 // import UserPopUp from '../components/UserPopUp';
 import UserList from '../components/UserList';
+import WaitModalMessage from '../components/WaitModalMessage';
 
 const apiURL =
 	process.env.NODE_ENV == 'dev'
@@ -13,14 +14,14 @@ const apiURL =
 export default class Users extends React.Component {
 	state = {
 		users: [],
+		showWaitModal: true,
 	};
 
 	fetchUsers = () => {
 		fetch(` ${apiURL}/users/get_all`)
 			.then((response) => response.json())
 			.then((data) => {
-				this.setState({ users: data });
-				console.log(this.state.users);
+				this.setState({ users: data, showWaitModal: false });
 			});
 	};
 
@@ -51,7 +52,7 @@ export default class Users extends React.Component {
 					handleLog={handleLog}
 					userId={userId}
 				/>
-
+				<WaitModalMessage show={this.state.showWaitModal} />
 				<div className='container mt-5 pt-5'>
 					<h1 style={{ color: 'white' }}>Contributors</h1>
 					<hr className='hr-style' />

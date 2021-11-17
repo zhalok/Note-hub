@@ -6,6 +6,7 @@ import SearchOption from '../components/SearchOption';
 import Img from '../images/signup.jpg';
 
 import '../App.css';
+import WaitModalMessage from '../components/WaitModalMessage';
 
 var sectionStyle = {
 	backgroundSize: 'cover',
@@ -23,6 +24,7 @@ export default class Notes extends Component {
 	state = {
 		notelist: [],
 		noteFetched: false,
+		showWaitModal: true,
 	};
 
 	find_all_notes = async () => {
@@ -33,6 +35,7 @@ export default class Notes extends Component {
 			this.setState({
 				notelist: data,
 				noteFetched: true,
+				showWaitModal: false,
 			});
 		} catch (err) {
 			console.log(err);
@@ -96,6 +99,7 @@ export default class Notes extends Component {
 					handleLog={handleLog}
 					userId={userId}
 				/>
+				<WaitModalMessage show={this.state.showWaitModal} />
 
 				<div className='container mt-5 pt-4'>
 					<div style={{ display: 'flex', flexDirection: 'row' }}>

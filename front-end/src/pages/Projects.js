@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import Projectlist from '../components/Projectlist';
 import Img from '../images/signup.jpg';
 import SearchOption from '../components/SearchOption';
+import WaitModalMessage from '../components/WaitModalMessage';
 
 import '../App.css';
 import SemesterList from '../components/SemesterList';
@@ -23,6 +24,7 @@ export default class Projects extends Component {
 	state = {
 		projectlist: [],
 		projectFetched: false,
+		showWaitModal: true,
 	};
 
 	find_all_projects = async () => {
@@ -33,6 +35,7 @@ export default class Projects extends Component {
 			this.setState({
 				projectlist: data,
 				projectFetched: true,
+				showWaitModal: false,
 			});
 		} catch (err) {
 			console.log(err);
@@ -89,6 +92,7 @@ export default class Projects extends Component {
 					handleLog={handleLog}
 					userId={userId}
 				/>
+				<WaitModalMessage show={this.state.showWaitModal} />
 				<div className='container mt-5 pt-4'>
 					<div style={{ display: 'flex', flexDirection: 'row' }}>
 						<h1 style={{ color: 'white' }}>Projects</h1>

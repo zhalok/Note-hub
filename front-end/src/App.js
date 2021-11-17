@@ -28,7 +28,6 @@ export default class App extends Component {
 		const token = JSON.parse(sessionStorage.getItem('token'));
 
 		if (token) {
-			// console.log(token.user);
 			this.setState({
 				isLoggedIn: true,
 				userId: token.user,

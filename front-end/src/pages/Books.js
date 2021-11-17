@@ -3,9 +3,8 @@ import React, { Component } from 'react';
 import Navbar from '../components/Navbar';
 import Booklist from '../components/Booklist';
 import SearchOption from '../components/SearchOption';
-import Img from '../images/signup.jpg';
 import SemesterList from '../components/SemesterList';
-import searchImage from '../images/search.png';
+import WaitModalMessage from '../components/WaitModalMessage';
 
 import '../App.css';
 
@@ -28,6 +27,7 @@ export default class Books extends Component {
 	state = {
 		booklist: [],
 		bookFetched: false,
+		showWaitMessage: true,
 	};
 
 	find_all_books = async () => {
@@ -38,6 +38,7 @@ export default class Books extends Component {
 			this.setState({
 				booklist: data,
 				bookFetched: true,
+				showWaitMessage: false,
 			});
 			console.log(this.state.booklist);
 		} catch (err) {
@@ -98,6 +99,7 @@ export default class Books extends Component {
 						handleLog={handleLog}
 						userId={userId}
 					/>
+					<WaitModalMessage show={this.state.showWaitMessage} />
 
 					<div className='container mt-5 pt-4'>
 						<div style={{ display: 'flex', flexDirection: 'row' }}>
