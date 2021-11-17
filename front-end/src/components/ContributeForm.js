@@ -16,7 +16,7 @@ let apiURL =
 		? 'http://localhost:5000'
 		: 'https://notehubapi.herokuapp.com';
 
-apiURL = 'http://localhost:5000';
+// apiURL = 'http://localhost:5000';
 
 export default class ContributeForm extends Component {
 	constructor(props) {
@@ -72,7 +72,9 @@ export default class ContributeForm extends Component {
 			}),
 		})
 			.then((response) => response.json())
-			.then((data) => {})
+			.then((data) => {
+				this.setState({ message: 'Congo' });
+			})
 			.catch((err) => console.log(err));
 	};
 

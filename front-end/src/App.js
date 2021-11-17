@@ -177,6 +177,7 @@ export default class App extends Component {
 							userEmail={this.state.userEmail}
 						/>
 					</Route>
+					<Route path='answers/:discussion_id'></Route>
 				</div>
 			</Router>
 		);

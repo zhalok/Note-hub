@@ -5,16 +5,18 @@ import DiscussionCard from '../components/DiscussionCard';
 import DiscussionList from '../components/DiscussionList';
 import Button from 'react-bootstrap/Button';
 import NewDiscussionForm from '../components/NewDiscussionForm';
+import NotificationMessage from '../components/NotificationMessage';
+import ToastContext from '../Contexts/ToastContext';
 
-const getData = (setUserDetails, userId) => {
-	fetch(`http://localhost:5000/users/id/${userId}`)
-		.then((res) => res.json())
-		.then((data) => {
-			setUserDetails(data[0]);
-			console.log(data[0]);
-		})
-		.catch((err) => console.log(err));
-};
+// const getData = (setUserDetails, userId) => {
+// 	fetch(`http://localhost:5000/users/id/${userId}`)
+// 		.then((res) => res.json())
+// 		.then((data) => {
+// 			setUserDetails(data[0]);
+// 			console.log(data[0]);
+// 		})
+// 		.catch((err) => console.log(err));
+// };
 
 export default function Discussions(props) {
 	const [userDetails, setUserDetails] = useState({});
@@ -45,6 +47,7 @@ export default function Discussions(props) {
 	};
 
 	const [show, setShow] = useState(false);
+	const [showNotificationModal, setShowNotificationModal] = useState(false);
 
 	return (
 		<div>
@@ -92,11 +95,20 @@ export default function Discussions(props) {
 								}}
 								loggedInState={loggedInState}
 							/>
-							<DiscussionList
-								loggedInState={loggedInState}
-								discussions={discussions}
-								contributorName={userName}
+
+							<NotificationMessage
+								showNotificationModal={showNotificationModal}
+								setShowNotificationModal={setShowNotificationModal}
 							/>
+							<ToastContext.Provider
+								value={{ showNotificationModal, setShowNotificationModal }}
+							>
+								<DiscussionList
+									loggedInState={loggedInState}
+									discussions={discussions}
+									contributorName={userName}
+								/>
+							</ToastContext.Provider>
 						</div>
 					</div>
 				</div>

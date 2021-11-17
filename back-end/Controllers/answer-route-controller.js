@@ -29,7 +29,15 @@ answer.add_answer = (req, res, next) => {
 	});
 };
 
-answer.get_answer = (req, res, next) => {};
+answer.get_answer = (req, res, next) => {
+	const { discussion_id } = req.body;
+	answer_model.find({ discussion_id }, (err, data) => {
+		if (err) next(err);
+		else {
+			console.log(data);
+		}
+	});
+};
 
 answer.update_answer = (req, res, next) => {};
 

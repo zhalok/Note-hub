@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
+import ToastContext from '../Contexts/ToastContext';
 import NewAnswerForm from './newAnswerForm';
 
 export default function DiscussionCard(props) {
@@ -33,18 +34,27 @@ export default function DiscussionCard(props) {
 					borderRadius: '10px',
 				}}
 			>
-				<NewAnswerForm
-					show={show}
-					onHide={() => {
-						setShow(false);
+				<ToastContext.Consumer>
+					{({ showNotificationModal, setShowNotificationModal }) => {
+						return (
+							<NewAnswerForm
+								show={show}
+								onHide={() => {
+									setShow(false);
+								}}
+								loggedInState={loggedInState}
+								discussion_id={_id}
+								discussion_starters_email={discussion_starters_email}
+								contributorName={contributorName}
+								discussion_title={title}
+								discussion_body={body}
+								showNotificationModal={showNotificationModal}
+								setShowNotificationModal={setShowNotificationModal}
+							/>
+						);
 					}}
-					loggedInState={loggedInState}
-					discussion_id={_id}
-					discussion_starters_email={discussion_starters_email}
-					contributorName={contributorName}
-					discussion_title={title}
-					discussion_body={body}
-				/>
+				</ToastContext.Consumer>
+
 				<h1>{title}</h1>
 				<hr />
 				<p>{body}</p>

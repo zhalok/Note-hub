@@ -9,7 +9,7 @@ const NewAnswerForm = (props) => {
 	const [title, setTitle] = useState({});
 	const [body, setBody] = useState({});
 	// const { setMessage } = props;
-
+	const { showNotificationModal, setShowNotificationModal } = props;
 	useEffect(() => {
 		setTitle('');
 		setBody('');
@@ -41,6 +41,7 @@ const NewAnswerForm = (props) => {
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
+				setShowNotificationModal(true);
 			})
 			.catch((err) => console.log(err));
 	};
