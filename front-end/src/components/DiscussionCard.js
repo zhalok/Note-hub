@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import ToastContext from '../Contexts/ToastContext';
 import NewAnswerForm from './newAnswerForm';
+import { Link } from 'react-router-dom';
 
 export default function DiscussionCard(props) {
 	const { discussion_info, loggedInState } = props;
@@ -56,6 +57,7 @@ export default function DiscussionCard(props) {
 				</ToastContext.Consumer>
 
 				<h1>{title}</h1>
+				<small>-{discussion_starters_name}</small>
 				<hr />
 				<p>{body}</p>
 				<div
@@ -66,17 +68,19 @@ export default function DiscussionCard(props) {
 						marginTop: '70px',
 					}}
 				>
-					<Button
-						variant='primary'
-						style={{
-							display: 'flex',
-							width: 'fit-content',
-							boxShadow:
-								'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
-						}}
-					>
-						See all answers
-					</Button>
+					<Link to={`/answers/${_id}`}>
+						<Button
+							variant='primary'
+							style={{
+								display: 'flex',
+								width: 'fit-content',
+								boxShadow:
+									'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+							}}
+						>
+							See all answers
+						</Button>
+					</Link>
 					<Button
 						variant='outline-success'
 						style={{

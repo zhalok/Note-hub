@@ -14,6 +14,7 @@ import Users from './pages/Users';
 import Discussions from './pages/Discussions';
 
 import './App.css';
+import Answers from './pages/Answers';
 
 export default class App extends Component {
 	state = {
@@ -177,7 +178,16 @@ export default class App extends Component {
 							userEmail={this.state.userEmail}
 						/>
 					</Route>
-					<Route path='answers/:discussion_id'></Route>
+					<Route path='/answers/:discussion_id'>
+						<Answers
+							nav_info={nav_info}
+							loggedInState={isLoggedIn}
+							handleLog={this.loginStateChanger}
+							userId={userId}
+							userName={this.state.useName}
+							userEmail={this.state.userEmail}
+						/>
+					</Route>
 				</div>
 			</Router>
 		);
