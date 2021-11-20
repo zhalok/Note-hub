@@ -38,13 +38,6 @@ export default function Discussions(props) {
 			.catch((err) => console.log(err));
 	}, [changer]);
 
-	useEffect(() => {
-		fetch(`https://notehubapi.herokuapp.com/users/id/${userId}`)
-			.then((res) => res.json())
-			.then((data) => setUserDetails(data[0]))
-			.catch((err) => console.log(err));
-	}, [props]);
-
 	var sectionStyle = {
 		backgroundSize: 'cover',
 		padding: '10px',
@@ -93,8 +86,8 @@ export default function Discussions(props) {
 								setChanger={(e) => {
 									setChanger(e);
 								}}
-								discussionStartersName={userDetails.name}
-								discussionStartersEmail={userDetails.email}
+								discussionStartersName={userName}
+								discussionStartersEmail={userEmail}
 								show={show}
 								onHide={() => {
 									setShow(false);

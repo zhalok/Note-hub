@@ -2,15 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import AnswerList from '../components/AnswerList';
 import Navbar from '../components/Navbar';
+import WaitModalMessage from '../components/WaitModalMessage';
 
 const Answers = (props) => {
 	const { nav_info, loggedInState, handleLog, userId } = props;
 
 	const [answerList, setAnswerList] = useState([]);
 
-	const { discussion_id } = useParams([]);
+	const [showWaitMessage, setShowWaitMessage] = useState(true);
 
-	console.log(discussion_id);
+	const [fetched, setFetched] = useState(false);
+
+	const { discussion_id } = useParams([]);
 
 	useEffect(() => {
 		if (discussion_id) {
@@ -18,8 +21,8 @@ const Answers = (props) => {
 				.then((res) => res.json())
 				.then((data) => {
 					setAnswerList(data);
-					console.log('data fetched');
-					console.log(data);
+					setShowWaitMessage(false);
+					setFetched(true);
 				})
 				.catch((err) => console.log(err));
 		}
@@ -41,6 +44,8 @@ const Answers = (props) => {
 					userId={userId}
 				/>
 
+				<WaitModalMessage show={showWaitMessage} />
+
 				<div className='container mt-5 pt-4'>
 					<div style={{ display: 'flex', flexDirection: 'row' }}>
 						<h1 style={{ color: 'white' }}>All answers</h1>
@@ -49,7 +54,11 @@ const Answers = (props) => {
 					<hr className='hr-style' />
 					<div className='total-page'>
 						<div className='contents'>
-							<AnswerList answerList={answerList} />
+							<AnswerList
+								answerList={answerList}
+								waitModalMessage={WaitModalMessage}
+								fetched={fetched}
+							/>
 						</div>
 					</div>
 				</div>

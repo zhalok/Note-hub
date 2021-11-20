@@ -32,14 +32,16 @@ export default class App extends Component {
 				isLoggedIn: true,
 				userId: token.user,
 			});
-			fetch(`http://localhost:5000/users/id/${this.state.userId}`)
+
+			fetch(`http://localhost:5000/users/id/${token.user}`)
 				.then((res) => res.json())
-				.then((data) =>
+				.then((data) => {
 					this.setState({
 						userName: data[0].name,
 						userEmail: data[0].email,
-					})
-				)
+					});
+					console.log('fetched');
+				})
 				.catch((err) => console.log(err));
 		} else {
 			this.setState({
@@ -65,6 +67,7 @@ export default class App extends Component {
 
 	componentDidMount() {
 		this.get_token();
+		console.log(this.state.userId);
 	}
 
 	// componentDidUpdate() {
@@ -77,8 +80,10 @@ export default class App extends Component {
 			{ id: 2, title: 'Sign up', link: '/signup' },
 		];
 
-		const { isLoggedIn, userId } = this.state;
+		const { isLoggedIn, userId, userEmail, userName } = this.state;
 		console.log(userId);
+		console.log(userEmail);
+		console.log(userName);
 
 		return (
 			<Router>
