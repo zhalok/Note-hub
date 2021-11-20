@@ -81,9 +81,6 @@ export default class App extends Component {
 		];
 
 		const { isLoggedIn, userId, userEmail, userName } = this.state;
-		console.log(userId);
-		console.log(userEmail);
-		console.log(userName);
 
 		return (
 			<Router>
@@ -160,7 +157,6 @@ export default class App extends Component {
 								loggedInState={isLoggedIn}
 								handleLog={this.loginStateChanger}
 								userId={userId}
-								path='/profile/:id'
 							/>
 						</Route>
 					</Switch>
