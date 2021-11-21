@@ -5,6 +5,7 @@ const discussion_schema = new mongoose.Schema({
 	body: { type: String, required: true },
 	discussion_starters_name: { type: String, required: true },
 	discussion_starters_email: { type: String, required: true },
+	discussion_starters_id: { type: String, required: true },
 	votes: { type: Number },
 });
 

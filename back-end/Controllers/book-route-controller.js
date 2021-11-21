@@ -40,6 +40,17 @@ const get_all_books = async (req, res, next) => {
 	}
 };
 
+const get_book_by_contributorID = (req, res, next) => {
+	const { contributor_id } = req.params;
+	book_model.find({ contributor_id }, (err, data) => {
+		if (err) {
+			next(err);
+		} else {
+			res.json(data);
+		}
+	});
+};
+
 const add_new_book = async (req, res, next) => {
 	console.log(req.file);
 	const {
@@ -105,3 +116,4 @@ exports.get_books_by_semester = get_books_by_semester;
 exports.add_new_book = add_new_book;
 exports.get_books_by_name = get_books_by_name;
 exports.get_all_books = get_all_books;
+exports.get_book_by_contributorID = get_book_by_contributorID;

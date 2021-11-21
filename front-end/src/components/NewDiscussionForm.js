@@ -3,7 +3,6 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
-import { Link } from 'react-router-dom';
 
 const NewDiscussionForm = (props) => {
 	const [title, setTitle] = useState({});
@@ -15,11 +14,13 @@ const NewDiscussionForm = (props) => {
 		setBody('');
 	}, [props.show]);
 
-	const { loggedInState, discussionStartersName, discussionStartersEmail } =
-		props;
+	const {
+		loggedInState,
+		discussionStartersName,
+		discussionStartersEmail,
+		discussionStartersId,
+	} = props;
 
-	// console.log(discussionStartersEmail);
-	// console.log(discussionStartersName);
 	const submitDiscussion = () => {
 		if (!title || !body) {
 			alert('please give the title and body');
@@ -35,6 +36,7 @@ const NewDiscussionForm = (props) => {
 				discussion_body: body,
 				discussion_starters_name: discussionStartersName,
 				discussion_starters_email: discussionStartersEmail,
+				discussion_starters_id: discussionStartersId,
 			}),
 		})
 			.then((res) => res.json())

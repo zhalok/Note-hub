@@ -39,6 +39,17 @@ const get_all_projects = async (req, res, next) => {
 	}
 };
 
+const get_projects_by_contributorID = (req, res, next) => {
+	const { contributor_id } = req.params;
+	project_model.find({ contributor_id }, (err, data) => {
+		if (err) {
+			next(err);
+		} else {
+			res.json(data);
+		}
+	});
+};
+
 const add_new_project = async (req, res, next) => {
 	console.log(req.file);
 	const {
@@ -101,4 +112,5 @@ module.exports = {
 	get_projects_by_name,
 	get_projects_by_semester,
 	add_new_project,
+	get_projects_by_contributorID,
 };

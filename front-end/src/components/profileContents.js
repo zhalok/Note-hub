@@ -20,8 +20,9 @@ const ProfileContents = ({ profileId }) => {
 		>
 			<h1 style={{ color: 'white' }}>Contributions</h1>
 			<h1 style={{ backgroundColor: 'white' }} />
+
 			<div style={{ display: 'flex', flexDirection: 'row' }}>
-				<Link to={`/profile/books/${profileId}`}>
+				<Link to={`/contributions/books/${profileId}`}>
 					<HoverButton type='books' />
 				</Link>
 

@@ -2,7 +2,7 @@ import React from 'react';
 import DiscussionCard from './DiscussionCard';
 
 const DiscussionList = (props) => {
-	const { discussions, loggedInState, contributorName } = props;
+	const { discussions, loggedInState, userName, userId } = props;
 
 	if (discussions.length > 0) {
 		return (
@@ -11,7 +11,8 @@ const DiscussionList = (props) => {
 					<DiscussionCard
 						discussion_info={e}
 						loggedInState={loggedInState}
-						contributorName={contributorName}
+						userName={userName}
+						userId={userId}
 					/>
 				))}
 			</div>

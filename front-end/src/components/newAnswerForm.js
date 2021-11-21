@@ -18,12 +18,16 @@ const NewAnswerForm = (props) => {
 	const {
 		loggedInState,
 		discussion_starters_email,
-		contributorName,
+		answer_providers_name,
+		answer_providers_id,
 		discussion_id,
 		onHide,
 		discussion_title,
 		discussion_body,
 	} = props;
+
+	console.log(answer_providers_name);
+	console.log(answer_providers_id);
 
 	const submit_answer = () => {
 		fetch('http://localhost:5000/answer', {
@@ -36,6 +40,8 @@ const NewAnswerForm = (props) => {
 				discussion_id,
 				discussion_title,
 				discussion_starters_email,
+				answer_providers_id,
+				answer_providers_name,
 			}),
 		})
 			.then((res) => res.json())

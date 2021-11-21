@@ -151,16 +151,16 @@ export default class App extends Component {
 							userId={userId}
 						/>
 					</Route>
-					<Switch>
-						<Route path='/profile/:id'>
-							<Profile
-								nav_info={nav_info}
-								loggedInState={isLoggedIn}
-								handleLog={this.loginStateChanger}
-								userId={userId}
-							/>
-						</Route>
-					</Switch>
+
+					<Route path='/profile/:id'>
+						<Profile
+							nav_info={nav_info}
+							loggedInState={isLoggedIn}
+							handleLog={this.loginStateChanger}
+							userId={userId}
+						/>
+					</Route>
+
 					<Route path='/users'>
 						<Users
 							nav_info={nav_info}
@@ -189,7 +189,8 @@ export default class App extends Component {
 							userEmail={this.state.userEmail}
 						/>
 					</Route>
-					<Route path='/profile/books/:id'>
+
+					<Route path='/contributions/books/:profileId'>
 						<ProfileBooks />
 					</Route>
 				</div>

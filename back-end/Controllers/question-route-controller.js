@@ -38,6 +38,17 @@ const get_all_questions = async (req, res, next) => {
 	}
 };
 
+const get_questions_by_contributorID = (req, res, next) => {
+	const { contributor_id } = req.params;
+	question_model.find({ contributor_id }, (err, data) => {
+		if (err) {
+			next(err);
+		} else {
+			res.json(data);
+		}
+	});
+};
+
 const add_new_question = async (req, res, next) => {
 	console.log(req.file);
 	const {
@@ -100,4 +111,5 @@ module.exports = {
 	get_all_questions,
 	get_questions_by_name,
 	get_questions_by_semester,
+	get_questions_by_contributorID,
 };

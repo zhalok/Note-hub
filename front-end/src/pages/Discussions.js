@@ -46,6 +46,7 @@ export default function Discussions(props) {
 
 	const [show, setShow] = useState(false);
 	const [showNotificationModal, setShowNotificationModal] = useState(false);
+	console.log(userName);
 
 	return (
 		<div>
@@ -88,6 +89,7 @@ export default function Discussions(props) {
 								}}
 								discussionStartersName={userName}
 								discussionStartersEmail={userEmail}
+								discussionStartersId={userId}
 								show={show}
 								onHide={() => {
 									setShow(false);
@@ -105,7 +107,8 @@ export default function Discussions(props) {
 								<DiscussionList
 									loggedInState={loggedInState}
 									discussions={discussions}
-									contributorName={userName}
+									userName={userName}
+									userId={userId}
 								/>
 							</ToastContext.Provider>
 						</div>

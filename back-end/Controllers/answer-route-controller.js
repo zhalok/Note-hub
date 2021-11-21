@@ -4,11 +4,25 @@ const notificationProcessing = require('../Utils/notificationProcessing');
 const answer = {};
 
 answer.add_answer = (req, res, next) => {
-	const { body, discussion_id, discussion_starters_email, discussion_title } =
-		req.body;
+	const {
+		body,
+		discussion_id,
+		discussion_starters_email,
+		discussion_title,
+		answer_providers_name,
+		answer_providers_id,
+	} = req.body;
+
+	console.log(discussion_starters_email);
+
+	console.log(answer_providers_id);
+	console.log(answer_providers_name);
+
 	const new_answer = new answer_model({
 		body,
 		discussion_id,
+		answer_providers_name,
+		answer_providers_id,
 	});
 	new_answer.save((err) => {
 		if (err) next(err);
@@ -35,6 +49,17 @@ answer.get_answer = (req, res, next) => {
 	answer_model.find({ discussion_id }, (err, data) => {
 		if (err) next(err);
 		else {
+			res.json(data);
+		}
+	});
+};
+
+answer.get_answer_by_contributorID = (req, res, next) => {
+	const { contributor_id } = req.params;
+	answer_model.find({ contributor_id }, (err, data) => {
+		if (err) {
+			next(err);
+		} else {
 			res.json(data);
 		}
 	});

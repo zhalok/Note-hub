@@ -1,3 +1,4 @@
+const discussion_model = require('../models/discussion_model');
 const discussionModel = require('../models/discussion_model');
 
 const addDiscussion = (req, res, next) => {
@@ -6,20 +7,17 @@ const addDiscussion = (req, res, next) => {
 		discussion_body,
 		discussion_starters_name,
 		discussion_starters_email,
+		discussion_starters_id,
 	} = req.body;
 
-	console.log({
-		discussion_title,
-		discussion_body,
-		discussion_starters_name,
-		discussion_starters_email,
-	});
+	console.log(discussion_starters_id);
 
 	const new_discussion = new discussionModel({
 		title: discussion_title,
 		body: discussion_body,
 		discussion_starters_name: discussion_starters_name,
 		discussion_starters_email: discussion_starters_email,
+		discussion_starters_id: discussion_starters_id,
 
 		votes: 0,
 	});
@@ -61,6 +59,20 @@ const deleteDiscussion = (req, res, next) => {
 	});
 };
 
+const get_discussion_by_contributorID = (req, res, next) => {
+	const { contributor_id } = req.params;
+	discussion_model.find(
+		{ discussion_starters_id: contributor_id },
+		(err, data) => {
+			if (err) {
+				next(err);
+			} else {
+				res.json(data);
+			}
+		}
+	);
+};
+
 const updateDiscussion = () => {}; // pore implement korbo akhn na
 
 module.exports = {
@@ -70,4 +82,5 @@ module.exports = {
 	getDiscussionById,
 	deleteDiscussion,
 	updateDiscussion,
+	get_discussion_by_contributorID,
 };

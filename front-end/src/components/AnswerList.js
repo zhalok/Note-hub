@@ -7,7 +7,12 @@ const AnswerList = ({ answerList, waitModalMessage, fetched }) => {
 			return (
 				<>
 					{answerList.map((e, index) => (
-						<AnswerCard key={index} body={e.body} />
+						<AnswerCard
+							key={index}
+							body={e.body}
+							name={e.answer_providers_name}
+							id={e.answer_providers_id}
+						/>
 					))}
 				</>
 			);

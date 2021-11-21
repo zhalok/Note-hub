@@ -40,6 +40,17 @@ const get_all_notes = async (req, res, next) => {
 	}
 };
 
+const get_notes_by_contributorID = (req, res, next) => {
+	const { contributor_id } = req.params;
+	note_model.find({ contributor_id }, (err, data) => {
+		if (err) {
+			next(err);
+		} else {
+			res.json(data);
+		}
+	});
+};
+
 const add_new_note = async (req, res, next) => {
 	console.log(req.file);
 	const {
@@ -104,4 +115,5 @@ module.exports = {
 	get_notes_by_name,
 	get_notes_by_semester,
 	add_new_note,
+	get_notes_by_contributorID,
 };

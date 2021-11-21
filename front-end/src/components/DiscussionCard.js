@@ -5,16 +5,19 @@ import NewAnswerForm from './newAnswerForm';
 import { Link } from 'react-router-dom';
 
 export default function DiscussionCard(props) {
-	const { discussion_info, loggedInState } = props;
+	const { discussion_info, loggedInState, userName, userId } = props;
 	const {
 		_id,
 		title,
 		body,
 		discussion_starters_name,
 		discussion_starters_email,
-		contributorName,
+
 		votes,
 	} = discussion_info;
+
+	console.log(userName);
+	console.log(userId);
 
 	const [answer, setAnswer] = useState('');
 	const [show, setShow] = useState(false);
@@ -46,7 +49,8 @@ export default function DiscussionCard(props) {
 								loggedInState={loggedInState}
 								discussion_id={_id}
 								discussion_starters_email={discussion_starters_email}
-								contributorName={contributorName}
+								answer_providers_name={userName}
+								answer_providers_id={userId}
 								discussion_title={title}
 								discussion_body={body}
 								showNotificationModal={showNotificationModal}
