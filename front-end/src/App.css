@@ -1,35 +1,75 @@
 .hr-style {
-  border-top: 3px double #8c8b8b;
+	border-top: 3px double #8c8b8b;
 }
 
 .dark-bg {
-  background-color: rgb(32, 35, 51);
+	background-color: rgb(32, 35, 51);
 }
 
 .total-page {
-  padding: 20px;
-  display: flex;
+	padding: 20px;
+	display: flex;
 }
 
 .semester-options {
-  width: 30%;
-  float: left;
-  margin: 10px;
-  padding: 20px;
+	width: 30%;
+	float: left;
+	margin: 10px;
+	padding: 20px;
 }
 
 .contents {
-  width: 70%;
-  float: left;
-  padding: 20px;
+	width: 70%;
+	float: left;
+	padding: 20px;
 }
 
 .ht {
-  min-height: 900px;
-  height: max-content;
+	min-height: 900px;
+	height: max-content;
 }
 
 .img-sm {
-  max-width: 315px;
-  width: max-content;
+	max-width: 315px;
+	width: max-content;
+}
+
+.button {
+	display: inline-block;
+	border-radius: 4px;
+	background-color: blue;
+	border: none;
+	color: #ffffff;
+	text-align: center;
+	font-size: 28px;
+	padding: 20px;
+	width: 200px;
+	transition: all 0.5s;
+	cursor: pointer;
+	margin: 5px;
+}
+
+.button span {
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+
+.button span:after {
+	content: '\00bb';
+	position: absolute;
+	opacity: 0;
+	top: 0;
+	right: -20px;
+	transition: 0.5s;
+}
+
+.button:hover span {
+	padding-right: 25px;
+}
+
+.button:hover span:after {
+	opacity: 1;
+	right: 0;
 }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
-import dp from '../images/user.png';
+import dp from '../images/dp.jpg';
 
 const ProfileInfo = () => {
 	const [profileInfo, setProfileInfo] = useState({});
@@ -11,26 +11,50 @@ const ProfileInfo = () => {
 	useEffect(() => {
 		fetch(`http://localhost:5000/users/id/${id}`)
 			.then((res) => res.json())
-			.then((data) => setProfileInfo(data[0]))
+			.then((data) => {
+				setProfileInfo(data[0]);
+			})
 			.catch((err) => console.log(err));
 	}, [id]);
 
+	const { name, registration_id, session } = profileInfo;
 	return (
-		<div>
+		<div
+			style={{
+				height: '100%',
+				width: '30%',
+				marginRight: 'auto',
+				backgroundColor: 'white',
+				display: 'flex',
+				padding: '20px',
+				marginLeft: '100px',
+			}}
+		>
 			<div
 				style={{
-					width: '50%',
+					height: '50%',
+					display: 'flex',
+					flexDirection: 'column',
 					marginLeft: 'auto',
 					marginRight: 'auto',
-					backgroundColor: 'white',
-					display: 'flex',
-					padding: '20px',
 				}}
 			>
-				<div style={{ height: '50%', flexDirection: 'row', display: 'flex' }}>
-					<img src={dp} style={{ height: '200px', width: '200px' }} />
+				<img
+					src={dp}
+					style={{
+						verticalAlign: 'middle',
+						width: '200px',
+						height: '200px',
+						borderRadius: '50%',
+					}}
+				/>
+				<div className='basic-info' style={{ marginTop: '50px' }}>
+					<div className='name' style={{ fontSize: '30px' }}>
+						{name}
+					</div>
+					<div className='RegNo'>Reg No: {registration_id}</div>
+					<div className='Session'>Session: {session}</div>
 				</div>
-				<div style={{ height: '50%' }}></div>
 			</div>
 		</div>
 	);

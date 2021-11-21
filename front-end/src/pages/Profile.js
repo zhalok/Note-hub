@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import { useParams } from 'react-router';
 
 import '../App.css';
+import ProfileContents from '../components/profileContents';
 
 var sectionStyle = {
 	backgroundSize: 'cover',
@@ -21,8 +22,19 @@ const Profile = ({ nav_info, loggedInState, handleLog, userId }) => {
 				handleLog={handleLog}
 				userId={userId}
 			/>
-			<div style={{ marginTop: '100px' }}>
+			<div
+				style={{
+					display: 'flex',
+
+					marginTop: '100px',
+					padding: '50px',
+
+					flexDirection: 'row',
+					border: '1px solid black',
+				}}
+			>
 				<ProfileInfo profileId={id} />
+				<ProfileContents />
 			</div>
 		</div>
 	);
