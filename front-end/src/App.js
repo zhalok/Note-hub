@@ -15,6 +15,7 @@ import Discussions from './pages/Discussions';
 
 import './App.css';
 import Answers from './pages/Answers';
+import ProfileBooks from './components/profileBooks';
 
 export default class App extends Component {
 	state = {
@@ -187,6 +188,9 @@ export default class App extends Component {
 							userName={this.state.useName}
 							userEmail={this.state.userEmail}
 						/>
+					</Route>
+					<Route path='/profile/books/:id'>
+						<ProfileBooks />
 					</Route>
 				</div>
 			</Router>

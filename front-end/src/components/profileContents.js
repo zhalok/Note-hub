@@ -2,10 +2,9 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import HoverButton from './HoverButton';
+import { Link } from 'react-router-dom';
 
-const ProfileContents = () => {
-	const { id } = useParams();
-	console.log(id);
+const ProfileContents = ({ profileId }) => {
 	return (
 		<div
 			style={{
@@ -16,20 +15,22 @@ const ProfileContents = () => {
 				width: '50%',
 				flexDirection: 'column',
 				padding: '20px',
-				marginTop: '20px',
 				marginLeft: '200px',
 			}}
 		>
 			<h1 style={{ color: 'white' }}>Contributions</h1>
 			<h1 style={{ backgroundColor: 'white' }} />
 			<div style={{ display: 'flex', flexDirection: 'row' }}>
-				<HoverButton type='books' bgColor='#020024' />
-				<HoverButton type='notes' bgColor='#020024' />
+				<Link to={`/profile/books/${profileId}`}>
+					<HoverButton type='books' />
+				</Link>
+
+				<HoverButton type='notes' />
 			</div>
 
 			<div style={{ display: 'flex', flexDirection: 'row' }}>
-				<HoverButton type='questions' bgColor='#0cccf9' />
-				<HoverButton type='projects' bgColor='#0cccf9' />
+				<HoverButton type='questions' />
+				<HoverButton type='projects' />
 			</div>
 
 			<div style={{ display: 'flex', flexDirection: 'row' }}>

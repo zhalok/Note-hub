@@ -3,21 +3,9 @@ import { useParams } from 'react-router';
 
 import dp from '../images/dp.jpg';
 
-const ProfileInfo = () => {
-	const [profileInfo, setProfileInfo] = useState({});
-
-	const { id } = useParams();
-
-	useEffect(() => {
-		fetch(`http://localhost:5000/users/id/${id}`)
-			.then((res) => res.json())
-			.then((data) => {
-				setProfileInfo(data[0]);
-			})
-			.catch((err) => console.log(err));
-	}, [id]);
-
+const ProfileInfo = ({ profileInfo }) => {
 	const { name, registration_id, session } = profileInfo;
+
 	return (
 		<div
 			style={{

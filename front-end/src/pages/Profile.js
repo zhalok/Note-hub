@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import ProfileInfo from '../components/ProfileInfo';
 import Navbar from '../components/Navbar';
 import { useParams } from 'react-router';
@@ -14,30 +14,41 @@ var sectionStyle = {
 
 const Profile = ({ nav_info, loggedInState, handleLog, userId }) => {
 	const { id } = useParams();
-	return (
-		<div style={sectionStyle} className='ht'>
-			<Navbar
-				nav_link={nav_info}
-				loggedInState={loggedInState}
-				handleLog={handleLog}
-				userId={userId}
-			/>
-			<div
-				style={{
-					display: 'flex',
+	const [profileInfo, setProfileInfo] = useState({});
 
-					marginTop: '100px',
-					padding: '50px',
+	useEffect(() => {
+		fetch(`http://localhost:5000/users/id/${id}`)
+			.then((res) => res.json())
+			.then((data) => setProfileInfo(data[0]))
+			.catch((err) => console.log(err));
+	}, []);
 
-					flexDirection: 'row',
-					border: '1px solid black',
-				}}
-			>
-				<ProfileInfo profileId={id} />
-				<ProfileContents />
+	if (profileInfo) {
+		return (
+			<div style={sectionStyle} className='ht'>
+				<Navbar
+					nav_link={nav_info}
+					loggedInState={loggedInState}
+					handleLog={handleLog}
+					userId={userId}
+				/>
+				<div
+					style={{
+						display: 'flex',
+
+						marginTop: '100px',
+						padding: '50px',
+
+						flexDirection: 'row',
+						border: '1px solid black',
+					}}
+				>
+					<ProfileInfo profileInfo={profileInfo} />
+					<ProfileContents profileId={id} />
+				</div>
 			</div>
-		</div>
-	);
+		);
+	} else return <div>No Data Found</div>;
 };
 
 export default Profile;
