@@ -26,7 +26,7 @@ const Answers = (props) => {
 				})
 				.catch((err) => console.log(err));
 		}
-	}, [props, discussion_id]);
+	}, [discussion_id]);
 
 	var sectionStyle = {
 		backgroundSize: 'cover',
@@ -58,6 +58,8 @@ const Answers = (props) => {
 								answerList={answerList}
 								waitModalMessage={WaitModalMessage}
 								fetched={fetched}
+								userId={userId}
+								loggedInState={loggedInState}
 							/>
 						</div>
 					</div>

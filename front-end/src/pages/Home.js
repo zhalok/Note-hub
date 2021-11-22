@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import Dashboard from '../components/Dashboard';
 import backgroundImage from '../images/signup.jpg';
 import study from '../images/study.png';
+import BasicInfoContext from '../Contexts/BasicInfoContext';
 
 var sectionStyle = {
 	display: 'flex',
@@ -73,12 +74,17 @@ export default class Home extends Component {
 
 		return (
 			<>
-				<Navbar
-					nav_link={nav_info}
-					loggedInState={loggedInState}
-					handleLog={handleLog}
-					userId={userId}
-				/>
+				<BasicInfoContext.Consumer>
+					{({ nav_info, loggedInState, handleLog, userId }) => (
+						<Navbar
+							nav_link={nav_info}
+							loggedInState={loggedInState}
+							handleLog={handleLog}
+							userId={userId}
+						/>
+					)}
+				</BasicInfoContext.Consumer>
+
 				<Caro books={books} notes={notes} projects={projects} />
 				<div style={sectionStyle} className='ht'>
 					<img

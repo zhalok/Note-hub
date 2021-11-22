@@ -12,6 +12,7 @@ import Contribute from './pages/Contribute';
 import Profile from './pages/Profile';
 import Users from './pages/Users';
 import Discussions from './pages/Discussions';
+import BasicInfoContext from './Contexts/BasicInfoContext';
 
 import './App.css';
 import Answers from './pages/Answers';
@@ -84,117 +85,111 @@ export default class App extends Component {
 		const { isLoggedIn, userId, userEmail, userName } = this.state;
 
 		return (
-			<Router>
-				<div>
-					<Route path='/' exact>
-						<Home
-							nav_info={nav_info}
-							loggedInState={isLoggedIn}
-							handleLog={this.loginStateChanger}
-							userId={userId}
-						/>
-					</Route>
-					<Route path='/books'>
-						<Books
-							nav_info={nav_info}
-							loggedInState={isLoggedIn}
-							handleLog={this.loginStateChanger}
-							userId={userId}
-						/>
-					</Route>
-					<Route path='/notes'>
-						<Notes
-							nav_info={nav_info}
-							loggedInState={isLoggedIn}
-							handleLog={this.loginStateChanger}
-							userId={userId}
-						/>
-					</Route>
-					<Route path='/questions'>
-						<Questions
-							nav_info={nav_info}
-							loggedInState={isLoggedIn}
-							handleLog={this.loginStateChanger}
-							userId={userId}
-						/>
-					</Route>
-					<Route path='/projects'>
-						<Projects
-							nav_info={nav_info}
-							loggedInState={isLoggedIn}
-							handleLog={this.loginStateChanger}
-							userId={userId}
-						/>
-					</Route>
-					<Route path='/contribute'>
-						<Contribute
-							nav_info={nav_info}
-							loggedInState={isLoggedIn}
-							handleLog={this.loginStateChanger}
-							userId={userId}
-						/>
-					</Route>
+			<BasicInfoContext.Provider
+				value={{
+					nav_info,
+					loggedInState: isLoggedIn,
+					handleLog: this.loginStateChanger,
+					userId,
+				}}
+			>
+				<Router>
+					<div>
+						<Route path='/' exact>
+							<Home />
+						</Route>
+						<Route path='/books'>
+							<Books />
+						</Route>
+						<Route path='/notes'>
+							<Notes />
+						</Route>
+						<Route path='/questions'>
+							<Questions
+								nav_info={nav_info}
+								loggedInState={isLoggedIn}
+								handleLog={this.loginStateChanger}
+								userId={userId}
+							/>
+						</Route>
+						<Route path='/projects'>
+							<Projects
+								nav_info={nav_info}
+								loggedInState={isLoggedIn}
+								handleLog={this.loginStateChanger}
+								userId={userId}
+							/>
+						</Route>
+						<Route path='/contribute'>
+							<Contribute
+								nav_info={nav_info}
+								loggedInState={isLoggedIn}
+								handleLog={this.loginStateChanger}
+								userId={userId}
+							/>
+						</Route>
 
-					<Route path='/login'>
-						<Login
-							nav_info={nav_info}
-							loggedInState={isLoggedIn}
-							handleLog={this.loginStateChanger}
-							userId={userId}
-						/>
-					</Route>
-					<Route path='/signup'>
-						<Signup
-							nav_info={nav_info}
-							loggedInState={isLoggedIn}
-							handleLog={this.loginStateChanger}
-							userId={userId}
-						/>
-					</Route>
+						<Route path='/login'>
+							<Login
+								nav_info={nav_info}
+								loggedInState={isLoggedIn}
+								handleLog={this.loginStateChanger}
+								userId={userId}
+							/>
+						</Route>
+						<Route path='/signup'>
+							<Signup
+								nav_info={nav_info}
+								loggedInState={isLoggedIn}
+								handleLog={this.loginStateChanger}
+								userId={userId}
+							/>
+						</Route>
 
-					<Route path='/profile/:id'>
-						<Profile
-							nav_info={nav_info}
-							loggedInState={isLoggedIn}
-							handleLog={this.loginStateChanger}
-							userId={userId}
-						/>
-					</Route>
+						<Route path='/profile/:id'>
+							<Profile
+								nav_info={nav_info}
+								loggedInState={isLoggedIn}
+								handleLog={this.loginStateChanger}
+								userId={userId}
+							/>
+						</Route>
 
-					<Route path='/users'>
-						<Users
-							nav_info={nav_info}
-							loggedInState={isLoggedIn}
-							handleLog={this.loginStateChanger}
-							userId={userId}
-						/>
-					</Route>
-					<Route path='/discussions'>
-						<Discussions
-							nav_info={nav_info}
-							loggedInState={isLoggedIn}
-							handleLog={this.loginStateChanger}
-							userId={userId}
-							userName={this.state.userName}
-							userEmail={this.state.userEmail}
-						/>
-					</Route>
-					<Route path='/answers/:discussion_id'>
-						<Answers
-							nav_info={nav_info}
-							loggedInState={isLoggedIn}
-							handleLog={this.loginStateChanger}
-							userId={userId}
-							userName={this.state.useName}
-							userEmail={this.state.userEmail}
-						/>
-					</Route>
+						<Route path='/users'>
+							<Users
+								nav_info={nav_info}
+								loggedInState={isLoggedIn}
+								handleLog={this.loginStateChanger}
+								userId={userId}
+							/>
+						</Route>
+						<Route path='/discussions'>
+							<Discussions
+								nav_info={nav_info}
+								loggedInState={isLoggedIn}
+								handleLog={this.loginStateChanger}
+								userId={userId}
+								userName={this.state.userName}
+								userEmail={this.state.userEmail}
+							/>
+						</Route>
+						<Route path='/answers/:discussion_id'>
+							<Answers
+								nav_info={nav_info}
+								loggedInState={isLoggedIn}
+								handleLog={this.loginStateChanger}
+								userId={userId}
+								userName={this.state.useName}
+								userEmail={this.state.userEmail}
+							/>
+						</Route>
 
-					<Route path='/contributions/books/:profileId'>
-						<ProfileBooks />
-					</Route>
-				</div>
-			</Router>
+						<Route path='/contributions/books/:profileId'>
+							<ProfileBooks />
+						</Route>
+					</div>
+				</Router>
+			</BasicInfoContext.Provider>
 		);
 	}
 }

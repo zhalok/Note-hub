@@ -8,6 +8,7 @@ import WaitModalMessage from '../components/WaitModalMessage';
 
 import '../App.css';
 import SemesterList from '../components/SemesterList';
+import BasicInfoContext from '../Contexts/BasicInfoContext';
 
 var sectionStyle = {
 	backgroundSize: 'cover',
@@ -86,12 +87,17 @@ export default class Projects extends Component {
 
 		return (
 			<div style={sectionStyle} className='ht'>
-				<Navbar
-					nav_link={nav_info}
-					loggedInState={loggedInState}
-					handleLog={handleLog}
-					userId={userId}
-				/>
+				<BasicInfoContext.Consumer>
+					{({ nav_info, loggedInState, handleLog, userId }) => (
+						<Navbar
+							nav_link={nav_info}
+							loggedInState={loggedInState}
+							handleLog={handleLog}
+							userId={userId}
+						/>
+					)}
+				</BasicInfoContext.Consumer>
+
 				<WaitModalMessage show={this.state.showWaitModal} />
 				<div className='container mt-5 pt-4'>
 					<div style={{ display: 'flex', flexDirection: 'row' }}>

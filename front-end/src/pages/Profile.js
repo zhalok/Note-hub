@@ -5,6 +5,7 @@ import { useParams } from 'react-router';
 
 import '../App.css';
 import ProfileContents from '../components/profileContents';
+import BasicInfoContext from '../Contexts/BasicInfoContext';
 
 var sectionStyle = {
 	backgroundSize: 'cover',
@@ -26,12 +27,17 @@ const Profile = ({ nav_info, loggedInState, handleLog, userId }) => {
 	if (profileInfo) {
 		return (
 			<div style={sectionStyle} className='ht'>
-				<Navbar
-					nav_link={nav_info}
-					loggedInState={loggedInState}
-					handleLog={handleLog}
-					userId={userId}
-				/>
+				<BasicInfoContext.Consumer>
+					{({ nav_info, loggedInState, handleLog, userId }) => (
+						<Navbar
+							nav_link={nav_info}
+							loggedInState={loggedInState}
+							handleLog={handleLog}
+							userId={userId}
+						/>
+					)}
+				</BasicInfoContext.Consumer>
+
 				<div
 					style={{
 						display: 'flex',

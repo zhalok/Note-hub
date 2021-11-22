@@ -6,6 +6,7 @@ import style from './Signup.module.css';
 import FileUploadSection from '../components/FileUploadSection';
 
 import { Link } from 'react-router-dom';
+import BasicInfoContext from '../Contexts/BasicInfoContext';
 
 const apiURL =
 	process.env.NODE_ENV == 'dev'
@@ -145,12 +146,17 @@ export default class SignUp extends Component {
 
 		return (
 			<div className={style.login_dark}>
-				<Navbar
-					nav_link={nav_info}
-					loggedInState={loggedInState}
-					handleLog={handleLog}
-					userId={userId}
-				/>
+				<BasicInfoContext.Consumer>
+					{({ nav_info, loggedInState, handleLog, userId }) => (
+						<Navbar
+							nav_link={nav_info}
+							loggedInState={loggedInState}
+							handleLog={handleLog}
+							userId={userId}
+						/>
+					)}
+				</BasicInfoContext.Consumer>
+
 				<div
 					className='container'
 					style={{ backgroundSize: 'cover', backgroundColor: '#02242c' }}

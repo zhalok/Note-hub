@@ -5,6 +5,7 @@ import Img from '../images/signup.jpg';
 // import UserPopUp from '../components/UserPopUp';
 import UserList from '../components/UserList';
 import WaitModalMessage from '../components/WaitModalMessage';
+import BasicInfoContext from '../Contexts/BasicInfoContext';
 
 const apiURL =
 	process.env.NODE_ENV == 'dev'
@@ -46,12 +47,17 @@ export default class Users extends React.Component {
 		const { nav_info, loggedInState, handleLog, userId } = this.props;
 		return (
 			<div className='ht' style={sectionStyle}>
-				<Navbar
-					nav_link={nav_info}
-					loggedInState={loggedInState}
-					handleLog={handleLog}
-					userId={userId}
-				/>
+				<BasicInfoContext.Consumer>
+					{({ nav_info, loggedInState, handleLog, userId }) => (
+						<Navbar
+							nav_link={nav_info}
+							loggedInState={loggedInState}
+							handleLog={handleLog}
+							userId={userId}
+						/>
+					)}
+				</BasicInfoContext.Consumer>
+
 				<WaitModalMessage show={this.state.showWaitModal} />
 				<div className='container mt-5 pt-5'>
 					<h1 style={{ color: 'white' }}>Contributors</h1>

@@ -7,6 +7,7 @@ import SemesterList from '../components/SemesterList';
 import WaitModalMessage from '../components/WaitModalMessage';
 
 import '../App.css';
+import BasicInfoContext from '../Contexts/BasicInfoContext';
 
 var sectionStyle = {
 	backgroundSize: 'cover',
@@ -93,12 +94,17 @@ export default class Books extends Component {
 		return (
 			<div>
 				<div style={sectionStyle} className='ht'>
-					<Navbar
-						nav_link={nav_info}
-						loggedInState={loggedInState}
-						handleLog={handleLog}
-						userId={userId}
-					/>
+					<BasicInfoContext.Consumer>
+						{({ nav_info, loggedInState, handleLog, userId }) => (
+							<Navbar
+								nav_link={nav_info}
+								loggedInState={loggedInState}
+								handleLog={handleLog}
+								userId={userId}
+							/>
+						)}
+					</BasicInfoContext.Consumer>
+
 					<WaitModalMessage show={this.state.showWaitMessage} />
 
 					<div className='container mt-5 pt-4'>

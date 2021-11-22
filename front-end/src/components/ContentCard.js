@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import image from '../images/books.png';
 import ModalMessage from './ModalMessage';
+import Button from 'react-bootstrap/Button';
 const BookCardStyle = require('../styles/ContentCardStyle');
 const ContentCardImageStyle = require('../styles/ContentCardImageStyle');
 
@@ -41,11 +42,18 @@ const sendEmailUsingNodemailer = async (
 };
 
 export default function ContentCard(props) {
-	const { info } = props;
+	const { info, userId, loggedInState } = props;
 	console.log(info);
 
 	const [modalShow, setModalShow] = React.useState(false);
 	const [message, setMessage] = React.useState('');
+	const [displayOptions, setDisplayOptions] = useState('none');
+	console.log(info.contributor_id);
+	useEffect(() => {
+		if (userId && userId == info.contributor_id) {
+			setDisplayOptions('block');
+		}
+	}, [userId]);
 
 	let linkDIsplay;
 	if (info.link)
@@ -107,12 +115,17 @@ export default function ContentCard(props) {
 				alt='Card image cap'
 				style={ContentCardImageStyle}
 			/>
+
 			<div class='card-body'>
-				<h2 className='display-5'>{info.name}</h2>
+				<div style={{ display: 'flex', flexDirection: 'row' }}>
+					<h2 className='display-5'>{info.name}</h2>
+				</div>
+
 				<p className='blockquote-footer' style={{ fontSize: '15px' }}>
 					{info.contributor_name}
 				</p>
 				<p class='.lead'>{info.description}</p>
+
 				<div style={{ display: 'flex' }}>
 					<Link
 						type='button'
@@ -131,6 +144,18 @@ export default function ContentCard(props) {
 					</Link>
 					{linkDIsplay}
 				</div>
+				<Button
+					style={{
+						display: displayOptions,
+						marginLeft: 'auto',
+						marginTop: '20px',
+						boxShadow:
+							'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+					}}
+					variant='danger'
+				>
+					Delete
+				</Button>
 			</div>
 		</div>
 	);

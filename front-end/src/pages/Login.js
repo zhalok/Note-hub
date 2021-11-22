@@ -13,6 +13,7 @@ import Profile from '../pages/Profile';
 import ContributeForm from '../components/ContributeForm';
 
 import Congratulations from '../components/Congratulations';
+import BasicInfoContext from '../Contexts/BasicInfoContext';
 
 var sectionStyle = {
 	// backgroundImage: `url(${Img})`,
@@ -103,12 +104,16 @@ export default class Login extends Component {
 			return (
 				<div style={sectionStyle} className='ht'>
 					<div className='container-fluid d-flex justify-content-center mt-5 p-5 h-100'>
-						<Navbar
-							nav_link={nav_info}
-							loggedInState={loggedInState}
-							handleLog={handleLog}
-							userId={userId}
-						/>
+						<BasicInfoContext.Consumer>
+							{({ nav_info, loggedInState, handleLog, userId }) => (
+								<Navbar
+									nav_link={nav_info}
+									loggedInState={loggedInState}
+									handleLog={handleLog}
+									userId={userId}
+								/>
+							)}
+						</BasicInfoContext.Consumer>
 
 						<div className='d-flex flex-column justify-content-center mt-5 h-100'>
 							<h3 className='pl-4 pb-3 mt-5 display-5 text-light '>
@@ -129,12 +134,17 @@ export default class Login extends Component {
 
 		return (
 			<div style={sectionStyle} className='ht mt-5'>
-				<Navbar
-					nav_link={nav_info}
-					loggedInState={loggedInState}
-					handleLog={handleLog}
-					userId={userId}
-				/>
+				<BasicInfoContext.Consumer>
+					{({ nav_info, loggedInState, handleLog, userId }) => (
+						<Navbar
+							nav_link={nav_info}
+							loggedInState={loggedInState}
+							handleLog={handleLog}
+							userId={userId}
+						/>
+					)}
+				</BasicInfoContext.Consumer>
+
 				<div className='container mt-5'>
 					<p>
 						<h1 className='text-light mt-5'>

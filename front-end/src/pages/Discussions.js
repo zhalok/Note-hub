@@ -8,6 +8,7 @@ import NewDiscussionForm from '../components/NewDiscussionForm';
 import NotificationMessage from '../components/NotificationMessage';
 import ToastContext from '../Contexts/ToastContext';
 import WaitModalMessage from '../components/WaitModalMessage';
+import BasicInfoContext from '../Contexts/BasicInfoContext';
 
 // const getData = (setUserDetails, userId) => {
 // 	fetch(`http://localhost:5000/users/id/${userId}`)
@@ -51,12 +52,17 @@ export default function Discussions(props) {
 	return (
 		<div>
 			<div style={sectionStyle} className='ht'>
-				<Navbar
-					nav_link={nav_info}
-					loggedInState={loggedInState}
-					handleLog={handleLog}
-					userId={userId}
-				/>
+				<BasicInfoContext.Consumer>
+					{({ nav_info, loggedInState, handleLog, userId }) => (
+						<Navbar
+							nav_link={nav_info}
+							loggedInState={loggedInState}
+							handleLog={handleLog}
+							userId={userId}
+						/>
+					)}
+				</BasicInfoContext.Consumer>
+
 				<WaitModalMessage show={showModalMessage} />
 
 				<div className='container mt-5 pt-4'>
