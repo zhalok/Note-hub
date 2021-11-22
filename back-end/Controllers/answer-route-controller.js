@@ -13,11 +13,6 @@ answer.add_answer = (req, res, next) => {
 		answer_providers_id,
 	} = req.body;
 
-	console.log(discussion_starters_email);
-
-	console.log(answer_providers_id);
-	console.log(answer_providers_name);
-
 	const new_answer = new answer_model({
 		body,
 		discussion_id,
@@ -67,6 +62,16 @@ answer.get_answer_by_contributorID = (req, res, next) => {
 
 answer.update_answer = (req, res, next) => {};
 
-answer.delete_answer = (req, res, next) => {};
+answer.delete_answer = (req, res, next) => {
+	const { answer_id } = req.params;
+	console.log(answer_id);
+	answer_model.deleteOne({ _id: answer_id }, (err, docs) => {
+		if (err) {
+			next(err);
+		} else {
+			res.json('alright deleted');
+		}
+	});
+};
 
 module.exports = answer;

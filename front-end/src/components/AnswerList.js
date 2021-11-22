@@ -8,6 +8,8 @@ const AnswerList = ({
 	fetched,
 	userId,
 	loggedInState,
+	setShowWaitMessage,
+	setUpdate,
 }) => {
 	if (fetched) {
 		if (answerList.length > 0) {
@@ -17,11 +19,14 @@ const AnswerList = ({
 						<BasicInfoContext.Consumer>
 							{({ userId }) => (
 								<AnswerCard
+									answerId={e._id}
 									key={index}
 									body={e.body}
 									name={e.answer_providers_name}
 									id={e.answer_providers_id}
 									userId={userId}
+									setShowWaitMessage={setShowWaitMessage}
+									setUpdate={setUpdate}
 								/>
 							)}
 						</BasicInfoContext.Consumer>

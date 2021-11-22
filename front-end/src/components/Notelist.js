@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import BasicInfoContext from '../Contexts/BasicInfoContext';
 import ContentCard from './ContentCard';
 
 export default class Notelist extends Component {
@@ -9,7 +10,9 @@ export default class Notelist extends Component {
 				return (
 					<div style={{ padding: '20px' }}>
 						{notelist.map((e) => (
-							<ContentCard info={e} />
+							<BasicInfoContext.Consumer>
+								{({ userId }) => <ContentCard info={e} userId={userId} />}
+							</BasicInfoContext.Consumer>
 						))}
 					</div>
 				);

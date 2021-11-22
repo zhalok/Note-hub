@@ -21,6 +21,7 @@ export default function DiscussionCard(props) {
 
 	const [answer, setAnswer] = useState('');
 	const [show, setShow] = useState(false);
+	const [showOptions, setShowOptions] = useState('none');
 
 	return (
 		<div>

@@ -62,7 +62,7 @@ app.use('/overview', overview_route);
 app.use('/sendEmail', sendEmailROute);
 app.use('/saveFIle', saveFileRoute);
 app.use('/discussions', discussionRoute);
-app.use('/answer', answerRoute);
+app.use('/answers', answerRoute);
 
 console.log(process.env.NAME);
 

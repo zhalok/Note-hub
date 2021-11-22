@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
 const AnswerCard = (props) => {
-	const { body, name, id, userId } = props;
+	const { body, name, id, userId, answerId, setUpdate } = props;
 	const [showOption, setShowOption] = useState('none');
 
 	useEffect(() => {
@@ -11,6 +11,17 @@ const AnswerCard = (props) => {
 			setShowOption('block');
 		}
 	}, [userId]);
+	const delete_answer = () => {
+		fetch(`http://localhost:5000/answers/${answerId}`, {
+			method: 'DELETE',
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data);
+				setUpdate({});
+			})
+			.catch((err) => console.log(err));
+	};
 
 	return (
 		<div style={{ marginTop: '20px' }}>
@@ -23,6 +34,9 @@ const AnswerCard = (props) => {
 					<Button
 						style={{ display: showOption, marginLeft: 'auto' }}
 						variant='danger'
+						onClick={() => {
+							delete_answer();
+						}}
 					>
 						Delete
 					</Button>

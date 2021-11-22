@@ -128,6 +128,7 @@ export default function ContentCard(props) {
 
 				<div style={{ display: 'flex' }}>
 					<Link
+						id='preview'
 						type='button'
 						className='btn btn-outline-primary'
 						style={{
@@ -147,6 +148,7 @@ export default function ContentCard(props) {
 				<Button
 					style={{
 						display: displayOptions,
+						width: '35%',
 						marginLeft: 'auto',
 						marginTop: '20px',
 						boxShadow:

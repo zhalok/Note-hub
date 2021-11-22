@@ -15,9 +15,12 @@ const Answers = (props) => {
 
 	const { discussion_id } = useParams([]);
 
+	const [update, setUpdate] = useState({});
+
 	useEffect(() => {
 		if (discussion_id) {
-			fetch(`http://localhost:5000/answer/${discussion_id}`)
+			setShowWaitMessage(true);
+			fetch(`http://localhost:5000/answers/${discussion_id}`)
 				.then((res) => res.json())
 				.then((data) => {
 					setAnswerList(data);
@@ -26,7 +29,7 @@ const Answers = (props) => {
 				})
 				.catch((err) => console.log(err));
 		}
-	}, [discussion_id]);
+	}, [discussion_id, update]);
 
 	var sectionStyle = {
 		backgroundSize: 'cover',
@@ -57,9 +60,11 @@ const Answers = (props) => {
 							<AnswerList
 								answerList={answerList}
 								waitModalMessage={WaitModalMessage}
+								setShowWaitMessage={setShowWaitMessage}
 								fetched={fetched}
 								userId={userId}
 								loggedInState={loggedInState}
+								setUpdate={setUpdate}
 							/>
 						</div>
 					</div>

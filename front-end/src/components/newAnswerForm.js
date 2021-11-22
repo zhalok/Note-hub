@@ -30,7 +30,7 @@ const NewAnswerForm = (props) => {
 	console.log(answer_providers_id);
 
 	const submit_answer = () => {
-		fetch('http://localhost:5000/answer', {
+		fetch('http://localhost:5000/answers', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
