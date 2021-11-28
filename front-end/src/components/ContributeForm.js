@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Switch } from 'react-router';
 import Img from '../images/profile_dark.jpg';
+import img from '../images/contribute.jpg';
 import { Link } from 'react-router-dom';
 
 import ChoosefileBox from './/ChoosefileBox';
@@ -161,8 +162,10 @@ export default class ContributeForm extends Component {
 		let path = '/profile/' + userId;
 
 		return (
-			<div style={{ marginTop: '100px' }}>
-				<div className='col-lg-4'>
+			<div
+				style={{ marginTop: '100px', display: 'flex', flexDirection: 'row' }}
+			>
+				{/* <div className='col-lg-4'>
 					<div className='container p-3 m-5'>
 						<img src={Img} alt='profile_dark.jpg' className='img-sm' />
 						<Link
@@ -173,11 +176,24 @@ export default class ContributeForm extends Component {
 							See Your Profile
 						</Link>
 					</div>
-				</div>
-				<div className='col-lg-8'>
+				</div> */}
+				<div
+					className='col-lg-8'
+					style={{
+						display: 'flex',
+						width: 'fit-content',
+					}}
+				>
 					<div className='d-flex justify-content-center '>
-						<div className='center-box bg-transparent border border-light p-3 mt-5 shadow-lg rounded '>
-							<h3 className='text-light'>
+						<div
+							className='center-box  p-3  shadow rounded '
+							style={{
+								backgroundColor: '#c0dfa8',
+								marginLeft: '20px',
+								marginRight: '20px',
+							}}
+						>
+							<h3 style={{ color: 'black' }}>
 								Please provide all the informations
 							</h3>
 							<hr className='bg-secondary' />
@@ -202,7 +218,7 @@ export default class ContributeForm extends Component {
 									<div className='d-flex flex-column p-2 '>
 										<div className='d-flex p-2'>
 											<div className='d-flex'>
-												<h5 className='text-light'>Select Resource Type -</h5>
+												<h5>Select Resource Type -</h5>
 												<select
 													className='form-select ml-3 '
 													value={this.state.selected}
@@ -221,7 +237,7 @@ export default class ContributeForm extends Component {
 									<div className='d-flex flex-column p-2 '>
 										<div className='d-flex p-2'>
 											<div className='d-flex'>
-												<h5 className='text-light'>Select Semester -</h5>
+												<h5>Select Semester -</h5>
 												<select
 													className='form-select ml-3 '
 													value={this.state.selected_sem}
@@ -231,6 +247,12 @@ export default class ContributeForm extends Component {
 													<option selected>Semester</option>
 													<option>semester1</option>
 													<option>semester2</option>
+													<option>semester3</option>
+													<option>semester4</option>
+													<option>semester5</option>
+													<option>semester6</option>
+													<option>semester7</option>
+													<option>semester8</option>
 												</select>
 											</div>
 										</div>
@@ -245,13 +267,11 @@ export default class ContributeForm extends Component {
 										}}
 										onChange={this.textchangehandler}
 									></input>
-									<div className='d-flex flex-column p-2 '>
-										<FileUploadSection />
-									</div>
-									<div className='d-flex flex-column p-2 ml-5 mr-5 mt-5'>
+									<div className='d-flex flex-column p-2 '></div>
+									<div className='d-flex flex-column p-2 ml-5 mr-5 '>
 										<button
 											type='submit'
-											className='btn btn-outline-secondary btn-lg'
+											className='btn btn-outline-success btn-lg'
 											onClick={this.clickchangeHandler}
 											id='submit'
 										>
@@ -263,6 +283,9 @@ export default class ContributeForm extends Component {
 						</div>
 						<h3 className='text-light'>{this.state.message}</h3>
 					</div>
+				</div>
+				<div>
+					<img src={img} style={{ marginLeft: 'auto' }} />
 				</div>
 			</div>
 		);

@@ -20,7 +20,7 @@ const Answers = (props) => {
 	useEffect(() => {
 		if (discussion_id) {
 			setShowWaitMessage(true);
-			fetch(`http://localhost:5000/answers/${discussion_id}`)
+			fetch(`https://notehubapi.herokuapp.com/answers/${discussion_id}`)
 				.then((res) => res.json())
 				.then((data) => {
 					setAnswerList(data);

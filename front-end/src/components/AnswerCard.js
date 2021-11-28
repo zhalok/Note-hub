@@ -12,7 +12,7 @@ const AnswerCard = (props) => {
 		}
 	}, [userId]);
 	const delete_answer = () => {
-		fetch(`http://localhost:5000/answers/${answerId}`, {
+		fetch(`https://notehubapi.herokuapp.com/answers/${answerId}`, {
 			method: 'DELETE',
 		})
 			.then((res) => res.json())
