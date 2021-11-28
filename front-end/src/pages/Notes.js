@@ -4,6 +4,7 @@ import SemesterList from '../components/SemesterList';
 import Notelist from '../components/Notelist';
 import SearchOption from '../components/SearchOption';
 import Img from '../images/signup.jpg';
+import noteImg from '../images/pencil.png';
 
 import '../App.css';
 import WaitModalMessage from '../components/WaitModalMessage';
@@ -115,7 +116,11 @@ export default class Notes extends Component {
 					<div className='total-page'>
 						<SemesterList controller={this.controller} />
 						<div className='contents'>
-							<Notelist notelist={notelist} noteFetched={noteFetched} />
+							<Notelist
+								notelist={notelist}
+								noteFetched={noteFetched}
+								noteImg={noteImg}
+							/>
 						</div>
 					</div>
 				</div>

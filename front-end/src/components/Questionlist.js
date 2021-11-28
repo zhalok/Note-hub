@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
 import ContentCard from './ContentCard';
+import BasicInfoContext from '../Contexts/BasicInfoContext';
 
 export default class Questionlist extends Component {
 	render() {
-		const { questionlist, questionFetched } = this.props;
+		const { questionlist, questionFetched, questionImg } = this.props;
 		if (questionFetched) {
 			if (questionlist.length > 0) {
 				return (
 					<div style={{ padding: '20px' }}>
 						{questionlist.map((e) => (
-							<ContentCard info={e} />
+							<BasicInfoContext.Consumer>
+								{({ userId, loggedInState }) => (
+									<ContentCard
+										info={e}
+										userId={userId}
+										loggedInState={loggedInState}
+										contentImg={questionImg}
+									/>
+								)}
+							</BasicInfoContext.Consumer>
 						))}
 					</div>
 				);

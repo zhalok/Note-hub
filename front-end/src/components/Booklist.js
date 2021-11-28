@@ -4,7 +4,7 @@ import ContentCard from './ContentCard';
 
 export default class Booklist extends Component {
 	render() {
-		const { booklist, bookFetched } = this.props;
+		const { booklist, bookFetched, bookImg } = this.props;
 		if (bookFetched) {
 			if (booklist.length > 0) {
 				return (
@@ -16,6 +16,7 @@ export default class Booklist extends Component {
 										info={e}
 										userId={userId}
 										loggedInState={loggedInState}
+										contentImg={bookImg}
 									/>
 								)}
 							</BasicInfoContext.Consumer>

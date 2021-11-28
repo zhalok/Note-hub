@@ -3,6 +3,7 @@ import { Switch } from 'react-router';
 import Img from '../images/profile_dark.jpg';
 import img from '../images/contribute.jpg';
 import { Link } from 'react-router-dom';
+import ModalCongoMessage from './ModalCongoMessage';
 
 import ChoosefileBox from './/ChoosefileBox';
 import '../App.css';
@@ -36,6 +37,7 @@ export default class ContributeForm extends Component {
 		contributor_email: '',
 		link: '',
 		formData: null,
+		showCongoMessage: false,
 	};
 
 	getInfo = async (user_id) => {
@@ -74,7 +76,7 @@ export default class ContributeForm extends Component {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				this.setState({ message: 'Congo' });
+				this.setState({ showCongoMessage: true });
 			})
 			.catch((err) => console.log(err));
 	};
@@ -121,6 +123,12 @@ export default class ContributeForm extends Component {
 				selected_type: e.target.value,
 			});
 		}
+	};
+
+	changeModalDisplay = (val) => {
+		this.setState({
+			showCongoMessage: val,
+		});
 	};
 
 	clickchangeHandler = (e) => {
@@ -184,7 +192,10 @@ export default class ContributeForm extends Component {
 						width: 'fit-content',
 					}}
 				>
-					<div className='d-flex justify-content-center '>
+					<div
+						className='d-flex justify-content-center '
+						style={{ display: 'flex', flexDirection: 'column' }}
+					>
 						<div
 							className='center-box  p-3  shadow rounded '
 							style={{
@@ -193,6 +204,14 @@ export default class ContributeForm extends Component {
 								marginRight: '20px',
 							}}
 						>
+							<ModalCongoMessage
+								show={(this, this.state.showCongoMessage)}
+								onHide={() => {
+									this.setState({
+										showCongoMessage: false,
+									});
+								}}
+							/>
 							<h3 style={{ color: 'black' }}>
 								Please provide all the informations
 							</h3>
@@ -281,7 +300,10 @@ export default class ContributeForm extends Component {
 								</div>
 							</div>
 						</div>
-						<h3 className='text-light'>{this.state.message}</h3>
+						<br />
+						<div>
+							<h3 className='text-light'>{this.state.message}</h3>
+						</div>
 					</div>
 				</div>
 				<div>

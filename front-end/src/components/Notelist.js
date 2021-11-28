@@ -4,14 +4,16 @@ import ContentCard from './ContentCard';
 
 export default class Notelist extends Component {
 	render() {
-		const { notelist, noteFetched } = this.props;
+		const { notelist, noteFetched, noteImg } = this.props;
 		if (noteFetched) {
 			if (notelist.length > 0) {
 				return (
 					<div style={{ padding: '20px' }}>
 						{notelist.map((e) => (
 							<BasicInfoContext.Consumer>
-								{({ userId }) => <ContentCard info={e} userId={userId} />}
+								{({ userId }) => (
+									<ContentCard info={e} userId={userId} contentImg={noteImg} />
+								)}
 							</BasicInfoContext.Consumer>
 						))}
 					</div>

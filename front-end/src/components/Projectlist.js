@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
 import ContentCard from './ContentCard';
+import BasicInfoContext from '../Contexts/BasicInfoContext';
 
 export default class Projectlist extends Component {
 	render() {
-		const { projectlist, projectFetched } = this.props;
+		const { projectlist, projectFetched, projectImg } = this.props;
 		if (projectFetched) {
 			if (projectlist.length > 0) {
 				return (
 					<div style={{ padding: '20px' }}>
 						{projectlist.map((e) => (
-							<ContentCard info={e} />
+							<BasicInfoContext.Consumer>
+								{({ userId, loggedInState }) => (
+									<ContentCard
+										info={e}
+										userId={userId}
+										loggedInState={loggedInState}
+										contentImg={projectImg}
+									/>
+								)}
+							</BasicInfoContext.Consumer>
 						))}
 					</div>
 				);

@@ -6,6 +6,7 @@ import Img from '../images/signup.jpg';
 import SemesterList from '../components/SemesterList';
 import SearchOption from '../components/SearchOption';
 import WaitModalMessage from '../components/WaitModalMessage';
+import questionImg from '../images/search.png';
 
 import '../App.css';
 import BasicInfoContext from '../Contexts/BasicInfoContext';
@@ -110,6 +111,7 @@ export default class Questions extends Component {
 							<Questionlist
 								questionlist={questionlist}
 								questionFetched={questionFetched}
+								questionImg={questionImg}
 							/>
 						</div>
 					</div>

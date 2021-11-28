@@ -9,6 +9,7 @@ import WaitModalMessage from '../components/WaitModalMessage';
 import '../App.css';
 import SemesterList from '../components/SemesterList';
 import BasicInfoContext from '../Contexts/BasicInfoContext';
+import projectImg from '../images/flowchart.png';
 
 var sectionStyle = {
 	backgroundSize: 'cover',
@@ -111,6 +112,7 @@ export default class Projects extends Component {
 							<Projectlist
 								projectlist={projectlist}
 								projectFetched={projectFetched}
+								projectImg={projectImg}
 							/>
 						</div>
 					</div>

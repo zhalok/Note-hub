@@ -5,6 +5,7 @@ import Booklist from '../components/Booklist';
 import SearchOption from '../components/SearchOption';
 import SemesterList from '../components/SemesterList';
 import WaitModalMessage from '../components/WaitModalMessage';
+import bookImg from '../images/books.png';
 
 import '../App.css';
 import BasicInfoContext from '../Contexts/BasicInfoContext';
@@ -117,7 +118,11 @@ export default class Books extends Component {
 						<div className='total-page'>
 							<SemesterList controller={this.controller} />
 							<div className='contents'>
-								<Booklist booklist={booklist} bookFetched={bookFetched} />
+								<Booklist
+									booklist={booklist}
+									bookFetched={bookFetched}
+									bookImg={bookImg}
+								/>
 							</div>
 						</div>
 					</div>

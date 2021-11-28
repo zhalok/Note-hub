@@ -42,7 +42,7 @@ const sendEmailUsingNodemailer = async (
 };
 
 export default function ContentCard(props) {
-	const { info, userId, loggedInState } = props;
+	const { info, userId, loggedInState, contentImg } = props;
 	console.log(info);
 
 	const [modalShow, setModalShow] = React.useState(false);
@@ -111,7 +111,7 @@ export default function ContentCard(props) {
 			/>
 			<img
 				class='card-img-top'
-				src={image}
+				src={contentImg}
 				alt='Card image cap'
 				style={ContentCardImageStyle}
 			/>
