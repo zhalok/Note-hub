@@ -11,5 +11,6 @@ router.get(
 	'/get_by_contributor_id/:contributor_id',
 	notes_route_controller.get_notes_by_contributorID
 );
+router.delete('/:id', notes_route_controller.delete_note);
 
 module.exports = router;

@@ -107,10 +107,22 @@ const add_new_project = async (req, res, next) => {
 	});
 };
 
+const delete_project = (req, res, next) => {
+	const { id } = req.params;
+	project_model.findByIdAndDelete(id, (err, docs) => {
+		if (err) {
+			next(err);
+		} else {
+			res.json(docs);
+		}
+	});
+};
+
 module.exports = {
 	get_all_projects,
 	get_projects_by_name,
 	get_projects_by_semester,
 	add_new_project,
 	get_projects_by_contributorID,
+	delete_project,
 };

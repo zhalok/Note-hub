@@ -77,6 +77,18 @@ export default class Notes extends Component {
 			});
 	};
 
+	delete_note = (note_id) => {
+		fetch(`http://localhost:5000/notes/${note_id}`, {
+			method: 'DELETE',
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data);
+				this.find_all_notes();
+			})
+			.catch((err) => console.log(err));
+	};
+
 	controller = (e) => {
 		this.find_notes_by_semester(e.target.value);
 	};
@@ -120,6 +132,9 @@ export default class Notes extends Component {
 								notelist={notelist}
 								noteFetched={noteFetched}
 								noteImg={noteImg}
+								deleteNote={(note_id) => {
+									this.delete_note(note_id);
+								}}
 							/>
 						</div>
 					</div>

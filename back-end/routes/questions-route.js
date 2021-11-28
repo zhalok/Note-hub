@@ -19,4 +19,6 @@ router.get(
 	question_route_controller.get_questions_by_contributorID
 );
 
+router.delete('/:id', question_route_controller.delete_questions);
+
 module.exports = router;

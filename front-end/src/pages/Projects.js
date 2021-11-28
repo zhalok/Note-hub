@@ -70,6 +70,18 @@ export default class Projects extends Component {
 			});
 	};
 
+	delete_project = (project_id) => {
+		fetch(`http://localhost:5000/projects/${project_id}`, {
+			method: 'DELETE',
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data);
+				this.find_all_projects();
+			})
+			.catch((err) => console.log(err));
+	};
+
 	controller = (e) => {
 		this.find_projects_by_semester(e.target.value);
 	};
@@ -113,6 +125,9 @@ export default class Projects extends Component {
 								projectlist={projectlist}
 								projectFetched={projectFetched}
 								projectImg={projectImg}
+								deleteProject={(project_id) => {
+									this.delete_project(project_id);
+								}}
 							/>
 						</div>
 					</div>

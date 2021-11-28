@@ -68,6 +68,17 @@ export default class Questions extends Component {
 				});
 			});
 	};
+	delete_question = (book_id) => {
+		fetch(`http://localhost:5000/questions/${book_id}`, {
+			method: 'DELETE',
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data);
+				this.find_all_questions();
+			})
+			.catch((err) => console.log(err));
+	};
 
 	controller = (e) => {
 		this.find_questions_by_semester(e.target.value);
@@ -112,6 +123,9 @@ export default class Questions extends Component {
 								questionlist={questionlist}
 								questionFetched={questionFetched}
 								questionImg={questionImg}
+								deleteQuestion={(question_id) => {
+									this.delete_question(question_id);
+								}}
 							/>
 						</div>
 					</div>

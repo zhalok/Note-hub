@@ -4,7 +4,8 @@ import BasicInfoContext from '../Contexts/BasicInfoContext';
 
 export default class Projectlist extends Component {
 	render() {
-		const { projectlist, projectFetched, projectImg } = this.props;
+		const { projectlist, projectFetched, projectImg, deleteProject } =
+			this.props;
 		if (projectFetched) {
 			if (projectlist.length > 0) {
 				return (
@@ -17,6 +18,9 @@ export default class Projectlist extends Component {
 										userId={userId}
 										loggedInState={loggedInState}
 										contentImg={projectImg}
+										deleteContent={(project_id) => {
+											deleteProject(project_id);
+										}}
 									/>
 								)}
 							</BasicInfoContext.Consumer>

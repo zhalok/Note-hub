@@ -4,7 +4,8 @@ import BasicInfoContext from '../Contexts/BasicInfoContext';
 
 export default class Questionlist extends Component {
 	render() {
-		const { questionlist, questionFetched, questionImg } = this.props;
+		const { questionlist, questionFetched, questionImg, deleteQuestion } =
+			this.props;
 		if (questionFetched) {
 			if (questionlist.length > 0) {
 				return (
@@ -17,6 +18,9 @@ export default class Questionlist extends Component {
 										userId={userId}
 										loggedInState={loggedInState}
 										contentImg={questionImg}
+										deleteContent={(question_id) => {
+											deleteQuestion(question_id);
+										}}
 									/>
 								)}
 							</BasicInfoContext.Consumer>

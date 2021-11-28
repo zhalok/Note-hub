@@ -30,6 +30,7 @@ export default class Books extends Component {
 		booklist: [],
 		bookFetched: false,
 		showWaitMessage: true,
+		reload: 0,
 	};
 
 	find_all_books = async () => {
@@ -75,10 +76,26 @@ export default class Books extends Component {
 			});
 	};
 
+	delete_book = (book_id) => {
+		fetch(`http://localhost:5000/books/${book_id}`, {
+			method: 'DELETE',
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data);
+				this.find_all_books();
+			})
+			.catch((err) => console.log(err));
+	};
+
 	componentDidMount() {
 		console.log(this.props.userId);
 		this.find_all_books();
 	}
+
+	// componentDidUpdate() {
+	// 	this.find_all_books();
+	// }
 
 	controller = (e) => {
 		this.find_book_by_semester(e.target.value);
@@ -91,7 +108,7 @@ export default class Books extends Component {
 	render() {
 		const { nav_info, loggedInState, handleLog, userId } = this.props;
 		const { booklist, showSearchResult, bookFetched } = this.state;
-
+		console.log(this.state.reload);
 		return (
 			<div>
 				<div style={sectionStyle} className='ht'>
@@ -122,6 +139,9 @@ export default class Books extends Component {
 									booklist={booklist}
 									bookFetched={bookFetched}
 									bookImg={bookImg}
+									deleteBook={(bookId) => {
+										this.delete_book(bookId);
+									}}
 								/>
 							</div>
 						</div>

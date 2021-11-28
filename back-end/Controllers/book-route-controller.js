@@ -112,8 +112,20 @@ const add_new_book = async (req, res, next) => {
 	});
 };
 
+const delete_book = (req, res, next) => {
+	const { id } = req.params;
+	book_model.findByIdAndDelete(id, (err, docs) => {
+		if (err) {
+			next(err);
+		} else {
+			res.json(docs);
+		}
+	});
+};
+
 exports.get_books_by_semester = get_books_by_semester;
 exports.add_new_book = add_new_book;
 exports.get_books_by_name = get_books_by_name;
 exports.get_all_books = get_all_books;
 exports.get_book_by_contributorID = get_book_by_contributorID;
+exports.delete_book = delete_book;

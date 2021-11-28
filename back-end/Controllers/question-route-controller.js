@@ -106,10 +106,22 @@ const add_new_question = async (req, res, next) => {
 	});
 };
 
+const delete_questions = (req, res, next) => {
+	const { id } = req.params;
+	question_model.findByIdAndDelete(id, (err, docs) => {
+		if (err) {
+			next(err);
+		} else {
+			res.json(docs);
+		}
+	});
+};
+
 module.exports = {
 	add_new_question,
 	get_all_questions,
 	get_questions_by_name,
 	get_questions_by_semester,
 	get_questions_by_contributorID,
+	delete_questions,
 };

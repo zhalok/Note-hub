@@ -11,5 +11,5 @@ router.get(
 	'/get_book_by_contributor_id/:contributor_id',
 	book_route_controller.get_book_by_contributorID
 );
-
+router.delete('/:id', book_route_controller.delete_book);
 module.exports = router;

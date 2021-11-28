@@ -110,10 +110,22 @@ const add_new_note = async (req, res, next) => {
 	});
 };
 
+const delete_note = (req, res, next) => {
+	const { id } = req.params;
+	note_model.findByIdAndDelete(id, (err, docs) => {
+		if (err) {
+			next(err);
+		} else {
+			res.json(docs);
+		}
+	});
+};
+
 module.exports = {
 	get_all_notes,
 	get_notes_by_name,
 	get_notes_by_semester,
 	add_new_note,
 	get_notes_by_contributorID,
+	delete_note,
 };

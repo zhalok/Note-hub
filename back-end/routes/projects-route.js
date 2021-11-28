@@ -19,4 +19,6 @@ router.get(
 	projects_route_controller.get_projects_by_contributorID
 );
 
+router.delete('/:id', projects_route_controller.delete_project);
+
 module.exports = router;
