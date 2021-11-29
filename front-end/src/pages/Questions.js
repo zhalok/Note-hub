@@ -68,14 +68,21 @@ export default class Questions extends Component {
 				});
 			});
 	};
-	delete_question = (book_id) => {
-		fetch(`http://localhost:5000/questions/${book_id}`, {
+	delete_question = (question_id) => {
+		this.setState({
+			showWaitModal: true,
+		});
+		fetch(`https://notehubapi.herokuapp.com/questions/${question_id}`, {
 			method: 'DELETE',
 		})
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
+
 				this.find_all_questions();
+				this.setState({
+					showWaitModal: false,
+				});
 			})
 			.catch((err) => console.log(err));
 	};

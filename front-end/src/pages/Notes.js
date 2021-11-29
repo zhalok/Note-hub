@@ -78,13 +78,19 @@ export default class Notes extends Component {
 	};
 
 	delete_note = (note_id) => {
-		fetch(`http://localhost:5000/notes/${note_id}`, {
+		this.setState({
+			showWaitModal: true,
+		});
+		fetch(`https://notehubapi.herokuapp.com/notes/${note_id}`, {
 			method: 'DELETE',
 		})
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
 				this.find_all_notes();
+				this.setState({
+					showWaitModal: false,
+				});
 			})
 			.catch((err) => console.log(err));
 	};

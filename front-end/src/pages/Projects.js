@@ -71,13 +71,19 @@ export default class Projects extends Component {
 	};
 
 	delete_project = (project_id) => {
-		fetch(`http://localhost:5000/projects/${project_id}`, {
+		this.setState({
+			showWaitModal: true,
+		});
+		fetch(`https://notehubapi.herokuapp.com//projects/${project_id}`, {
 			method: 'DELETE',
 		})
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
 				this.find_all_projects();
+				this.setState({
+					showWaitModal: false,
+				});
 			})
 			.catch((err) => console.log(err));
 	};

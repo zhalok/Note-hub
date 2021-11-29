@@ -77,13 +77,19 @@ export default class Books extends Component {
 	};
 
 	delete_book = (book_id) => {
-		fetch(`http://localhost:5000/books/${book_id}`, {
+		this.setState({
+			showWaitMessage: true,
+		});
+		fetch(`https://notehubapi.herokuapp.com/books/${book_id}`, {
 			method: 'DELETE',
 		})
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
 				this.find_all_books();
+				this.setState({
+					showWaitMessage: false,
+				});
 			})
 			.catch((err) => console.log(err));
 	};
