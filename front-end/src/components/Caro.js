@@ -32,7 +32,6 @@ export default function ControlledCarousel(props) {
 				<div class='carousel-item active'>
 					<div class='carousel-caption d-none d-md-block'>
 						<h5 class='display-4'>Books</h5>
-						<p class='display-4'>{books}</p>
 					</div>
 					<img class='d-block w-100' src={Img1} alt='First slide' />
 				</div>
@@ -40,14 +39,12 @@ export default function ControlledCarousel(props) {
 					<img class='d-block w-100' src={Img2} alt='Second slide' />
 					<div class='carousel-caption d-none d-md-block'>
 						<h5 class='display-4'>Notes</h5>
-						<p class='display-4'>{notes}</p>
 					</div>
 				</div>
 				<div class='carousel-item'>
 					<img class='d-block w-100' src={Img3} alt='Third slide' />
 					<div class='carousel-caption d-none d-md-block'>
 						<h5 class='display-4'>Projects</h5>
-						<p class='display-4'>{projects}</p>
 					</div>
 				</div>
 			</div>

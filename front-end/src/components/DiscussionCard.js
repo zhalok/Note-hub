@@ -12,12 +12,21 @@ export default function DiscussionCard(props) {
 		body,
 		discussion_starters_name,
 		discussion_starters_email,
-
+		discussion_starters_id,
 		votes,
 	} = discussion_info;
 
 	console.log(userName);
 	console.log(userId);
+
+	let deleteButton;
+	if (userId == discussion_starters_id) {
+		deleteButton = (
+			<Button variant='danger' style={{ marginLeft: 'auto' }}>
+				Delete
+			</Button>
+		);
+	}
 
 	const [answer, setAnswer] = useState('');
 	const [show, setShow] = useState(false);
@@ -101,6 +110,10 @@ export default function DiscussionCard(props) {
 					>
 						Answer
 					</Button>{' '}
+					{deleteButton}
+					{/* <Button variant='danger' style={{ marginLeft: 'auto' }}>
+							Delete
+						</Button> */}{' '}
 				</div>
 			</div>
 		</div>
