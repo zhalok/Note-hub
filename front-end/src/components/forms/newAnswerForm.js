@@ -30,7 +30,7 @@ const NewAnswerForm = (props) => {
 	console.log(answer_providers_id);
 
 	const submit_answer = () => {
-		fetch('https://notehubapi.herokuapp.com//answers', {
+		fetch('https://notehubapi.herokuapp.com/answers', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
