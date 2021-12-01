@@ -2,8 +2,8 @@ import React from 'react';
 import Image from '../images/books.png';
 import { Link, Router } from 'react-router-dom';
 import DashboardStyle from '../styles/DashboardStyle';
-const DashboardCardStyle = require('../styles/DashboardCardStyle');
-const DashboardCardImageStyle = require('../styles/DashboardCardImageStyle');
+const DashboardCardStyle = require('../../styles/DashboardCardStyle');
+const DashboardCardImageStyle = require('../../styles/DashboardCardImageStyle');
 
 const BookDashboardCard = ({ books }) => {
 	return (

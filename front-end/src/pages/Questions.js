@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
-import Navbar from '../components/Navbar';
-import Questionlist from '../components/Questionlist';
+import Navbar from '../components/others/Navbar';
+import Questionlist from '../components/lists/Questionlist';
 import Img from '../images/signup.jpg';
-import SemesterList from '../components/SemesterList';
-import SearchOption from '../components/SearchOption';
-import WaitModalMessage from '../components/WaitModalMessage';
+import SemesterList from '../components/lists/SemesterList';
+import SearchOption from '../components/others/SearchOption';
+import WaitModalMessage from '../components/messages/WaitModalMessage';
 import questionImg from '../images/search.png';
 
 import '../App.css';

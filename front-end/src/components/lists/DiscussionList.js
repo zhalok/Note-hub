@@ -1,9 +1,9 @@
 import React from 'react';
-import BasicInfoContext from '../Contexts/BasicInfoContext';
-import DiscussionCard from './DiscussionCard';
+import BasicInfoContext from '../../Contexts/BasicInfoContext';
+import DiscussionCard from '../cards/DiscussionCard';
 
 const DiscussionList = (props) => {
-	const { discussions, userName } = props;
+	const { discussions, userName, changer, deleteDiscussion } = props;
 
 	if (discussions.length > 0) {
 		return (
@@ -16,6 +16,7 @@ const DiscussionList = (props) => {
 								loggedInState={loggedInState}
 								userName={userName}
 								userId={userId}
+								deleteDiscussion={deleteDiscussion}
 							/>
 						)}
 					</BasicInfoContext.Consumer>

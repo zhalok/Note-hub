@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ContentCard from './ContentCard';
-import BasicInfoContext from '../Contexts/BasicInfoContext';
+import ContentCard from '../cards/ContentCard';
+import BasicInfoContext from '../../Contexts/BasicInfoContext';
 
 export default class Questionlist extends Component {
 	render() {

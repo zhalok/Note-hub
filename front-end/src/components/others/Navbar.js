@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import img from '../images/Notehub.png';
+import img from '../../images/Notehub.png';
 
 export default class Navbar extends Component {
 	render() {

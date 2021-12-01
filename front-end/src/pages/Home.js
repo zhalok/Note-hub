@@ -1,6 +1,5 @@
-import Navbar from '../components/Navbar';
-import Caro from '../components/Caro';
-import UserDashboardCard from '../components/UserDashboardCard';
+import Navbar from '../components/others/Navbar';
+import Caro from '../components/others/Caro';
 
 import '../App.css';
 
@@ -8,7 +7,7 @@ import Img from '../images/Notehub.png';
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Dashboard from '../components/Dashboard';
+
 import backgroundImage from '../images/signup.jpg';
 import study from '../images/study.png';
 import BasicInfoContext from '../Contexts/BasicInfoContext';

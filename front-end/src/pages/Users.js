@@ -1,10 +1,9 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
-import UserCard from '../components/UserCard';
-import Img from '../images/signup.jpg';
+import Navbar from '../components/others/Navbar';
+
 // import UserPopUp from '../components/UserPopUp';
-import UserList from '../components/UserList';
-import WaitModalMessage from '../components/WaitModalMessage';
+import UserList from '../components/lists/UserList';
+import WaitModalMessage from '../components/messages/WaitModalMessage';
 import BasicInfoContext from '../Contexts/BasicInfoContext';
 
 const apiURL =

@@ -1,9 +1,9 @@
 import React from 'react';
-import Image from '../images/pencil.png';
-import { Link } from 'react-router-dom';
-import DashboardCardStyle from '../styles/DashboardCardStyle';
+import Image from '../images/find.png';
+import { Link, Router } from 'react-router-dom';
+import DashboardCardStyle from '../../styles/DashboardCardStyle';
 
-const NoteDashboardCard = ({ notes }) => {
+const QuestionDashboardCard = ({ questions }) => {
 	return (
 		<div className='card' style={DashboardCardStyle}>
 			<img
@@ -20,22 +20,22 @@ const NoteDashboardCard = ({ notes }) => {
 				}}
 			/>
 			<div className='card-body'>
-				<h3 className='card-title'>Notes</h3>
-				<p className='card-text'>{notes}</p>
+				<h3 className='card-title'>Questions</h3>
+				<p className='card-text'>{questions}</p>
 
 				<Link
-					to='/notes'
+					to='/questions'
 					class='btn btn-primary'
 					style={{
 						boxShadow:
 							'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
 					}}
 				>
-					See Notes
+					See Questions
 				</Link>
 			</div>
 		</div>
 	);
 };
 
-export default NoteDashboardCard;
+export default QuestionDashboardCard;

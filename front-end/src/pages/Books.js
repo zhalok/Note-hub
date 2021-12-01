@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-import Navbar from '../components/Navbar';
-import Booklist from '../components/Booklist';
-import SearchOption from '../components/SearchOption';
-import SemesterList from '../components/SemesterList';
-import WaitModalMessage from '../components/WaitModalMessage';
+import Navbar from '../components/others/Navbar';
+import Booklist from '../components/lists/Booklist';
+import SearchOption from '../components/others/SearchOption';
+import SemesterList from '../components/lists/SemesterList';
+import WaitModalMessage from '../components/messages/WaitModalMessage';
 import bookImg from '../images/books.png';
 
 import '../App.css';

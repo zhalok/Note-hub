@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
-import dp from '../images/dp.jpg';
+import dp from '../../images/dp.jpg';
 
 const ProfileInfo = ({ profileInfo }) => {
 	const { name, registration_id, session } = profileInfo;

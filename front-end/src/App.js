@@ -16,7 +16,7 @@ import BasicInfoContext from './Contexts/BasicInfoContext';
 
 import './App.css';
 import Answers from './pages/Answers';
-import ProfileBooks from './components/profileBooks';
+import ProfileBooks from './components/profile/profileBooks';
 
 export default class App extends Component {
 	state = {

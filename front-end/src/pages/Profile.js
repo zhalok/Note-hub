@@ -1,10 +1,10 @@
 import React, { Component, useEffect, useState } from 'react';
-import ProfileInfo from '../components/ProfileInfo';
-import Navbar from '../components/Navbar';
+import ProfileInfo from '../components/profile/ProfileInfo';
+import Navbar from '../components/others/Navbar';
 import { useParams } from 'react-router';
 
 import '../App.css';
-import ProfileContents from '../components/profileContents';
+import ProfileContents from '../components/profile/profileContents';
 import BasicInfoContext from '../Contexts/BasicInfoContext';
 
 var sectionStyle = {

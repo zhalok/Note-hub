@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import AnswerList from '../components/AnswerList';
-import Navbar from '../components/Navbar';
-import WaitModalMessage from '../components/WaitModalMessage';
+import AnswerList from '../components/lists/AnswerList';
+import Navbar from '../components/others/Navbar';
+import WaitModalMessage from '../components/messages/WaitModalMessage';
 
 const Answers = (props) => {
 	const { nav_info, loggedInState, handleLog, userId } = props;

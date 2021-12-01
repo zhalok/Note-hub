@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-import Navbar from '../components/Navbar';
-import Projectlist from '../components/Projectlist';
+import Navbar from '../components/others/Navbar';
+import Projectlist from '../components/lists/Projectlist';
 import Img from '../images/signup.jpg';
-import SearchOption from '../components/SearchOption';
-import WaitModalMessage from '../components/WaitModalMessage';
+import SearchOption from '../components/others/SearchOption';
+import WaitModalMessage from '../components/messages/WaitModalMessage';
 
 import '../App.css';
-import SemesterList from '../components/SemesterList';
+import SemesterList from '../components/lists/SemesterList';
 import BasicInfoContext from '../Contexts/BasicInfoContext';
 import projectImg from '../images/flowchart.png';
 

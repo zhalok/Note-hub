@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import image from '../images/books.png';
-import ModalMessage from './ModalMessage';
+import image from '../../images/books.png';
+import ModalMessage from '../messages/ModalMessage';
 import Button from 'react-bootstrap/Button';
-const BookCardStyle = require('../styles/ContentCardStyle');
-const ContentCardImageStyle = require('../styles/ContentCardImageStyle');
+const BookCardStyle = require('../../styles/ContentCardStyle');
+const ContentCardImageStyle = require('../../styles/ContentCardImageStyle');
 
 const apiURL =
 	process.env.NODE_ENV == 'dev'

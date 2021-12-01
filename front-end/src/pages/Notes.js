@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import Navbar from '../components/Navbar';
-import SemesterList from '../components/SemesterList';
-import Notelist from '../components/Notelist';
-import SearchOption from '../components/SearchOption';
+import Navbar from '../components/others/Navbar';
+import SemesterList from '../components/lists/SemesterList';
+import Notelist from '../components/lists/Notelist';
+import SearchOption from '../components/others/SearchOption';
 import Img from '../images/signup.jpg';
 import noteImg from '../images/pencil.png';
 
 import '../App.css';
-import WaitModalMessage from '../components/WaitModalMessage';
+import WaitModalMessage from '../components/messages/WaitModalMessage';
 import BasicInfoContext from '../Contexts/BasicInfoContext';
 
 var sectionStyle = {

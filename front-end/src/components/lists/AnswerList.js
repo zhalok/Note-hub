@@ -1,6 +1,6 @@
 import React from 'react';
-import BasicInfoContext from '../Contexts/BasicInfoContext';
-import AnswerCard from './AnswerCard';
+import BasicInfoContext from '../../Contexts/BasicInfoContext';
+import AnswerCard from '../cards/AnswerCard';
 
 const AnswerList = ({
 	answerList,

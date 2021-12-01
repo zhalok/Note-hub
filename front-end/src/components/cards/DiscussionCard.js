@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import ToastContext from '../Contexts/ToastContext';
-import NewAnswerForm from './newAnswerForm';
+import ToastContext from '../../Contexts/ToastContext';
+import NewAnswerForm from '../forms/newAnswerForm';
 import { Link } from 'react-router-dom';
+import WaitModalMessage from '../messages/WaitModalMessage';
 
 export default function DiscussionCard(props) {
-	const { discussion_info, loggedInState, userName, userId } = props;
+	const {
+		discussion_info,
+		loggedInState,
+		userName,
+		userId,
+		deleteDiscussion,
+		changer,
+	} = props;
 	const {
 		_id,
 		title,
@@ -19,18 +27,25 @@ export default function DiscussionCard(props) {
 	console.log(userName);
 	console.log(userId);
 
+	const [answer, setAnswer] = useState('');
+	const [show, setShow] = useState(false);
+
+	const [showOptions, setShowOptions] = useState('none');
+
 	let deleteButton;
 	if (userId == discussion_starters_id) {
 		deleteButton = (
-			<Button variant='danger' style={{ marginLeft: 'auto' }}>
+			<Button
+				variant='danger'
+				style={{ marginLeft: 'auto' }}
+				onClick={() => {
+					deleteDiscussion(_id);
+				}}
+			>
 				Delete
 			</Button>
 		);
 	}
-
-	const [answer, setAnswer] = useState('');
-	const [show, setShow] = useState(false);
-	const [showOptions, setShowOptions] = useState('none');
 
 	return (
 		<div>

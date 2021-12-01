@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import Navbar from '../components/Navbar';
+import Navbar from '../components/others/Navbar';
 import Img from '../images/reg_icon.jpg';
 import style from './Signup.module.css';
-import FileUploadSection from '../components/FileUploadSection';
+import FileUploadSection from '../components/others/FileUploadSection';
 
 import { Link } from 'react-router-dom';
 import BasicInfoContext from '../Contexts/BasicInfoContext';

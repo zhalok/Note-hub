@@ -1,8 +1,8 @@
 import React, { Component, useState } from 'react';
 
-import Img1 from '../images/books.jpg';
-import Img2 from '../images/notes.jpg';
-import Img3 from '../images/projects.jpg';
+import Img1 from '../../images/books.jpg';
+import Img2 from '../../images/notes.jpg';
+import Img3 from '../../images/projects.jpg';
 import Carousel from 'react-bootstrap/Carousel';
 
 export default function ControlledCarousel(props) {

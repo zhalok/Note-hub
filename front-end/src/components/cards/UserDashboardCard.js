@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Image from '../images/profile.png';
+import Image from '../../images/profile.png';
 
 const UserDashboardCard = (props) => {
 	return (

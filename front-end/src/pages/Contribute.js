@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import ContributeForm from '../components/ContributeForm';
-import ContributeCredential from '../components/ContributeCredential';
-import Navbar from '../components/Navbar';
+import ContributeForm from '../components/forms/ContributeForm';
+import ContributeCredential from '../components/others/ContributeCredential';
+import Navbar from '../components/others/Navbar';
 
 import Img from '../images/login.png';
 

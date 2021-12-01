@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from '../images/flowchart.png';
 import { Link, Router } from 'react-router-dom';
-import DashboardCardStyle from '../styles/DashboardCardStyle';
+import DashboardCardStyle from '../../styles/DashboardCardStyle';
 
 const ProjectDashboardCard = ({ projects }) => {
 	return (

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import BasicInfoContext from '../Contexts/BasicInfoContext';
-import ContentCard from './ContentCard';
+import BasicInfoContext from '../../Contexts/BasicInfoContext';
+import ContentCard from '../cards/ContentCard';
 
 export default class Notelist extends Component {
 	render() {

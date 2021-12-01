@@ -1,7 +1,7 @@
 import React, { useCallback, Component } from 'react';
 //import { FullScreen, useFullScreenHandle } from "react-full-screen";
 
-import Navbar from '../components/Navbar';
+import Navbar from '../components/others/Navbar';
 
 import Img from '../images/login_bg3.jpg';
 import Icn from '../images/login_icon.jpg';
@@ -10,9 +10,7 @@ import style from './Login.module.css';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import Profile from '../pages/Profile';
-import ContributeForm from '../components/ContributeForm';
 
-import Congratulations from '../components/Congratulations';
 import BasicInfoContext from '../Contexts/BasicInfoContext';
 
 var sectionStyle = {

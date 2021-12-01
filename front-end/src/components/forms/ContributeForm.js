@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { Switch } from 'react-router';
-import Img from '../images/profile_dark.jpg';
-import img from '../images/contribute.jpg';
+import Img from '../../images/profile_dark.jpg';
+import img from '../../images/contribute.jpg';
 import { Link } from 'react-router-dom';
-import ModalCongoMessage from './ModalCongoMessage';
+import ModalCongoMessage from '../messages/ModalCongoMessage';
 
-import ChoosefileBox from './/ChoosefileBox';
-import '../App.css';
-import FileUploadSection from './FileUploadSection';
+import '../../App.css';
+import FileUploadSection from '../others/FileUploadSection';
 
 var sectionStyle = {
 	backgroundImage: `url(${Img})`,

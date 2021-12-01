@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
-import HoverButton from './HoverButton';
+import HoverButton from '../buttons/HoverButton';
 import { Link } from 'react-router-dom';
 
 const ProfileContents = ({ profileId }) => {

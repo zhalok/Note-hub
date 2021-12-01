@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import img from '../images/dp.jpg';
+import img from '../../images/dp.jpg';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 const UserCard = (props) => {

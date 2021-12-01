@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import SearchOption from '../components/SearchOption';
-import Navbar from '../components/Navbar';
-import DiscussionCard from '../components/DiscussionCard';
-import DiscussionList from '../components/DiscussionList';
+import SearchOption from '../components/others/SearchOption';
+import Navbar from '../components/others/Navbar';
+
+import DiscussionList from '../components/lists/DiscussionList';
 import Button from 'react-bootstrap/Button';
-import NewDiscussionForm from '../components/NewDiscussionForm';
-import NotificationMessage from '../components/NotificationMessage';
+import NewDiscussionForm from '../components/forms/NewDiscussionForm';
+import NotificationMessage from '../components/messages/NotificationMessage';
 import ToastContext from '../Contexts/ToastContext';
-import WaitModalMessage from '../components/WaitModalMessage';
+import WaitModalMessage from '../components/messages/WaitModalMessage';
 import BasicInfoContext from '../Contexts/BasicInfoContext';
 
 // const getData = (setUserDetails, userId) => {
@@ -38,6 +38,20 @@ export default function Discussions(props) {
 			})
 			.catch((err) => console.log(err));
 	}, [changer]);
+
+	const delete_discussion = (discussion_id) => {
+		setShowModalMessage(true);
+		fetch(`http://localhost:5000/discussions/${discussion_id}`, {
+			method: 'DELETE',
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data);
+				setShowModalMessage(false);
+				setChanger({});
+			})
+			.catch((err) => console.log(err));
+	};
 
 	var sectionStyle = {
 		backgroundSize: 'cover',
@@ -115,6 +129,7 @@ export default function Discussions(props) {
 									discussions={discussions}
 									userName={userName}
 									userId={userId}
+									deleteDiscussion={delete_discussion}
 								/>
 							</ToastContext.Provider>
 						</div>
