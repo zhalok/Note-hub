@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { marginLeft, width } from '../../styles/DashboardStyle';
+
 import img from '../../images/contribute.jpg';
 
 export default class ContributeCredential extends React.Component {

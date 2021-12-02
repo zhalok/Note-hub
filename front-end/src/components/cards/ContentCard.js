@@ -3,8 +3,29 @@ import { Link } from 'react-router-dom';
 import image from '../../images/books.png';
 import ModalMessage from '../messages/ModalMessage';
 import Button from 'react-bootstrap/Button';
-const BookCardStyle = require('../../styles/ContentCardStyle');
-const ContentCardImageStyle = require('../../styles/ContentCardImageStyle');
+
+const ContentCardImageStyle = {
+	height: '10%',
+	width: '10%',
+	display: 'flex',
+	marginLeft: 'auto',
+	marginRight: 'auto',
+	marginTop: '20px',
+	marginLeft: '10px',
+};
+
+const BookCardStyle = {
+	width: '40rem',
+	marginLeft: 'auto',
+	marginRight: 'auto',
+	display: 'flex',
+	flexDirection: 'row',
+	padding: '10px',
+	marginTop: '20px',
+	marginBottom: '20px',
+	boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+	borderRadius: '10px',
+};
 
 const apiURL =
 	process.env.NODE_ENV == 'dev'
