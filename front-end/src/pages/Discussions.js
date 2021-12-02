@@ -41,7 +41,7 @@ export default function Discussions(props) {
 
 	const delete_discussion = (discussion_id) => {
 		setShowModalMessage(true);
-		fetch(`http://localhost:5000/discussions/${discussion_id}`, {
+		fetch(`https:///notehubapi.herokuapp.com/discussions/${discussion_id}`, {
 			method: 'DELETE',
 		})
 			.then((res) => res.json())

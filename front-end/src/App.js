@@ -16,7 +16,9 @@ import BasicInfoContext from './Contexts/BasicInfoContext';
 
 import './App.css';
 import Answers from './pages/Answers';
-import ProfileBooks from './components/profile/profileBooks';
+import ProfileBooks from './pages/ProfileBooks';
+import ProfileNotes from './pages/ProfileNotes';
+import Profileprojects from './pages/ProfileProjects';
 
 export default class App extends Component {
 	state = {
@@ -186,6 +188,15 @@ export default class App extends Component {
 
 						<Route path='/contributions/books/:profileId'>
 							<ProfileBooks />
+						</Route>
+						<Route path='/contributions/notes/:profileId'>
+							<ProfileNotes />
+						</Route>
+						<Route path='/contributions/questions/:profileId'>
+							<ProfileNotes />
+						</Route>
+						<Route path='/contributions/projects/:profileId'>
+							<Profileprojects />
 						</Route>
 					</div>
 				</Router>

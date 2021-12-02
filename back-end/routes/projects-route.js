@@ -15,7 +15,7 @@ router.get(
 );
 
 router.get(
-	'/get_by_contributor_id/:contributor_id',
+	'/get_project_by_contributor_id/:contributor_id',
 	projects_route_controller.get_projects_by_contributorID
 );
 

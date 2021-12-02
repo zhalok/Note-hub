@@ -74,7 +74,7 @@ export default class Projects extends Component {
 		this.setState({
 			showWaitModal: true,
 		});
-		fetch(`https://notehubapi.herokuapp.com//projects/${project_id}`, {
+		fetch(`https://notehubapi.herokuapp.com/projects/${project_id}`, {
 			method: 'DELETE',
 		})
 			.then((res) => res.json())
