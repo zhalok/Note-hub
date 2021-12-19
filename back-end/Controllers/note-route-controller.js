@@ -1,6 +1,6 @@
 const HttpError = require('../models/http-error-model');
 const { update_user } = require('../Controllers/user-route-controller');
-const note_model = require('..//models/notes-model');
+const note_model = require('../models/notes-model');
 const overview_model = require('../models/overview-model');
 const { processSearch } = require('../Utils/searchProcessing');
 

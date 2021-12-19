@@ -6,7 +6,7 @@ import Img from '../images/signup.jpg';
 import SemesterList from '../components/lists/SemesterList';
 import SearchOption from '../components/others/SearchOption';
 import WaitModalMessage from '../components/messages/WaitModalMessage';
-import questionImg from '../images/search.png';
+import questionImg from '../images/exam.png';
 
 import '../App.css';
 import BasicInfoContext from '../Contexts/BasicInfoContext';

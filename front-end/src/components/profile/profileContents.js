@@ -31,15 +31,19 @@ const ProfileContents = ({ profileId }) => {
 			</div>
 
 			<div style={{ display: 'flex', flexDirection: 'row' }}>
-				<HoverButton type='questions' />
+				<Link to={`/contributions/questions/${profileId}`}>
+					<HoverButton type='questions' />
+				</Link>
+
 				<Link to={`/contributions/projects/${profileId}`}>
 					<HoverButton type='projects' />
 				</Link>
 			</div>
 
 			<div style={{ display: 'flex', flexDirection: 'row' }}>
-				<HoverButton type='discussions' />
-				<HoverButton type='answers' />
+				<Link to={`/contributions/discussions/${profileId}`}>
+					<HoverButton type='discussions' />
+				</Link>
 			</div>
 
 			{/* <Button variant='primary' style={{ height: '25%', marginTop: '20px' }}>

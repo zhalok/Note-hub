@@ -35,7 +35,7 @@ export default class ContributeForm extends Component {
 		message: '',
 		contributor_email: '',
 		link: '',
-		formData: null,
+		image: null,
 		showCongoMessage: false,
 	};
 
@@ -56,7 +56,8 @@ export default class ContributeForm extends Component {
 
 	submit_information = async () => {
 		console.log(this.state);
-
+		const formData = new FormData();
+		formData.append('content', this.state.image);
 		fetch(`${apiURL}/contribute/${this.state.selected_type}`, {
 			method: 'POST',
 			headers: {
@@ -71,6 +72,7 @@ export default class ContributeForm extends Component {
 				description: this.state.description.trim(),
 				link: this.state.link.trim(),
 				contributor_email: this.state.contributor_email,
+				formData,
 			}),
 		})
 			.then((response) => response.json())
@@ -275,6 +277,12 @@ export default class ContributeForm extends Component {
 											</div>
 										</div>
 									</div>
+									<input
+										type='file'
+										onChange={(e) => {
+											this.setState({ image: e.target.files[0] });
+										}}
+									/>
 									<input
 										className='form-control'
 										placeholder='Link'

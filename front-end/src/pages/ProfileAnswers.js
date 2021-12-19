@@ -1,7 +1,7 @@
 import React, { Component, useEffect, useState } from 'react';
 
 import Navbar from '../components/others/Navbar';
-import Booklist from '../components/lists/Booklist';
+import Answerlist from '../components/lists/Answerlist';
 import SearchOption from '../components/others/SearchOption';
 import SemesterList from '../components/lists/SemesterList';
 import WaitModalMessage from '../components/messages/WaitModalMessage';
@@ -26,43 +26,43 @@ console.log(apiURL);
 
 // apiURL = 'http://localhost:5000';
 
-const ProfileBooks = () => {
+const ProfileAnswers = () => {
 	// booklist: [],
 	// bookFetched: false,
 	// showWaitMessage: true,
 	// reload: 0,
-	const [bookList, setBookList] = useState([]);
-	const [bookFetched, setBookFetched] = useState(false);
+	const [answerList, setAnswerList] = useState([]);
+	const [answerFetched, setAnswerFetched] = useState(false);
 	const [showWaitMessage, setShowWaitMessage] = useState(false);
 	const { profileId } = useParams();
 
-	const find_books_by_userId = () => {
+	const find_answers_by_userId = () => {
 		setShowWaitMessage(true);
-		fetch(`http://localhost:5000/books/get_book_by_contributor_id/${profileId}`)
+		fetch(`http://localhost:5000/answers/get_answer_by_contributor_id/${profileId}`)
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
-				setBookList(data);
+				setAnswerList(data);
 				setShowWaitMessage(false);
-				setBookFetched(true);
+				setAnswerFetched(true);
 			})
 			.catch();
 	};
 
-	const delete_book = (book_id) => {
-		fetch(`http://localhost:5000/books/${book_id}`, {
+	const delete_answer = (answer_id) => {
+		fetch(`http://localhost:5000/answers/${answer_id}`, {
 			method: 'delete',
 		})
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
-				find_books_by_userId();
+				find_answers_by_userId();
 			})
 			.catch((err) => console.log(err));
 	};
 
 	useEffect(() => {
-		find_books_by_userId();
+		find_answers_by_userId();
 	}, []);
 
 	return (
@@ -83,7 +83,7 @@ const ProfileBooks = () => {
 
 				<div className='container mt-5 pt-4'>
 					<div style={{ display: 'flex', flexDirection: 'row' }}>
-						<h1 style={{ color: 'white' }}>{profileId}/Books</h1>
+						<h1 style={{ color: 'white' }}>{profileId}/Answers</h1>
 						{/* <SearchOption findByNameController={this.findBynameController} /> */}
 					</div>
 
@@ -97,12 +97,12 @@ const ProfileBooks = () => {
 								marginRight: 'auto',
 							}}
 						>
-							<Booklist
-								booklist={bookList}
-								bookFetched={bookFetched}
-								bookImg={bookImg}
-								deleteBook={(bookId) => {
-									delete_book(bookId);
+							<Answerlist
+								answerlist={answerList}
+								answerFetched={answerFetched}
+								answerImg={bookImg}
+								deleteAnswer={(answerId) => {
+									delete_answer(answerId);
 								}}
 							/>
 						</div>
@@ -113,4 +113,4 @@ const ProfileBooks = () => {
 	);
 };
 
-export default ProfileBooks;
+export default ProfileAnswers;

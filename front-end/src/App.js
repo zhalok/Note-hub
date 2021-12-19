@@ -18,7 +18,9 @@ import './App.css';
 import Answers from './pages/Answers';
 import ProfileBooks from './pages/ProfileBooks';
 import ProfileNotes from './pages/ProfileNotes';
-import Profileprojects from './pages/ProfileProjects';
+import ProfileProjects from './pages/ProfileProjects';
+import ProfileQuestions from './pages/ProfileQuestions';
+import ProfileDiscussions from './pages/ProfileDiscussions';
 
 export default class App extends Component {
 	state = {
@@ -192,11 +194,15 @@ export default class App extends Component {
 						<Route path='/contributions/notes/:profileId'>
 							<ProfileNotes />
 						</Route>
-						<Route path='/contributions/questions/:profileId'>
-							<ProfileNotes />
-						</Route>
+
 						<Route path='/contributions/projects/:profileId'>
-							<Profileprojects />
+							<ProfileProjects />
+						</Route>
+						<Route path='/contributions/questions/:profileId'>
+							<ProfileQuestions />
+						</Route>
+						<Route path='/contributions/discussions/:profileId'>
+							<ProfileDiscussions />
 						</Route>
 					</div>
 				</Router>

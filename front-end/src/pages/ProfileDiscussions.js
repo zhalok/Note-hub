@@ -1,7 +1,7 @@
 import React, { Component, useEffect, useState } from 'react';
 
 import Navbar from '../components/others/Navbar';
-import Booklist from '../components/lists/Booklist';
+import DiscussionList from '../components/lists/DiscussionList';
 import SearchOption from '../components/others/SearchOption';
 import SemesterList from '../components/lists/SemesterList';
 import WaitModalMessage from '../components/messages/WaitModalMessage';
@@ -31,38 +31,40 @@ const ProfileBooks = () => {
 	// bookFetched: false,
 	// showWaitMessage: true,
 	// reload: 0,
-	const [bookList, setBookList] = useState([]);
-	const [bookFetched, setBookFetched] = useState(false);
+	const [discussionList, setDiscussionList] = useState([]);
+	const [discussionFetched, setDiscussionFetched] = useState(false);
 	const [showWaitMessage, setShowWaitMessage] = useState(false);
 	const { profileId } = useParams();
 
-	const find_books_by_userId = () => {
+	const find_discussions_by_userId = () => {
 		setShowWaitMessage(true);
-		fetch(`http://localhost:5000/books/get_book_by_contributor_id/${profileId}`)
+		fetch(
+			`http://localhost:5000/discussions/get_discussion_by_contributor_id/${profileId}`
+		)
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
-				setBookList(data);
+				setDiscussionList(data);
 				setShowWaitMessage(false);
-				setBookFetched(true);
+				setDiscussionFetched(true);
 			})
 			.catch();
 	};
 
-	const delete_book = (book_id) => {
-		fetch(`http://localhost:5000/books/${book_id}`, {
+	const delete_discussion = (discussion_id) => {
+		fetch(`http://localhost:5000/discussions/${discussion_id}`, {
 			method: 'delete',
 		})
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
-				find_books_by_userId();
+				find_discussions_by_userId();
 			})
 			.catch((err) => console.log(err));
 	};
 
 	useEffect(() => {
-		find_books_by_userId();
+		find_discussions_by_userId();
 	}, []);
 
 	return (
@@ -83,7 +85,7 @@ const ProfileBooks = () => {
 
 				<div className='container mt-5 pt-4'>
 					<div style={{ display: 'flex', flexDirection: 'row' }}>
-						<h1 style={{ color: 'white' }}>{profileId}/Books</h1>
+						<h1 style={{ color: 'white' }}>{profileId}/Discussions</h1>
 						{/* <SearchOption findByNameController={this.findBynameController} /> */}
 					</div>
 
@@ -97,12 +99,12 @@ const ProfileBooks = () => {
 								marginRight: 'auto',
 							}}
 						>
-							<Booklist
-								booklist={bookList}
-								bookFetched={bookFetched}
-								bookImg={bookImg}
-								deleteBook={(bookId) => {
-									delete_book(bookId);
+							<DiscussionList
+								discussions={discussionList}
+								discussionFetched={discussionFetched}
+								discussionImg={bookImg}
+								deleteDiscussion={(discussionId) => {
+									delete_discussion(discussionId);
 								}}
 							/>
 						</div>

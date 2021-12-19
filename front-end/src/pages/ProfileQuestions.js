@@ -1,7 +1,7 @@
 import React, { Component, useEffect, useState } from 'react';
 
 import Navbar from '../components/others/Navbar';
-import Booklist from '../components/lists/Booklist';
+import Questionlist from '../components/lists/Questionlist';
 import SearchOption from '../components/others/SearchOption';
 import SemesterList from '../components/lists/SemesterList';
 import WaitModalMessage from '../components/messages/WaitModalMessage';
@@ -26,43 +26,45 @@ console.log(apiURL);
 
 // apiURL = 'http://localhost:5000';
 
-const ProfileBooks = () => {
+const ProfileQuestions = () => {
 	// booklist: [],
 	// bookFetched: false,
 	// showWaitMessage: true,
 	// reload: 0,
-	const [bookList, setBookList] = useState([]);
-	const [bookFetched, setBookFetched] = useState(false);
+	const [questionList, setQuestionList] = useState([]);
+	const [questionFetched, setQuestionFetched] = useState(false);
 	const [showWaitMessage, setShowWaitMessage] = useState(false);
 	const { profileId } = useParams();
 
-	const find_books_by_userId = () => {
-		setShowWaitMessage(true);
-		fetch(`http://localhost:5000/books/get_book_by_contributor_id/${profileId}`)
+	const find_questions_by_userId = () => {
+		// setShowWaitMessage(true);
+		fetch(
+			`http://localhost:5000/questions/get_question_by_contributor_id/${profileId}`
+		)
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
-				setBookList(data);
+				setQuestionList(data);
 				setShowWaitMessage(false);
-				setBookFetched(true);
+				setQuestionFetched(true);
 			})
 			.catch();
 	};
 
-	const delete_book = (book_id) => {
-		fetch(`http://localhost:5000/books/${book_id}`, {
+	const delete_question = (question_id) => {
+		fetch(`http://localhost:5000/questions/${question_id}`, {
 			method: 'delete',
 		})
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
-				find_books_by_userId();
+				find_questions_by_userId();
 			})
 			.catch((err) => console.log(err));
 	};
 
 	useEffect(() => {
-		find_books_by_userId();
+		find_questions_by_userId();
 	}, []);
 
 	return (
@@ -83,19 +85,21 @@ const ProfileBooks = () => {
 
 				<div className='container mt-5 pt-4'>
 					<div style={{ display: 'flex', flexDirection: 'row' }}>
-						<h1 style={{ color: 'white' }}>Books</h1>
-						{/* <SearchOption findByNameController={this.findBynameController} /> */}
+						<h1 style={{ color: 'white' }}>{profileId}/Questions</h1>
 					</div>
 
 					<hr className='hr-style' />
 					<div className='total-page'>
-						<div className='contents'>
-							<Booklist
-								booklist={bookList}
-								bookFetched={bookFetched}
-								bookImg={bookImg}
-								deleteBook={(bookId) => {
-									delete_book(bookId);
+						<div
+							className='contents'
+							style={{ marginLeft: 'auto', marginRight: 'auto' }}
+						>
+							<Questionlist
+								questionlist={questionList}
+								questionFetched={questionFetched}
+								questionImg={bookImg}
+								deleteQuestion={(questionId) => {
+									delete_question(questionId);
 								}}
 							/>
 						</div>
@@ -106,4 +110,4 @@ const ProfileBooks = () => {
 	);
 };
 
-export default ProfileBooks;
+export default ProfileQuestions;

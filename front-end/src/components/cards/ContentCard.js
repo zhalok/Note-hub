@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import image from '../../images/books.png';
+
 import ModalMessage from '../messages/ModalMessage';
 import Button from 'react-bootstrap/Button';
 

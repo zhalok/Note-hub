@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import img from '../../images/dp.jpg';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { Link } from 'react-router-dom';
 
 const UserCard = (props) => {
 	const { info } = props;
@@ -81,6 +82,19 @@ const UserCard = (props) => {
 						>
 							Linkedin
 						</Button>
+						<Link to={`/profile/${info.registration_id}`}>
+							<Button
+								variant='success'
+								style={{
+									marginTop: '20px',
+									marginLeft: '20px',
+									boxShadow:
+										'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+								}}
+							>
+								View Profile
+							</Button>
+						</Link>
 					</div>
 				</Card.Body>
 			</Card>
