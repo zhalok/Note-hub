@@ -21,6 +21,7 @@ import ProfileNotes from './pages/ProfileNotes';
 import ProfileProjects from './pages/ProfileProjects';
 import ProfileQuestions from './pages/ProfileQuestions';
 import ProfileDiscussions from './pages/ProfileDiscussions';
+import AdminPannel from './pages/AdminPannel';
 
 export default class App extends Component {
 	state = {
@@ -203,6 +204,9 @@ export default class App extends Component {
 						</Route>
 						<Route path='/contributions/discussions/:profileId'>
 							<ProfileDiscussions />
+						</Route>
+						<Route path='/admin'>
+							<AdminPannel />
 						</Route>
 					</div>
 				</Router>

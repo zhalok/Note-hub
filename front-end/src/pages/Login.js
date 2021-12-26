@@ -12,6 +12,7 @@ import '../App.css';
 import Profile from '../pages/Profile';
 
 import BasicInfoContext from '../Contexts/BasicInfoContext';
+import Button from '@restart/ui/esm/Button';
 
 var sectionStyle = {
 	// backgroundImage: `url(${Img})`,
@@ -89,13 +90,58 @@ export default class Login extends Component {
 		let Logged;
 
 		Logged = (
-			<Link
-				type='button'
-				className='btn btn-primary btn-lg btn-block bg-transparent p-3'
-				onClick={this.clickHander}
-			>
-				Let me in
-			</Link>
+			<div>
+				<Link
+					type='button'
+					className='btn btn-primary btn-lg btn-block bg-transparent p-3'
+					onClick={this.clickHander}
+				>
+					Let me in
+				</Link>
+				<div
+					style={{
+						display: 'flex',
+						width: '100%',
+						marginLeft: 'auto',
+						marginRight: 'auto',
+						marginTop: '10px',
+					}}
+				>
+					<Link to={'/admin'} style={{ width: '100%' }}>
+						<button
+							id='adminLoginButton'
+							style={{
+								backgroundColor: '#f4511e',
+								border: 'none',
+								color: 'white',
+								padding: '16px 32px',
+								textAlign: 'center',
+								fontSize: '16px',
+								margin: '4px 2px',
+								opacity: '0.6',
+								transition: '0.3s',
+								display: 'inline-block',
+								textDecoration: 'none',
+								cursor: 'pointer',
+								borderRadius: '10px',
+								marginLeft: 'auto',
+								marginRight: 'auto',
+								width: '100%',
+							}}
+							onMouseOver={() => {
+								const doc = document.getElementById('adminLoginButton');
+								doc.style.backgroundColor = 'black';
+							}}
+							onMouseOut={() => {
+								const doc = document.getElementById('adminLoginButton');
+								doc.style.backgroundColor = '#f4511e';
+							}}
+						>
+							Login as admin
+						</button>
+					</Link>
+				</div>
+			</div>
 		);
 
 		if (loggedInState == true) {
