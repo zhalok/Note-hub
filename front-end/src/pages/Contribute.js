@@ -43,7 +43,7 @@ export default class extends Component {
 					)}
 				</BasicInfoContext.Consumer>
 
-				<div className='container mt-5 pt-5'>
+				<div className='container'>
 					<h1 style={{ color: 'black' }}>Contribute</h1>
 					<hr className='hr-style' />
 					{contribute}

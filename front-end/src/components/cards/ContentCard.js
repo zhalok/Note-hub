@@ -4,6 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModalMessage from '../messages/ModalMessage';
 import Button from 'react-bootstrap/Button';
+import DescriptionModal from '../others/DescriptionModal';
 
 const ContentCardImageStyle = {
 	height: '10%',
@@ -21,7 +22,8 @@ const BookCardStyle = {
 	marginRight: 'auto',
 	display: 'flex',
 	/**backgroundColor: 'white',**/
-	backgroundImage: 'linear-gradient(120deg, rgba(39, 130, 186), rgba(122, 205, 250))',
+	backgroundImage:
+		'linear-gradient(120deg, rgba(39, 130, 186), rgba(122, 205, 250))',
 	flexDirection: 'row',
 	padding: '10px',
 	marginTop: '20px',
@@ -72,6 +74,10 @@ export default function ContentCard(props) {
 	const [modalShow, setModalShow] = React.useState(false);
 	const [message, setMessage] = React.useState('');
 	const [displayOptions, setDisplayOptions] = useState('none');
+	const [open, setOpen] = React.useState(false);
+	const handleOpen = () => setOpen(true);
+	const handleClose = () => setOpen(false);
+
 	console.log(info.contributor_id);
 	useEffect(() => {
 		if (userId && userId == info.contributor_id) {
@@ -88,6 +94,7 @@ export default function ContentCard(props) {
 				style={{
 					display: 'flex',
 					width: 'fit-content',
+					height: 'fit-content',
 					boxShadow:
 						'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
 				}}
@@ -105,6 +112,7 @@ export default function ContentCard(props) {
 				style={{
 					display: 'flex',
 					width: 'fit-content',
+					height: 'fit-content',
 					boxShadow:
 						'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
 				}}
@@ -143,44 +151,63 @@ export default function ContentCard(props) {
 			<div class='card-body'>
 				<div style={{ display: 'flex', flexDirection: 'row' }}>
 					<h2 className='display-5'>{info.name}</h2>
+					<IconButton
+						aria-label='delete'
+						style={{
+							display: displayOptions,
+							marginLeft: 'auto',
+						}}
+						variant='outline-dark'
+						onClick={() => {
+							deleteContent(info._id);
+						}}
+					>
+						<DeleteIcon />
+					</IconButton>
 				</div>
 
 				<p className='blockquote-footer' style={{ fontSize: '15px' }}>
 					{info.contributor_name}
 				</p>
-				<p class='.lead'>{info.description}</p>
 
 				<div style={{ display: 'flex' }}>
-					<button
-						type='button'
-						className='btn btn-primary'
+					<div
 						style={{
-							display: 'flex',
-							marginLeft: 'auto',
 							width: 'fit-content',
-							marginRight: '10px',
-							boxShadow:
-								'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+							marginLeft: 'auto',
+							display: 'flex',
+							flexDirection: 'row',
 						}}
 					>
-						Preview
-					</button>
-					{linkDIsplay}
+						<button
+							type='button'
+							className='btn btn-primary'
+							style={{
+								display: 'flex',
+								marginLeft: 'auto',
+								width: 'fit-content',
+
+								marginRight: '10px',
+								height: 'fit-content',
+								boxShadow:
+									'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+							}}
+							onClick={() => {
+								setOpen(true);
+							}}
+						>
+							See Description
+						</button>
+						{linkDIsplay}
+					</div>
 				</div>
-				<IconButton aria-label="delete"
-					style={{
-						display: displayOptions,						
-						marginLeft: 'auto',
-						marginTop: '20px',						
-					}}
-					variant='outline-dark'
-					onClick={() => {
-						deleteContent(info._id);
-					}}
-				>
-					<DeleteIcon />
-				</IconButton>
 			</div>
+			<DescriptionModal
+				open={open}
+				handleOpen={handleOpen}
+				handleClose={handleClose}
+				description={info.description}
+			/>
 		</div>
 	);
 }

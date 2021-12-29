@@ -29,7 +29,10 @@ import HomeIcon from '@mui/icons-material/Home';
 import LoginIcon from '@mui/icons-material/Login';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import LogoutIcon from '@mui/icons-material/Logout';
-
+import GroupIcon from '@mui/icons-material/Group';
+import AddLinkIcon from '@mui/icons-material/AddLink';
+import { useHistory } from 'react-router-dom';
+import ContactPageIcon from '@mui/icons-material/ContactPage';
 const drawerWidth = 240;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -83,14 +86,20 @@ export default function SideNavbarDrawer({
 	loggedInState,
 	handleLog,
 	setRedirect,
+	userId,
 }) {
+	let History = useHistory();
 	const theme = useTheme();
 	const [open, setOpen] = React.useState(false);
 	let items = [
-		{ label: 'Log in as contributor', icon: LoginIcon },
-		{ label: 'Sign up as contributor', icon: AppRegistrationIcon },
+		{ label: 'Log in', icon: LoginIcon },
+		{ label: 'Sign up', icon: AppRegistrationIcon },
 	];
-	if (loggedInState == true) items = [{ label: 'Log out', icon: LogoutIcon }];
+	if (loggedInState == true)
+		items = [
+			{ label: 'Log out', icon: LogoutIcon },
+			{ label: 'Profile', icon: ContactPageIcon },
+		];
 
 	console.log(loggedInState);
 
@@ -152,6 +161,8 @@ export default function SideNavbarDrawer({
 						{ label: 'Questions', link: '/questions', icon: QuizIcon },
 						{ label: 'Projects', link: '/projects', icon: AccountTreeIcon },
 						{ label: 'Discussions', link: '/discussions', icon: ForumIcon },
+						{ label: 'Contributors', link: '/users', icon: GroupIcon },
+						{ label: 'Contribute', link: '/contribute', icon: AddLinkIcon },
 					].map((element, index) => (
 						<ListItem
 							component={Link}
@@ -162,7 +173,7 @@ export default function SideNavbarDrawer({
 							// 	window.location = `http://localhost:3000/${element.link}`;
 							// }}
 						>
-							<ListItemIcon>{<element.icon />}</ListItemIcon>
+							<ListItemIcon>{<element.icon color='primary' />}</ListItemIcon>
 							<ListItemText primary={element.label} />
 						</ListItem>
 					))}
@@ -176,10 +187,16 @@ export default function SideNavbarDrawer({
 							onClick={() => {
 								if (element.label == 'Log out') {
 									handleLog();
+								} else if (element.label == 'Profile') {
+									History.push(`/profile/${userId}`);
+								} else if (element.label == 'Log in') {
+									History.push('/login');
+								} else if (element.label == 'Sign up') {
+									History.push('/signup');
 								}
 							}}
 						>
-							<ListItemIcon>{<element.icon />}</ListItemIcon>
+							<ListItemIcon>{<element.icon color='primary' />}</ListItemIcon>
 							<ListItemText primary={element.label} />
 						</ListItem>
 					))}

@@ -180,10 +180,10 @@ export default class Login extends Component {
 		}
 
 		return (
-			<div style={sectionStyle} className='ht mt-5'>
+			<div style={sectionStyle} className='ht'>
 				<BasicInfoContext.Consumer>
 					{({ nav_info, loggedInState, handleLog, userId }) => (
-						<Navbar
+						<SideNavbarDrawer
 							nav_link={nav_info}
 							loggedInState={loggedInState}
 							handleLog={handleLog}
@@ -192,9 +192,9 @@ export default class Login extends Component {
 					)}
 				</BasicInfoContext.Consumer>
 
-				<div className='container mt-5'>
+				<div className='container '>
 					<p>
-						<h1 className='text-dark mt-5'>
+						<h1 className='text-dark '>
 							<strong>Login</strong>
 						</h1>
 					</p>

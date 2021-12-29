@@ -117,7 +117,7 @@ export default class Questions extends Component {
 					)}
 				</BasicInfoContext.Consumer>
 
-				<div className='container mt-5 pt-4'>
+				<div className='container'>
 					<div style={{ display: 'flex', flexDirection: 'row' }}>
 						<h1 style={{ color: 'black' }}>Questions</h1>
 						<SearchOption findByNameController={this.findBynameController} />

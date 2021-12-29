@@ -64,7 +64,7 @@ const Answers = (props) => {
 					userId={userId}
 				/>
 
-				<div className='container mt-5 pt-4'>
+				<div className='container '>
 					<div style={{ display: 'flex', flexDirection: 'row' }}>
 						<h1 style={{ color: 'black' }}>All answers</h1>
 					</div>
