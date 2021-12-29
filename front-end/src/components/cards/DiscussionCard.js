@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import ToastContext from '../../Contexts/ToastContext';
 import NewAnswerForm from '../forms/newAnswerForm';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
 import WaitModalMessage from '../messages/WaitModalMessage';
 
@@ -35,15 +37,15 @@ export default function DiscussionCard(props) {
 	let deleteButton;
 	if (userId == discussion_starters_id) {
 		deleteButton = (
-			<Button
-				variant='danger'
+			<IconButton aria-label="delete"
+				variant='secondary'
 				style={{ marginLeft: 'auto' }}
 				onClick={() => {
 					deleteDiscussion(_id);
 				}}
 			>
-				Delete
-			</Button>
+				<DeleteIcon />
+			</IconButton>
 		);
 	}
 
@@ -56,8 +58,8 @@ export default function DiscussionCard(props) {
 					marginLeft: 'auto',
 					marginRight: 'auto',
 					marginTop: '50px',
-					backgroundColor: 'white',
-					padding: '20px',
+					backgroundImage: 'linear-gradient(170deg, rgba(83, 185, 230), rgba(35, 103, 158))',
+					padding: '10px',
 					boxShadow:
 						'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
 					borderRadius: '10px',
@@ -85,7 +87,7 @@ export default function DiscussionCard(props) {
 					}}
 				</ToastContext.Consumer>
 
-				<h1>{title}</h1>
+				<h3>{title}</h3>
 				<small>-{discussion_starters_name}</small>
 				<hr />
 				<p>{body}</p>
@@ -94,12 +96,12 @@ export default function DiscussionCard(props) {
 						width: '100%',
 						display: 'flex',
 						flexDirection: 'row',
-						marginTop: '70px',
+						marginTop: '30px',
 					}}
 				>
 					<Link to={`/answers/${_id}`}>
 						<Button
-							variant='primary'
+							variant='dark'
 							style={{
 								display: 'flex',
 								width: 'fit-content',
@@ -111,7 +113,7 @@ export default function DiscussionCard(props) {
 						</Button>
 					</Link>
 					<Button
-						variant='outline-success'
+						variant='outline-light'
 						style={{
 							display: 'flex',
 							width: 'fit-content',

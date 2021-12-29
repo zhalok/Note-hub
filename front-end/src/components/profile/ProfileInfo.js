@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
-import dp from '../../images/dp.jpg';
+import dp from '../../images/user.png';
 
 const ProfileInfo = ({ profileInfo }) => {
 	const { name, registration_id, session } = profileInfo;
@@ -33,7 +33,6 @@ const ProfileInfo = ({ profileInfo }) => {
 						verticalAlign: 'middle',
 						width: '200px',
 						height: '200px',
-						borderRadius: '50%',
 					}}
 				/>
 				<div className='basic-info' style={{ marginTop: '50px' }}>

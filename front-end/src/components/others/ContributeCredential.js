@@ -14,7 +14,7 @@ export default class ContributeCredential extends React.Component {
 					marginLeft: 'auto',
 					marginRight: 'auto',
 					marginTop: '100px',
-					backgroundColor: '#c0dfa8',
+					backgroundImage: 'linear-gradient(120deg, rgba(32, 90, 140), rgba(140, 205, 245), rgba(237, 248, 255))',
 				}}
 			>
 				<div style={{ display: 'flex', flexDirection: 'row' }}>
@@ -24,6 +24,7 @@ export default class ContributeCredential extends React.Component {
 							width: '50%',
 							padding: '20px',
 							marginRight: 'auto',
+							
 						}}
 					>
 						<div
@@ -31,7 +32,7 @@ export default class ContributeCredential extends React.Component {
 								display: 'flex',
 								marginLeft: 'auto',
 								marginRight: 'auto',
-
+                               
 								flexDirection: 'column',
 							}}
 						>
@@ -49,7 +50,7 @@ export default class ContributeCredential extends React.Component {
 
 							<Link
 								type='button'
-								className='btn btn-primary w-100'
+								className='btn btn-dark w-100'
 								to='/login'
 								style={{ marginLeft: 'auto', marginRight: 'auto' }}
 							>
@@ -60,7 +61,7 @@ export default class ContributeCredential extends React.Component {
 
 							<Link
 								type='button'
-								className='btn btn-outline-success w-100'
+								className='btn btn-success w-100'
 								to='/signup'
 								style={{ marginLeft: 'auto', marginRight: 'auto' }}
 							>

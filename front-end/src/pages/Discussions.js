@@ -9,6 +9,7 @@ import NotificationMessage from '../components/messages/NotificationMessage';
 import ToastContext from '../Contexts/ToastContext';
 import WaitModalMessage from '../components/messages/WaitModalMessage';
 import BasicInfoContext from '../Contexts/BasicInfoContext';
+import SideNavbarDrawer from '../components/others/SideNavDrawer';
 
 // const getData = (setUserDetails, userId) => {
 // 	fetch(`http://localhost:5000/users/id/${userId}`)
@@ -56,7 +57,7 @@ export default function Discussions(props) {
 	var sectionStyle = {
 		backgroundSize: 'cover',
 		padding: '10px',
-		backgroundColor: '#02242c',
+		backgroundColor: '#8bbaf7',
 	};
 
 	const [show, setShow] = useState(false);
@@ -68,7 +69,7 @@ export default function Discussions(props) {
 			<div style={sectionStyle} className='ht'>
 				<BasicInfoContext.Consumer>
 					{({ nav_info, loggedInState, handleLog, userId }) => (
-						<Navbar
+						<SideNavbarDrawer
 							nav_link={nav_info}
 							loggedInState={loggedInState}
 							handleLog={handleLog}
@@ -77,11 +78,9 @@ export default function Discussions(props) {
 					)}
 				</BasicInfoContext.Consumer>
 
-				<WaitModalMessage show={showModalMessage} />
-
 				<div className='container mt-5 pt-4'>
 					<div style={{ display: 'flex', flexDirection: 'row' }}>
-						<h1 style={{ color: 'white' }}>Discussions</h1>
+						<h1 style={{ color: 'black' }}>Discussions</h1>
 					</div>
 
 					<hr className='hr-style' />
@@ -89,7 +88,7 @@ export default function Discussions(props) {
 					<div className='total-page'>
 						<div style={{ width: '100%' }}>
 							<Button
-								variant='success'
+								variant='primary'
 								style={{
 									display: 'flex',
 
@@ -136,6 +135,7 @@ export default function Discussions(props) {
 					</div>
 				</div>
 			</div>
+			<WaitModalMessage show={showModalMessage} />
 		</div>
 	);
 }

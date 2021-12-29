@@ -25,7 +25,13 @@ const AnswerCard = (props) => {
 
 	return (
 		<div style={{ marginTop: '20px' }}>
-			<Card>
+			<Card
+				style={{
+					backgroundColor: 'white',
+					// backgroundImage:
+					// 'linear-gradient(130deg, rgba(49, 131, 181), rgba(110, 194, 245), rgba(65, 140, 186)',
+				}}
+			>
 				<Card.Header>
 					<h5>{name} </h5> - <small>{id}</small>
 				</Card.Header>
@@ -33,7 +39,7 @@ const AnswerCard = (props) => {
 					<Card.Text>{body}</Card.Text>
 					<Button
 						style={{ display: showOption, marginLeft: 'auto' }}
-						variant='danger'
+						variant='dark'
 						onClick={() => {
 							delete_answer();
 						}}

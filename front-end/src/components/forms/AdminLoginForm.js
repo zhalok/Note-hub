@@ -1,5 +1,6 @@
 import React from 'react';
 import FadeInButton from '../buttons/FadeButton';
+import { Link } from 'react-router-dom';
 
 const AdminLoginForm = () => {
 	return (
@@ -61,7 +62,9 @@ const AdminLoginForm = () => {
 					id='adminPassword'
 					placeholder='password'
 				/>
-				<FadeInButton normalColor='#f4511e' hoverColor='white' text='Login' />
+				<Link to={'/admin/requests'}>
+					<FadeInButton normalColor='#f4511e' hoverColor='white' text='Login' />
+				</Link>
 			</div>
 		</div>
 	);

@@ -11,22 +11,23 @@ import { Link } from 'react-router-dom';
 import backgroundImage from '../images/signup.jpg';
 import study from '../images/study.png';
 import BasicInfoContext from '../Contexts/BasicInfoContext';
+import SideNavbarDrawer from '../components/others/SideNavDrawer';
 
 var sectionStyle = {
 	display: 'flex',
 	flexDirection: 'column',
-	padding: '20px',
-	paddingTop: '80px',
+	// padding: '20px',
+	// paddingTop: '80px',
 	// backgroundImage: `url(${backgroundImage})`,
 
 	/* Full height */
 	height: '100%',
 
 	/* Center and scale the image nicely */
-	backgroundPosition: 'center',
+	// backgroundPosition: 'center',
 	backgroundRepeat: 'no-repeat',
 	backgroundSize: 'cover',
-	backgroundColor: '#02242c',
+	// backgroundColor: '#02242c',
 };
 
 const apiURL =
@@ -75,7 +76,7 @@ export default class Home extends Component {
 			<>
 				<BasicInfoContext.Consumer>
 					{({ nav_info, loggedInState, handleLog, userId }) => (
-						<Navbar
+						<SideNavbarDrawer
 							nav_link={nav_info}
 							loggedInState={loggedInState}
 							handleLog={handleLog}
@@ -84,7 +85,7 @@ export default class Home extends Component {
 					)}
 				</BasicInfoContext.Consumer>
 
-				<Caro books={books} notes={notes} projects={projects} />
+				{/* <Caro books={books} notes={notes} projects={projects} /> */}
 				<div style={sectionStyle} className='ht'>
 					<img
 						style={{
@@ -99,7 +100,7 @@ export default class Home extends Component {
 							display: 'flex',
 							marginLeft: 'auto',
 							marginRight: 'auto',
-							color: 'rgb(148, 159, 133)',
+							color: 'black',
 						}}
 					>
 						The only HUB you need
@@ -135,7 +136,7 @@ export default class Home extends Component {
 						<Link
 							type='button'
 							to='/contribute'
-							className='btn btn-outline-success mt-5 btn-lg h-10 w-10 p-4'
+							className='btn btn-outline-success mt-4 btn-lg h-10 w-10 p-4'
 							style={{
 								width: '30%',
 								boxShadow:

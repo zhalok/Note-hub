@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+	BrowserRouter as Router,
+	Route,
+	Switch,
+	Redirect,
+} from 'react-router-dom';
 
 import Home from './pages/Home';
 import Books from './pages/Books';
@@ -23,12 +28,15 @@ import ProfileQuestions from './pages/ProfileQuestions';
 import ProfileDiscussions from './pages/ProfileDiscussions';
 import AdminPannel from './pages/AdminPannel';
 
+import RegistrationRequestPage from './pages/RegistrationRequestPage';
+
 export default class App extends Component {
 	state = {
 		isLoggedIn: false,
 		userId: '',
 		useName: '',
 		userEmail: '',
+		// adminLogin: false,
 	};
 
 	get_token() {
@@ -74,7 +82,7 @@ export default class App extends Component {
 
 	componentDidMount() {
 		this.get_token();
-		console.log(this.state.userId);
+		document.body.style.backgroundColor = '#8bbaf7';
 	}
 
 	// componentDidUpdate() {
@@ -82,6 +90,7 @@ export default class App extends Component {
 	// }
 
 	render() {
+		console.log(this.state.userId);
 		let nav_info = [
 			{ id: 1, title: 'Login', link: '/login' },
 			{ id: 2, title: 'Sign up', link: '/signup' },
@@ -205,8 +214,19 @@ export default class App extends Component {
 						<Route path='/contributions/discussions/:profileId'>
 							<ProfileDiscussions />
 						</Route>
-						<Route path='/admin'>
-							<AdminPannel />
+						<Route path='/admin/login'>
+							{/* {this.state.isLoggedIn ? (
+								<Redirect to='/admin/requests' />
+							) : (
+								
+							)} */}
+							<AdminPannel
+								loggedInState={this.state.isLoggedIn}
+								handleLog={this.loginStateChanger}
+							/>
+						</Route>
+						<Route path='/admin/requests'>
+							<RegistrationRequestPage loggedInState={this.state.isLoggedIn} />
 						</Route>
 					</div>
 				</Router>

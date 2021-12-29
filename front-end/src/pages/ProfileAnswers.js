@@ -10,11 +10,12 @@ import bookImg from '../images/books.png';
 import '../App.css';
 import BasicInfoContext from '../Contexts/BasicInfoContext';
 import { useParams } from 'react-router';
+import SideNavbarDrawer from '../components/others/SideNavDrawer';
 
 var sectionStyle = {
 	backgroundSize: 'cover',
 	padding: '10px',
-	backgroundColor: '#02242c',
+	backgroundColor: '#8bbaf7',
 };
 
 let apiURL =
@@ -38,7 +39,9 @@ const ProfileAnswers = () => {
 
 	const find_answers_by_userId = () => {
 		setShowWaitMessage(true);
-		fetch(`http://localhost:5000/answers/get_answer_by_contributor_id/${profileId}`)
+		fetch(
+			`http://localhost:5000/answers/get_answer_by_contributor_id/${profileId}`
+		)
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
@@ -70,7 +73,7 @@ const ProfileAnswers = () => {
 			<div style={sectionStyle} className='ht'>
 				<BasicInfoContext.Consumer>
 					{({ nav_info, loggedInState, handleLog, userId }) => (
-						<Navbar
+						<SideNavbarDrawer
 							nav_link={nav_info}
 							loggedInState={loggedInState}
 							handleLog={handleLog}
@@ -79,11 +82,9 @@ const ProfileAnswers = () => {
 					)}
 				</BasicInfoContext.Consumer>
 
-				<WaitModalMessage show={showWaitMessage} />
-
 				<div className='container mt-5 pt-4'>
 					<div style={{ display: 'flex', flexDirection: 'row' }}>
-						<h1 style={{ color: 'white' }}>{profileId}/Answers</h1>
+						<h1 style={{ color: 'black' }}>{profileId}/Answers</h1>
 						{/* <SearchOption findByNameController={this.findBynameController} /> */}
 					</div>
 
@@ -109,6 +110,7 @@ const ProfileAnswers = () => {
 					</div>
 				</div>
 			</div>
+			<WaitModalMessage show={showWaitMessage} />
 		</div>
 	);
 };

@@ -8,9 +8,10 @@ import Img from '../images/login.png';
 
 import '../App.css';
 import BasicInfoContext from '../Contexts/BasicInfoContext';
+import SideNavbarDrawer from '../components/others/SideNavDrawer';
 
 var sectionStyle = {
-	backgroundColor: `#02242c`,
+	backgroundColor: `#8bbaf7`,
 };
 
 const apiURL =
@@ -33,7 +34,7 @@ export default class extends Component {
 			<div style={sectionStyle} className='ht'>
 				<BasicInfoContext.Consumer>
 					{({ nav_info, loggedInState, handleLog, userId }) => (
-						<Navbar
+						<SideNavbarDrawer
 							nav_link={nav_info}
 							loggedInState={loggedInState}
 							handleLog={handleLog}
@@ -43,7 +44,7 @@ export default class extends Component {
 				</BasicInfoContext.Consumer>
 
 				<div className='container mt-5 pt-5'>
-					<h1 style={{ color: 'white' }}>Contribute</h1>
+					<h1 style={{ color: 'black' }}>Contribute</h1>
 					<hr className='hr-style' />
 					{contribute}
 				</div>

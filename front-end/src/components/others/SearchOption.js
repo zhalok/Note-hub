@@ -30,7 +30,7 @@ export default function SearchOption(props) {
 
 			<button
 				type='button'
-				className='btn btn-success'
+				className='btn btn-outline-primary'
 				style={{ marginTop: '10px', height: '100%' }}
 				onClick={() => {
 					findByNameController(searchVal);

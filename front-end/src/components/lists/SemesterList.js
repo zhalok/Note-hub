@@ -4,15 +4,15 @@ export default function SemesterList(porps) {
 	const { controller } = porps;
 	return (
 		<div className='semester-options'>
-			<h3 style={{ color: 'white' }}>Semesters</h3>
+			<h3 style={{ color: 'black' }}>Semesters</h3>
 			<hr className='hr-style' />
 			<button
 				type='button'
 				id='1'
 				onClick={controller}
-				className='btn btn-outline-success btn-lg btn-block'
+				className='btn btn-primary btn-lg btn-block'
 				value='semester1'
-				style={{ color: 'white' }}
+				style={{ color: 'black' }}
 			>
 				Semester 1
 			</button>
@@ -20,9 +20,9 @@ export default function SemesterList(porps) {
 				type='button'
 				id='2'
 				onClick={controller}
-				className='btn btn-outline-success btn-lg btn-block'
+				className='btn btn-primary btn-lg btn-block'
 				value='semester2'
-				style={{ color: 'white' }}
+				style={{ color: 'black' }}
 			>
 				Semester 2
 			</button>
@@ -30,9 +30,9 @@ export default function SemesterList(porps) {
 				type='button'
 				id='3'
 				onClick={controller}
-				className='btn btn-outline-success btn-lg btn-block'
+				className='btn btn-primary btn-lg btn-block'
 				value='semester3'
-				style={{ color: 'white' }}
+				style={{ color: 'black' }}
 			>
 				Semester 3
 			</button>
@@ -40,9 +40,9 @@ export default function SemesterList(porps) {
 				type='button'
 				id='4'
 				onClick={controller}
-				className='btn btn-outline-success btn-lg btn-block'
+				className='btn btn-primary btn-lg btn-block'
 				value='semester4'
-				style={{ color: 'white' }}
+				style={{ color: 'black' }}
 			>
 				Semester 4
 			</button>
@@ -50,9 +50,9 @@ export default function SemesterList(porps) {
 				type='button'
 				id='5'
 				onClick={controller}
-				className='btn btn-outline-success btn-lg btn-block'
+				className='btn btn-primary btn-lg btn-block'
 				value='semester5'
-				style={{ color: 'white' }}
+				style={{ color: 'black' }}
 			>
 				Semester 5
 			</button>
@@ -60,9 +60,9 @@ export default function SemesterList(porps) {
 				type='button'
 				id='6'
 				onClick={controller}
-				className='btn btn-outline-success btn-lg btn-block'
+				className='btn btn-primary btn-lg btn-block'
 				value='semester6'
-				style={{ color: 'white' }}
+				style={{ color: 'black' }}
 			>
 				Semester 6
 			</button>
@@ -70,9 +70,9 @@ export default function SemesterList(porps) {
 				type='button'
 				id='7'
 				onClick={controller}
-				className='btn btn-outline-success btn-lg btn-block'
+				className='btn btn-primary btn-lg btn-block'
 				value=' semester7'
-				style={{ color: 'white' }}
+				style={{ color: 'black' }}
 			>
 				Semester 7
 			</button>
@@ -80,9 +80,9 @@ export default function SemesterList(porps) {
 				type='button'
 				id='8'
 				onClick={controller}
-				className='btn btn-outline-success btn-lg btn-block'
+				className='btn btn-primary btn-lg btn-block'
 				value=' semester8'
-				style={{ color: 'white' }}
+				style={{ color: 'black' }}
 			>
 				Semester 8
 			</button>

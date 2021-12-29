@@ -5,12 +5,24 @@ const bcrypt = require('bcrypt');
 
 const get_all_users = async (req, res, next) => {
 	try {
-		const users = await userModel.find({});
+		const users = await userModel.find({ verified: true });
 		if (!users) res.json('No users found');
-		else res.json(users);
+		else {
+			res.json(users);
+		}
 	} catch (err) {
 		next(err);
 	}
+};
+
+const get_all_user_requests = (req, res, next) => {
+	userModel.find({ verified: false }, (err, users) => {
+		if (err) {
+			next(err);
+		} else {
+			res.json(users);
+		}
+	});
 };
 
 const get_user_by_id = async (req, res, next) => {
@@ -39,6 +51,31 @@ const get_user_by_id = async (req, res, next) => {
 //   }
 // };
 
+const check_user_validity = (req, res, next) => {
+	const { registration_id, password } = req.body;
+	userModel.find({ registration_id }, (err, users) => {
+		if (err) next(err);
+		else {
+			console.log(users[0].verified);
+			if (users.length) {
+				const hashedPassword = users[0].password;
+				bcrypt.compare(password, hashedPassword, (err, result) => {
+					if (err) {
+						next(err);
+					} else {
+						if (result) {
+							if (users[0].verified) res.json(users[0]);
+							else res.json('Request Processing');
+						} else res.json('null');
+					}
+				});
+			} else {
+				res.json('User not found');
+			}
+		}
+	});
+};
+
 const add_new_user = async (req, res, next) => {
 	const {
 		name,
@@ -59,12 +96,19 @@ const add_new_user = async (req, res, next) => {
 		const data = await userModel.find({});
 
 		let vacany = true;
+		let verified = false;
 
 		data.forEach((e) => {
 			if (req.body.registration_id === e.registration_id) {
 				vacany = false;
+				if (e.verified) verified = true;
 			}
 		});
+
+		if (verified == false && vacany == false) {
+			res.json('Request Processing');
+			return;
+		}
 
 		if (vacany) {
 			const new_user = new userModel({
@@ -80,6 +124,7 @@ const add_new_user = async (req, res, next) => {
 				notes: [],
 				questions: [],
 				projects: [],
+				verified: false,
 			});
 
 			const result = await new_user.save();
@@ -93,49 +138,26 @@ const add_new_user = async (req, res, next) => {
 	}
 };
 
-const update_user = (info, callback) => {
-	const { contributor_id, content_name, semester, type } = info;
+// const update_user = (info, callback) => {
+// 	const { contributor_id, content_name, semester, type } = info;
 
-	userModel.find({ registration_id: contributor_id }, (err, userData) => {
-		if (err) callback(err);
-		else {
-			const found_user = userData[0];
-			found_user[type].push({ name: content_name });
-			found_user.save((err, suc) => {
-				if (err) callback(err);
-				else callback(null, 'saved');
-			});
-		}
-	});
-};
-
-const check_user_validity = (req, res, next) => {
-	const { registration_id, password } = req.body;
-	userModel.find({ registration_id }, (err, users) => {
-		if (err) next(err);
-		else {
-			if (users.length) {
-				const hashedPassword = users[0].password;
-				bcrypt.compare(password, hashedPassword, (err, result) => {
-					if (err) {
-						next(err);
-					} else {
-						if (result) res.json(users[0]);
-						else res.json('User not found');
-					}
-				});
-			} else {
-				res.json('User not found');
-			}
-		}
-	});
-};
+// 	userModel.find({ registration_id: contributor_id }, (err, userData) => {
+// 		if (err) callback(err);
+// 		else {
+// 			const found_user = userData[0];
+// 			found_user[type].push({ name: content_name });
+// 			found_user.save((err, suc) => {
+// 				if (err) callback(err);
+// 				else callback(null, 'saved');
+// 			});
+// 		}
+// 	});
+// };
 
 module.exports = {
 	get_all_users,
 	get_user_by_id,
-	// get_users_by_name,
+	get_all_user_requests,
 	add_new_user,
-	update_user,
 	check_user_validity,
 };

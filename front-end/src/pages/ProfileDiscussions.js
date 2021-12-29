@@ -10,11 +10,12 @@ import bookImg from '../images/books.png';
 import '../App.css';
 import BasicInfoContext from '../Contexts/BasicInfoContext';
 import { useParams } from 'react-router';
+import SideNavbarDrawer from '../components/others/SideNavDrawer';
 
 var sectionStyle = {
 	backgroundSize: 'cover',
 	padding: '10px',
-	backgroundColor: '#02242c',
+	backgroundColor: '#8bbaf7',
 };
 
 let apiURL =
@@ -72,7 +73,7 @@ const ProfileBooks = () => {
 			<div style={sectionStyle} className='ht'>
 				<BasicInfoContext.Consumer>
 					{({ nav_info, loggedInState, handleLog, userId }) => (
-						<Navbar
+						<SideNavbarDrawer
 							nav_link={nav_info}
 							loggedInState={loggedInState}
 							handleLog={handleLog}
@@ -81,11 +82,9 @@ const ProfileBooks = () => {
 					)}
 				</BasicInfoContext.Consumer>
 
-				<WaitModalMessage show={showWaitMessage} />
-
 				<div className='container mt-5 pt-4'>
 					<div style={{ display: 'flex', flexDirection: 'row' }}>
-						<h1 style={{ color: 'white' }}>{profileId}/Discussions</h1>
+						<h1 style={{ color: 'black' }}>{profileId}/Discussions</h1>
 						{/* <SearchOption findByNameController={this.findBynameController} /> */}
 					</div>
 
@@ -94,7 +93,6 @@ const ProfileBooks = () => {
 						<div
 							className='contents'
 							style={{
-								display: 'flex',
 								marginLeft: 'auto',
 								marginRight: 'auto',
 							}}
@@ -111,6 +109,7 @@ const ProfileBooks = () => {
 					</div>
 				</div>
 			</div>
+			<WaitModalMessage show={showWaitMessage} />
 		</div>
 	);
 };

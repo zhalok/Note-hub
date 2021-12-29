@@ -55,12 +55,12 @@ const NewDiscussionForm = (props) => {
 			aria-labelledby='contained-modal-title-vcenter'
 			centered
 		>
-			<Modal.Header closeButton>
+			<Modal.Header style={{backgroundColor:'#1a95d9'}} closeButton>
 				<Modal.Title id='contained-modal-title-vcenter'>
 					New Discussion
 				</Modal.Title>
 			</Modal.Header>
-			<Modal.Body>
+			<Modal.Body style={{backgroundColor:'#85d4ff'}} >
 				<h4>Title</h4>
 				<input
 					className='form-control'
@@ -85,16 +85,16 @@ const NewDiscussionForm = (props) => {
 				</FloatingLabel>
 				<br />
 			</Modal.Body>
-			<Modal.Footer>
+			<Modal.Footer style={{backgroundColor:'#85d4ff'}} >
 				<Button
-					variant='success'
+					variant='primary'
 					onClick={() => {
 						submitDiscussion();
 					}}
 				>
 					Add
 				</Button>
-				<Button variant='danger' onClick={props.onHide}>
+				<Button variant='dark' onClick={props.onHide}>
 					Close
 				</Button>
 			</Modal.Footer>

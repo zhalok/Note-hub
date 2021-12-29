@@ -13,18 +13,21 @@ import Profile from '../pages/Profile';
 
 import BasicInfoContext from '../Contexts/BasicInfoContext';
 import Button from '@restart/ui/esm/Button';
+import SideNavbarDrawer from '../components/others/SideNavDrawer';
 
 var sectionStyle = {
 	// backgroundImage: `url(${Img})`,
 	backgroundSize: 'cover',
 	overflow: 'hidden',
-	backgroundColor: '#02242c',
+	backgroundColor: '#8bbaf7',
 };
 
-const apiURL =
+let apiURL =
 	process.env.NODE_ENV == 'dev'
 		? 'http://localhost:5000'
 		: 'https://notehubapi.herokuapp.com';
+
+// apiURL = 'http://localhost:5000';
 
 export default class Login extends Component {
 	constructor(props) {
@@ -107,7 +110,7 @@ export default class Login extends Component {
 						marginTop: '10px',
 					}}
 				>
-					<Link to={'/admin'} style={{ width: '100%' }}>
+					<Link to={'/admin/login'} style={{ width: '100%' }}>
 						<button
 							id='adminLoginButton'
 							style={{
@@ -137,7 +140,7 @@ export default class Login extends Component {
 								doc.style.backgroundColor = '#f4511e';
 							}}
 						>
-							Login as admin
+							Login as Admin
 						</button>
 					</Link>
 				</div>
@@ -150,7 +153,7 @@ export default class Login extends Component {
 					<div className='container-fluid d-flex justify-content-center mt-5 p-5 h-100'>
 						<BasicInfoContext.Consumer>
 							{({ nav_info, loggedInState, handleLog, userId }) => (
-								<Navbar
+								<SideNavbarDrawer
 									nav_link={nav_info}
 									loggedInState={loggedInState}
 									handleLog={handleLog}
@@ -160,13 +163,13 @@ export default class Login extends Component {
 						</BasicInfoContext.Consumer>
 
 						<div className='d-flex flex-column justify-content-center mt-5 h-100'>
-							<h3 className='pl-4 pb-3 mt-5 display-5 text-light '>
+							<h3 className='pl-4 pb-3 mt-5 display-5 text-dark '>
 								You Are Logged In
 							</h3>
 							<Link
 								type='button'
 								to='/contribute'
-								className='btn btn-outline-light btn-block'
+								className='btn btn-outline-dark btn-block'
 							>
 								Go To ContributeForm
 							</Link>
@@ -191,7 +194,7 @@ export default class Login extends Component {
 
 				<div className='container mt-5'>
 					<p>
-						<h1 className='text-light mt-5'>
+						<h1 className='text-dark mt-5'>
 							<strong>Login</strong>
 						</h1>
 					</p>

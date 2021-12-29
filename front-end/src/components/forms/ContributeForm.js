@@ -4,7 +4,7 @@ import Img from '../../images/profile_dark.jpg';
 import img from '../../images/contribute.jpg';
 import { Link } from 'react-router-dom';
 import ModalCongoMessage from '../messages/ModalCongoMessage';
-
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import '../../App.css';
 import FileUploadSection from '../others/FileUploadSection';
 
@@ -200,7 +200,7 @@ export default class ContributeForm extends Component {
 						<div
 							className='center-box  p-3  shadow rounded '
 							style={{
-								backgroundColor: '#c0dfa8',
+								backgroundImage: 'linear-gradient(120deg, rgba(39, 130, 186), rgba(122, 205, 250))',
 								marginLeft: '20px',
 								marginRight: '20px',
 							}}
@@ -223,6 +223,7 @@ export default class ContributeForm extends Component {
 										<input
 											type='text'
 											className='form-control mt-2'
+									
 											placeholder='Content Name'
 											value={this.state.content_name}
 											onChange={this.textchangehandler}
@@ -236,35 +237,31 @@ export default class ContributeForm extends Component {
 										/>
 									</div>
 									<div className='d-flex flex-column p-2 '>
+										
+									</div>
+									<div className='d-flex flex-column p-2 '>
 										<div className='d-flex p-2'>
 											<div className='d-flex'>
-												<h5>Select Resource Type -</h5>
-												<select
-													className='form-select ml-3 '
+											<select
+													className='custom-select ml-4 mr-5 '
 													value={this.state.selected}
 													onChange={this.changehandler}
 													id='select_type'
 												>
-													<option selected>Datatype</option>
+													<option selected>Resource type</option>
 													<option>books</option>
 													<option>notes</option>
 													<option>questions</option>
 													<option>projects</option>
 												</select>
-											</div>
-										</div>
-									</div>
-									<div className='d-flex flex-column p-2 '>
-										<div className='d-flex p-2'>
-											<div className='d-flex'>
-												<h5>Select Semester -</h5>
+												
 												<select
-													className='form-select ml-3 '
+													className='custom-select ml-auto '
 													value={this.state.selected_sem}
 													id='select_sem'
 													onChange={this.changehandler}
 												>
-													<option selected>Semester</option>
+													<option selected>Select semester</option>
 													<option>semester1</option>
 													<option>semester2</option>
 													<option>semester3</option>
@@ -297,7 +294,7 @@ export default class ContributeForm extends Component {
 									<div className='d-flex flex-column p-2 ml-5 mr-5 '>
 										<button
 											type='submit'
-											className='btn btn-outline-success btn-lg'
+											className='btn btn-primary btn-lg'
 											onClick={this.clickchangeHandler}
 											id='submit'
 										>

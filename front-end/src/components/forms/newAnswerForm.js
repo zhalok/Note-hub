@@ -59,10 +59,10 @@ const NewAnswerForm = (props) => {
 			aria-labelledby='contained-modal-title-vcenter'
 			centered
 		>
-			<Modal.Header closeButton>
+			<Modal.Header style={{backgroundColor:'#85d4ff'}} closeButton>
 				<Modal.Title id='contained-modal-title-vcenter'>Answer</Modal.Title>
 			</Modal.Header>
-			<Modal.Body>
+			<Modal.Body style={{backgroundColor:'#85d4ff'}} >
 				<FloatingLabel controlId='floatingTextarea2'>
 					<Form.Control
 						as='textarea'
@@ -75,9 +75,9 @@ const NewAnswerForm = (props) => {
 				</FloatingLabel>
 				<br />
 			</Modal.Body>
-			<Modal.Footer>
+			<Modal.Footer style={{backgroundColor:'#85d4ff'}} >
 				<Button
-					variant='success'
+					variant='primary'
 					onClick={() => {
 						onHide();
 						submit_answer();
@@ -85,7 +85,7 @@ const NewAnswerForm = (props) => {
 				>
 					Contribute
 				</Button>
-				<Button variant='danger' onClick={props.onHide}>
+				<Button variant='dark' onClick={props.onHide}>
 					Close
 				</Button>
 			</Modal.Footer>

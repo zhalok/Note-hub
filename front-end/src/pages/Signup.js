@@ -7,11 +7,14 @@ import FileUploadSection from '../components/others/FileUploadSection';
 
 import { Link } from 'react-router-dom';
 import BasicInfoContext from '../Contexts/BasicInfoContext';
+import GeneralPopUpNotification from '../components/messages/GeneralPopUpNotification';
+import SideNavbarDrawer from '../components/others/SideNavDrawer';
 
-const apiURL =
+let apiURL =
 	process.env.NODE_ENV == 'dev'
 		? 'http://localhost:5000'
 		: 'https://notehubapi.herokuapp.com';
+// apiURL = 'http://localhost:5000';
 
 export default class SignUp extends Component {
 	state = {
@@ -25,6 +28,7 @@ export default class SignUp extends Component {
 		message: '',
 		github: '',
 		linkedin: '',
+		showMessage: false,
 	};
 
 	signup_request_handler = async (e) => {
@@ -45,14 +49,32 @@ export default class SignUp extends Component {
 					linkedin: this.state.linkedin,
 				}),
 			});
+			console.log(this.state);
 			const data = await respornse.json();
+
 			if (data == 'User Already Registered') {
 				this.setState({
 					message: data,
+					showMessage: true,
+				});
+			} else if (data == 'Request Processing') {
+				this.setState({
+					message: 'Your registration request is already pending',
+					showMessage: true,
 				});
 			} else {
 				this.setState({
-					message: 'Congratulations Registration Complete',
+					message: 'Your registration has been requested for approval',
+					showMessage: true,
+					email: '',
+					password: '',
+					confirm_password: '',
+					fullname: '',
+					registration_number: '',
+					contract_number: '',
+					session: '',
+					github: '',
+					linkedin: '',
 				});
 			}
 		} catch (err) {
@@ -145,10 +167,13 @@ export default class SignUp extends Component {
 		} = this.state;
 
 		return (
-			<div className={style.login_dark}>
+			<div
+				className={style.login_dark}
+				style={{ backgroundSize: 'cover', backgroundColor: '#8bbaf7' }}
+			>
 				<BasicInfoContext.Consumer>
 					{({ nav_info, loggedInState, handleLog, userId }) => (
-						<Navbar
+						<SideNavbarDrawer
 							nav_link={nav_info}
 							loggedInState={loggedInState}
 							handleLog={handleLog}
@@ -159,9 +184,9 @@ export default class SignUp extends Component {
 
 				<div
 					className='container'
-					style={{ backgroundSize: 'cover', backgroundColor: '#02242c' }}
+					style={{ backgroundSize: 'cover', backgroundColor: '#8bbaf7' }}
 				>
-					<form style={{ marginTop: '100px' }}>
+					<form style={{ marginTop: '30px' }}>
 						<div className='form-group'>
 							<div className=' row'>
 								<div className='col-lg-6'>
@@ -229,9 +254,7 @@ export default class SignUp extends Component {
 										onChange={this.change_handler}
 										value={linkedin}
 									/>
-									<div>
-										<FileUploadSection />
-									</div>
+									<div>{/* <FileUploadSection /> */}</div>
 									<button
 										className={style.btn_primary}
 										id='submit'
@@ -240,7 +263,7 @@ export default class SignUp extends Component {
 										Submit
 									</button>
 									<br /> <br />
-									<h2>{this.state.message}</h2>
+									{/* <h2>{this.state.message}</h2> */}
 								</div>
 								<div className='col-lg-6'>
 									<img
@@ -254,6 +277,15 @@ export default class SignUp extends Component {
 						</div>
 					</form>
 				</div>
+				<GeneralPopUpNotification
+					show={this.state.showMessage}
+					onHide={() => {
+						this.setState({
+							showMessage: false,
+						});
+					}}
+					message={this.state.message}
+				/>
 			</div>
 		);
 	}

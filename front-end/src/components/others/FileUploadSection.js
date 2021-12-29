@@ -44,7 +44,7 @@ const FileUploadSection = (props) => {
 				}}
 			>
 				<Button
-					variant='success'
+					variant='primary'
 					onClick={(e) => {
 						e.preventDefault();
 						sendFIleData(file);

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import AnswerList from '../components/lists/AnswerList';
 import Navbar from '../components/others/Navbar';
 import WaitModalMessage from '../components/messages/WaitModalMessage';
+import SideNavbarDrawer from '../components/others/SideNavDrawer';
 
 const Answers = (props) => {
 	const { nav_info, loggedInState, handleLog, userId } = props;
@@ -34,24 +35,38 @@ const Answers = (props) => {
 	var sectionStyle = {
 		backgroundSize: 'cover',
 		padding: '10px',
-		backgroundColor: '#02242c',
+		backgroundColor: '#8bbaf7',
 	};
 	console.log(answerList);
 	return (
 		<div>
+			{/* <BasicInfoContext.Consumer>
+				{({ nav_info, loggedInState, handleLog, userId }) => (
+					<Navbar
+						nav_link={nav_info}
+						loggedInState={loggedInState}
+						handleLog={handleLog}
+						userId={userId}
+					/>
+				)}
+			</BasicInfoContext.Consumer> */}
 			<div style={sectionStyle} className='ht'>
-				<Navbar
+				{/* <Navbar
+					nav_link={nav_info}
+					loggedInState={loggedInState}
+					handleLog={handleLog}
+					userId={userId}
+				/> */}
+				<SideNavbarDrawer
 					nav_link={nav_info}
 					loggedInState={loggedInState}
 					handleLog={handleLog}
 					userId={userId}
 				/>
 
-				<WaitModalMessage show={showWaitMessage} />
-
 				<div className='container mt-5 pt-4'>
 					<div style={{ display: 'flex', flexDirection: 'row' }}>
-						<h1 style={{ color: 'white' }}>All answers</h1>
+						<h1 style={{ color: 'black' }}>All answers</h1>
 					</div>
 
 					<hr className='hr-style' />
@@ -70,6 +85,7 @@ const Answers = (props) => {
 					</div>
 				</div>
 			</div>
+			<WaitModalMessage show={showWaitMessage} />
 		</div>
 	);
 };

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 import ModalMessage from '../messages/ModalMessage';
 import Button from 'react-bootstrap/Button';
 
@@ -19,6 +20,8 @@ const BookCardStyle = {
 	marginLeft: 'auto',
 	marginRight: 'auto',
 	display: 'flex',
+	/**backgroundColor: 'white',**/
+	backgroundImage: 'linear-gradient(120deg, rgba(39, 130, 186), rgba(122, 205, 250))',
 	flexDirection: 'row',
 	padding: '10px',
 	marginTop: '20px',
@@ -79,9 +82,9 @@ export default function ContentCard(props) {
 	let linkDIsplay;
 	if (info.link)
 		linkDIsplay = (
-			<Link
+			<button
 				type='button'
-				className='btn btn-primary'
+				className='btn btn-dark'
 				style={{
 					display: 'flex',
 					width: 'fit-content',
@@ -91,14 +94,14 @@ export default function ContentCard(props) {
 				onClick={() => window.open(`${info.link}`, '_blank')}
 			>
 				Go to link
-			</Link>
+			</button>
 		);
 	else
 		linkDIsplay = (
-			<Link
+			<button
 				id='showModal'
 				type='button'
-				className='btn btn-success'
+				className='btn btn-dark'
 				style={{
 					display: 'flex',
 					width: 'fit-content',
@@ -120,7 +123,7 @@ export default function ContentCard(props) {
 				}}
 			>
 				Request
-			</Link>
+			</button>
 		);
 
 	return (
@@ -148,40 +151,35 @@ export default function ContentCard(props) {
 				<p class='.lead'>{info.description}</p>
 
 				<div style={{ display: 'flex' }}>
-					<Link
-						id='preview'
+					<button
 						type='button'
-						className='btn btn-outline-primary'
+						className='btn btn-primary'
 						style={{
 							display: 'flex',
 							marginLeft: 'auto',
 							width: 'fit-content',
 							marginRight: '10px',
-
 							boxShadow:
 								'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
 						}}
 					>
 						Preview
-					</Link>
+					</button>
 					{linkDIsplay}
 				</div>
-				<Button
+				<IconButton aria-label="delete"
 					style={{
-						display: displayOptions,
-						width: '35%',
+						display: displayOptions,						
 						marginLeft: 'auto',
-						marginTop: '20px',
-						boxShadow:
-							'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+						marginTop: '20px',						
 					}}
-					variant='danger'
+					variant='outline-dark'
 					onClick={() => {
 						deleteContent(info._id);
 					}}
 				>
-					Delete
-				</Button>
+					<DeleteIcon />
+				</IconButton>
 			</div>
 		</div>
 	);

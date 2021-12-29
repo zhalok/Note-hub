@@ -10,11 +10,12 @@ import '../App.css';
 import SemesterList from '../components/lists/SemesterList';
 import BasicInfoContext from '../Contexts/BasicInfoContext';
 import projectImg from '../images/flowchart.png';
+import SideNavbarDrawer from '../components/others/SideNavDrawer';
 
 var sectionStyle = {
 	backgroundSize: 'cover',
 	padding: '10px',
-	backgroundColor: '#02242c',
+	backgroundColor: '#8bbaf7',
 };
 
 const apiURL =
@@ -108,7 +109,7 @@ export default class Projects extends Component {
 			<div style={sectionStyle} className='ht'>
 				<BasicInfoContext.Consumer>
 					{({ nav_info, loggedInState, handleLog, userId }) => (
-						<Navbar
+						<SideNavbarDrawer
 							nav_link={nav_info}
 							loggedInState={loggedInState}
 							handleLog={handleLog}
@@ -117,10 +118,9 @@ export default class Projects extends Component {
 					)}
 				</BasicInfoContext.Consumer>
 
-				<WaitModalMessage show={this.state.showWaitModal} />
 				<div className='container mt-5 pt-4'>
 					<div style={{ display: 'flex', flexDirection: 'row' }}>
-						<h1 style={{ color: 'white' }}>Projects</h1>
+						<h1 style={{ color: 'black' }}>Projects</h1>
 						<SearchOption findByNameController={this.findBynameController} />
 					</div>
 					<hr className='hr-style' />
@@ -138,6 +138,7 @@ export default class Projects extends Component {
 						</div>
 					</div>
 				</div>
+				<WaitModalMessage show={this.state.showWaitModal} />
 			</div>
 		);
 	}

@@ -1,9 +1,10 @@
+import useId from '@mui/utils/useId';
 import React from 'react';
 import UserCard from '../cards/UserCard';
 
 const UserList = (props) => {
 	const { userInfo } = props;
-	console.log(userInfo);
+
 	if (userInfo.length > 0) {
 		return (
 			<div

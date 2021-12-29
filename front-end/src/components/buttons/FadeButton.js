@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FadeInButton = ({ normalColor, hoverColor, text }) => {
+const FadeInButton = ({ normalColor, hoverColor, text, onClick }) => {
 	return (
 		<div
 			id='fadeInButton'
@@ -32,6 +32,7 @@ const FadeInButton = ({ normalColor, hoverColor, text }) => {
 				document.getElementById('fadeInButton').style.backgroundColor =
 					normalColor;
 			}}
+			onClick={onClick}
 		>
 			{text}
 		</div>

@@ -8,7 +8,6 @@ const get_notes_by_semester = async (req, res, next) => {
 	try {
 		const semester = req.params.sem;
 		const data = await note_model.find({ semester });
-
 		res.json(data);
 	} catch (err) {
 		next(err);

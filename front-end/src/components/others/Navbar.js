@@ -10,6 +10,8 @@ export default class Navbar extends Component {
 
 		let path = '/profile/' + userId;
 
+		if (userId == 'admin') path = '/admin/requests';
+
 		if (!loggedInState) {
 			navOption = nav_link.map((e) => (
 				<Link className='btn btn-outline-primary ml-2' key={e.id} to={e.link}>

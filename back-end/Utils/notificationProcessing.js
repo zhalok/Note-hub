@@ -3,10 +3,10 @@ const nodemailer = require('nodemailer');
 const notificationProcessing = {};
 
 notificationProcessing.send_email = (subject, body, from, to, callback) => {
-	console.log(subject);
-	console.log(body);
-	console.log(to);
-	console.log(callback);
+	// console.log(subject);
+	// console.log(body);
+	// console.log(to);
+	// console.log(callback);
 	var transporter = nodemailer.createTransport({
 		service: 'gmail',
 		auth: {
@@ -21,7 +21,7 @@ notificationProcessing.send_email = (subject, body, from, to, callback) => {
 		text: body,
 	};
 
-	transporter.sendMail(mailOptions, function (error, info) {
+	transporter.sendMail(mailOptions, function (error) {
 		if (error) {
 			callback(error);
 		} else {

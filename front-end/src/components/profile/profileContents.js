@@ -18,31 +18,31 @@ const ProfileContents = ({ profileId }) => {
 				marginLeft: '200px',
 			}}
 		>
-			<h1 style={{ color: 'white' }}>Contributions</h1>
+			<h1 style={{ color: 'black' }}>Contributions</h1>
 			<h1 style={{ backgroundColor: 'white' }} />
 
 			<div style={{ display: 'flex', flexDirection: 'row' }}>
 				<Link to={`/contributions/books/${profileId}`}>
-					<HoverButton type='books' />
+					<HoverButton type='Books' bgColor='#0a64c4' />
 				</Link>
 				<Link to={`/contributions/notes/${profileId}`}>
-					<HoverButton type='notes' />
+					<HoverButton type='Notes' bgColor='#057dfc' />
 				</Link>
 			</div>
 
 			<div style={{ display: 'flex', flexDirection: 'row' }}>
 				<Link to={`/contributions/questions/${profileId}`}>
-					<HoverButton type='questions' />
+					<HoverButton type='Questions' bgColor='#0531a8' />
 				</Link>
 
 				<Link to={`/contributions/projects/${profileId}`}>
-					<HoverButton type='projects' />
+					<HoverButton type='Projects' bgColor='#0845bf' />
 				</Link>
 			</div>
 
 			<div style={{ display: 'flex', flexDirection: 'row' }}>
 				<Link to={`/contributions/discussions/${profileId}`}>
-					<HoverButton type='discussions' />
+					<HoverButton type='Discussions' bgColor='#112869' />
 				</Link>
 			</div>
 

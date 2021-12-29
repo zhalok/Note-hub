@@ -10,11 +10,12 @@ import questionImg from '../images/exam.png';
 
 import '../App.css';
 import BasicInfoContext from '../Contexts/BasicInfoContext';
+import SideNavbarDrawer from '../components/others/SideNavDrawer';
 
 var sectionStyle = {
 	backgroundSize: 'cover',
 	padding: '10px',
-	backgroundColor: '#02242c',
+	backgroundColor: '#8bbaf7',
 };
 const apiURL =
 	process.env.NODE_ENV == 'dev'
@@ -107,7 +108,7 @@ export default class Questions extends Component {
 			<div style={sectionStyle} className='ht'>
 				<BasicInfoContext.Consumer>
 					{({ nav_info, loggedInState, handleLog, userId }) => (
-						<Navbar
+						<SideNavbarDrawer
 							nav_link={nav_info}
 							loggedInState={loggedInState}
 							handleLog={handleLog}
@@ -116,10 +117,9 @@ export default class Questions extends Component {
 					)}
 				</BasicInfoContext.Consumer>
 
-				<WaitModalMessage show={this.state.showWaitModal} />
 				<div className='container mt-5 pt-4'>
 					<div style={{ display: 'flex', flexDirection: 'row' }}>
-						<h1 style={{ color: 'white' }}>Questions</h1>
+						<h1 style={{ color: 'black' }}>Questions</h1>
 						<SearchOption findByNameController={this.findBynameController} />
 					</div>
 					<hr className='hr-style' />
@@ -137,6 +137,7 @@ export default class Questions extends Component {
 						</div>
 					</div>
 				</div>
+				<WaitModalMessage show={this.state.showWaitModal} />
 			</div>
 		);
 	}
