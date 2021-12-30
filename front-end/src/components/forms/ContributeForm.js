@@ -7,6 +7,8 @@ import ModalCongoMessage from '../messages/ModalCongoMessage';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import '../../App.css';
 import FileUploadSection from '../others/FileUploadSection';
+import TextField from '@mui/material/TextField';
+import MenuItem from '@mui/material/MenuItem';
 
 var sectionStyle = {
 	backgroundImage: `url(${Img})`,
@@ -200,7 +202,8 @@ export default class ContributeForm extends Component {
 						<div
 							className='center-box  p-3  shadow rounded '
 							style={{
-								backgroundImage: 'linear-gradient(120deg, rgba(39, 130, 186), rgba(122, 205, 250))',
+								backgroundImage:
+									'linear-gradient(120deg, rgba(39, 130, 186), rgba(122, 205, 250))',
 								marginLeft: '20px',
 								marginRight: '20px',
 							}}
@@ -223,7 +226,6 @@ export default class ContributeForm extends Component {
 										<input
 											type='text'
 											className='form-control mt-2'
-									
 											placeholder='Content Name'
 											value={this.state.content_name}
 											onChange={this.textchangehandler}
@@ -236,13 +238,11 @@ export default class ContributeForm extends Component {
 											onChange={this.textchangehandler}
 										/>
 									</div>
-									<div className='d-flex flex-column p-2 '>
-										
-									</div>
+									<div className='d-flex flex-column p-2 '></div>
 									<div className='d-flex flex-column p-2 '>
 										<div className='d-flex p-2'>
 											<div className='d-flex'>
-											<select
+												<select
 													className='custom-select ml-4 mr-5 '
 													value={this.state.selected}
 													onChange={this.changehandler}
@@ -254,7 +254,7 @@ export default class ContributeForm extends Component {
 													<option>questions</option>
 													<option>projects</option>
 												</select>
-												
+
 												<select
 													className='custom-select ml-auto '
 													value={this.state.selected_sem}
@@ -274,12 +274,12 @@ export default class ContributeForm extends Component {
 											</div>
 										</div>
 									</div>
-									<input
+									{/* <input
 										type='file'
 										onChange={(e) => {
 											this.setState({ image: e.target.files[0] });
 										}}
-									/>
+									/> */}
 									<input
 										className='form-control'
 										placeholder='Link'

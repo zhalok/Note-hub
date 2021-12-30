@@ -26,8 +26,13 @@ export default function DescriptionModal({
 	description,
 }) {
 	let icon = <DescriptionIcon color='primary' />;
-	if (description == '') {
-		description = 'No description was added for this content';
+	let _description = description;
+	console.log(description);
+	// console.log(description.length);
+	// _description.trim();
+	// console.log(description.trim());
+	if (_description == '' || !description) {
+		_description = 'No description was added for this content';
 		icon = <ContentPasteOffIcon color='primary' />;
 	}
 
@@ -52,7 +57,7 @@ export default function DescriptionModal({
 						<div style={{ display: 'flex', flexDirection: 'row' }}>
 							{icon}
 							<Typography id='transition-modal-description' sx={{ ml: 2 }}>
-								{description}
+								{_description}
 							</Typography>
 						</div>
 					</Box>

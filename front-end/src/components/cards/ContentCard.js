@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModalMessage from '../messages/ModalMessage';
-import Button from 'react-bootstrap/Button';
-import DescriptionModal from '../others/DescriptionModal';
+// import Button from 'react-bootstrap/Button';
+import DescriptionModal from '../messages/DescriptionModal';
 
 const ContentCardImageStyle = {
 	height: '10%',
@@ -166,7 +166,10 @@ export default function ContentCard(props) {
 					</IconButton>
 				</div>
 
-				<p className='blockquote-footer' style={{ fontSize: '15px' }}>
+				<p
+					className='blockquote-footer'
+					style={{ fontSize: '15px', color: 'white' }}
+				>
 					{info.contributor_name}
 				</p>
 
