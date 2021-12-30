@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import { Switch } from 'react-router';
 import Img from '../../images/profile_dark.jpg';
-import img from '../../images/contribute.jpg';
-import { Link } from 'react-router-dom';
-import ModalCongoMessage from '../messages/ModalCongoMessage';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import '../../App.css';
-import FileUploadSection from '../others/FileUploadSection';
+import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
+import { Typography } from '@mui/material';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import AddCardIcon from '@mui/icons-material/AddCard';
+import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
+import DescriptionIcon from '@mui/icons-material/Description';
+import { Select, MenuItem } from '@mui/material';
+import { InputLabel } from '@mui/material';
+import { FormControl } from '@mui/material';
+import SchoolIcon from '@mui/icons-material/School';
+import FileCopyRoundedIcon from '@mui/icons-material/FileCopyRounded';
+import InsertLinkRoundedIcon from '@mui/icons-material/InsertLinkRounded';
 
 var sectionStyle = {
 	backgroundImage: `url(${Img})`,
@@ -117,6 +122,7 @@ export default class ContributeForm extends Component {
 
 	changehandler = (e) => {
 		if (e.target.id == 'select_sem') {
+			console.log(e.target.id);
 			this.setState({
 				selected_sem: e.target.value,
 			});
@@ -168,150 +174,180 @@ export default class ContributeForm extends Component {
 	}
 
 	render() {
+		console.log(this.state.selected_sem);
 		const { userId } = this.props;
 		// console.log(userId);
 		let path = '/profile/' + userId;
 
 		return (
 			<div
-				style={{ marginTop: '100px', display: 'flex', flexDirection: 'row' }}
+				style={{
+					// marginTop: '100px',
+					display: 'flex',
+					flexDirection: 'column',
+					width: '100%',
+
+					// backgroundColor: 'white',
+
+					// padding: '20px',
+				}}
 			>
-				{/* <div className='col-lg-4'>
-					<div className='container p-3 m-5'>
-						<img src={Img} alt='profile_dark.jpg' className='img-sm' />
-						<Link
-							type='button'
-							to={path}
-							className='btn btn-outline-light btn-lg btn-block p-3'
-						>
-							See Your Profile
-						</Link>
-					</div>
-				</div> */}
 				<div
-					className='col-lg-8'
 					style={{
-						display: 'flex',
-						width: 'fit-content',
+						// width: 'fit-content',
+						width: '50%',
+						marginLeft: 'auto',
+						marginRight: 'auto',
+						marginTop: '20px',
+						padding: '20px',
 					}}
 				>
-					<div
-						className='d-flex justify-content-center '
-						style={{ display: 'flex', flexDirection: 'column' }}
+					<Box
+						sx={{
+							width: '100%',
+							maxWidth: '100%',
+							backgroundColor: 'white',
+							marginLeft: 'auto',
+							marginRight: 'auto',
+							// width: 'fit-content',
+							// height: '200%',
+							padding: '20px',
+							// marginTop: '100px',
+							borderRadius: '10px',
+							// backgroundImage:
+							// 	'linear-gradient(120deg, rgba(39, 130, 186), rgba(122, 205, 250))',
+							boxShadow:
+								'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+						}}
 					>
-						<div
-							className='center-box  p-3  shadow rounded '
-							style={{
-								backgroundImage:
-									'linear-gradient(120deg, rgba(39, 130, 186), rgba(122, 205, 250))',
-								marginLeft: '20px',
-								marginRight: '20px',
-							}}
-						>
-							<ModalCongoMessage
-								show={(this, this.state.showCongoMessage)}
-								onHide={() => {
-									this.setState({
-										showCongoMessage: false,
-									});
+						<div style={{}}>
+							<div
+								style={{
+									width: 'fit-content',
+									marginLeft: 'auto',
+									marginRight: 'auto',
+									display: 'flex',
+									flexDirection: 'row',
 								}}
-							/>
-							<h3 style={{ color: 'black' }}>
-								Please provide all the informations
-							</h3>
-							<hr className='bg-secondary' />
-							<div>
-								<div className='form-group'>
-									<div className='d-flex flex-column p-2'>
-										<input
-											type='text'
-											className='form-control mt-2'
-											placeholder='Content Name'
-											value={this.state.content_name}
-											onChange={this.textchangehandler}
-										/>
-										<textarea
-											className='form-control mt-2'
-											placeholder='Description of the content(optional)'
-											id='description'
-											value={this.state.description}
-											onChange={this.textchangehandler}
-										/>
-									</div>
-									<div className='d-flex flex-column p-2 '></div>
-									<div className='d-flex flex-column p-2 '>
-										<div className='d-flex p-2'>
-											<div className='d-flex'>
-												<select
-													className='custom-select ml-4 mr-5 '
-													value={this.state.selected}
-													onChange={this.changehandler}
-													id='select_type'
-												>
-													<option selected>Resource type</option>
-													<option>books</option>
-													<option>notes</option>
-													<option>questions</option>
-													<option>projects</option>
-												</select>
-
-												<select
-													className='custom-select ml-auto '
-													value={this.state.selected_sem}
-													id='select_sem'
-													onChange={this.changehandler}
-												>
-													<option selected>Select semester</option>
-													<option>semester1</option>
-													<option>semester2</option>
-													<option>semester3</option>
-													<option>semester4</option>
-													<option>semester5</option>
-													<option>semester6</option>
-													<option>semester7</option>
-													<option>semester8</option>
-												</select>
-											</div>
-										</div>
-									</div>
-									{/* <input
-										type='file'
-										onChange={(e) => {
-											this.setState({ image: e.target.files[0] });
-										}}
-									/> */}
-									<input
-										className='form-control'
-										placeholder='Link'
-										style={{
-											width: '95%',
-											marginLeft: 'auto',
-											marginRight: 'auto',
-										}}
-										onChange={this.textchangehandler}
-									></input>
-									<div className='d-flex flex-column p-2 '></div>
-									<div className='d-flex flex-column p-2 ml-5 mr-5 '>
-										<button
-											type='submit'
-											className='btn btn-primary btn-lg'
-											onClick={this.clickchangeHandler}
-											id='submit'
-										>
-											Submit
-										</button>
-									</div>
-								</div>
+							>
+								<AddCardIcon />
+								<Typography variant='h6' style={{ marginLeft: '10px' }}>
+									Please provide necessary informations
+								</Typography>
 							</div>
+							<Box
+								sx={{
+									display: 'flex',
+									// alignItems: 'flex-end',
+									marginTop: '20px',
+								}}
+							>
+								<DriveFileRenameOutlineIcon sx={{ mr: 1, my: 0.5 }} />
+								<TextField
+									id='input-with-sx'
+									label='Content Name'
+									variant='outlined'
+									fullWidth
+								/>
+							</Box>
+							<Box
+								sx={{
+									display: 'flex',
+									// alignItems: 'flex-end',
+									marginTop: '20px',
+								}}
+							>
+								<DescriptionIcon sx={{ mr: 1, my: 0.5 }} />
+								<TextField
+									id='input-with-sx'
+									label='Short Description'
+									variant='outlined'
+									fullWidth
+								/>
+							</Box>
+							<Box
+								sx={{
+									// width: '25%',
+									display: 'flex',
+									marginTop: '20px',
+									display: 'flex',
+									flexDirection: 'row',
+									// alignItems: 'flex-end',
+								}}
+							>
+								<SchoolIcon sx={{ mr: 1, my: 0.5 }} />
+								<FormControl size='medium' fullWidth>
+									<InputLabel id='demo-simple-select-label'>
+										Semester
+									</InputLabel>
+									<Select
+										labelId='demo-simple-select-label'
+										id='select_sem'
+										label='Semester'
+										onChange={this.changehandler}
+									>
+										{[
+											{ label: 'Semester 1', val: 'semester1' },
+											{ label: 'Semester 2', val: 'semester2' },
+											{ label: 'Semester 3', val: 'semester3' },
+											{ label: 'Semester 4', val: 'semester4' },
+											{ label: 'Semester 5', val: 'semester5' },
+											{ label: 'Semester 6', val: 'semester6' },
+											{ label: 'Semester 7', val: 'semester7' },
+											{ label: 'Semester 8', val: 'semester8' },
+										].map((e) => (
+											<MenuItem value={e.val}>{e.label}</MenuItem>
+										))}
+									</Select>
+								</FormControl>
+							</Box>
+							<Box
+								sx={{
+									// width: '25%',
+									display: 'flex',
+									marginTop: '20px',
+									display: 'flex',
+									flexDirection: 'row',
+								}}
+							>
+								<FileCopyRoundedIcon sx={{ mr: 1, my: 0.5 }} />
+								<FormControl size='medium' fullWidth>
+									<InputLabel id='demo-simple-select-label'>
+										Content Type
+									</InputLabel>
+									<Select
+										labelId='demo-simple-select-label'
+										id='select_type'
+										label='Content Type'
+										onChange={this.changehandler}
+									>
+										{[
+											{ label: 'Books', val: 'semester1' },
+											{ label: 'Notes', val: 'semester2' },
+											{ label: 'Questions', val: 'semester3' },
+											{ label: 'Projects', val: 'semester4' },
+										].map((e) => (
+											<MenuItem value={e.val}>{e.label}</MenuItem>
+										))}
+									</Select>
+								</FormControl>
+							</Box>
+							<Box
+								sx={{
+									display: 'flex',
+									marginTop: '20px',
+								}}
+							>
+								<InsertLinkRoundedIcon sx={{ mr: 1, my: 0.5 }} />
+								<TextField
+									id='input-with-sx'
+									label='Content Link'
+									variant='outlined'
+									fullWidth
+								/>
+							</Box>
 						</div>
-						<br />
-						<div>
-							<h3 className='text-light'>{this.state.message}</h3>
-						</div>
-					</div>
-				</div>
-				<div>
-					<img src={img} style={{ marginLeft: 'auto' }} />
+					</Box>
 				</div>
 			</div>
 		);

@@ -5,6 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ModalMessage from '../messages/ModalMessage';
 // import Button from 'react-bootstrap/Button';
 import DescriptionModal from '../messages/DescriptionModal';
+import FileCopyRoundedIcon from '@mui/icons-material/FileCopyRounded';
 
 const ContentCardImageStyle = {
 	height: '10%',
@@ -21,9 +22,12 @@ const BookCardStyle = {
 	marginLeft: 'auto',
 	marginRight: 'auto',
 	display: 'flex',
-	/**backgroundColor: 'white',**/
-	backgroundImage:
-		'linear-gradient(120deg, rgba(39, 130, 186), rgba(122, 205, 250))',
+	// backgroundImage:
+	// 	'http://api.thumbr.it/whitenoise-361x370.png?background=ffffffff&noise=5c5c5c&density=13&opacity=62',
+
+	backgroundColor: 'white',
+	// backgroundImage:
+	// 'linear-gradient(120deg, rgba(39, 130, 186), rgba(122, 205, 250))',
 	flexDirection: 'row',
 	padding: '10px',
 	marginTop: '20px',
@@ -162,13 +166,13 @@ export default function ContentCard(props) {
 							deleteContent(info._id);
 						}}
 					>
-						<DeleteIcon />
+						<DeleteIcon color='error' />
 					</IconButton>
 				</div>
 
 				<p
 					className='blockquote-footer'
-					style={{ fontSize: '15px', color: 'white' }}
+					style={{ fontSize: '15px', color: 'black' }}
 				>
 					{info.contributor_name}
 				</p>

@@ -73,3 +73,7 @@
 	opacity: 1;
 	right: 0;
 }
+
+.full-width {
+	border-radius: 10px;
+}
