@@ -42,7 +42,8 @@ const ProfileBooks = () => {
 		fetch(`http://localhost:5000/notes/get_note_by_contributor_id/${profileId}`)
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data);
+				data.reverse();
+				// console.log(data);
 				setNoteList(data);
 				setShowWaitMessage(false);
 				setNoteFetched(true);

@@ -42,7 +42,8 @@ const ProfileBooks = () => {
 		fetch(`http://localhost:5000/books/get_book_by_contributor_id/${profileId}`)
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data);
+				// console.log(data);
+				data.reverse();
 				setBookList(data);
 				setShowWaitMessage(false);
 				setBookFetched(true);

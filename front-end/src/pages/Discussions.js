@@ -34,6 +34,7 @@ export default function Discussions(props) {
 		fetch('https://notehubapi.herokuapp.com/discussions/get_all')
 			.then((res) => res.json())
 			.then((data) => {
+				data.reverse();
 				setDiscussions(data);
 				setShowModalMessage(false);
 			})

@@ -20,7 +20,10 @@ export default function RegistrationRequestPage({ loggedInState }) {
 	useEffect(() => {
 		fetch(`${apiUrl}/users/requests`)
 			.then((res) => res.json())
-			.then((data) => setRequestList(data))
+			.then((data) => {
+				data.reverse();
+				setRequestList(data);
+			})
 			.catch((err) => console.log(err));
 	}, [changer, loggedInState]);
 

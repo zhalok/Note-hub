@@ -34,6 +34,7 @@ export default class Projects extends Component {
 		try {
 			const response = await fetch(` ${apiURL}/projects/get_all/`);
 			const data = await response.json();
+			data.reverse();
 
 			this.setState({
 				projectlist: data,

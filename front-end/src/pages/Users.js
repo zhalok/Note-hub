@@ -24,6 +24,7 @@ export default class Users extends React.Component {
 		fetch(` ${apiURL}/users/get_all`)
 			.then((response) => response.json())
 			.then((data) => {
+				data.reverse();
 				const _users = [];
 				while (data.length) {
 					_users.push(data.splice(0, 2));

@@ -78,8 +78,8 @@ export default class Questions extends Component {
 		})
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data);
-
+				// console.log(data);
+				data.reverse();
 				this.find_all_questions();
 				this.setState({
 					showWaitModal: false,

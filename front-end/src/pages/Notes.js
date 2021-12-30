@@ -34,7 +34,8 @@ export default class Notes extends Component {
 		try {
 			const response = await fetch(`${apiURL}/notes/get_all/`);
 			const data = await response.json();
-			console.log(data);
+			data.reverse();
+
 			this.setState({
 				notelist: data,
 				noteFetched: true,

@@ -24,6 +24,7 @@ const Answers = (props) => {
 			fetch(`https://notehubapi.herokuapp.com/answers/${discussion_id}`)
 				.then((res) => res.json())
 				.then((data) => {
+					data.reverse();
 					setAnswerList(data);
 					setShowWaitMessage(false);
 					setFetched(true);

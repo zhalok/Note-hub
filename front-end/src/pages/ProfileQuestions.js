@@ -44,7 +44,8 @@ const ProfileQuestions = () => {
 		)
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data);
+				data.reverse();
+				// console.log(data);
 				setQuestionList(data);
 				setShowWaitMessage(false);
 				setQuestionFetched(true);

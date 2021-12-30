@@ -44,7 +44,8 @@ const Profileprojects = () => {
 		)
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data);
+				data.reverse();
+				// console.log(data);
 				setProjectList(data);
 				setShowWaitMessage(false);
 				setProjectFetched(true);

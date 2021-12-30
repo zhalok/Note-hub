@@ -38,7 +38,8 @@ export default class Books extends Component {
 		try {
 			const response = await fetch(`${apiURL}/books/get_all/`);
 			const data = await response.json();
-			console.log(data);
+			//
+			data.reverse();
 			this.setState({
 				booklist: data,
 				bookFetched: true,
@@ -86,7 +87,8 @@ export default class Books extends Component {
 		})
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data);
+				// console.log(data);
+
 				this.find_all_books();
 				this.setState({
 					showWaitMessage: false,
