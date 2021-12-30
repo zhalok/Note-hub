@@ -99,13 +99,16 @@ const add_new_book = async (req, res, next) => {
 				else data[0].books = 1;
 				data[0].save((err) => {
 					if (err) next(err);
-					update_user(
-						{ contributor_id, type, content_name: name, semester },
-						(err, data) => {
-							if (err) next(err);
-							res.json(data);
-						}
-					);
+					else {
+						res.json(true);
+					}
+					// update_user(
+					// 	{ contributor_id, type, content_name: name, semester },
+					// 	(err, data) => {
+					// 		if (err) next(err);
+					// 		res.json(data);
+					// 	}
+					// );
 				});
 			}
 		});
