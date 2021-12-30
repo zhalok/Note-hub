@@ -32,7 +32,7 @@ const UserCard = (props) => {
 			{info.map((e, index) => (
 				<Card
 					sx={{ width: 'fit-content', height: '200%' }}
-					style={{ marginLeft: '50px', padding: '20px' }}
+					style={{ marginLeft: '50px', padding: '20px', borderRadius: '10px' }}
 					elevation='10'
 					key={index}
 				>
@@ -65,7 +65,12 @@ const UserCard = (props) => {
 						<Button
 							variant='outlined'
 							startIcon={<GitHubIcon />}
-							style={{ backgroundColor: '#171515', color: 'white' }}
+							style={{
+								backgroundColor: '#171515',
+								color: 'white',
+								boxShadow:
+									'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19',
+							}}
 							onClick={() => {
 								window.open(e.github, '_blank');
 							}}
@@ -74,7 +79,12 @@ const UserCard = (props) => {
 						</Button>
 						<Button
 							variant='outlined'
-							style={{ backgroundColor: '#0077b5', color: 'white' }}
+							style={{
+								backgroundColor: '#0077b5',
+								color: 'white',
+								boxShadow:
+									'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19',
+							}}
 							startIcon={<LinkedInIcon />}
 							onClick={() => {
 								window.open(e.linkedin, '_blank');
@@ -88,6 +98,10 @@ const UserCard = (props) => {
 							endIcon={<SendIcon />}
 							onClick={() => {
 								history.push(`/profile/${e.registration_id}`);
+							}}
+							style={{
+								boxShadow:
+									'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19',
 							}}
 						>
 							Profile

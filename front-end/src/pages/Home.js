@@ -12,6 +12,7 @@ import backgroundImage from '../images/signup.jpg';
 import study from '../images/study.png';
 import BasicInfoContext from '../Contexts/BasicInfoContext';
 import SideNavbarDrawer from '../components/others/SideNavDrawer';
+import { Button } from '@mui/material';
 
 var sectionStyle = {
 	display: 'flex',
@@ -136,7 +137,7 @@ export default class Home extends Component {
 						<Link
 							type='button'
 							to='/contribute'
-							className='btn btn-outline-success mt-4 btn-lg h-10 w-10 p-4'
+							className='btn btn-outline-primary mt-4 btn-lg h-10 w-10 p-4'
 							style={{
 								width: '30%',
 								boxShadow:

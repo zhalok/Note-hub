@@ -63,7 +63,7 @@ export default class Users extends React.Component {
 					)}
 				</BasicInfoContext.Consumer>
 
-				<div className='container mt-5 pt-5'>
+				<div className='container '>
 					<h1 style={{ color: 'black' }}>Contributors</h1>
 					<hr className='hr-style' />
 					{userInfo}
