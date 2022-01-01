@@ -3,6 +3,9 @@ const HttpError = require('../models/http-error-model');
 const userModel = require('../models/user-model');
 const bcrypt = require('bcrypt');
 
+// all the functionalites here are as the same as other routes
+// visit the book route controller for detailed explanation
+
 const get_all_users = async (req, res, next) => {
 	try {
 		const users = await userModel.find({ verified: true });
@@ -51,6 +54,7 @@ const get_user_by_id = async (req, res, next) => {
 //   }
 // };
 
+// we are checking if the user is available or not
 const check_user_validity = (req, res, next) => {
 	const { registration_id, password } = req.body;
 	userModel.find({ registration_id }, (err, users) => {
@@ -138,21 +142,21 @@ const add_new_user = async (req, res, next) => {
 	}
 };
 
-// const update_user = (info, callback) => {
-// 	const { contributor_id, content_name, semester, type } = info;
+const update_user = (info, callback) => {
+	const { contributor_id, content_name, semester, type } = info;
 
-// 	userModel.find({ registration_id: contributor_id }, (err, userData) => {
-// 		if (err) callback(err);
-// 		else {
-// 			const found_user = userData[0];
-// 			found_user[type].push({ name: content_name });
-// 			found_user.save((err, suc) => {
-// 				if (err) callback(err);
-// 				else callback(null, 'saved');
-// 			});
-// 		}
-// 	});
-// };
+	userModel.find({ registration_id: contributor_id }, (err, userData) => {
+		if (err) callback(err);
+		else {
+			const found_user = userData[0];
+			found_user[type].push({ name: content_name });
+			found_user.save((err, suc) => {
+				if (err) callback(err);
+				else callback(null, 'saved');
+			});
+		}
+	});
+};
 
 module.exports = {
 	get_all_users,
@@ -160,4 +164,5 @@ module.exports = {
 	get_all_user_requests,
 	add_new_user,
 	check_user_validity,
+	update_user,
 };

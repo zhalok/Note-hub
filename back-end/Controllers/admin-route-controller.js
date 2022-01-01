@@ -32,11 +32,11 @@ const create_new_admin = (req, res, next) => {
 	});
 };
 
+// this function updates the verified key of a particular user document
 const verify_user = (req, res, next) => {
 	const { registration_id, email } = req.body;
 
 	// console.log(registration_id);
-	console.log(email);
 
 	user_model.find({ registration_id }, (err, users) => {
 		if (err) {
@@ -45,7 +45,7 @@ const verify_user = (req, res, next) => {
 			const user = users[0];
 			if (user) {
 				// console.log(user);
-				user.verified = true;
+				user.verified = true; // this part
 				user.save((err) => {
 					if (err) {
 						next(err);

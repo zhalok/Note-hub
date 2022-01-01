@@ -2,6 +2,9 @@ const question_model = require('../models/questions-model');
 const { update_user } = require('../Controllers/user-route-controller');
 const overview_model = require('../models/overview-model');
 
+// all the functionalites here are as the same as other routes
+// visit the book route controller for detailed explanation
+
 const get_questions_by_semester = async (req, res, next) => {
 	try {
 		const semester = req.params.sem;

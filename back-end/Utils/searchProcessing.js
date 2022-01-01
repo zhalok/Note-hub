@@ -1,3 +1,5 @@
+// this was also for the searching stuff but wasnt implmeneted
+
 const processSearch = (foundString, searchString) => {
 	foundString = foundString.toLowerCase();
 	searchString = searchString.toLowerCase();

@@ -1,7 +1,10 @@
 const answer_model = require('../models/answer_model');
 const notificationProcessing = require('../Utils/notificationProcessing');
 
-const answer = {};
+// please see the structure of this file
+// if you are doing any node js project try to keep all the files in this structure
+
+const answer = {}; // these functions work with answers of the discussions
 
 answer.add_answer = (req, res, next) => {
 	const {
@@ -13,6 +16,7 @@ answer.add_answer = (req, res, next) => {
 		answer_providers_id,
 	} = req.body;
 
+	// creating a new answer with the discussion_id of the discussion where its provided to
 	const new_answer = new answer_model({
 		body,
 		discussion_id,
@@ -38,6 +42,7 @@ answer.add_answer = (req, res, next) => {
 	});
 };
 
+// getting answers for a particular discussion
 answer.get_answer = (req, res, next) => {
 	const discussion_id = req.params.discussion_id;
 
@@ -49,6 +54,7 @@ answer.get_answer = (req, res, next) => {
 	});
 };
 
+// getting answers provided by a particular user
 answer.get_answer_by_contributorID = (req, res, next) => {
 	const { contributor_id } = req.params;
 	answer_model.find({ contributor_id }, (err, data) => {
@@ -60,8 +66,10 @@ answer.get_answer_by_contributorID = (req, res, next) => {
 	});
 };
 
+// havent implemented it you may try to implement it
 answer.update_answer = (req, res, next) => {};
 
+// deleting the answer
 answer.delete_answer = (req, res, next) => {
 	const { answer_id } = req.params;
 	console.log(answer_id);

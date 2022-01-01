@@ -1,6 +1,7 @@
 const discussion_model = require('../models/discussion_model');
 const discussionModel = require('../models/discussion_model');
 
+// adding a discussion
 const addDiscussion = (req, res, next) => {
 	const {
 		discussion_title,
@@ -28,6 +29,7 @@ const addDiscussion = (req, res, next) => {
 	});
 };
 
+// getting all discussions
 const getAllDiscussions = (req, res, next) => {
 	discussionModel.find({}, (err, discussions) => {
 		if (err) next(err);
@@ -35,6 +37,9 @@ const getAllDiscussions = (req, res, next) => {
 	});
 };
 
+// getting discussion by title
+// these api wasnt also integrated in the search button
+// you may work with its completetion
 const getDiscussionByTitle = (req, res, next) => {
 	const title = req.params.title;
 	discussionModel.find({ discussion_title: title }, (err, discussion) => {
@@ -43,6 +48,9 @@ const getDiscussionByTitle = (req, res, next) => {
 	});
 };
 
+// getting discussion by particular Id this api wasnt also integrated anywhere in the client
+// we didnt feel necessary for our client
+// however we have created the api
 const getDiscussionById = (req, res, next) => {
 	const _id = req.params.id;
 	discussionModel.find({ _id }, (err, discussion) => {
@@ -51,6 +59,7 @@ const getDiscussionById = (req, res, next) => {
 	});
 };
 
+// deleting a particular discussion
 const deleteDiscussion = (req, res, next) => {
 	const _id = req.params.id;
 	discussionModel.findByIdAndDelete(_id, (err) => {
@@ -59,6 +68,7 @@ const deleteDiscussion = (req, res, next) => {
 	});
 };
 
+// getting discussion based on contributor id
 const get_discussion_by_contributorID = (req, res, next) => {
 	const { contributor_id } = req.params;
 	discussion_model.find(
@@ -73,7 +83,9 @@ const get_discussion_by_contributorID = (req, res, next) => {
 	);
 };
 
-const updateDiscussion = () => {}; // pore implement korbo akhn na
+// this api was for editing the discussion in the client
+// however it wasnt implemented
+const updateDiscussion = () => {};
 
 module.exports = {
 	addDiscussion,

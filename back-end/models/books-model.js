@@ -1,4 +1,10 @@
 const mongoose = require('mongoose');
+// mongoose is a noSql database that means you dont need any specific structure to
+// work with datas
+// however its necessary to maintain a specific data model
+// for this mongoose provides something called mongoose Schema
+// mongoose Schema enforces us to create our data according to the data model for storing in the database
+// every Schema of mongoose creates a specific collection in mongoDB
 
 const book_schema = new mongoose.Schema({
 	name: { type: String, required: true },

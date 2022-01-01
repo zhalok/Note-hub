@@ -4,6 +4,9 @@ const note_model = require('../models/notes-model');
 const overview_model = require('../models/overview-model');
 const { processSearch } = require('../Utils/searchProcessing');
 
+// all the functionalites here are as the same as other routes
+// visit the book route controller for detailed explanation
+
 const get_notes_by_semester = async (req, res, next) => {
 	try {
 		const semester = req.params.sem;

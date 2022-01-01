@@ -2,15 +2,13 @@ const nodemailer = require('nodemailer');
 
 const notificationProcessing = {};
 
+// sending email using nodemailer service
+
 notificationProcessing.send_email = (subject, body, from, to, callback) => {
-	// console.log(subject);
-	// console.log(body);
-	// console.log(to);
-	// console.log(callback);
 	var transporter = nodemailer.createTransport({
 		service: 'gmail',
 		auth: {
-			user: process.env.AUTH_EMAIL,
+			user: process.env.AUTH_EMAIL, // provide the credentials of the mail adress you want to use for sending the email
 			pass: process.env.AUTH_PASS,
 		},
 	});

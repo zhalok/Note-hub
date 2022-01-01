@@ -1,3 +1,8 @@
+// we wanted to work with files but we couldnt get the time
+// we are hopeful that in future we will work on it
+// this file has some good coding using multer
+// if you are also looking for file uploading this can be a good code example for you
+
 // const express = require('express');
 // const path = require('path');
 // const multer = require('multer');
