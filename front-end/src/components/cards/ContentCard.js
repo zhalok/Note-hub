@@ -36,36 +36,36 @@ const BookCardStyle = {
 	borderRadius: '10px',
 };
 
-const apiURL =
+let apiURL =
 	process.env.NODE_ENV == 'dev'
 		? 'http://localhost:5000'
 		: 'https://notehubapi.herokuapp.com';
+// apiURL = 'http://localhost:5000';
 
 const sendEmailUsingNodemailer = async (
 	contributorEmail,
 	contributorName,
-	contetnName,
+	contentName,
+	contentType,
 	setModalShow
 ) => {
 	try {
-		const respornse = await fetch(
-			`https://notehubapi.herokuapp.com/sendEmail`,
-			{
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					contributorName,
-					contributorEmail,
-					contetnName,
-				}),
-			}
-		);
+		const respornse = await fetch(`${apiURL}/sendEmail`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				contributorName,
+				contributorEmail,
+				contentName,
+				contentType,
+			}),
+		});
 		const data = await respornse.json();
 		// alert('An email was sent to the contributor');
 		setModalShow();
-		console.log(data);
+		// console.log(data);
 	} catch (err) {
 		console.log(err);
 	}
@@ -73,7 +73,8 @@ const sendEmailUsingNodemailer = async (
 
 export default function ContentCard(props) {
 	const { info, userId, loggedInState, contentImg, deleteContent } = props;
-	console.log(info);
+	console.log(info.name);
+	console.log(info.type);
 
 	const [modalShow, setModalShow] = React.useState(false);
 	const [message, setMessage] = React.useState('');
@@ -125,6 +126,7 @@ export default function ContentCard(props) {
 						info.contributor_email,
 						info.contributor_name,
 						info.name,
+						info.type,
 						() => {
 							setMessage(
 								'A request was mailed to the contributor of this content'

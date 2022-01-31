@@ -29,7 +29,7 @@ let apiURL =
 		? 'http://localhost:5000'
 		: 'https://notehubapi.herokuapp.com';
 
-apiURL = 'http://localhost:5000';
+// apiURL = 'http://localhost:5000';
 
 export default class ContributeForm extends Component {
 	constructor(props) {
@@ -55,7 +55,7 @@ export default class ContributeForm extends Component {
 		try {
 			const response = await fetch(`${apiURL}/users/id/${user_id}`);
 			const data = await response.json();
-
+			console.log(data);
 			this.setState({
 				your_name: data[0].name,
 				registration: data[0].registration_id,
@@ -83,12 +83,13 @@ export default class ContributeForm extends Component {
 				contributor_name: this.state.your_name.trim(),
 				description: this.state.description.trim(),
 				link: this.state.link.trim(),
-				contributor_email: this.state.contributor_email,
+				contributor_email: this.state.contributor_email.trim(),
 				formData,
 			}),
 		})
 			.then((response) => response.json())
 			.then((data) => {
+				console.log(data);
 				this.setState({
 					showCongoMessage: true,
 					selected_type: '',

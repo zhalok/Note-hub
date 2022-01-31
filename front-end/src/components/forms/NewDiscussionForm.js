@@ -22,6 +22,7 @@ const NewDiscussionForm = (props) => {
 	} = props;
 
 	const submitDiscussion = () => {
+		console.log(props);
 		if (!title || !body) {
 			alert('please give the title and body');
 			return;
@@ -55,12 +56,12 @@ const NewDiscussionForm = (props) => {
 			aria-labelledby='contained-modal-title-vcenter'
 			centered
 		>
-			<Modal.Header style={{backgroundColor:'#1a95d9'}} closeButton>
+			<Modal.Header style={{ backgroundColor: '#1a95d9' }} closeButton>
 				<Modal.Title id='contained-modal-title-vcenter'>
 					New Discussion
 				</Modal.Title>
 			</Modal.Header>
-			<Modal.Body style={{backgroundColor:'#85d4ff'}} >
+			<Modal.Body style={{ backgroundColor: '#85d4ff' }}>
 				<h4>Title</h4>
 				<input
 					className='form-control'
@@ -85,7 +86,7 @@ const NewDiscussionForm = (props) => {
 				</FloatingLabel>
 				<br />
 			</Modal.Body>
-			<Modal.Footer style={{backgroundColor:'#85d4ff'}} >
+			<Modal.Footer style={{ backgroundColor: '#85d4ff' }}>
 				<Button
 					variant='primary'
 					onClick={() => {

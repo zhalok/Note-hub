@@ -41,23 +41,7 @@ const Answers = (props) => {
 	console.log(answerList);
 	return (
 		<div>
-			{/* <BasicInfoContext.Consumer>
-				{({ nav_info, loggedInState, handleLog, userId }) => (
-					<Navbar
-						nav_link={nav_info}
-						loggedInState={loggedInState}
-						handleLog={handleLog}
-						userId={userId}
-					/>
-				)}
-			</BasicInfoContext.Consumer> */}
-			<div style={sectionStyle} className='ht'>
-				{/* <Navbar
-					nav_link={nav_info}
-					loggedInState={loggedInState}
-					handleLog={handleLog}
-					userId={userId}
-				/> */}
+			<div className='ht'>
 				<SideNavbarDrawer
 					nav_link={nav_info}
 					loggedInState={loggedInState}

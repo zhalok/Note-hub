@@ -48,7 +48,7 @@ export default class App extends Component {
 				userId: token.user,
 			});
 
-			fetch(`http://localhost:5000/users/id/${token.user}`)
+			fetch(`https://notehubapi.herokuapp.com/users/id/${token.user}`)
 				.then((res) => res.json())
 				.then((data) => {
 					this.setState({
@@ -82,7 +82,11 @@ export default class App extends Component {
 
 	componentDidMount() {
 		this.get_token();
-		document.body.style.backgroundColor = '#8bbaf7';
+		document.body.style.backgroundColor = '#ffffff';
+		document.body.style.backgroundImage =
+			'linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%)';
+		// 		background-color: #ffffff;
+		// background-image: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
 	}
 
 	// componentDidUpdate() {

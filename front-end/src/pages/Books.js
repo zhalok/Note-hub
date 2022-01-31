@@ -119,7 +119,7 @@ export default class Books extends Component {
 		console.log(this.state.reload);
 		return (
 			<div>
-				<div style={sectionStyle} className='ht'>
+				<div className='ht'>
 					<BasicInfoContext.Consumer>
 						{({ nav_info, loggedInState, handleLog, userId }) => (
 							<SideNavbarDrawer

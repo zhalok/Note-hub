@@ -167,10 +167,7 @@ export default class SignUp extends Component {
 		} = this.state;
 
 		return (
-			<div
-				className={style.login_dark}
-				style={{ backgroundSize: 'cover', backgroundColor: '#8bbaf7' }}
-			>
+			<div className={style.login_dark}>
 				<BasicInfoContext.Consumer>
 					{({ nav_info, loggedInState, handleLog, userId }) => (
 						<SideNavbarDrawer

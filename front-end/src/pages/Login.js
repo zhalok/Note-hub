@@ -55,6 +55,8 @@ export default class Login extends Component {
 			const user = await respornse.json();
 			if (user == 'User not found') {
 				alert('You are not registered');
+			} else if (user == 'Request Processing') {
+				alert('Your request is under processing');
 			} else {
 				this.props.handleLog({ user: this.state.registration_number });
 			}
@@ -180,7 +182,7 @@ export default class Login extends Component {
 		}
 
 		return (
-			<div style={sectionStyle} className='ht'>
+			<div className='ht'>
 				<BasicInfoContext.Consumer>
 					{({ nav_info, loggedInState, handleLog, userId }) => (
 						<SideNavbarDrawer

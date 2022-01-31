@@ -105,7 +105,7 @@ export default class Questions extends Component {
 		const { questionlist, questionFetched } = this.state;
 
 		return (
-			<div style={sectionStyle} className='ht'>
+			<div className='ht'>
 				<BasicInfoContext.Consumer>
 					{({ nav_info, loggedInState, handleLog, userId }) => (
 						<SideNavbarDrawer

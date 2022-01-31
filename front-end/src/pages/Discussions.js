@@ -29,6 +29,7 @@ export default function Discussions(props) {
 
 	const { nav_info, loggedInState, handleLog, userId, userName, userEmail } =
 		props;
+	console.log(props);
 
 	useEffect(() => {
 		fetch('https://notehubapi.herokuapp.com/discussions/get_all')
@@ -67,7 +68,7 @@ export default function Discussions(props) {
 
 	return (
 		<div>
-			<div style={sectionStyle} className='ht'>
+			<div className='ht'>
 				<BasicInfoContext.Consumer>
 					{({ nav_info, loggedInState, handleLog, userId }) => (
 						<SideNavbarDrawer

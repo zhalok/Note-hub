@@ -31,7 +31,7 @@ export default class extends Component {
 		}
 
 		return (
-			<div style={sectionStyle} className='ht'>
+			<div className='ht'>
 				<BasicInfoContext.Consumer>
 					{({ nav_info, loggedInState, handleLog, userId }) => (
 						<SideNavbarDrawer

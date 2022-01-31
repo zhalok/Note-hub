@@ -34,7 +34,7 @@ const Profile = ({ nav_info, loggedInState, handleLog, userId }) => {
 
 	if (profileInfo) {
 		return (
-			<div style={sectionStyle} className='ht'>
+			<div className='ht'>
 				<BasicInfoContext.Consumer>
 					{({ nav_info, loggedInState, handleLog, userId }) => (
 						<SideNavbarDrawer

@@ -51,7 +51,7 @@ export default class Users extends React.Component {
 
 		const { nav_info, loggedInState, handleLog, userId } = this.props;
 		return (
-			<div className='ht' style={sectionStyle}>
+			<div className='ht'>
 				<BasicInfoContext.Consumer>
 					{({ nav_info, loggedInState, handleLog, userId }) => (
 						<SideNavbarDrawer

@@ -37,7 +37,8 @@ export default function DiscussionCard(props) {
 	let deleteButton;
 	if (userId == discussion_starters_id) {
 		deleteButton = (
-			<IconButton aria-label="delete"
+			<IconButton
+				aria-label='delete'
 				variant='secondary'
 				style={{ marginLeft: 'auto' }}
 				onClick={() => {
@@ -58,7 +59,8 @@ export default function DiscussionCard(props) {
 					marginLeft: 'auto',
 					marginRight: 'auto',
 					marginTop: '50px',
-					backgroundImage: 'linear-gradient(170deg, rgba(83, 185, 230), rgba(35, 103, 158))',
+					backgroundImage:
+						'linear-gradient(170deg, rgba(83, 185, 230), rgba(35, 103, 158))',
 					padding: '10px',
 					boxShadow:
 						'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
