@@ -75,38 +75,12 @@ const add_new_project = async (req, res, next) => {
 		description,
 		link,
 	});
-	new_project.save((err) => {
-		if (err) next(err);
-
-		overview_model.find({}, (err, data) => {
-			if (err) next(err);
-			if (data.length == 0) {
-				const new_overview = new overview_model({
-					projects: 1,
-				});
-				new_overview.save((err) => {
-					if (err) next(err);
-					update_user(
-						{ contributor_id, type, content_name: name, semester },
-						(data) => {
-							res.json(data);
-						}
-					);
-				});
-			} else {
-				if (data[0].projects) data[0].projects++;
-				else data[0].projects = 1;
-				data[0].save((err) => {
-					if (err) next(err);
-					update_user(
-						{ contributor_id, type, content_name: name, semester },
-						(data) => {
-							res.json(data);
-						}
-					);
-				});
-			}
-		});
+	new_project.save((err, data) => {
+		if (err) {
+			next(err);
+		} else {
+			res.json(data);
+		}
 	});
 };
 

@@ -74,38 +74,12 @@ const add_new_question = async (req, res, next) => {
 		description,
 		link,
 	});
-	new_question.save((err) => {
-		if (err) next(err);
-
-		overview_model.find({}, (err, data) => {
-			if (err) next(err);
-			if (data.length == 0) {
-				const new_overview = new overview_model({
-					questions: 1,
-				});
-				new_overview.save((err) => {
-					if (err) next(err);
-					update_user(
-						{ contributor_id, type, content_name: name, semester },
-						(data) => {
-							res.json(data);
-						}
-					);
-				});
-			} else {
-				if (data[0].questions) data[0].questions++;
-				else data[0].questions = 1;
-				data[0].save((err) => {
-					if (err) next(err);
-					update_user(
-						{ contributor_id, type, content_name: name, semester },
-						(data) => {
-							res.json(data);
-						}
-					);
-				});
-			}
-		});
+	new_question.save((err, data) => {
+		if (err) {
+			next(err);
+		} else {
+			res.json(data);
+		}
 	});
 };
 

@@ -77,38 +77,12 @@ const add_new_note = async (req, res, next) => {
 		link,
 	});
 	console.log(new_note);
-	new_note.save((err) => {
-		if (err) next(err);
-
-		overview_model.find({}, (err, data) => {
-			if (err) next(err);
-			if (data.length == 0) {
-				const new_overview = new overview_model({
-					notes: 1,
-				});
-				new_overview.save((err) => {
-					if (err) next(err);
-					update_user(
-						{ contributor_id, type, content_name: name, semester },
-						(data) => {
-							res.json(data);
-						}
-					);
-				});
-			} else {
-				if (data[0].notes) data[0].notes++;
-				else data[0].notes = 1;
-				data[0].save((err) => {
-					if (err) next(err);
-					update_user(
-						{ contributor_id, type, content_name: name, semester },
-						(data) => {
-							res.json(data);
-						}
-					);
-				});
-			}
-		});
+	new_note.save((err, data) => {
+		if (err) {
+			next(err);
+			return;
+		}
+		res.json(data);
 	});
 };
 

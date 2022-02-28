@@ -94,42 +94,11 @@ const add_new_book = async (req, res, next) => {
 	});
 
 	new_book.save((err, bookData) => {
-		if (err) next(err);
-
-		overview_model.find({}, (err, data) => {
-			if (err) next(err);
-
-			if (data.length == 0) {
-				const new_overview = new overview_model({
-					books: 1,
-				});
-				new_overview.save((err) => {
-					if (err) next(err);
-					update_user(
-						{ contributor_id, type, content_name: name, semester },
-						(data) => {
-							res.json(data);
-						}
-					);
-				});
-			} else {
-				if (data[0].books) data[0].books++;
-				else data[0].books = 1;
-				data[0].save((err) => {
-					if (err) next(err);
-					else {
-						res.json(true);
-					}
-					// update_user(
-					// 	{ contributor_id, type, content_name: name, semester },
-					// 	(err, data) => {
-					// 		if (err) next(err);
-					// 		res.json(data);
-					// 	}
-					// );
-				});
-			}
-		});
+		if (err) {
+			next(err);
+		} else {
+			res.json(bookData);
+		}
 	});
 };
 

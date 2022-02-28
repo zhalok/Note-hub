@@ -89,7 +89,7 @@ export default class ContributeForm extends Component {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data);
+				alert('Data inserted');
 				this.setState({
 					showCongoMessage: true,
 					selected_type: '',
