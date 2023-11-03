@@ -1,6 +1,20 @@
-# Set up and run locally
+# Notehub
+Ultimate Solution for Course Resource Management.
 
 ---
+
+# Keypoints 
+- Managing all academic resources in one place
+- Sharing educational resources with other learners
+- Having a discussion forum
+
+# Used technologies and frameworks
+- React JS
+- Node JS
+- Express JS
+- MongoDB
+- Material Design
+- REST API
 
 ## Demo
 
